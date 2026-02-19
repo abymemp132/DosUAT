@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "types": ["node", "@playwright/test"],
+    "resolveJsonModule": true
+  },
+  "include": [
+    "playwright.config.ts",
+    "pages/**/*.ts",
+    "fixtures/**/*.ts",
+    "utils/**/*.ts",
+    "config/**/*.ts",
+    "tests/**/*.ts"
+  ]
+}
