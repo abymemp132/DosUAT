@@ -1,0 +1,2 @@
+Bug ID,Test ID,Scenario,Status,Severity,Priority,Bug State,Error Summary,Root Cause Hypothesis,Evidence
+"BUG-HOME-001","L-003","[Login] top navigation links route to expected pages","Failed","Medium","P2","Open","OTP verification title was not visible within 35s after Send OTP.","Intermittent OTP/login service response in UAT caused setup failure before scenario navigation assertions.","./evidence/home-login-otp-timeout-2026-02-20/test-failed-1.png | ./evidence/home-login-otp-timeout-2026-02-20/video.webm | ./evidence/home-login-otp-timeout-2026-02-20/error-context.md"

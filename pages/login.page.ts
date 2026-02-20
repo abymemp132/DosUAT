@@ -26,13 +26,22 @@ export class LoginPage extends BasePage {
   }
 
   async closeLocationModal(city = "Delhi"): Promise<void> {
-    if ((await this.locationModal.count()) === 0) {
+    if (!(await this.locationModal.isVisible())) {
       return;
     }
 
     const cityOption = this.locationModal.getByText(city, { exact: true }).first();
+    await expect(cityOption, `City option "${city}" should be visible in location modal.`).toBeVisible();
     await cityOption.click();
     await expect(this.locationModal).toBeHidden();
+  }
+
+  async loginWithEmailOtp(email: string, otp: string, city = "Delhi"): Promise<void> {
+    await this.openHome();
+    await this.closeLocationModal(city);
+    await this.openLoginModal();
+    await this.requestOtp(email);
+    await this.verifyOtp(otp);
   }
 
   async openLoginModal(): Promise<void> {
