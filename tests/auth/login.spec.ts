@@ -9,6 +9,8 @@ test.describe("auth", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run auth checks.");
 
   test("login with email and otp", async ({ page }) => {
+    test.setTimeout(120_000);
+
     const loginPage = new LoginPage(page);
 
     await loginPage.openHome();

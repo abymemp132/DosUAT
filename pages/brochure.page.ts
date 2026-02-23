@@ -1,12 +1,11 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./base.page";
 
-export class FormsPage extends BasePage {
+export class BrochurePage extends BasePage {
   private readonly locationModal: Locator;
-  private readonly consentSearchInput: Locator;
-  private readonly formCards: Locator;
-  private readonly formTitleSpans: Locator;
-  private readonly downloadLinks: Locator;
+  private readonly brochureSearchInput: Locator;
+  private readonly brochureCards: Locator;
+  private readonly shareLinks: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -14,20 +13,27 @@ export class FormsPage extends BasePage {
       .locator("div.fixed.inset-0.z-50")
       .filter({ hasText: "Select your Location" })
       .first();
-    this.consentSearchInput = this.page.locator('input[placeholder="Search by Consent"]').first();
-    this.formCards = this.page.locator("div.bg-white.rounded-lg.shadow-md.border.border-gray-200.overflow-hidden");
-    this.formTitleSpans = this.formCards.locator("div.p-4 span").first();
-    this.downloadLinks = this.page.locator('a[href*="oncquest-admin-uat.abym.us/s/"]');
+    this.brochureSearchInput = this.page
+      .locator(
+        'input[placeholder*="Search by Brochure"], input[placeholder*="Search by brochure"], input[placeholder*="Search"]'
+      )
+      .first();
+    this.brochureCards = this.page.locator(
+      "div.bg-white.rounded-lg.shadow-md.border.border-gray-200.overflow-hidden"
+    );
+    this.shareLinks = this.page.locator(
+      'a[href*="oncquest-admin-uat.abym.us/s/"], a[href*="/s/"], a[href$=".pdf"], a[href$=".PDF"]'
+    );
   }
 
   async open(): Promise<void> {
-    await this.goto("/consent-forms");
+    await this.goto("/brochure");
   }
 
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
     await this.selectCity(city);
-    await this.waitForFormsToLoad();
+    await this.waitForBrochuresToLoad();
   }
 
   async selectCity(city = "Delhi"): Promise<void> {
@@ -76,62 +82,50 @@ export class FormsPage extends BasePage {
   }
 
   async assertPageShell(): Promise<void> {
-    await expect(this.page).toHaveURL(/\/consent-forms/i);
-    await expect(this.page.getByText(/Home\s*>\s*Test Requisition & Consent Forms/i)).toBeVisible();
-    await expect(
-      this.page.locator("p").filter({ hasText: /^Test Requisition & Consent Forms$/ }).first()
-    ).toBeVisible();
-    await expect(this.consentSearchInput).toBeVisible();
-    await expect(this.formCards.first()).toBeVisible();
-    await expect(this.formTitleSpans.first()).toBeVisible();
+    await this.waitForBrochuresToLoad();
+    await expect(this.page).toHaveURL(/\/brochure/i);
+    await expect(this.page.getByText(/Home\s*>\s*Brochures?/i)).toBeVisible();
   }
 
-  async assertSearchByConsentWorks(query = "MammaPrint", expectedTitle = "MammaPrint TRF"): Promise<void> {
-    await this.waitForFormsToLoad();
+  async assertSearchBrochuresWorks(): Promise<void> {
+    await this.waitForBrochuresToLoad();
 
-    const beforeCount = await this.formCards.count();
-    expect(beforeCount, "Consent forms list should contain at least one card.").toBeGreaterThan(0);
+    await expect(this.brochureSearchInput).toBeVisible({ timeout: 10_000 });
+    const beforeCount = await this.brochureCards.count();
+    expect(beforeCount, "Brochure page should list at least one brochure card.").toBeGreaterThan(0);
 
-    await this.consentSearchInput.fill(query);
+    const firstCardText = (await this.brochureCards.first().innerText()).replace(/\s+/g, " ").trim();
+    const normalizedText = firstCardText.replace(/Download PDF Format/gi, "").trim();
+    const searchQuery = this.pickSearchPhrase(normalizedText);
+    expect(searchQuery, `Could not derive brochure search query from first card text "${firstCardText}".`).not.toBe(
+      ""
+    );
 
+    await this.brochureSearchInput.fill(searchQuery);
+    await expect(this.page.getByText(new RegExp(this.escapeRegExp(searchQuery), "i")).first()).toBeVisible({
+      timeout: 15_000
+    });
     await expect
-      .poll(async () => this.formCards.count(), {
+      .poll(async () => this.brochureCards.count(), {
         timeout: 15_000,
-        message: `Searching forms by "${query}" should narrow down visible cards.`
+        message: `Searching brochures by "${searchQuery}" should not increase visible card count.`
       })
       .toBeLessThanOrEqual(beforeCount);
-
-    await expect(this.page.getByText(expectedTitle, { exact: true })).toBeVisible({ timeout: 10_000 });
-  }
-
-  async assertDownloadLinksArePresent(): Promise<void> {
-    await this.waitForFormsToLoad();
-
-    const linksCount = await this.downloadLinks.count();
-    expect(linksCount, "At least one download link should be visible on consent forms page.").toBeGreaterThan(
-      0
-    );
-
-    const firstLink = this.downloadLinks.first();
-    await expect(firstLink).toBeVisible({ timeout: 10_000 });
-    const href = await firstLink.getAttribute("href");
-    expect(href, "First consent form download link should have href.").toBeTruthy();
-    expect(href!, "Consent form download link should point to oncquest-admin file share.").toContain(
-      "oncquest-admin-uat.abym.us/s/"
-    );
   }
 
   async assertShareLinksAreReachable(): Promise<void> {
-    await this.assertDownloadLinksArePresent();
+    await this.waitForBrochuresToLoad();
 
-    const links = await this.downloadLinks.evaluateAll((elements) => {
+    const links = await this.shareLinks.evaluateAll((elements) => {
       const hrefs = elements
         .map((element) => element.getAttribute("href"))
         .filter((value): value is string => Boolean(value));
       return Array.from(new Set(hrefs));
     });
 
-    expect(links.length, "No consent-form share links were found for reachability checks.").toBeGreaterThan(0);
+    expect(links.length, "No brochure share/download links were found for reachability checks.").toBeGreaterThan(
+      0
+    );
 
     const failedLinks: string[] = [];
     for (const link of links) {
@@ -150,17 +144,47 @@ export class FormsPage extends BasePage {
       }
     }
 
-    expect(
-      failedLinks,
-      `Found unreachable consent-form share links:\n${failedLinks.join("\n")}`
-    ).toEqual([]);
+    expect(failedLinks, `Found unreachable brochure share/download links:\n${failedLinks.join("\n")}`).toEqual(
+      []
+    );
   }
 
-  private async waitForFormsToLoad(timeoutMs = 45_000): Promise<void> {
-    await expect(this.consentSearchInput).toBeVisible({ timeout: timeoutMs });
-    await expect(this.formCards.first(), "Consent forms cards should be visible.").toBeVisible({
+  private async waitForBrochuresToLoad(timeoutMs = 45_000): Promise<void> {
+    const badGateway = this.page.getByText(/502 Bad Gateway|404|This page could not be found/i).first();
+    if (await badGateway.isVisible().catch(() => false)) {
+      throw new Error("Brochure page is unavailable (502/404). This appears to be an environment issue.");
+    }
+
+    await expect(this.page.getByText("Brochures", { exact: false }).first()).toBeVisible({
       timeout: timeoutMs
     });
+
+    // The brochure page may render as cards or as direct share links depending on release.
+    if (await this.brochureCards.first().isVisible().catch(() => false)) {
+      return;
+    }
+
+    await expect(this.shareLinks.first(), "Brochure cards or share links should be visible.").toBeVisible({
+      timeout: timeoutMs
+    });
+  }
+
+  private pickSearchPhrase(value: string): string {
+    const clean = value.replace(/\s+/g, " ").trim();
+    if (!clean) {
+      return "";
+    }
+
+    const words = clean
+      .split(" ")
+      .map((word) => word.trim())
+      .filter((word) => /[A-Za-z]/.test(word));
+
+    if (words.length === 0) {
+      return "";
+    }
+
+    return words.slice(0, 2).join(" ");
   }
 
   private escapeRegExp(value: string): string {

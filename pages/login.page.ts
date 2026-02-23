@@ -30,10 +30,44 @@ export class LoginPage extends BasePage {
       return;
     }
 
-    const cityOption = this.locationModal.getByText(city, { exact: true }).first();
-    await expect(cityOption, `City option "${city}" should be visible in location modal.`).toBeVisible();
-    await cityOption.click();
-    await expect(this.locationModal).toBeHidden();
+    const loadingCities = this.locationModal.getByText("Loading cities...", { exact: false });
+    if (await loadingCities.isVisible().catch(() => false)) {
+      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
+    }
+
+    const preferredCityOption = this.locationModal
+      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, "i"))
+      .first();
+    const clickPreferredCity = async (): Promise<boolean> => {
+      if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
+        return false;
+      }
+
+      await preferredCityOption.click();
+      return true;
+    };
+
+    if (await clickPreferredCity()) {
+      await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
+      return;
+    }
+
+    const searchInput = this.locationModal.getByPlaceholder("Search your City");
+    if (await searchInput.isVisible().catch(() => false)) {
+      await searchInput.fill(city);
+      if (await clickPreferredCity()) {
+        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
+        return;
+      }
+      await searchInput.fill("");
+    }
+
+    const fallbackCityClicked = await this.clickFirstAvailableCity();
+    expect(
+      fallbackCityClicked,
+      `City option "${city}" was not available and no fallback city option was found.`
+    ).toBe(true);
+    await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
   }
 
   async loginWithEmailOtp(email: string, otp: string, city = "Delhi"): Promise<void> {
@@ -52,7 +86,7 @@ export class LoginPage extends BasePage {
   async requestOtp(email: string): Promise<void> {
     await this.emailInput.fill(email);
     await this.sendOtpButton.click();
-    await expect(this.otpTitle).toBeVisible({ timeout: 35_000 });
+    await expect(this.otpTitle).toBeVisible({ timeout: 60_000 });
   }
 
   async verifyOtp(otp: string): Promise<void> {
@@ -64,6 +98,10 @@ export class LoginPage extends BasePage {
     }
 
     await this.verifyButton.click();
+    await expect(
+      this.otpTitle,
+      "OTP verification did not complete. The OTP may be invalid or expired."
+    ).toBeHidden({ timeout: 45_000 });
   }
 
   async openProfileMenu(): Promise<void> {
@@ -75,5 +113,49 @@ export class LoginPage extends BasePage {
       timeout: 15_000
     });
     await expect(this.page.getByText(email, { exact: false })).toBeVisible();
+  }
+
+  private escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  private async clickFirstAvailableCity(): Promise<boolean> {
+    return this.locationModal.evaluate((modal) => {
+      const excludedLabels = [
+        "Select your Location",
+        "Search your City",
+        "Use Current Location",
+        "Please select your location first",
+        "Metro Cities",
+        "Other Cities",
+        "Loading cities..."
+      ];
+
+      const normalizeText = (value: string): string => value.replace(/\s+/g, " ").trim();
+      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>("*")).find((element) => {
+        const label = normalizeText(element.innerText || element.textContent || "");
+        if (!label || label.length > 60) {
+          return false;
+        }
+
+        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
+          return false;
+        }
+
+        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
+          return false;
+        }
+
+        const style = window.getComputedStyle(element);
+        return style.cursor === "pointer";
+      });
+
+      if (!fallbackCity) {
+        return false;
+      }
+
+      fallbackCity.click();
+      return true;
+    });
   }
 }

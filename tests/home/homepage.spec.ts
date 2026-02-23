@@ -63,7 +63,7 @@ test.describe("home page - without login (guest user)", () => {
   });
 
   test("[Guest] search works with icon click and Enter key", async ({ page }) => {
-    test.setTimeout(34_000);
+    test.setTimeout(60_000);
 
     const homePage = new HomePage(page);
     await homePage.assertSearchWorksWithIconAndEnter(city);

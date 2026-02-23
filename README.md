@@ -26,7 +26,6 @@ pages/
 tests/
   auth/
   testCatalog/
-  specialitySegment/
   doctorSpeciality/
   diseaseCondition/
   forms/
