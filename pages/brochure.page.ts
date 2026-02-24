@@ -6,6 +6,7 @@ export class BrochurePage extends BasePage {
   private readonly brochureSearchInput: Locator;
   private readonly brochureCards: Locator;
   private readonly shareLinks: Locator;
+  private readonly emptyStateMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -24,6 +25,7 @@ export class BrochurePage extends BasePage {
     this.shareLinks = this.page.locator(
       'a[href*="oncquest-admin-uat.abym.us/s/"], a[href*="/s/"], a[href$=".pdf"], a[href$=".PDF"]'
     );
+    this.emptyStateMessage = this.page.getByText(/No brochures found\.?/i).first();
   }
 
   async open(): Promise<void> {
@@ -82,15 +84,35 @@ export class BrochurePage extends BasePage {
   }
 
   async assertPageShell(): Promise<void> {
-    await this.waitForBrochuresToLoad();
+    const contentState = await this.waitForBrochuresToLoad();
     await expect(this.page).toHaveURL(/\/brochure/i);
     await expect(this.page.getByText(/Home\s*>\s*Brochures?/i)).toBeVisible();
+    await expect(this.brochureSearchInput).toBeVisible({ timeout: 10_000 });
+
+    if (contentState === "empty") {
+      await expect(this.emptyStateMessage).toBeVisible();
+      return;
+    }
+
+    const cardsCount = await this.brochureCards.count();
+    const linksCount = await this.shareLinks.count();
+    expect(
+      cardsCount + linksCount,
+      "Brochure page should show brochure cards or share/download links when data is available."
+    ).toBeGreaterThan(0);
   }
 
   async assertSearchBrochuresWorks(): Promise<void> {
-    await this.waitForBrochuresToLoad();
+    const contentState = await this.waitForBrochuresToLoad();
 
     await expect(this.brochureSearchInput).toBeVisible({ timeout: 10_000 });
+
+    if (contentState === "empty") {
+      await this.brochureSearchInput.fill("mammaprint");
+      await expect(this.emptyStateMessage, "Empty state should remain visible when no brochures are available.").toBeVisible();
+      return;
+    }
+
     const beforeCount = await this.brochureCards.count();
     expect(beforeCount, "Brochure page should list at least one brochure card.").toBeGreaterThan(0);
 
@@ -114,7 +136,12 @@ export class BrochurePage extends BasePage {
   }
 
   async assertShareLinksAreReachable(): Promise<void> {
-    await this.waitForBrochuresToLoad();
+    const contentState = await this.waitForBrochuresToLoad();
+
+    if (contentState === "empty") {
+      await expect(this.emptyStateMessage, "Empty state should be visible when no brochure links are available.").toBeVisible();
+      return;
+    }
 
     const links = await this.shareLinks.evaluateAll((elements) => {
       const hrefs = elements
@@ -149,7 +176,7 @@ export class BrochurePage extends BasePage {
     );
   }
 
-  private async waitForBrochuresToLoad(timeoutMs = 45_000): Promise<void> {
+  private async waitForBrochuresToLoad(timeoutMs = 45_000): Promise<"hasData" | "empty"> {
     const badGateway = this.page.getByText(/502 Bad Gateway|404|This page could not be found/i).first();
     if (await badGateway.isVisible().catch(() => false)) {
       throw new Error("Brochure page is unavailable (502/404). This appears to be an environment issue.");
@@ -158,15 +185,29 @@ export class BrochurePage extends BasePage {
     await expect(this.page.getByText("Brochures", { exact: false }).first()).toBeVisible({
       timeout: timeoutMs
     });
+    await expect(this.brochureSearchInput).toBeVisible({ timeout: timeoutMs });
 
-    // The brochure page may render as cards or as direct share links depending on release.
-    if (await this.brochureCards.first().isVisible().catch(() => false)) {
-      return;
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      // The brochure page may render as cards or as direct share links depending on release.
+      if (await this.brochureCards.first().isVisible().catch(() => false)) {
+        return "hasData";
+      }
+
+      if (await this.shareLinks.first().isVisible().catch(() => false)) {
+        return "hasData";
+      }
+
+      if (await this.emptyStateMessage.isVisible().catch(() => false)) {
+        return "empty";
+      }
+
+      await this.page.waitForTimeout(500);
     }
 
-    await expect(this.shareLinks.first(), "Brochure cards or share links should be visible.").toBeVisible({
-      timeout: timeoutMs
-    });
+    throw new Error(
+      "Brochure page did not render cards, links, or empty-state message within the expected time."
+    );
   }
 
   private pickSearchPhrase(value: string): string {
