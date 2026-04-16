@@ -186,12 +186,12 @@ function main() {
     }))
   };
 
-  // Keep history: new one at top, max 20 runs. 
-  // We keep NEW cases for top 3, but clear cases for older ones to prevent file bloat
-  const updatedRuns = [currentRun, ...existingRuns.filter(r => r.runId !== currentRun.runId)]
-    .slice(0, 20)
-    .map((run, idx) => {
-       if (idx >= 3) {
+  // Keep history: new one at bottom (chronological), max 20 runs. 
+  const updatedRuns = [...existingRuns.filter(r => r.runId !== currentRun.runId), currentRun]
+    .slice(-20)
+    .map((run, idx, arr) => {
+       // Keep detailed cases only for the last 5 runs to save space
+       if (idx < arr.length - 5) {
           const { cases, ...rest } = run;
           return rest;
        }

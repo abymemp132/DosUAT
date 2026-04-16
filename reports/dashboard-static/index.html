@@ -1358,68 +1358,37 @@
 
    <script>
       window.__DASHBOARD_REPORT__ = {
-  "generatedAt": "2026-04-16T10:53:04.957Z",
+  "generatedAt": "2026-04-16T11:40:07.474Z",
   "project": "Dos",
   "environment": "UAT / Performance",
   "summary": {
-    "total": 8,
-    "passed": 3,
-    "failed": 1,
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
     "flaky": 0,
-    "skipped": 4,
-    "apiFails": 1,
-    "riskCases": 1,
-    "attempts": 8,
-    "totalDurationMs": 46714,
-    "averageDurationMs": 5839.25,
-    "passRate": 37.5
+    "skipped": 0,
+    "apiFails": 0,
+    "riskCases": 0,
+    "attempts": 1,
+    "totalDurationMs": 4330,
+    "averageDurationMs": 4330,
+    "passRate": 100
   },
   "metadata": {
     "os": "win32",
     "node": "v25.6.1",
     "engine": "Playwright",
-    "totalModules": 2
+    "totalModules": 1
   },
   "thresholdMs": 20000,
   "slowCaseSummary": {
     "thresholdMs": 20000,
-    "total": 1,
-    "cases": [
-      {
-        "title": "[Guest] sharing links are reachable",
-        "file": "brochure/brochure.spec.ts",
-        "line": 40,
-        "moduleName": "Brochure",
-        "status": "failed",
-        "durationMs": 38074,
-        "startTime": "2026-04-16T10:52:18.083Z",
-        "fullPath": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-        "errorMessage": "Error: Found unreachable brochure share/download links:\nhttps://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443\nCall log:\n  - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n\n\nexpect(received).toEqual(expected) // deep equality",
-        "attempts": [
-          {
-            "id": "attempt-0",
-            "status": "failed",
-            "durationMs": 38074,
-            "startTime": "2026-04-16T10:52:18.083Z",
-            "stdout": "",
-            "stderr": "Error: Found unreachable brochure share/download links:\nhttps://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443\nCall log:\n  - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n\n\nexpect(received).toEqual(expected) // deep equality"
-          }
-        ],
-        "flaky": false
-      }
-    ]
+    "total": 0,
+    "cases": []
   },
   "weeklyTrend": [
     {
       "key": "W1",
-      "label": "Module Brochure",
-      "passed": 2,
-      "failed": 1,
-      "flaky": 0,
-      "total": 7
-    },
-    {
-      "key": "W2",
       "label": "Module Smoke.spec.ts",
       "passed": 1,
       "failed": 0,
@@ -1433,8 +1402,83 @@
     "month": [],
     "year": []
   },
-  "runCount": 10,
+  "runCount": 17,
   "runs": [
+    {
+      "runId": "RUN-3871",
+      "startTime": "2026-04-16T11:36:11.390Z",
+      "durationMs": 2483,
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      }
+    },
+    {
+      "runId": "RUN-9670",
+      "startTime": "2026-04-16T11:35:28.639Z",
+      "durationMs": 13015,
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      }
+    },
+    {
+      "runId": "RUN-8686",
+      "startTime": "2026-04-16T11:34:42.258Z",
+      "durationMs": 6734,
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      }
+    },
+    {
+      "runId": "RUN-8630",
+      "startTime": "2026-04-16T11:18:06.369Z",
+      "durationMs": 133478,
+      "summary": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      }
+    },
+    {
+      "runId": "RUN-7262",
+      "startTime": "2026-04-16T11:00:05.237Z",
+      "durationMs": 109823,
+      "summary": {
+        "total": 19,
+        "passed": 10,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 9,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 52.63157894736842
+      }
+    },
     {
       "runId": "RUN-7126",
       "startTime": "2026-04-16T10:52:06.495Z",
@@ -1448,89 +1492,7 @@
         "apiFails": 1,
         "riskCases": 1,
         "passRate": 37.5
-      },
-      "cases": [
-        {
-          "id": "case-0",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 4405,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-1",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] search by brochure works",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 2476,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-2",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] sharing links are reachable",
-          "moduleName": "Brochure",
-          "status": "failed",
-          "durationMs": 38074,
-          "lastErrorMessage": "Error: Found unreachable brochure share/download links:\nhttps://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443\nCall log:\n  - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n\n\nexpect(received).toEqual(expected) // deep equality",
-          "flaky": false
-        },
-        {
-          "id": "case-3",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-4",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-5",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] search by brochure works",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-6",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-7",
-          "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
-          "testTitle": "Verify Homepage Loads",
-          "moduleName": "Smoke.spec.ts",
-          "status": "passed",
-          "durationMs": 1759,
-          "lastErrorMessage": "",
-          "flaky": false
-        }
-      ]
+      }
     },
     {
       "runId": "RUN-2207",
@@ -1545,89 +1507,7 @@
         "apiFails": 0,
         "riskCases": 0,
         "passRate": 50
-      },
-      "cases": [
-        {
-          "id": "case-0",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 5665,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-1",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] search by brochure works",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 2466,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-2",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] sharing links are reachable",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 97611,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-3",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-4",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-5",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] search by brochure works",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-6",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Brochure",
-          "status": "skipped",
-          "durationMs": 0,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-7",
-          "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
-          "testTitle": "Verify Homepage Loads",
-          "moduleName": "Smoke.spec.ts",
-          "status": "passed",
-          "durationMs": 1542,
-          "lastErrorMessage": "",
-          "flaky": false
-        }
-      ]
+      }
     },
     {
       "runId": "RUN-8358",
@@ -1642,209 +1522,7 @@
         "apiFails": 1,
         "riskCases": 1,
         "passRate": 90
-      },
-      "cases": [
-        {
-          "id": "case-0",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] loads home page and shows core modules",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 28932,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-1",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] all visible home page buttons are working",
-          "moduleName": "Home",
-          "status": "timedOut",
-          "durationMs": 221748,
-          "lastErrorMessage": "Test timeout of 180000ms exceeded.\n---\nError: expect.toBeVisible: Target page, context or browser has been closed\n\n   at ..\\pages\\home.page.ts:189\n\n  187 |\n  188 |     for (const button of coreButtons) {\n> 189 |       await expect(button).toBeVisible({ timeout: 10_000 });\n      |                            ^",
-          "flaky": false
-        },
-        {
-          "id": "case-2",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] eye icon opens and closes details",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 30965,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-3",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] download selected shows login warning",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 80629,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-4",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] top navigation links route to expected pages",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 143139,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-5",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] all header icons open expected page or modal",
-          "moduleName": "Home",
-          "status": "failed",
-          "durationMs": 58897,
-          "lastErrorMessage": "Error: Neither login modal nor toast appeared for profile icon.\n\nexpect(locator).toBeVisible() failed\n\nLocator: locator('div.fixed.inset-0.z-50').filter({ hasText: /Login|Email|Sign|Welcome|Send Otp/i }).first().or(locator('.Toastify__toast, [role=\\'alert\\'], [data-sonner-toast]').filter({ hasText: /Login|Sign|Please|User not Login/i }).first())\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:",
-          "flaky": false
-        },
-        {
-          "id": "case-6",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] search works with icon click and Enter key",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 17130,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-7",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] add to cart shows login warning",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 13987,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-8",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] pagination works on home catalog",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 7289,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-9",
-          "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] footer links are visible and correct",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 7953,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-10",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 27395,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-11",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] loads home page and shows core modules",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 19591,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-12",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] top navigation links route to expected pages",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 99238,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-13",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] all header icons open expected page or modal",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 29150,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-14",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] search works with icon click and Enter key",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 40282,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-15",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] eye icon opens and closes details",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 38780,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-16",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] add to cart updates cart count",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 32146,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-17",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] download selected works without login modal",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 30912,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-18",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] pagination works on home catalog",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 7098,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-19",
-          "suiteTitle": "home\\debug_logout.spec.ts",
-          "testTitle": "[Login] debug logout button",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 20083,
-          "lastErrorMessage": "",
-          "flaky": false
-        }
-      ]
+      }
     },
     {
       "runId": "RUN-7702",
@@ -1937,86 +1615,70 @@
         "failed": 0,
         "passRate": 100
       }
+    },
+    {
+      "runId": "RUN-4647",
+      "startTime": "2026-04-16T11:39:35.042Z",
+      "durationMs": 4203,
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      },
+      "cases": [
+        {
+          "id": "case-0",
+          "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
+          "testTitle": "Verify Homepage Loads",
+          "moduleName": "Smoke.spec.ts",
+          "status": "passed",
+          "durationMs": 4203,
+          "lastErrorMessage": "",
+          "flaky": false
+        }
+      ]
+    },
+    {
+      "runId": "RUN-9176",
+      "startTime": "2026-04-16T11:39:54.770Z",
+      "durationMs": 4330,
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      },
+      "cases": [
+        {
+          "id": "case-0",
+          "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
+          "testTitle": "Verify Homepage Loads",
+          "moduleName": "Smoke.spec.ts",
+          "status": "passed",
+          "durationMs": 4330,
+          "lastErrorMessage": "",
+          "flaky": false
+        }
+      ]
     }
   ],
   "cases": [
     {
       "id": "case-0",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
-      "moduleName": "Brochure",
-      "status": "passed",
-      "durationMs": 4405,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-1",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] search by brochure works",
-      "moduleName": "Brochure",
-      "status": "passed",
-      "durationMs": 2476,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-2",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] sharing links are reachable",
-      "moduleName": "Brochure",
-      "status": "failed",
-      "durationMs": 38074,
-      "lastErrorMessage": "Error: Found unreachable brochure share/download links:\nhttps://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443\nCall log:\n  - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n\n\nexpect(received).toEqual(expected) // deep equality",
-      "flaky": false
-    },
-    {
-      "id": "case-3",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "Brochure",
-      "status": "skipped",
-      "durationMs": 0,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-4",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
-      "moduleName": "Brochure",
-      "status": "skipped",
-      "durationMs": 0,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-5",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] search by brochure works",
-      "moduleName": "Brochure",
-      "status": "skipped",
-      "durationMs": 0,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-6",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] sharing links are reachable",
-      "moduleName": "Brochure",
-      "status": "skipped",
-      "durationMs": 0,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-7",
       "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
       "testTitle": "Verify Homepage Loads",
       "moduleName": "Smoke.spec.ts",
       "status": "passed",
-      "durationMs": 1759,
+      "durationMs": 4330,
       "lastErrorMessage": "",
       "flaky": false
     }

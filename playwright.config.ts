@@ -62,8 +62,10 @@ export default defineConfig({
     },
     {
       name: "chromium",
+      dependencies: ['setup'],
       use: { 
-        ...devices["Desktop Chrome"]
+        ...devices["Desktop Chrome"],
+        storageState: '.auth/user.json',
       },
       testMatch: /.*\.spec\.ts/,
       grep: /\[Login\]|auth/i, // Run auth and login-required tests here
