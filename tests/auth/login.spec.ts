@@ -1,24 +1,26 @@
-import { test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from "../../fixtures/testData.fixture";
 import { LoginPage } from "../../pages/login.page";
+import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
-
-const loginEmail = process.env.LOGIN_EMAIL || "abymemp132@gmail.com";
-const loginOtp = process.env.LOGIN_OTP || "123456";
 
 test.describe("auth", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run auth checks.");
+  test.skip(!hasAuthState, "Run `npm run auth:manual` to create a reusable login session.");
+  if (hasAuthState) {
+    test.use({ storageState: authStatePath });
+  }
 
-  test("login with email and otp", async ({ page }) => {
-    test.setTimeout(120_000);
+  test("saved login session is active", async ({ page, user, city }) => {
+    test.setTimeout(60_000);
 
     const loginPage = new LoginPage(page);
 
+    // Act
     await loginPage.openHome();
-    await loginPage.closeLocationModal("Delhi");
-    await loginPage.openLoginModal();
-    await loginPage.requestOtp(loginEmail);
-    await loginPage.verifyOtp(loginOtp);
+    await loginPage.closeLocationModal(city.name);
     await loginPage.openProfileMenu();
-    await loginPage.assertUserIsLoggedIn(loginEmail);
+
+    await loginPage.assertSessionIsActive(user.email);
   });
 });

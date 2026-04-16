@@ -1,0 +1,112 @@
+<testsuites id="" name="" tests="8" failures="1" skipped="4" errors="0" time="57.342546">
+<testsuite name="brochure\brochure.spec.ts" timestamp="2026-04-16T10:52:06.655Z" hostname="guest" tests="3" failures="1" skipped="0" time="44.955" errors="0">
+<testcase name="brochure page - without login (guest user) › [Guest] loads page and shows core widgets" classname="brochure\brochure.spec.ts" time="4.405">
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] search by brochure works" classname="brochure\brochure.spec.ts" time="2.476">
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] sharing links are reachable" classname="brochure\brochure.spec.ts" time="38.074">
+<failure message="brochure.spec.ts:40:7 [Guest] sharing links are reachable" type="FAILURE">
+<![CDATA[  [guest] › brochure\brochure.spec.ts:40:7 › brochure page - without login (guest user) › [Guest] sharing links are reachable 
+
+    Error: Found unreachable brochure share/download links:
+    https://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443
+    Call log:
+      - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu
+        - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 9
+
+    - Array []
+    + Array [
+    +   "https://oncquest-admin-uat.abym.us/s/s0nhyu -> apiRequestContext.get: connect ETIMEDOUT 72.60.100.102:443
+    + Call log:
+    +   - → GET https://oncquest-admin-uat.abym.us/s/s0nhyu
+    +     - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36
+    +     - accept: */*
+    +     - accept-encoding: gzip,deflate,br
+    + ",
+    + ]
+
+       at ..\pages\brochure.page.ts:181
+
+      179 |     }
+      180 |
+    > 181 |     expect(failedLinks, `Found unreachable brochure share/download links:\n${failedLinks.join("\n")}`).toEqual(
+          |                                                                                                        ^
+      182 |       []
+      183 |     );
+      184 |   }
+        at BrochurePage.assertShareLinksAreReachable (C:\Users\Pankaj\DosUAT\pages\brochure.page.ts:181:104)
+        at C:\Users\Pankaj\DosUAT\tests\brochure\brochure.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-04-16T10:52:06.655Z" hostname="guest" tests="1" failures="0" skipped="0" time="1.759" errors="0">
+<testcase name="Smoke Test Suite › Verify Homepage Loads" classname="smoke.spec.ts" time="1.759">
+<system-out>
+<![CDATA[Running smoke test on: https://dos-web-uat.abym.us/
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="brochure\brochure.spec.ts" timestamp="2026-04-16T10:52:06.655Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="brochure page - with login (authenticated user) › [Login] saved session is active" classname="brochure\brochure.spec.ts" time="0">
+<properties>
+<property name="skip" value="Run `node utils/saveManualSession.js` to capture a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="brochure\brochure.spec.ts" time="0">
+<properties>
+<property name="skip" value="Run `node utils/saveManualSession.js` to capture a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] search by brochure works" classname="brochure\brochure.spec.ts" time="0">
+<properties>
+<property name="skip" value="Run `node utils/saveManualSession.js` to capture a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] sharing links are reachable" classname="brochure\brochure.spec.ts" time="0">
+<properties>
+<property name="skip" value="Run `node utils/saveManualSession.js` to capture a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

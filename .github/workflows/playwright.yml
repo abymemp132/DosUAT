@@ -1,0 +1,87 @@
+name: Playwright Regression Pipeline
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # 8:00 AM IST is 2:30 AM UTC
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+    - name: Run Playwright tests
+      run: npm run test:staging
+      env:
+        TEST_ENV: staging
+        WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME }}
+        WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD }}
+
+    - name: Generate Static Dashboard
+      if: always()
+      run: npm run dashboard:static
+
+    - name: Generate PDF Report
+      if: always()
+      run: npm run report:pdf
+
+    - name: Deploy Playwright Report to Netlify
+      if: always()
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './playwright-report'
+        production-deploy: false 
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Standard Report"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+    - name: Deploy Static Dashboard to Netlify
+      if: always()
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './reports/dashboard-static'
+        production-deploy: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Static Dashboard"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+    - name: Send Email Notification
+      if: always()
+      run: npm run send-email
+      env:
+        SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+        TEST_ENV: staging
+
+    - name: Upload Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30

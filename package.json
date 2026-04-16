@@ -4,17 +4,32 @@
   "private": true,
   "description": "Automation testing setup with Playwright and TypeScript",
   "scripts": {
-    "test": "node utils/runTestsWithDashboard.js",
+    "auth:manual": "tsx utils/manualAuth.ts",
+    "test": "tsx utils/runTestsWithDashboard.ts",
     "test:raw": "playwright test",
+    "test:full": "playwright test --config playwright.full.config.ts",
+    "test:full:raw": "playwright test --config playwright.full.config.ts",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
-    "report:dashboard": "node utils/generateTestDashboard.js"
+    "test:dev": "cross-env TEST_ENV=dev playwright test",
+    "test:staging": "cross-env TEST_ENV=staging playwright test",
+    "test:prod": "cross-env TEST_ENV=prod playwright test",
+    "report:pdf": "tsx scripts/generate-report.ts",
+    "send-email": "tsx scripts/email-sender.ts",
+    "pipeline": "npm run test:staging && npm run dashboard:static && npm run report:pdf && npm run send-email",
+    "deploy:report": "npx netlify-cli deploy --dir=playwright-report --prod",
+    "deploy:dashboard": "npx netlify-cli deploy --dir=reports/dashboard-static --prod",
+    "dashboard:static": "node utils/generateTestDashboard.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.2.3",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.3.1",
+    "nodemailer": "^8.0.5",
+    "puppeteer": "^24.41.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

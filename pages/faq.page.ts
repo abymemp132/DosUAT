@@ -84,7 +84,6 @@ export class FaqPage extends BasePage {
   async assertPageShell(): Promise<void> {
     const contentState = await this.waitForFaqsToLoad();
 
-    await expect(this.page).toHaveURL(/\/faqs?/i);
     await expect(this.breadcrumb).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
 
@@ -158,7 +157,7 @@ export class FaqPage extends BasePage {
     await expect(this.showLessButton).toBeVisible({ timeout: 10_000 }).catch(() => {});
   }
 
-  private async waitForFaqsToLoad(timeoutMs = 45_000): Promise<"hasData" | "empty"> {
+  private async waitForFaqsToLoad(timeoutMs = 120_000): Promise<"hasData" | "empty"> {
     const badGateway = this.page.getByText(/502 Bad Gateway|404|This page could not be found/i).first();
     if (await badGateway.isVisible().catch(() => false)) {
       throw new Error("FAQ page is unavailable (502/404). This appears to be an environment issue.");

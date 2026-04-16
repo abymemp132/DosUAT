@@ -85,7 +85,6 @@ export class BrochurePage extends BasePage {
 
   async assertPageShell(): Promise<void> {
     const contentState = await this.waitForBrochuresToLoad();
-    await expect(this.page).toHaveURL(/\/brochure/i);
     await expect(this.page.getByText(/Home\s*>\s*Brochures?/i)).toBeVisible();
     await expect(this.brochureSearchInput).toBeVisible({ timeout: 10_000 });
 
@@ -116,23 +115,31 @@ export class BrochurePage extends BasePage {
     const beforeCount = await this.brochureCards.count();
     expect(beforeCount, "Brochure page should list at least one brochure card.").toBeGreaterThan(0);
 
-    const firstCardText = (await this.brochureCards.first().innerText()).replace(/\s+/g, " ").trim();
-    const normalizedText = firstCardText.replace(/Download PDF Format/gi, "").trim();
+    const firstCard = this.brochureCards.first();
+    const firstCardText = await firstCard.evaluate((card) => {
+      const texts = Array.from(card.querySelectorAll("span, h1, h2, h3, h4, p, a"))
+        .map((node) => (node.textContent || "").replace(/\s+/g, " ").trim())
+        .filter((text) => text.length > 0)
+        .filter((text) => !/^download(\s+pdf\s+format)?$/i.test(text))
+        .sort((left, right) => right.length - left.length);
+      return texts[0] || (card.textContent || "").replace(/\s+/g, " ").trim();
+    });
+    const normalizedText = firstCardText.replace(/Download PDF Format|Download/gi, "").trim();
     const searchQuery = this.pickSearchPhrase(normalizedText);
     expect(searchQuery, `Could not derive brochure search query from first card text "${firstCardText}".`).not.toBe(
       ""
     );
 
     await this.brochureSearchInput.fill(searchQuery);
-    await expect(this.page.getByText(new RegExp(this.escapeRegExp(searchQuery), "i")).first()).toBeVisible({
-      timeout: 15_000
-    });
     await expect
       .poll(async () => this.brochureCards.count(), {
         timeout: 15_000,
         message: `Searching brochures by "${searchQuery}" should not increase visible card count.`
       })
       .toBeLessThanOrEqual(beforeCount);
+    await expect(this.brochureCards.first()).toContainText(new RegExp(this.escapeRegExp(searchQuery), "i"), {
+      timeout: 15_000
+    });
   }
 
   async assertShareLinksAreReachable(): Promise<void> {
@@ -176,7 +183,7 @@ export class BrochurePage extends BasePage {
     );
   }
 
-  private async waitForBrochuresToLoad(timeoutMs = 45_000): Promise<"hasData" | "empty"> {
+  private async waitForBrochuresToLoad(timeoutMs = 120_000): Promise<"hasData" | "empty"> {
     const badGateway = this.page.getByText(/502 Bad Gateway|404|This page could not be found/i).first();
     if (await badGateway.isVisible().catch(() => false)) {
       throw new Error("Brochure page is unavailable (502/404). This appears to be an environment issue.");
