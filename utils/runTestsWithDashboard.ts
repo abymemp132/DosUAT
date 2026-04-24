@@ -95,8 +95,39 @@ function main(): void {
     PLAYWRIGHT_JUNIT_OUTPUT_NAME: outputXml
   };
 
+  const authFile = path.join(repoRoot, ".auth", "user.json");
+  const hasAuth = fs.existsSync(authFile);
+
+  if (!hasAuth) {
+    console.log("\x1b[36m[System] No active session found. Running 'setup' project first...\x1b[0m");
+    const setupRun = runCommand(npxCmd, ["playwright", "test", "--project=setup"], env);
+    if (setupRun.status !== 0) {
+      console.error("\x1b[31m[Critical] Auth setup failed. Aborting full test run.\x1b[0m");
+      process.exit(1);
+    }
+  } else {
+    console.log("\x1b[32m[System] Found existing session. Proceeding with execution.\x1b[0m");
+  }
+
+  // Ordered list of tests as requested by USER
+  const orderedTests = [
+    "tests/login.spec.ts",
+    "tests/home.spec.ts",
+    "tests/testCatalog.spec.ts",
+    "tests/doctorSpeciality.spec.ts",
+    "tests/diseaseCondition.spec.ts",
+    "tests/forms.spec.ts",
+    "tests/brochure.spec.ts",
+    "tests/faq.spec.ts",
+    "tests/addToCart.spec.ts"
+  ];
+
   const extraArgs = process.argv.slice(2);
-  const testRun = runCommand(npxCmd, ["playwright", "test", ...extraArgs, "--reporter=line,html,json,junit"], env);
+  
+  // If no specific tests are passed via CLI, use the ordered list
+  const targets = extraArgs.length > 0 ? extraArgs : orderedTests;
+  
+  const testRun = runCommand(npxCmd, ["playwright", "test", ...targets, "--reporter=line,html,json,junit"], env);
   const testExitCode = typeof testRun.status === "number" ? testRun.status : 1;
 
   const jsonPath = path.join(repoRoot, outputJson);

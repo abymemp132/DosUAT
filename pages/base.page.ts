@@ -158,6 +158,7 @@ export abstract class BasePage {
             const text = ((await overlay.textContent().catch(() => "")) || "").toLowerCase();
             const isInteractiveModal =
               text.includes("select your location") ||
+              text.includes("change city") ||
               text.includes("login") ||
               text.includes("otp") ||
               text.includes("sign in") ||
@@ -165,13 +166,57 @@ export abstract class BasePage {
               text.includes("email");
 
             if (!isInteractiveModal) {
-                await overlay.waitFor({ state: "hidden", timeout: 15_000 }).catch(async () => {
+                await overlay.waitFor({ state: "hidden", timeout: 5_000 }).catch(async () => {
                     // Force hide if stuck
                     await overlay.evaluate((el: HTMLElement) => el.style.display = "none").catch(() => {});
                 });
             }
         }
     }
+  }
+
+  async closeLocationModal(city = "Delhi"): Promise<void> {
+    const locationModal = this.page
+      .locator("div.fixed.inset-0.z-50")
+      .filter({ hasText: /Select your Location|Change City/i })
+      .first();
+
+    await locationModal.waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
+
+    if (!(await locationModal.isVisible())) {
+      return;
+    }
+
+    const loadingCities = locationModal.getByText("Loading cities...", { exact: false });
+    if (await loadingCities.isVisible().catch(() => false)) {
+      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
+    }
+
+    const preferredCityOption = locationModal
+      .getByText(new RegExp(`^\\s*${city.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"))
+      .first();
+
+    const clickPreferredCity = async (): Promise<boolean> => {
+      if (!(await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false))) {
+        return false;
+      }
+      await preferredCityOption.click({ force: true });
+      return true;
+    };
+
+    if (await clickPreferredCity()) {
+      await expect(locationModal).toBeHidden({ timeout: 10_000 }).catch(async () => {
+          await this.page.keyboard.press("Escape").catch(() => {});
+          const closeBtn = locationModal.locator("button[title='Close'], button[aria-label='Close'], button.bg-red-500").first();
+          if (await closeBtn.isVisible().catch(() => false)) {
+            await closeBtn.click().catch(() => {});
+          }
+      });
+    } else {
+        // Fallback to escape if we can't find the city
+        await this.page.keyboard.press("Escape").catch(() => {});
+    }
+    await this.waitForModalsToClose();
   }
 
   async isElementHidden(selector: string, timeout = 5_000): Promise<boolean> {

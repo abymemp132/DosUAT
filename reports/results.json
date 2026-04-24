@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 3
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 3
         },
         "id": "setup",
         "name": "setup",
@@ -38,7 +38,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 3
         },
         "id": "guest",
         "name": "guest",
@@ -56,7 +56,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 3
         },
         "id": "chromium",
         "name": "chromium",
@@ -100,36 +100,35 @@
       "max": 5,
       "threshold": 300000
     },
-    "runAgents": "none",
     "shard": null,
     "tags": [],
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
-    "version": "1.58.2",
-    "workers": 1,
+    "version": "1.59.1",
+    "workers": 3,
     "webServer": null
   },
   "suites": [
     {
-      "title": "smoke.spec.ts",
-      "file": "smoke.spec.ts",
+      "title": "testCatalog.spec.ts",
+      "file": "testCatalog.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Smoke Test Suite",
-          "file": "smoke.spec.ts",
-          "line": 3,
+          "title": "test catalog module - guest user",
+          "file": "testCatalog.spec.ts",
+          "line": 15,
           "column": 6,
           "specs": [
             {
-              "title": "Verify Homepage Loads",
+              "title": "[Guest] tests route loads expected catalog state",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 60000,
+                  "timeout": 120000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "guest",
@@ -139,16 +138,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4330,
+                      "duration": 21445,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Running smoke test on: https://dos-web-uat.abym.us/\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T11:39:57.492Z",
+                      "startTime": "2026-04-24T12:40:04.497Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -156,9 +151,315 @@
                   "status": "expected"
                 }
               ],
-              "id": "4219922fea2e2bd3c691-ba0397fd9a1463c9e8af",
-              "file": "smoke.spec.ts",
-              "line": 4,
+              "id": "41a307f6521709d1b30e-f292a54051e631c035f4",
+              "file": "testCatalog.spec.ts",
+              "line": 19,
+              "column": 9
+            },
+            {
+              "title": "[Guest] packages route loads expected catalog state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 22100,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:04.257Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-8e95b81746b763005117",
+              "file": "testCatalog.spec.ts",
+              "line": 19,
+              "column": 9
+            },
+            {
+              "title": "[Guest] new test route loads expected catalog state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 13783,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:04.360Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-bae10d23d38433ae811c",
+              "file": "testCatalog.spec.ts",
+              "line": 19,
+              "column": 9
+            },
+            {
+              "title": "[Guest] new packages route loads expected catalog state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 17727,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:18.798Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-d9663bb2df0edff675da",
+              "file": "testCatalog.spec.ts",
+              "line": 19,
+              "column": 9
+            },
+            {
+              "title": "[Guest] wellness packages route loads expected catalog state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15889,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:26.767Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-4adbba5e7c80eccb3860",
+              "file": "testCatalog.spec.ts",
+              "line": 19,
+              "column": 9
+            },
+            {
+              "title": "[Guest] department filter control is visible on test route",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 15577,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:26.926Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-ccb691b5f7e336abd247",
+              "file": "testCatalog.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "[Guest] method filter control is visible on test route",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 12359,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:36.550Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-14332d99630d2c484919",
+              "file": "testCatalog.spec.ts",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "[Guest] sample type filter control is visible on test route",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 16901,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:42.526Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-0e1c30d41266e30e806e",
+              "file": "testCatalog.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "[Guest] NABL filter control is visible on test route",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16885,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:42.674Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-c0427cdbfc63c82e4746",
+              "file": "testCatalog.spec.ts",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "[Guest] reset control is available on test route",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "guest",
+                  "projectName": "guest",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10893,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T12:40:48.933Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41a307f6521709d1b30e-324a8fbe980a813da2e9",
+              "file": "testCatalog.spec.ts",
+              "line": 55,
               "column": 7
             }
           ]
@@ -168,9 +469,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-16T11:39:54.770Z",
-    "duration": 11514.685000000001,
-    "expected": 1,
+    "startTime": "2026-04-24T12:39:59.962Z",
+    "duration": 60891.841,
+    "expected": 10,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

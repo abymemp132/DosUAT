@@ -41,7 +41,7 @@ export class HomePage extends BasePage {
       .filter({ has: this.page.locator('img[alt*="search"], svg') })
       .or(this.page.locator('div:has(input[placeholder*="Search"]) button'))
       .first();
-    this.itemsCountLabel = this.page.locator("div, span, p").filter({ hasText: /^\d+\s*Items$/i }).first();
+    this.itemsCountLabel = this.page.locator("div, span, p").filter({ hasText: /\d+\s*Items/i }).first();
     this.toastMessage = this.page.locator(".Toastify__toast, [role=\"alert\"], [data-sonner-toast]");
     this.departmentFilter = this.page.getByText("Department", { exact: false }).first();
     this.methodFilter = this.page.getByText("Method", { exact: false }).first();
@@ -70,74 +70,15 @@ export class HomePage extends BasePage {
 
   async ensureHomeReady(city = "Delhi", baseURL?: string): Promise<void> {
     await this.open(baseURL);
-    
-    // Auth check - if no CityId, modal will likely pop up
-    const isGuest = await this.page.evaluate(() => !window.localStorage.getItem("CityId"));
-    if (isGuest) {
-      await this.locationModal.waitFor({ state: "visible", timeout: 5000 }).catch(() => {});
-    }
-    
-    await this.selectCity(city);
-    await this.waitForModalsToClose();
+    await this.closeLocationModal(city);
     await this.assertCoreHomeWidgets();
   }
 
   // ==================== Actions ====================
 
-  async selectCity(city = "Delhi"): Promise<void> {
-    await this.locationModal.waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
-
-    if (!(await this.locationModal.isVisible())) {
-      return;
-    }
-
-    const loadingCities = this.locationModal.getByText("Loading cities...", { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
-    }
-
-    const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, "i"))
-      .first();
-
-    const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false))) {
-        return false;
-      }
-      await preferredCityOption.click({ force: true });
-      return true;
-    };
-
-    if (await clickPreferredCity()) {
-      await expect(this.locationModal).toBeHidden({ timeout: 10_000 }).catch(async () => {
-          // Force close if it lingers
-          await this.page.keyboard.press("Escape").catch(() => {});
-          const closeBtn = this.locationModal.locator("button[title='Close'], button[aria-label='Close'], button.bg-red-500").first();
-          if (await closeBtn.isVisible().catch(() => false)) {
-            await closeBtn.click().catch(() => {});
-          }
-      });
-      return;
-    }
-
-    const searchInput = this.locationModal.getByPlaceholder(/Search your City/i);
-    if (await searchInput.isVisible().catch(() => false)) {
-      await searchInput.fill(city);
-      if (await clickPreferredCity()) {
-        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-        return;
-      }
-      await searchInput.fill("");
-    }
-
-    const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(
-      fallbackCityClicked,
-      `City option "${city}" was not available and no fallback city option was found.`
-    ).toBe(true);
-    
-    await expect(this.locationModal).toBeHidden({ timeout: 10_000 }).catch(() => this.page.keyboard.press("Escape"));
-    await this.waitForModalsToClose();
+  async openLocationSelector(): Promise<void> {
+    await this.locationIcon.click();
+    await expect(this.locationModal).toBeVisible();
   }
 
   // ==================== Assertions ====================
@@ -489,6 +430,23 @@ export class HomePage extends BasePage {
       const closeButton = loginModal.locator("button[title='Close'], button[aria-label*='Close'], button.bg-red-500").first();
       await closeButton.click({ force: true }).catch(() => {});
       await expect(loginModal).toBeHidden({ timeout: 5_000 }).catch(() => {});
+    }
+  }
+
+  private async readItemsCount(): Promise<number> {
+    try {
+      const text = await this.itemsCountLabel.evaluate(
+        (el: Element) => Array.from(el.childNodes)
+          .filter(n => n.nodeType === Node.TEXT_NODE)
+          .map(n => n.textContent || '')
+          .join('')
+          .trim()
+      );
+      const full = text || await this.itemsCountLabel.innerText({ timeout: 5_000 });
+      const match = full.match(/(\d+)/);
+      return match ? Number.parseInt(match[1], 10) : 0;
+    } catch {
+      return 0;
     }
   }
 

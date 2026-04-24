@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { APIRequestContext, expect, Locator, Page, request } from "@playwright/test";
 import { BasePage } from "./base.page";
 
 export class BrochurePage extends BasePage {
@@ -161,21 +161,27 @@ export class BrochurePage extends BasePage {
       0
     );
 
+    const apiContext = await this.createRequestContext();
     const failedLinks: string[] = [];
-    for (const link of links) {
-      try {
-        const response = await this.page.request.get(link, {
-          failOnStatusCode: false,
-          timeout: 30_000
-        });
-        const status = response.status();
-        if (status < 200 || status >= 400) {
-          failedLinks.push(`${link} -> HTTP ${status}`);
+
+    try {
+      for (const link of links) {
+        try {
+          const response = await apiContext.get(link, {
+            failOnStatusCode: false,
+            timeout: 30_000
+          });
+          const status = response.status();
+          if (status < 200 || status >= 400) {
+            failedLinks.push(`${link} -> HTTP ${status}`);
+          }
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          failedLinks.push(`${link} -> ${message}`);
         }
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        failedLinks.push(`${link} -> ${message}`);
       }
+    } finally {
+      await apiContext.dispose();
     }
 
     expect(failedLinks, `Found unreachable brochure share/download links:\n${failedLinks.join("\n")}`).toEqual(
@@ -237,6 +243,15 @@ export class BrochurePage extends BasePage {
 
   private escapeRegExp(value: string): string {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  private async createRequestContext(): Promise<APIRequestContext> {
+    return request.newContext({
+      baseURL: this.page.url(),
+      extraHTTPHeaders: {
+        cookie: await this.page.context().cookies().then((cookies) => cookies.map(({ name, value }) => `${name}=${value}`).join("; "))
+      }
+    });
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {

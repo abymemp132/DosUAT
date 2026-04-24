@@ -1,0 +1,2176 @@
+<testsuites id="" name="" tests="72" failures="2" skipped="2" errors="19" time="1317.913257">
+<testsuite name="setup\auth.setup.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="setup" tests="1" failures="0" skipped="0" time="27.132" errors="0">
+<testcase name="authenticate with dynamic OTP" classname="setup\auth.setup.ts" time="27.132">
+<system-out>
+<![CDATA[Existing session is still valid. Skipping login.
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="brochure.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="3" failures="0" skipped="0" time="290.607" errors="1">
+<testcase name="brochure page - without login (guest user) › [Guest] loads page and shows core widgets" classname="brochure.spec.ts" time="23.664">
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] search by brochure works" classname="brochure.spec.ts" time="29.118">
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] sharing links are reachable" classname="brochure.spec.ts" time="237.825">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › brochure.spec.ts:40:7 › brochure page - without login (guest user) › [Guest] sharing links are reachable 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: Found unreachable brochure share/download links:
+    https://oncquest-admin-uat.abym.us/s/YKDTj9 -> apiRequestContext.get: Target page, context or browser has been closed
+    Call log:
+      - → GET https://oncquest-admin-uat.abym.us/s/YKDTj9
+        - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+        - cookie: XSRF-TOKEN=eyJpdiI6IlZubWpwcjlodnpPZnhmRHN0YVJCTUE9PSIsInZhbHVlIjoiUjJXQTcvRmE1NlBLOFlSUkpTU3BsYXV3L3VWUDBHNXI2Rk1PYnY2ejlVNGdxWm10MG05UERoUHlidUFVQXdRT3hXblBocmlIczhESUJoRGVCaDJlQTB5MUJPY1hPeEM5VW10NitGVTBpNFdBV3A1VElSRkFJeE5tZ01nWDVDcHYiLCJtYWMiOiIwYzYyMWE1Yjk3MmM1ODVlYTZiNTZhYjQxOTQ2MmExYmE3YWJjNTVjZThhNTNhZjBlNjYwNzBhNWYyM2RkZDU0IiwidGFnIjoiIn0%3D; oncquest_laboratories_admin_session=eyJpdiI6InVZR2NQLzR6ZU1GUzVQQ204Q2xWU1E9PSIsInZhbHVlIjoiU0YvQXhRYk1qMmFIQTJIM0tnVGZSbWNlaGlxT2xSN2NCUjBhRDlHVmZuR0hwWjhtVWhISDUzVWtaamRsRjBuZW5NS0k2bXYzdnV0MFV6Sk9uZVZlR1FUa3VnTU5hR1pUSnFFN01NN3hSN2FSNitXaXJvajVFYVhUcHZqcS9OeSsiLCJtYWMiOiI2MGIwOWY1YjEzNjFlZGZkZGMyNzhhYjZjMGNmOTkzYzhlNWQ0YzFlOTgyNWNhOTUwMGU0YWRjOTFlMzkzMTBmIiwidGFnIjoiIn0%3D
+
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   "https://oncquest-admin-uat.abym.us/s/YKDTj9 -> apiRequestContext.get: Target page, context or browser has been closed
+    + Call log:
+    +   - → GET https://oncquest-admin-uat.abym.us/s/YKDTj9
+    +     - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36
+    +     - accept: */*
+    +     - accept-encoding: gzip,deflate,br
+    +     - cookie: XSRF-TOKEN=eyJpdiI6IlZubWpwcjlodnpPZnhmRHN0YVJCTUE9PSIsInZhbHVlIjoiUjJXQTcvRmE1NlBLOFlSUkpTU3BsYXV3L3VWUDBHNXI2Rk1PYnY2ejlVNGdxWm10MG05UERoUHlidUFVQXdRT3hXblBocmlIczhESUJoRGVCaDJlQTB5MUJPY1hPeEM5VW10NitGVTBpNFdBV3A1VElSRkFJeE5tZ01nWDVDcHYiLCJtYWMiOiIwYzYyMWE1Yjk3MmM1ODVlYTZiNTZhYjQxOTQ2MmExYmE3YWJjNTVjZThhNTNhZjBlNjYwNzBhNWYyM2RkZDU0IiwidGFnIjoiIn0%3D; oncquest_laboratories_admin_session=eyJpdiI6InVZR2NQLzR6ZU1GUzVQQ204Q2xWU1E9PSIsInZhbHVlIjoiU0YvQXhRYk1qMmFIQTJIM0tnVGZSbWNlaGlxT2xSN2NCUjBhRDlHVmZuR0hwWjhtVWhISDUzVWtaamRsRjBuZW5NS0k2bXYzdnV0MFV6Sk9uZVZlR1FUa3VnTU5hR1pUSnFFN01NN3hSN2FSNitXaXJvajVFYVhUcHZqcS9OeSsiLCJtYWMiOiI2MGIwOWY1YjEzNjFlZGZkZGMyNzhhYjZjMGNmOTkzYzhlNWQ0YzFlOTgyNWNhOTUwMGU0YWRjOTFlMzkzMTBmIiwidGFnIjoiIn0%3D
+    + ",
+    + ]
+
+       at ..\pages\brochure.page.ts:181
+
+      179 |     }
+      180 |
+    > 181 |     expect(failedLinks, `Found unreachable brochure share/download links:\n${failedLinks.join("\n")}`).toEqual(
+          |                                                                                                        ^
+      182 |       []
+      183 |     );
+      184 |   }
+        at BrochurePage.assertShareLinksAreReachable (C:\Users\Pankaj\DosUAT\pages\brochure.page.ts:181:104)
+        at C:\Users\Pankaj\DosUAT\tests\brochure.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\brochure-brochure-page---w-b903f-sharing-links-are-reachable-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="diseaseCondition.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="4" failures="0" skipped="0" time="688.096" errors="3">
+<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition.spec.ts" time="26.869">
+</testcase>
+<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition.spec.ts" time="240.047">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-b3011-tion-filter-updates-catalog-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-b3011-tion-filter-updates-catalog-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › diseaseCondition.spec.ts:33:7 › disease condition page - without login (guest user) › [Guest] condition filter updates catalog 
+
+    Test timeout of 120000ms exceeded.
+
+    Tearing down "context" exceeded the test timeout of 120000ms.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByText(/^\s*Heart\s*$/i).first()
+        - locator resolved to <p class="↵          mt-2 lg:text-[15px] sm:text-sm text-gray-700↵          leading-tight text-center↵          line-clamp-2↵          font-medium↵        ">Heart</p>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <p class="text-center text-gray-500">Loading cities...</p> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <p class="text-center text-gray-500">Loading cities...</p> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      19 × retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is not stable
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      6 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      3 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      7 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      8 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+
+
+       at ..\pages\diseaseCondition.page.ts:121
+
+      119 |       timeout: 15_000
+      120 |     });
+    > 121 |     await conditionCard.click();
+          |                         ^
+      122 |
+      123 |     await expect
+      124 |       .poll(async () => this.readItemsCount(), {
+        at DiseaseConditionPage.assertConditionFilterChangesCatalog (C:\Users\Pankaj\DosUAT\pages\diseaseCondition.page.ts:121:25)
+        at C:\Users\Pankaj\DosUAT\tests\diseaseCondition.spec.ts:37:5
+
+    Error: browserContext.close: Test timeout of 120000ms exceeded.
+    Browser logs:
+
+    <launching> C:\Users\Pankaj\AppData\Local\ms-playwright\chromium_headless_shell-1217\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\Pankaj\AppData\Local\Temp\playwright_chromiumdev_profile-8kviVV --remote-debugging-pipe --no-startup-window
+    <launched> pid=19724
+    [pid=19724][err] [0424/154409.315:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:287] ContextResult::kTransientFailure: Failed to send GpuControl.CreateCommandBuffer.
+    [pid=19724][err] [0424/154413.664:INFO:CONSOLE:1] "User not logged in", source: https://dos-web-uat.abym.us/_next/static/chunks/pages/_app-dea7612286384b75.js (1)
+    [pid=19724][err] [0424/154417.507:INFO:CONSOLE:4] "Error fetching cart list: Request failed with status code 500", source: https://dos-web-uat.abym.us/_next/static/chunks/pages/_app-dea7612286384b75.js (4)
+    [pid=19724][err] [0424/154440.755:INFO:CONSOLE:1] "User not logged in", source: https://dos-web-uat.abym.us/_next/static/chunks/pages/_app-dea7612286384b75.js (1)
+    [pid=19724][err] [0424/154442.204:INFO:CONSOLE:4] "Error fetching cart list: Request failed with status code 500", source: https://dos-web-uat.abym.us/_next/static/chunks/pages/_app-dea7612286384b75.js (4)
+    [pid=19724][err] [0424/154442.212:INFO:CONSOLE:4] "Error fetching cart list: Request failed with status code 500", source: https://dos-web-uat.abym.us/_next/static/chunks/pages/_app-dea7612286384b75.js (4)
+    [pid=19724] <gracefully close start>
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-disease-c-b3011-tion-filter-updates-catalog-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\diseaseCondition-disease-c-b3011-tion-filter-updates-catalog-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition.spec.ts" time="214.151">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › diseaseCondition.spec.ts:40:7 › disease condition page - without login (guest user) › [Guest] search by test code works 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('div:has(input[placeholder="Search by Tests"]) button').first()
+        - locator resolved to <button class="hidden md:flex justify-center items-center bg-[#FFC933] rounded-[15px] hover:bg-yellow-500 transition shadow-[2px_2px_8px_#ABABAB] h-[50px] w-[70px]">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        157 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+       at ..\pages\diseaseCondition.page.ts:144
+
+      142 |     await this.testSearchInput.fill(firstTestCode);
+      143 |     if (await this.testSearchButton.isVisible().catch(() => false)) {
+    > 144 |       await this.testSearchButton.click();
+          |                                   ^
+      145 |     } else {
+      146 |       await this.testSearchInput.press("Enter");
+      147 |     }
+        at DiseaseConditionPage.assertSearchByTestCodeWorks (C:\Users\Pankaj\DosUAT\pages\diseaseCondition.page.ts:144:35)
+        at C:\Users\Pankaj\DosUAT\tests\diseaseCondition.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\diseaseCondition-disease-c-947f0-t-search-by-test-code-works-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition.spec.ts" time="207.029">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › diseaseCondition.spec.ts:47:7 › disease condition page - without login (guest user) › [Guest] add to cart shows login warning 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Add to Cart' }).first()
+        - locator resolved to <button class="xs:text-[7px] md:text-[16px] whitespace-nowrap flex items-center gap-2 px-4 py-1 rounded border-2 border-dotted transition-all duration-300 border-blue-600 ">Add to Cart</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      - retrying click action
+        - waiting 100ms
+        14 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      184 × retrying click action
+            - waiting 500ms
+            - waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      32 × retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+
+
+       at ..\pages\diseaseCondition.page.ts:180
+
+      178 |     await this.waitForCatalogRows();
+      179 |     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
+    > 180 |     await this.addToCartButton.click();
+          |                                ^
+      181 |     await expect(this.toastMessage.filter({ hasText: "User not Login" }).first()).toBeVisible({
+      182 |       timeout: 10_000
+      183 |     });
+        at DiseaseConditionPage.assertAddToCartShowsLoginWarning (C:\Users\Pankaj\DosUAT\pages\diseaseCondition.page.ts:180:32)
+        at C:\Users\Pankaj\DosUAT\tests\diseaseCondition.spec.ts:51:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\diseaseCondition-disease-c-63320-to-cart-shows-login-warning-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="doctorSpeciality.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="4" failures="0" skipped="0" time="534.124" errors="3">
+<testcase name="doctor speciality page - without login (guest user) › [Guest] loads page and shows core widgets" classname="doctorSpeciality.spec.ts" time="21.373">
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] speciality filter updates catalog" classname="doctorSpeciality.spec.ts" time="206.024">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › doctorSpeciality.spec.ts:33:7 › doctor speciality page - without login (guest user) › [Guest] speciality filter updates catalog 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByText(/^\s*Cardiologist\s*$/i).first()
+        - locator resolved to <p class="↵          mt-2 text-[13px] sm:text-sm↵          text-gray-700 text-center↵          leading-tight↵          line-clamp-2↵          font-medium↵        ">Cardiologist</p>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      12 × retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      7 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      3 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <img width="48" height="48" data-nimg="1" loading="lazy" decoding="async" class="mb-2 rounded-full object-cover" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDelhiNCR.366397e1.png&w=96&q=75" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDelhiNCR.366397e1.png&w=48&q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDelhiNCR.366397e1.png&w=96&q=75 2x"/> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      3 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <h2 class="text-xl font-semibold text-white mb-4 text-left">Select your Location</h2> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+       at ..\pages\doctorSpeciality.page.ts:121
+
+      119 |       timeout: 15_000
+      120 |     });
+    > 121 |     await specialityCard.click();
+          |                          ^
+      122 |
+      123 |     await expect
+      124 |       .poll(async () => this.readItemsCount(), {
+        at DoctorSpecialityPage.assertSpecialityFilterChangesCatalog (C:\Users\Pankaj\DosUAT\pages\doctorSpeciality.page.ts:121:26)
+        at C:\Users\Pankaj\DosUAT\tests\doctorSpeciality.spec.ts:37:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-doctor-sp-64a4f-lity-filter-updates-catalog-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] search by test code works" classname="doctorSpeciality.spec.ts" time="184.58">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › doctorSpeciality.spec.ts:40:7 › doctor speciality page - without login (guest user) › [Guest] search by test code works 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('div:has(input[placeholder="Search by Tests"]) button').first()
+        - locator resolved to <button class="hidden md:flex justify-center items-center bg-[#FFC933] rounded-[15px] hover:bg-yellow-500 transition shadow-[2px_2px_8px_#ABABAB] h-[50px] w-[70px]">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        46 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      125 × retrying click action
+            - waiting 500ms
+            - waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+
+
+       at ..\pages\doctorSpeciality.page.ts:142
+
+      140 |     await this.testSearchInput.fill(firstTestCode);
+      141 |     if (await this.testSearchButton.isVisible().catch(() => false)) {
+    > 142 |       await this.testSearchButton.click();
+          |                                   ^
+      143 |     } else {
+      144 |       await this.testSearchInput.press("Enter");
+      145 |     }
+        at DoctorSpecialityPage.assertSearchByTestCodeWorks (C:\Users\Pankaj\DosUAT\pages\doctorSpeciality.page.ts:142:35)
+        at C:\Users\Pankaj\DosUAT\tests\doctorSpeciality.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-doctor-sp-2eaf5-t-search-by-test-code-works-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] add to cart shows login warning" classname="doctorSpeciality.spec.ts" time="122.147">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › doctorSpeciality.spec.ts:47:7 › doctor speciality page - without login (guest user) › [Guest] add to cart shows login warning 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Add to Cart' }).first()
+        - locator resolved to <button class="xs:text-[7px] md:text-[16px] whitespace-nowrap flex items-center gap-2 px-4 py-1 rounded border-2 border-dotted transition-all duration-300 border-blue-600 ">Add to Cart</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+      - retrying click action
+        - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      - retrying click action
+        - waiting 100ms
+        187 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+       at ..\pages\doctorSpeciality.page.ts:159
+
+      157 |     await this.waitForCatalogRows();
+      158 |     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
+    > 159 |     await this.addToCartButton.click();
+          |                                ^
+      160 |     await expect(this.toastMessage.filter({ hasText: "User not Login" }).first()).toBeVisible({
+      161 |       timeout: 10_000
+      162 |     });
+        at DoctorSpecialityPage.assertAddToCartShowsLoginWarning (C:\Users\Pankaj\DosUAT\pages\doctorSpeciality.page.ts:159:32)
+        at C:\Users\Pankaj\DosUAT\tests\doctorSpeciality.spec.ts:51:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-doctor-sp-afd13-to-cart-shows-login-warning-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="faq.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="3" failures="0" skipped="0" time="221.781" errors="3">
+<testcase name="faq page - without login (guest user) › [Guest] loads page and shows core widgets" classname="faq.spec.ts" time="71.437">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq.spec.ts:26:7 › faq page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---without-log-ee8b6-page-and-shows-core-widgets-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] question accordion toggles answer visibility" classname="faq.spec.ts" time="71.748">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq.spec.ts:33:7 › faq page - without login (guest user) › [Guest] question accordion toggles answer visibility 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---without-log-931f1-n-toggles-answer-visibility-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] show more loads additional FAQ questions" classname="faq.spec.ts" time="78.596">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq.spec.ts:40:7 › faq page - without login (guest user) › [Guest] show more loads additional FAQ questions 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---without-log-7915d-ds-additional-FAQ-questions-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="forms.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="3" failures="0" skipped="0" time="34.718" errors="0">
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] loads page and shows core widgets" classname="forms.spec.ts" time="10.858">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] search by consent works" classname="forms.spec.ts" time="4.429">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] sharing links are reachable" classname="forms.spec.ts" time="19.431">
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="10" failures="1" skipped="0" time="458.379" errors="0">
+<testcase name="home page - without login (guest user) › [Guest] loads home page and shows core modules" classname="home.spec.ts" time="8.91">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] top navigation links route to expected pages" classname="home.spec.ts" time="126.751">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all header icons open expected page or modal" classname="home.spec.ts" time="30.596">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Neither login modal nor toast appeared for profile icon." type="expect.toBeVisible">
+<![CDATA[  [guest] › home.spec.ts:37:7 › home page - without login (guest user) › [Guest] all header icons open expected page or modal 
+
+    Error: Neither login modal nor toast appeared for profile icon.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('div.fixed.inset-0.z-50').filter({ hasText: /Login|Email|Sign|Welcome|Send Otp/i }).first().or(locator('.Toastify__toast, [role=\'alert\'], [data-sonner-toast]').filter({ hasText: /Login|Sign|Please|User not Login/i }).first())
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Neither login modal nor toast appeared for profile icon. with timeout 15000ms
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Login|Email|Sign|Welcome|Send Otp/i }).first().or(locator('.Toastify__toast, [role=\'alert\'], [data-sonner-toast]').filter({ hasText: /Login|Sign|Please|User not Login/i }).first())
+
+
+       at ..\pages\home.page.ts:485
+
+      483 |          loginModal.or(toastWarning), 
+      484 |          `Neither login modal nor toast appeared for ${triggerName}.`
+    > 485 |        ).toBeVisible({ timeout: 15_000 });
+          |          ^
+      486 |     }
+      487 |
+      488 |     if (await loginModal.isVisible()) {
+        at HomePage.assertLoginModalOpensAndCloses (C:\Users\Pankaj\DosUAT\pages\home.page.ts:485:10)
+        at HomePage.assertHeaderIconsOpenExpectedViews (C:\Users\Pankaj\DosUAT\pages\home.page.ts:300:5)
+        at C:\Users\Pankaj\DosUAT\tests\home.spec.ts:41:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-home-page---without-l-ea317-open-expected-page-or-modal-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] search works with icon click and Enter key" classname="home.spec.ts" time="18.378">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all visible home page buttons are working" classname="home.spec.ts" time="17.054">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] eye icon opens and closes details" classname="home.spec.ts" time="26.621">
+<system-out>
+<![CDATA[Eye icon not available on this UI iteration.
+]]>
+</system-out>
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] add to cart shows login warning" classname="home.spec.ts" time="47.449">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] download selected shows login warning" classname="home.spec.ts" time="76.121">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] pagination works on home catalog" classname="home.spec.ts" time="58.067">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] footer links are visible and correct" classname="home.spec.ts" time="48.432">
+</testcase>
+</testsuite>
+<testsuite name="testCatalog.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="guest" tests="10" failures="0" skipped="0" time="337.855" errors="5">
+<testcase name="test catalog module - guest user › [Guest] tests route loads expected catalog state" classname="testCatalog.spec.ts" time="15.652">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] packages route loads expected catalog state" classname="testCatalog.spec.ts" time="14.983">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new test route loads expected catalog state" classname="testCatalog.spec.ts" time="19.693">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new packages route loads expected catalog state" classname="testCatalog.spec.ts" time="18.165">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] wellness packages route loads expected catalog state" classname="testCatalog.spec.ts" time="16.91">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] department filter works on test route" classname="testCatalog.spec.ts" time="23.764">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<error message="locator.waitFor: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [guest] › testCatalog.spec.ts:27:7 › test catalog module - guest user › [Guest] department filter works on test route 
+
+    TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for getByText('Haematology').filter({ visible: true }).first() to be visible
+
+
+       at ..\pages\testCatalog.page.ts:169
+
+      167 |     await optionLocator.waitFor({ state: "visible", timeout: 10_000 }).catch(() => {
+      168 |         // Fallback to searching anywhere visible
+    > 169 |         return this.page.getByText(option, { exact: false }).filter({ visible: true }).first().waitFor({ state: "visible", timeout: 5000 });
+          |                                                                                                ^
+      170 |     });
+      171 |
+      172 |     await optionLocator.click({ force: true });
+        at C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:169:96
+        at TestCatalogPage.selectFilterOption (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:167:5)
+        at TestCatalogPage.assertDepartmentFilterWorks (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:108:5)
+        at C:\Users\Pankaj\DosUAT\tests\testCatalog.spec.ts:31:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-test-catalog-m-ee901--filter-works-on-test-route-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] method filter works on test route" classname="testCatalog.spec.ts" time="26.611">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<error message="locator.waitFor: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [guest] › testCatalog.spec.ts:34:7 › test catalog module - guest user › [Guest] method filter works on test route 
+
+    TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for getByText('CMIA').filter({ visible: true }).first() to be visible
+
+
+       at ..\pages\testCatalog.page.ts:169
+
+      167 |     await optionLocator.waitFor({ state: "visible", timeout: 10_000 }).catch(() => {
+      168 |         // Fallback to searching anywhere visible
+    > 169 |         return this.page.getByText(option, { exact: false }).filter({ visible: true }).first().waitFor({ state: "visible", timeout: 5000 });
+          |                                                                                                ^
+      170 |     });
+      171 |
+      172 |     await optionLocator.click({ force: true });
+        at C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:169:96
+        at TestCatalogPage.selectFilterOption (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:167:5)
+        at TestCatalogPage.assertMethodFilterWorks (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:117:5)
+        at C:\Users\Pankaj\DosUAT\tests\testCatalog.spec.ts:38:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-test-catalog-m-c0db4--filter-works-on-test-route-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] sample type filter works on test route" classname="testCatalog.spec.ts" time="147.091">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › testCatalog.spec.ts:41:7 › test catalog module - guest user › [Guest] sample type filter works on test route 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('div.absolute, [role=\'listbox\'], .dropdown-content').getByText('Serum', { exact: true }).filter({ visible: true }).first()
+
+
+       at ..\pages\testCatalog.page.ts:172
+
+      170 |     });
+      171 |
+    > 172 |     await optionLocator.click({ force: true });
+          |                         ^
+      173 |
+      174 |     // Allow a moment for the table to refresh
+      175 |     await this.page.waitForTimeout(2000);
+        at TestCatalogPage.selectFilterOption (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:172:25)
+        at TestCatalogPage.assertSampleTypeFilterWorks (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:126:5)
+        at C:\Users\Pankaj\DosUAT\tests\testCatalog.spec.ts:45:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-test-catalog-m-63e6e--filter-works-on-test-route-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] NABL filter works on test route" classname="testCatalog.spec.ts" time="23.163">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<error message="locator.waitFor: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [guest] › testCatalog.spec.ts:48:7 › test catalog module - guest user › [Guest] NABL filter works on test route 
+
+    TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for getByText('YES').filter({ visible: true }).first() to be visible
+
+
+       at ..\pages\testCatalog.page.ts:169
+
+      167 |     await optionLocator.waitFor({ state: "visible", timeout: 10_000 }).catch(() => {
+      168 |         // Fallback to searching anywhere visible
+    > 169 |         return this.page.getByText(option, { exact: false }).filter({ visible: true }).first().waitFor({ state: "visible", timeout: 5000 });
+          |                                                                                                ^
+      170 |     });
+      171 |
+      172 |     await optionLocator.click({ force: true });
+        at C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:169:96
+        at TestCatalogPage.selectFilterOption (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:167:5)
+        at TestCatalogPage.assertNablFilterWorks (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:135:5)
+        at C:\Users\Pankaj\DosUAT\tests\testCatalog.spec.ts:52:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-test-catalog-m-65418--filter-works-on-test-route-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] reset clears applied filters on test route" classname="testCatalog.spec.ts" time="31.823">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<error message="locator.waitFor: Timeout 5000ms exceeded." type="TimeoutError">
+<![CDATA[  [guest] › testCatalog.spec.ts:55:7 › test catalog module - guest user › [Guest] reset clears applied filters on test route 
+
+    TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+    Call log:
+      - waiting for getByText('Haematology').filter({ visible: true }).first() to be visible
+
+
+       at ..\pages\testCatalog.page.ts:169
+
+      167 |     await optionLocator.waitFor({ state: "visible", timeout: 10_000 }).catch(() => {
+      168 |         // Fallback to searching anywhere visible
+    > 169 |         return this.page.getByText(option, { exact: false }).filter({ visible: true }).first().waitFor({ state: "visible", timeout: 5000 });
+          |                                                                                                ^
+      170 |     });
+      171 |
+      172 |     await optionLocator.click({ force: true });
+        at C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:169:96
+        at TestCatalogPage.selectFilterOption (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:167:5)
+        at TestCatalogPage.assertResetClearsAppliedFilters (C:\Users\Pankaj\DosUAT\pages\testCatalog.page.ts:143:5)
+        at C:\Users\Pankaj\DosUAT\tests\testCatalog.spec.ts:59:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-test-catalog-m-4cc40-plied-filters-on-test-route-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="addToCart.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="1" skipped="2" time="96.983" errors="0">
+<testcase name="add to cart page - with login › [Login] saved session is active" classname="addToCart.spec.ts" time="36.492">
+</testcase>
+<testcase name="add to cart page - with login › [Login] apply random 1 to 10 percent discount on a specific test and validate pricing" classname="addToCart.spec.ts" time="60.491">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="Discount input should be visible in add-to-cart page." type="expect.toBeVisible">
+<![CDATA[  [chromium] › addToCart.spec.ts:45:7 › add to cart page - with login › [Login] apply random 1 to 10 percent discount on a specific test and validate pricing 
+
+    Error: Discount input should be visible in add-to-cart page.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('input[placeholder*="Coupon" i], input[placeholder*="Promo" i], input[placeholder*="Discount" i]').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Discount input should be visible in add-to-cart page. with timeout 15000ms
+      - waiting for locator('input[placeholder*="Coupon" i], input[placeholder*="Promo" i], input[placeholder*="Discount" i]').first()
+
+
+       at ..\pages\addToCart.page.ts:124
+
+      122 |
+      123 |   async assertDiscountControlsVisible(): Promise<void> {
+    > 124 |     await expect(this.getDiscountInput(), "Discount input should be visible in add-to-cart page.").toBeVisible(
+          |                                                                                                    ^
+      125 |       { timeout: 15_000 }
+      126 |     );
+      127 |     await expect(this.getApplyDiscountButton(), "Apply discount button should be visible.").toBeVisible({
+        at AddToCartPage.assertDiscountControlsVisible (C:\Users\Pankaj\DosUAT\pages\addToCart.page.ts:124:100)
+        at AddToCartPage.assertRandomDiscountPricingForSpecificTest (C:\Users\Pankaj\DosUAT\pages\addToCart.page.ts:213:16)
+        at C:\Users\Pankaj\DosUAT\tests\addToCart.spec.ts:50:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\addToCart-add-to-cart-page-759fe-c-test-and-validate-pricing-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via WhatsApp for a specific test" classname="addToCart.spec.ts">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via Outlook for a specific test" classname="addToCart.spec.ts">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="brochure.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="0" skipped="0" time="144.719" errors="0">
+<testcase name="brochure page - with login (authenticated user) › [Login] saved session is active" classname="brochure.spec.ts" time="31.012">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="brochure.spec.ts" time="9.598">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] search by brochure works" classname="brochure.spec.ts" time="5.914">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] sharing links are reachable" classname="brochure.spec.ts" time="98.195">
+</testcase>
+</testsuite>
+<testsuite name="diseaseCondition.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="0" skipped="0" time="80.674" errors="0">
+<testcase name="disease condition page - with login (authenticated user) › [Login] saved session is active" classname="diseaseCondition.spec.ts" time="30.985">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="diseaseCondition.spec.ts" time="25.931">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] condition filter updates catalog" classname="diseaseCondition.spec.ts" time="14.181">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] search by test code works" classname="diseaseCondition.spec.ts" time="9.577">
+</testcase>
+</testsuite>
+<testsuite name="doctorSpeciality.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="0" skipped="0" time="31.75" errors="0">
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] saved session is active" classname="doctorSpeciality.spec.ts" time="11.989">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="doctorSpeciality.spec.ts" time="6.246">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] speciality filter updates catalog" classname="doctorSpeciality.spec.ts" time="6.965">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] search by test code works" classname="doctorSpeciality.spec.ts" time="6.55">
+</testcase>
+</testsuite>
+<testsuite name="faq.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="0" skipped="0" time="274.158" errors="4">
+<testcase name="faq page - with login (authenticated user) › [Login] saved session is active" classname="faq.spec.ts" time="66.349">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq.spec.ts:60:7 › faq page - with login (authenticated user) › [Login] saved session is active 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---with-login--efb34-gin-saved-session-is-active-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="faq.spec.ts" time="67.274">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq.spec.ts:66:7 › faq page - with login (authenticated user) › [Login] loads page and shows core widgets 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---with-login--7fc5a-page-and-shows-core-widgets-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] question accordion toggles answer visibility" classname="faq.spec.ts" time="68.47">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq.spec.ts:73:7 › faq page - with login (authenticated user) › [Login] question accordion toggles answer visibility 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---with-login--b884a-n-toggles-answer-visibility-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] show more loads additional FAQ questions" classname="faq.spec.ts" time="72.065">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq.spec.ts:80:7 › faq page - with login (authenticated user) › [Login] show more loads additional FAQ questions 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:178
+
+      176 |       }
+      177 |
+    > 178 |       await this.page.waitForTimeout(500);
+          |                       ^
+      179 |     }
+      180 |
+      181 |     throw new Error("FAQ page did not render questions or an empty-state message within the expected time.");
+        at FaqPage.waitForFaqsToLoad (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:178:23)
+        at FaqPage.openAndSelectCity (C:\Users\Pankaj\DosUAT\pages\faq.page.ts:36:5)
+        at C:\Users\Pankaj\DosUAT\tests\faq.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faq-page---with-login--b3cdd-ds-additional-FAQ-questions-chromium\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="forms.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="4" failures="0" skipped="0" time="43.051" errors="0">
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] saved session is active" classname="forms.spec.ts" time="11.507">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="forms.spec.ts" time="7.147">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] search by consent works" classname="forms.spec.ts" time="8.172">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] sharing links are reachable" classname="forms.spec.ts" time="16.225">
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="9" failures="0" skipped="0" time="276.006" errors="0">
+<testcase name="home page - with login (authenticated user) › [Login] saved session is active" classname="home.spec.ts" time="15.342">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] loads home page and shows core modules" classname="home.spec.ts" time="8.681">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] top navigation links route to expected pages" classname="home.spec.ts" time="103.853">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] all header icons open expected page or modal" classname="home.spec.ts" time="11.55">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] search works with icon click and Enter key" classname="home.spec.ts" time="8.499">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] eye icon opens and closes details" classname="home.spec.ts" time="10.943">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] add to cart updates cart count" classname="home.spec.ts" time="13.79">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] download selected works without login modal" classname="home.spec.ts" time="62.549">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] pagination works on home catalog" classname="home.spec.ts" time="40.799">
+</testcase>
+</testsuite>
+<testsuite name="login.spec.ts" timestamp="2026-04-24T10:14:05.679Z" hostname="chromium" tests="1" failures="0" skipped="0" time="13.643" errors="0">
+<testcase name="auth › saved login session is active" classname="login.spec.ts" time="13.643">
+</testcase>
+</testsuite>
+</testsuites>

@@ -1,10 +1,24 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="11.514685000000002">
-<testsuite name="smoke.spec.ts" timestamp="2026-04-16T11:39:54.890Z" hostname="guest" tests="1" failures="0" skipped="0" time="4.33" errors="0">
-<testcase name="Smoke Test Suite › Verify Homepage Loads" classname="smoke.spec.ts" time="4.33">
-<system-out>
-<![CDATA[Running smoke test on: https://dos-web-uat.abym.us/
-]]>
-</system-out>
+<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="0" time="60.891841">
+<testsuite name="testCatalog.spec.ts" timestamp="2026-04-24T12:40:01.760Z" hostname="guest" tests="10" failures="0" skipped="0" time="163.559" errors="0">
+<testcase name="test catalog module - guest user › [Guest] tests route loads expected catalog state" classname="testCatalog.spec.ts" time="21.445">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] packages route loads expected catalog state" classname="testCatalog.spec.ts" time="22.1">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new test route loads expected catalog state" classname="testCatalog.spec.ts" time="13.783">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new packages route loads expected catalog state" classname="testCatalog.spec.ts" time="17.727">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] wellness packages route loads expected catalog state" classname="testCatalog.spec.ts" time="15.889">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] department filter control is visible on test route" classname="testCatalog.spec.ts" time="15.577">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] method filter control is visible on test route" classname="testCatalog.spec.ts" time="12.359">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] sample type filter control is visible on test route" classname="testCatalog.spec.ts" time="16.901">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] NABL filter control is visible on test route" classname="testCatalog.spec.ts" time="16.885">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] reset control is available on test route" classname="testCatalog.spec.ts" time="10.893">
 </testcase>
 </testsuite>
 </testsuites>

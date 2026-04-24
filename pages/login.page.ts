@@ -107,8 +107,15 @@ export class LoginPage extends BasePage {
 
   async openLoginModal(): Promise<void> {
     await this.waitForModalsToClose();
-    await this.profileButton.click({ force: true });
-    await expect(this.emailInput).toBeVisible();
+    await expect(this.profileButton, "Profile button should be visible.").toBeVisible({ timeout: 10_000 });
+    
+    await expect(async () => {
+      await this.profileButton.click({ force: true });
+      await expect(this.emailInput).toBeVisible({ timeout: 3000 });
+    }, "Failed to open login modal after multiple attempts.").toPass({
+      intervals: [1000, 2000, 3000],
+      timeout: 15_000
+    });
   }
 
   async requestOtp(email: string): Promise<void> {
