@@ -19,7 +19,7 @@ async function main(): Promise<void> {
   const baseURL = process.env.BASE_URL || "";
   const websiteUsername = process.env.WEBSITE_USERNAME || "";
   const websitePassword = process.env.WEBSITE_PASSWORD || "";
-  const email = process.env.LOGIN_EMAIL || "";
+  const email = process.env.LOGIN_EMAIL?.trim() || "";
   const otp = process.env.LOGIN_OTP?.trim() || "";
   const authFile = path.join(process.cwd(), ".auth", "user.json");
 
@@ -63,7 +63,7 @@ async function main(): Promise<void> {
       console.log("Using LOGIN_OTP from .env.");
       await loginPage.verifyOtp(otp);
     } else {
-      console.log("OTP requested successfully.");
+      console.log("OTP requested successfully. If this fails, verify LOGIN_EMAIL belongs to an existing allowed account.");
       await waitForEnter("Enter OTP in the opened browser and click Verify.");
     }
 

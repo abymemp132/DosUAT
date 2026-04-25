@@ -15,6 +15,14 @@ npx playwright install chromium
 npm test
 ```
 
+## Auth prerequisites
+
+Authenticated tests depend on `.auth/user.json` and a working login account.
+
+- Set `LOGIN_EMAIL` in `.env` to a real account that the UAT site accepts for OTP login.
+- `npm run auth:manual` can be used to create or refresh the reusable session file.
+- The suite now fails fast when the OTP request API rejects the configured email, instead of timing out waiting for the OTP screen.
+
 ## POM structure
 
 The project now follows a root Page Object Model (POM) layout:

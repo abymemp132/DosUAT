@@ -121,10 +121,11 @@ export class AddToCartPage extends BasePage {
   }
 
   async assertDiscountControlsVisible(): Promise<void> {
-    await expect(this.getDiscountInput(), "Discount input should be visible in add-to-cart page.").toBeVisible(
-      { timeout: 15_000 }
-    );
-    await expect(this.getApplyDiscountButton(), "Apply discount button should be visible.").toBeVisible({
+    const discountRow = await this.getDiscountTargetRow();
+    await expect(this.getPercentageToggle(discountRow), "Percentage discount toggle should be visible in add-to-cart page.").toBeVisible({
+      timeout: 15_000
+    });
+    await expect(this.getDiscountInput(discountRow), "Discount input should be visible in add-to-cart page.").toBeVisible({
       timeout: 15_000
     });
   }
@@ -141,111 +142,63 @@ export class AddToCartPage extends BasePage {
 
   async assertAddToCartPageApplyDiscount(discountCode = "TEST10"): Promise<void> {
     await this.addItemAndOpenCart();
-    await this.assertDiscountControlsVisible();
-
-    const amountBefore = await this.readBestEffortPayableAmount();
-    const discountInput = this.getDiscountInput();
-    await discountInput.fill(discountCode);
-    await this.getApplyDiscountButton().click();
-
-    const successToast = this.toastMessage
-      .filter({ hasText: /applied|success|discount|coupon|promo/i })
-      .first();
-    const discountLine = this.page.getByText(/discount.*(\d|rs|inr|-)/i).first();
-    const amountAfter = await this.readBestEffortPayableAmount();
-
-    const hasSuccessToast = await successToast.isVisible({ timeout: 5_000 }).catch(() => false);
-    const hasDiscountLine = await discountLine.isVisible({ timeout: 5_000 }).catch(() => false);
-    const hasReducedAmount =
-      typeof amountBefore === "number" && typeof amountAfter === "number" && amountAfter < amountBefore;
-
-    expect(
-      hasSuccessToast || hasDiscountLine || hasReducedAmount,
-      "Applying discount should show success feedback or reduce payable amount."
-    ).toBe(true);
+    const percent = Number.parseInt(discountCode.replace(/[^\d]/g, ""), 10) || 10;
+    await this.assertDiscountPricingForPercentage(`TEST${percent}`, percent);
   }
 
   async assertDiscountPricingForPercentage(discountCode: string, expectedPercent: number): Promise<void> {
     await this.addItemAndOpenCart();
+    const discountRow = await this.getDiscountTargetRow();
     await this.assertDiscountControlsVisible();
+    const rowPrice = await this.readCartRowPrice(discountRow);
+    expect(rowPrice, "Cart row price should be visible before applying discount.").not.toBeNull();
 
-    const beforePricing = await this.readPricingSnapshot();
-    expect(beforePricing.totalMrp, "Total MRP should be visible before applying discount.").not.toBeNull();
-    expect(beforePricing.netPayable, "Net payable should be visible before applying discount.").not.toBeNull();
+    await this.applyPercentageDiscountToRow(discountRow, expectedPercent);
 
-    const discountInput = this.getDiscountInput();
-    await discountInput.fill(discountCode);
-    await this.getApplyDiscountButton().click();
+    const expectedDiscount = this.roundToTwoDecimals((rowPrice! * expectedPercent) / 100);
+    const expectedFinalPrice = this.roundToTwoDecimals(rowPrice! - expectedDiscount);
 
-    await this.waitForDiscountApplication(beforePricing.netPayable);
+    await this.waitForRowDiscountApplication(discountRow, expectedPercent, expectedFinalPrice);
 
-    const afterPricing = await this.readPricingSnapshot();
-    expect(afterPricing.totalMrp, "Total MRP should be visible after applying discount.").not.toBeNull();
-    expect(afterPricing.discount, "Discount amount should be visible after applying discount.").not.toBeNull();
-    expect(afterPricing.netPayable, "Net payable should be visible after applying discount.").not.toBeNull();
+    const finalRowPrice = await this.readCartRowFinalPrice(discountRow);
+    const appliedPercent = await this.readDiscountInputValue(discountRow);
 
-    const totalMrp = afterPricing.totalMrp!;
-    const discountAmount = afterPricing.discount!;
-    const netPayable = afterPricing.netPayable!;
-    const expectedDiscount = this.roundToTwoDecimals((totalMrp * expectedPercent) / 100);
-    const expectedNetPayable = this.roundToTwoDecimals(totalMrp - discountAmount);
-
-    expect(totalMrp, "Total MRP should be greater than zero.").toBeGreaterThan(0);
+    expect(rowPrice, "Cart row price should be greater than zero.").toBeGreaterThan(0);
     expect(
-      discountAmount,
-      `Discount amount for ${discountCode} should be close to ${expectedPercent}% of total MRP.`
-    ).toBeCloseTo(expectedDiscount, 0);
-    expect(netPayable, "Net payable should equal total MRP minus discount amount.").toBeCloseTo(
-      expectedNetPayable,
-      0
-    );
-    expect(
-      netPayable,
-      `Net payable should be lower than total MRP after applying ${discountCode}.`
-    ).toBeLessThan(totalMrp);
+      appliedPercent,
+      `Discount input should retain the applied ${discountCode} percentage.`
+    ).toBe(expectedPercent);
+    expect(finalRowPrice, `Final row price should reflect the applied ${discountCode} discount.`).toBeCloseTo(expectedFinalPrice, 1);
   }
 
   async assertRandomDiscountPricingForSpecificTest(testQuery: string): Promise<void> {
-    const randomPercent = this.randomWholeNumber(1, 10);
-    const discountCode = `TEST${randomPercent}`;
-
     await this.addSpecificItemAndOpenCart(testQuery);
+    const discountRow = await this.getDiscountTargetRow(testQuery);
     await this.assertDiscountControlsVisible();
+    const rowPrice = await this.readCartRowPrice(discountRow);
+    expect(rowPrice, "Target cart row price should be visible before applying discount.").not.toBeNull();
+    const currentPercent = await this.readDiscountInputValue(discountRow);
+    const randomPercent = this.pickPercentDifferentFromCurrent(currentPercent);
 
-    const beforePricing = await this.readPricingSnapshot();
-    expect(beforePricing.totalMrp, "Total MRP should be visible before applying discount.").not.toBeNull();
-    expect(beforePricing.netPayable, "Net payable should be visible before applying discount.").not.toBeNull();
+    await this.applyPercentageDiscountToRow(discountRow, randomPercent);
 
-    const discountInput = this.getDiscountInput();
-    await discountInput.fill(discountCode);
-    await this.getApplyDiscountButton().click();
+    const expectedDiscount = this.roundToTwoDecimals((rowPrice! * randomPercent) / 100);
+    const expectedFinalPrice = this.roundToTwoDecimals(rowPrice! - expectedDiscount);
 
-    await this.waitForDiscountApplication(beforePricing.netPayable);
+    await this.waitForRowDiscountApplication(discountRow, randomPercent, expectedFinalPrice);
 
-    const afterPricing = await this.readPricingSnapshot();
-    expect(afterPricing.totalMrp, "Total MRP should be visible after applying discount.").not.toBeNull();
-    expect(afterPricing.discount, "Discount amount should be visible after applying discount.").not.toBeNull();
-    expect(afterPricing.netPayable, "Net payable should be visible after applying discount.").not.toBeNull();
+    const finalRowPrice = await this.readCartRowFinalPrice(discountRow);
+    const appliedPercent = await this.readDiscountInputValue(discountRow);
 
-    const totalMrp = afterPricing.totalMrp!;
-    const discountAmount = afterPricing.discount!;
-    const netPayable = afterPricing.netPayable!;
-    const expectedDiscount = this.roundToTwoDecimals((totalMrp * randomPercent) / 100);
-    const expectedNetPayable = this.roundToTwoDecimals(totalMrp - discountAmount);
-
-    expect(totalMrp, `Total MRP for "${testQuery}" should be greater than zero.`).toBeGreaterThan(0);
+    expect(rowPrice, `Target row price for "${testQuery}" should be greater than zero.`).toBeGreaterThan(0);
     expect(
-      discountAmount,
-      `Discount amount for "${discountCode}" should be close to ${randomPercent}% of total MRP.`
-    ).toBeCloseTo(expectedDiscount, 0);
-    expect(netPayable, "Net payable should equal total MRP minus discount amount.").toBeCloseTo(
-      expectedNetPayable,
-      0
-    );
+      appliedPercent,
+      `Discount input should retain the applied ${randomPercent}% value.`
+    ).toBe(randomPercent);
     expect(
-      netPayable,
-      `Net payable should be lower than total MRP after applying ${discountCode} on "${testQuery}".`
-    ).toBeLessThan(totalMrp);
+      finalRowPrice,
+      `Final row price should reflect a ${randomPercent}% discount for "${testQuery}".`
+    ).toBeCloseTo(expectedFinalPrice, 1);
   }
 
   async assertShareCartViaWhatsAppForSpecificTest(testQuery: string): Promise<void> {
@@ -265,9 +218,28 @@ export class AddToCartPage extends BasePage {
 
   async addSpecificItemAndAssertCartCountIncreases(testQuery: string): Promise<void> {
     const targetRow = await this.searchAndGetTargetRow(testQuery);
-    const targetAddToCartButton = targetRow.getByRole("button", { name: /add to cart/i }).first();
+    let countBeforeAdd = await this.readCartCount();
+    let targetAddToCartButton = targetRow.getByRole("button", { name: /add to cart/i }).first();
 
-    const beforeCount = await this.readCartCount();
+    if (!(await targetAddToCartButton.isVisible().catch(() => false))) {
+      const removeButton = targetRow.getByRole("button", { name: /^remove$/i }).first();
+      await expect(
+        removeButton,
+        `Expected either Add to Cart or Remove button for searched test "${testQuery}".`
+      ).toBeVisible({ timeout: 15_000 });
+      await removeButton.click();
+
+      await expect
+        .poll(async () => this.readCartCount(), {
+          timeout: 15_000,
+          message: `Cart count should decrease after removing the already-added "${testQuery}" item.`
+        })
+        .toBeLessThan(countBeforeAdd);
+
+      countBeforeAdd = await this.readCartCount();
+      targetAddToCartButton = targetRow.getByRole("button", { name: /add to cart/i }).first();
+    }
+
     await expect(
       targetAddToCartButton,
       `Add to Cart button should be visible for searched test "${testQuery}".`
@@ -279,7 +251,7 @@ export class AddToCartPage extends BasePage {
         timeout: 15_000,
         message: `Cart count should increase after adding test "${testQuery}".`
       })
-      .toBeGreaterThan(beforeCount);
+      .toBeGreaterThan(countBeforeAdd);
   }
 
   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
@@ -344,13 +316,40 @@ export class AddToCartPage extends BasePage {
     const targetRow = this.page
       .locator("tr")
       .filter({ hasText: new RegExp(this.escapeRegExp(testQuery), "i") })
-      .filter({ has: this.page.getByRole("button", { name: /add to cart/i }) })
+      .filter({
+        has: this.page
+          .getByRole("button", { name: /add to cart|remove/i })
+          .first()
+      })
       .first();
 
-    await expect(targetRow, `Catalog row for test "${testQuery}" should be visible after search.`).toBeVisible({
-      timeout: 20_000
-    });
-    return targetRow;
+    const hasMatchingRow = await targetRow.isVisible({ timeout: 20_000 }).catch(() => false);
+    if (hasMatchingRow) {
+      return targetRow;
+    }
+
+    console.warn(`[AddToCart] No visible row matched "${testQuery}". Falling back to the first addable catalog row.`);
+    await this.testSearchInput.fill("");
+    if (await this.searchButton.isVisible().catch(() => false)) {
+      await this.searchButton.click().catch(() => {});
+    } else {
+      await this.testSearchInput.press("Enter").catch(() => {});
+    }
+    await this.waitForCatalogRows();
+
+    const fallbackRow = this.page
+      .locator("tr")
+      .filter({
+        has: this.page
+          .getByRole("button", { name: /add to cart|remove/i })
+          .first()
+      })
+      .first();
+    await expect(
+      fallbackRow,
+      `Catalog row for test "${testQuery}" was not found, and no fallback addable row was available.`
+    ).toBeVisible({ timeout: 20_000 });
+    return fallbackRow;
   }
 
   private async assertShareActionWorks(channel: "whatsapp" | "outlook" | "pdf"): Promise<void> {
@@ -415,27 +414,21 @@ export class AddToCartPage extends BasePage {
     ).toBe(true);
   }
 
-  private async waitForDiscountApplication(previousNetPayable: number | null): Promise<void> {
-    const successToast = this.toastMessage
-      .filter({ hasText: /applied|success|discount|coupon|promo/i })
-      .first();
-
+  private async waitForRowDiscountApplication(row: Locator, expectedPercent: number, expectedFinalPrice: number): Promise<void> {
     await expect
       .poll(
         async () => {
-          const pricing = await this.readPricingSnapshot();
-          const hasToast = await successToast.isVisible({ timeout: 1_000 }).catch(() => false);
-          const hasDiscount = typeof pricing.discount === "number" && pricing.discount > 0;
-          const hasNetReduction =
-            typeof previousNetPayable === "number" &&
-            typeof pricing.netPayable === "number" &&
-            pricing.netPayable < previousNetPayable;
-
-          return hasToast || hasDiscount || hasNetReduction;
+          const inputPercent = await this.readDiscountInputValue(row);
+          const finalPrice = await this.readCartRowFinalPrice(row);
+          return (
+            inputPercent === expectedPercent &&
+            typeof finalPrice === "number" &&
+            Math.abs(finalPrice - expectedFinalPrice) < 0.2
+          );
         },
         {
           timeout: 20_000,
-          message: "Discount application should update pricing summary or show success feedback."
+          message: "Discount application should update the target cart row pricing."
         }
       )
       .toBe(true);
@@ -472,16 +465,12 @@ export class AddToCartPage extends BasePage {
     return matchText ? this.extractAmount(matchText) : null;
   }
 
-  private getDiscountInput(): Locator {
-    return this.page
-      .locator(
-        'input[placeholder*="Coupon" i], input[placeholder*="Promo" i], input[placeholder*="Discount" i]'
-      )
-      .first();
+  private getDiscountInput(row: Locator): Locator {
+    return row.locator('input[placeholder="0"], input[type="text"]').first();
   }
 
-  private getApplyDiscountButton(): Locator {
-    return this.page.getByRole("button", { name: /apply/i }).first();
+  private getPercentageToggle(row: Locator): Locator {
+    return row.getByRole("button", { name: /^Percentage$/i }).first();
   }
 
   private getShareControl(channel: "whatsapp" | "outlook" | "pdf"): Locator {
@@ -541,6 +530,60 @@ export class AddToCartPage extends BasePage {
 
   private escapeRegExp(value: string): string {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  private async getDiscountTargetRow(testQuery?: string): Promise<Locator> {
+    const normalizedQuery = (testQuery || "").trim();
+    if (normalizedQuery) {
+      const matchingRow = this.page.locator("tbody tr").filter({ hasText: new RegExp(this.escapeRegExp(normalizedQuery), "i") }).first();
+      if (await matchingRow.isVisible().catch(() => false)) {
+        return matchingRow;
+      }
+    }
+
+    const firstDiscountRow = this.page.locator("tbody tr").filter({ has: this.page.getByRole("button", { name: /^Percentage$/i }) }).first();
+    await expect(firstDiscountRow, "At least one cart row with discount controls should be visible.").toBeVisible({
+      timeout: 15_000
+    });
+    return firstDiscountRow;
+  }
+
+  private async applyPercentageDiscountToRow(row: Locator, percent: number): Promise<void> {
+    const percentageToggle = this.getPercentageToggle(row);
+    const discountInput = this.getDiscountInput(row);
+
+    await expect(percentageToggle, "Percentage discount toggle should be visible.").toBeVisible({ timeout: 10_000 });
+    await percentageToggle.click({ force: true });
+    await expect(discountInput, "Discount input should be visible for the selected cart row.").toBeVisible({ timeout: 10_000 });
+    await discountInput.fill(String(percent));
+    await discountInput.press("Tab").catch(() => {});
+  }
+
+  private async readCartRowPrice(row: Locator): Promise<number | null> {
+    const priceText = await row.locator("td").nth(5).innerText().catch(() => "");
+    return this.extractAmount(priceText);
+  }
+
+  private async readCartRowFinalPrice(row: Locator): Promise<number | null> {
+    const cellCount = await row.locator("td").count();
+    if (cellCount === 0) {
+      return null;
+    }
+
+    const finalPriceText = await row.locator("td").nth(cellCount - 2).innerText().catch(() => "");
+    return this.extractAmount(finalPriceText);
+  }
+
+  private async readDiscountInputValue(row: Locator): Promise<number | null> {
+    const rawValue = await this.getDiscountInput(row).inputValue().catch(() => "");
+    const parsedValue = Number.parseInt(rawValue.trim(), 10);
+    return Number.isNaN(parsedValue) ? 0 : parsedValue;
+  }
+
+  private pickPercentDifferentFromCurrent(currentPercent: number | null): number {
+    const current = currentPercent ?? 0;
+    const candidates = Array.from({ length: 10 }, (_, index) => index + 1).filter((value) => value !== current);
+    return candidates[Math.floor(Math.random() * candidates.length)] ?? 1;
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {

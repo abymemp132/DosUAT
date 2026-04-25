@@ -21,6 +21,14 @@ function canRunInteractiveLogin(): boolean {
   return process.env.PWDEBUG === "1" || process.env.PWDEBUG === "console" || process.env.PLAYWRIGHT_INTERACTIVE_LOGIN === "1";
 }
 
+function getRequiredLoginEmail(): string {
+  const email = process.env.LOGIN_EMAIL?.trim() || "";
+  if (!email) {
+    throw new Error("LOGIN_EMAIL must be set in .env to create an authenticated session.");
+  }
+  return email;
+}
+
 async function reuseExistingSession(page: Page, authFile: string): Promise<boolean> {
   if (!fs.existsSync(authFile)) {
     return false;
@@ -69,7 +77,7 @@ async function reuseExistingSession(page: Page, authFile: string): Promise<boole
 setup("authenticate with dynamic OTP", async ({ page }) => {
   setup.setTimeout(300_000);
 
-  const email = process.env.LOGIN_EMAIL || "test@example.com";
+  const email = getRequiredLoginEmail();
   const envOtp = process.env.LOGIN_OTP?.trim() || "";
   const authFile = path.join(process.cwd(), ".auth", "user.json");
 
@@ -86,8 +94,11 @@ setup("authenticate with dynamic OTP", async ({ page }) => {
   if (!finalOtp) {
       console.log("LOGIN_OTP not found. Clearing MailSlurp inbox before requesting OTP...");
       await clearMailSlurpInbox();
+      // Brief pause to ensure inbox clear completes server-side before we trigger OTP
+      await page.waitForTimeout(2_000);
   }
 
+  // 2. OPEN SITE & REQUEST OTP
   await loginPage.openHome();
   await loginPage.closeLocationModal("Delhi");
   await loginPage.openLoginModal();
@@ -96,32 +107,33 @@ setup("authenticate with dynamic OTP", async ({ page }) => {
   if (finalOtp) {
       console.log("Using static OTP from LOGIN_OTP environment variable.");
   } else {
+      // 3. DYNAMIC FALLBACK (Using MailSlurp with retry)
       try {
-          // 2. DYNAMIC FALLBACK (Using MailSlurp)
-          console.log("Attempting to fetch dynamic OTP from MailSlurp...");
-          finalOtp = await getOtpFromMailSlurp();
+          console.log("Attempting to fetch dynamic OTP from MailSlurp (with retry)...");
+          finalOtp = await getOtpFromMailSlurp(3);
       } catch (error) {
           if (canRunInteractiveLogin()) {
               console.log("MailSlurp failed or not configured. Falling back to manual entry because interactive mode is ON.");
               console.log("Enter it in the opened browser, then resume the paused Playwright session.");
               await page.pause();
           } else {
+              console.error("MailSlurp OTP extraction failed after all retries.");
               throw error;
           }
       }
   }
 
-  // If we have an OTP (from Env or MailSlurp), verify it
+  // 4. VERIFY OTP
   if (finalOtp) {
       await loginPage.verifyOtp(finalOtp);
   }
 
+  // 5. CONFIRM SESSION
   await loginPage.closeLocationModal("Delhi").catch(() => {});
   await loginPage.openProfileMenu();
   await loginPage.assertSessionIsActive();
 
-  // 3. PERSISTENCE
+  // 6. PERSISTENCE
   await page.context().storageState({ path: authFile });
   console.log(`Session successfully saved to ${authFile}`);
 });
-

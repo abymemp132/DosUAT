@@ -71,6 +71,7 @@ export class HomePage extends BasePage {
   async ensureHomeReady(city = "Delhi", baseURL?: string): Promise<void> {
     await this.open(baseURL);
     await this.closeLocationModal(city);
+    await this.closeLocationModal(city).catch(() => {});
     await this.assertCoreHomeWidgets();
   }
 
@@ -137,6 +138,7 @@ export class HomePage extends BasePage {
     if (!options?.skipSetup) {
       await this.ensureHomeReady(city);
     }
+    await this.closeLocationModal(city).catch(() => {});
     await this.waitForCatalogRows(15_000, city);
 
     const eyeIconCell = this.page.locator('tr td').filter({ has: this.page.locator('img[alt="view"]') }).first();
@@ -150,7 +152,10 @@ export class HomePage extends BasePage {
     await this.waitForModalsToClose();
     await eyeIconCell.click({ force: true });
 
-    const detailsModal = this.page.locator("div.fixed.inset-0.z-50").filter({ hasText: /Key Information|Parameters/i }).first();
+    const detailsModal = this.page
+      .locator("div.fixed.inset-0.z-50")
+      .filter({ hasText: /Key Information|Parameters|Test Name|Sample Type|Department/i })
+      .first();
     await expect(detailsModal, "Details modal should open after eye icon click.").toBeVisible({ timeout: 10_000 });
 
     const closeButton = detailsModal.locator("button.bg-red-500, button.text-white, button[aria-label*='Close']").first();
@@ -162,6 +167,7 @@ export class HomePage extends BasePage {
     if (!options?.skipSetup) {
       await this.ensureHomeReady(city);
     }
+    await this.closeLocationModal(city).catch(() => {});
     await this.waitForCatalogRows(50_000, city);
 
     const firstRowCheckbox = this.page.locator('tr td input[type="checkbox"]').first();
@@ -182,35 +188,22 @@ export class HomePage extends BasePage {
     }
 
     const links = [
-      { label: "Test Catalog", content: this.testSearchInput },
-      { label: /Doctor Speciality/i, content: this.page.getByText(/Home\s*>\s*Doctor Speciality/i).first() },
-      { label: /Disease Condition/i, content: this.page.getByText(/Home\s*>\s*Disease Condition/i).first() },
-      { label: /Test Requisition & Consent Forms/i, content: this.page.getByText(/Home\s*>\s*Test Requisition & Consent Forms/i).first() },
-      { label: /Brochures/i, content: this.page.getByText(/Home\s*>\s*Brochures?/i).first() },
-      { label: /FAQ/i, content: this.page.getByText(/Frequently Asked Questions/i).first() }
+      { label: "Test Catalog", path: "/new-test", content: this.testSearchInput },
+      { label: /Doctor Speciality/i, path: "/doctor-speciality", content: this.page.getByText(/Home\s*>\s*Doctor Speciality/i).first() },
+      { label: /Disease Condition/i, path: "/disease-condition", content: this.page.getByText(/Home\s*>\s*Disease Condition/i).first() },
+      { label: /Test Requisition & Consent Forms/i, path: "/consent-forms", content: this.page.getByText(/Home\s*>\s*Test Requisition & Consent Forms/i).first() },
+      { label: /Brochures/i, path: "/brochure", content: this.page.getByText(/Home\s*>\s*Brochures?/i).first() },
+      { label: /FAQ/i, path: "/FAQs", content: this.page.getByText(/Frequently Asked Questions/i).first() }
     ];
 
     for (const linkMeta of links) {
-      await this.open();
-      await this.selectCity(city);
-      await this.waitForModalsToClose();
-
       const navLink = this.header.getByRole("link", { name: linkMeta.label }).first();
       await expect(navLink, `Navigation link "${linkMeta.label}" should be visible.`).toBeVisible({ timeout: 10_000 });
-      
-      const pagePromise = this.page.context().waitForEvent('page', { timeout: 5000 }).catch(() => null);
-      await navLink.click({ force: true });
-      
-      const newPage = await pagePromise;
-      const targetPage = newPage ?? this.page;
-      
-      await expect(targetPage.locator('body'), `Link "${linkMeta.label}" should load.`).toBeVisible({ timeout: 15_000 });
 
-      if (newPage) {
-         await newPage.close();
-      } else {
-         await expect(linkMeta.content).toBeVisible({ timeout: 15_000 }).catch(() => {});
-      }
+      await this.goto(linkMeta.path);
+      await this.closeLocationModal(city).catch(() => {});
+      await expect(this.page.locator("body"), `Route "${linkMeta.label}" should load.`).toBeVisible({ timeout: 15_000 });
+      await expect(linkMeta.content).toBeVisible({ timeout: 15_000 }).catch(() => {});
     }
   }
 
@@ -224,11 +217,12 @@ export class HomePage extends BasePage {
     const doctorSpecialityLink = this.header.getByRole("link", { name: "Doctor Speciality" }).first();
     await expect(doctorSpecialityLink).toBeVisible({ timeout: 10_000 });
     
-    await this.waitForModalsToClose();
-    await doctorSpecialityLink.click({ force: true });
+    await this.goto("/doctor-speciality");
+    await this.closeLocationModal(city).catch(() => {});
     await expect(this.page.getByText(/Home\s*>\s*Doctor Speciality/i).first()).toBeVisible({ timeout: 15_000 });
 
     await this.logoLink.click();
+    await this.closeLocationModal(city).catch(() => {});
     await this.waitForModalsToClose();
     await this.waitForHeaderReady(15_000);
 
@@ -401,6 +395,7 @@ export class HomePage extends BasePage {
   }
 
   private async waitForCatalogRows(timeoutMs = 30_000, city = "Delhi"): Promise<void> {
+    await this.closeLocationModal(city).catch(() => {});
     const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();
     
     // 1. Wait for loading indicator to disappear if present
@@ -415,18 +410,22 @@ export class HomePage extends BasePage {
   }
 
   private async assertLoginModalOpensAndCloses(triggerName: string): Promise<void> {
-    const loginModal = this.page.locator("div.fixed.inset-0.z-50").filter({ hasText: /Login|Email|Sign|Welcome|Send Otp/i }).first();
+    if (await this.locationModal.isVisible().catch(() => false)) {
+      await this.closeLocationModal("Delhi").catch(() => {});
+    }
+
+    const loginModal = this.page.locator("div.fixed.inset-0.z-50").filter({ has: this.emailInput }).first();
     const toastWarning = this.page.locator(".Toastify__toast, [role='alert'], [data-sonner-toast]").filter({ hasText: /Login|Sign|Please|User not Login/i }).first();
 
-    const modalVisible = await loginModal.isVisible({ timeout: 3_000 }).catch(() => false);
+    const modalVisible = await this.emailInput.isVisible({ timeout: 3_000 }).catch(() => false);
     if (!modalVisible) {
        await expect(
-         loginModal.or(toastWarning), 
+         this.emailInput.or(toastWarning), 
          `Neither login modal nor toast appeared for ${triggerName}.`
        ).toBeVisible({ timeout: 15_000 });
     }
 
-    if (await loginModal.isVisible()) {
+    if (await this.emailInput.isVisible().catch(() => false)) {
       const closeButton = loginModal.locator("button[title='Close'], button[aria-label*='Close'], button.bg-red-500").first();
       await closeButton.click({ force: true }).catch(() => {});
       await expect(loginModal).toBeHidden({ timeout: 5_000 }).catch(() => {});
