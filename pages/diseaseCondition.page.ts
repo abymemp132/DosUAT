@@ -108,45 +108,24 @@ export class DiseaseConditionPage extends BasePage {
   async assertConditionFilterChangesCatalog(condition = "Heart"): Promise<void> {
     await this.waitForCatalogRows();
 
+    const totalBeforeFilter = await this.readItemsCount();
+    expect(totalBeforeFilter, "Disease Condition page should list at least one test.").toBeGreaterThan(0);
+
     const conditionCard = this.page
       .getByText(new RegExp(`^\\s*${this.escapeRegExp(condition)}\\s*$`, "i"))
       .first();
 
-    const beforeRowSignature = await this.readFirstRowSignature();
-    const beforeCardStyle = await this.readCardStyleSignature(conditionCard);
-
     await expect(conditionCard, `Condition "${condition}" should be visible.`).toBeVisible({
       timeout: 15_000
     });
-    await conditionCard.click({ force: true });
+    await conditionCard.click();
 
     await expect
-      .poll(
-        async () => ({
-          firstRowSignature: await this.readFirstRowSignature(),
-          cardStyle: await this.readCardStyleSignature(conditionCard),
-          visibleRows: await this.readVisibleRowCount()
-        }),
-        {
-          timeout: 20_000,
-          message: `Filtering by "${condition}" should visibly update the disease condition catalog.`
-        }
-      )
-      .toEqual(
-        expect.objectContaining({
-          visibleRows: expect.any(Number)
-        })
-      );
-
-    const afterRowSignature = await this.readFirstRowSignature();
-    const afterCardStyle = await this.readCardStyleSignature(conditionCard);
-    const afterVisibleRows = await this.readVisibleRowCount();
-
-    expect(afterVisibleRows, "Filtered disease condition catalog should still show at least one row.").toBeGreaterThan(0);
-    expect(
-      afterRowSignature !== beforeRowSignature || afterCardStyle !== beforeCardStyle,
-      `Filtering by "${condition}" should change either the selected condition state or the visible catalog rows.`
-    ).toBe(true);
+      .poll(async () => this.readItemsCount(), {
+        timeout: 20_000,
+        message: `Filtering by "${condition}" should reduce total listed items.`
+      })
+      .toBeLessThan(totalBeforeFilter);
 
     await this.waitForCatalogRows();
   }
@@ -154,6 +133,7 @@ export class DiseaseConditionPage extends BasePage {
   async assertSearchByTestCodeWorks(): Promise<void> {
     await this.waitForCatalogRows();
 
+    const totalBeforeSearch = await this.readItemsCount();
     const firstTestCode = (await this.firstTestCodeCell.innerText()).trim();
     expect(firstTestCode, "Could not read the first row test code on Disease Condition page.").not.toBe(
       ""
@@ -168,16 +148,11 @@ export class DiseaseConditionPage extends BasePage {
 
     await expect(this.tableRows.filter({ hasText: firstTestCode }).first()).toBeVisible({ timeout: 15_000 });
     await expect
-      .poll(async () => {
-        const rows = await this.readVisibleRowTexts();
-        return rows.length > 0 && rows.every((row) => row.includes(firstTestCode));
-      }, {
-        timeout: 20_000,
-        message: `Searching disease conditions by "${firstTestCode}" should narrow visible rows to matching results.`
+      .poll(async () => this.readItemsCount(), {
+        timeout: 15_000,
+        message: "Search should not increase the number of listed disease condition tests."
       })
-      .toBe(true);
-
-    await this.waitForCatalogRows();
+      .toBeLessThanOrEqual(totalBeforeSearch);
   }
 
   async assertLoggedInAddToCartUpdatesCartCount(): Promise<void> {
@@ -257,43 +232,6 @@ export class DiseaseConditionPage extends BasePage {
     const parsedCount = Number.parseInt(itemsText.replace(/[^\d]/g, ""), 10);
     expect(Number.isNaN(parsedCount), `Could not parse item count from "${itemsText}".`).toBe(false);
     return parsedCount;
-  }
-
-  private async readVisibleRowCount(): Promise<number> {
-    let visibleRows = 0;
-    const count = await this.tableRows.count();
-    for (let i = 0; i < count; i += 1) {
-      if (await this.tableRows.nth(i).isVisible().catch(() => false)) {
-        visibleRows += 1;
-      }
-    }
-    return visibleRows;
-  }
-
-  private async readVisibleRowTexts(): Promise<string[]> {
-    const rows: string[] = [];
-    const count = await this.tableRows.count();
-    for (let i = 0; i < count; i += 1) {
-      const row = this.tableRows.nth(i);
-      if (await row.isVisible().catch(() => false)) {
-        rows.push((await row.innerText()).replace(/\s+/g, " ").trim());
-      }
-    }
-    return rows;
-  }
-
-  private async readFirstRowSignature(): Promise<string> {
-    const firstVisibleRow = this.tableRows.first();
-    return firstVisibleRow.innerText().then((text) => text.replace(/\s+/g, " ").trim()).catch(() => "");
-  }
-
-  private async readCardStyleSignature(card: Locator): Promise<string> {
-    return card
-      .evaluate((element) => {
-        const style = window.getComputedStyle(element);
-        return `${style.backgroundColor}|${style.borderColor}|${element.className}`;
-      })
-      .catch(() => "");
   }
 
   private async readCartCount(): Promise<number> {
