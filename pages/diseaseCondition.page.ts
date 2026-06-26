@@ -27,7 +27,7 @@ export class DiseaseConditionPage extends BasePage {
     this.testSearchButton = this.page
       .locator('div:has(input[placeholder="Search by Tests"]) button')
       .first();
-    this.itemsCountLabel = this.page.locator("div, span, p").filter({ hasText: /\d+\s*Items/i }).first();
+    this.itemsCountLabel = this.page.getByText(/\d+\s*Items/i).first();
     this.tableRows = this.page.locator("tbody tr");
     this.firstTestCodeCell = this.page.locator("tbody tr td:nth-child(3)").first();
     this.addToCartButton = this.page.getByRole("button", { name: "Add to Cart" }).first();
@@ -40,8 +40,53 @@ export class DiseaseConditionPage extends BasePage {
 
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
-    await this.closeLocationModal(city);
+    await this.selectCity(city);
     await this.waitForCatalogRows();
+  }
+
+  async selectCity(city = "Delhi"): Promise<void> {
+    if (!(await this.locationModal.isVisible().catch(() => false))) {
+      return;
+    }
+
+    const loadingCities = this.locationModal.getByText("Loading cities...", { exact: false });
+    if (await loadingCities.isVisible().catch(() => false)) {
+      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
+    }
+
+    const preferredCityOption = this.locationModal
+      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, "i"))
+      .first();
+    const clickPreferredCity = async (): Promise<boolean> => {
+      if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
+        return false;
+      }
+
+      await preferredCityOption.click();
+      return true;
+    };
+
+    if (await clickPreferredCity()) {
+      await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
+      return;
+    }
+
+    const searchInput = this.locationModal.getByPlaceholder("Search your City");
+    if (await searchInput.isVisible().catch(() => false)) {
+      await searchInput.fill(city);
+      if (await clickPreferredCity()) {
+        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
+        return;
+      }
+      await searchInput.fill("");
+    }
+
+    const fallbackCityClicked = await this.clickFirstAvailableCity();
+    expect(
+      fallbackCityClicked,
+      `City option "${city}" was not available and no fallback city option was found.`
+    ).toBe(true);
+    await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
   }
 
   async openLocationSelector(): Promise<void> {
@@ -65,7 +110,6 @@ export class DiseaseConditionPage extends BasePage {
 
     const conditionCard = this.page
       .getByText(new RegExp(`^\\s*${this.escapeRegExp(condition)}\\s*$`, "i"))
-      .filter({ hasNot: this.page.locator("table") })
       .first();
 
     const beforeRowSignature = await this.readFirstRowSignature();
@@ -209,20 +253,10 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   private async readItemsCount(): Promise<number> {
-    try {
-      const text = await this.itemsCountLabel.evaluate(
-        (el: Element) => Array.from(el.childNodes)
-          .filter(n => n.nodeType === Node.TEXT_NODE)
-          .map(n => n.textContent || '')
-          .join('')
-          .trim()
-      );
-      const full = text || await this.itemsCountLabel.innerText({ timeout: 5_000 });
-      const match = full.match(/(\d+)/);
-      return match ? Number.parseInt(match[1], 10) : 0;
-    } catch {
-      return 0;
-    }
+    const itemsText = (await this.itemsCountLabel.innerText()).trim();
+    const parsedCount = Number.parseInt(itemsText.replace(/[^\d]/g, ""), 10);
+    expect(Number.isNaN(parsedCount), `Could not parse item count from "${itemsText}".`).toBe(false);
+    return parsedCount;
   }
 
   private async readVisibleRowCount(): Promise<number> {
