@@ -143,7 +143,7 @@ async function sendEmail() {
   const mailOptions = {
     from: `"DosUAT QA Automation" <${process.env.SMTP_USER}>`,
     to: process.env.EMAIL_RECIPIENTS,
-    subject: `✅ [${passRate}] QA Test Execution Report - ${environment}`,
+    subject: `QA Test Execution Report - ${environment}`,
     html: htmlContent,
     attachments: [
       {
