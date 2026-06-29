@@ -37,6 +37,10 @@ jobs:
         npm run dashboard:static
         npm run report:pdf
         
+    - name: Deploy Dashboard to Netlify
+      if: always()
+      run: npm run deploy:dashboard
+      
     - name: Upload Test Report Artifacts
       if: always()
       uses: actions/upload-artifact@v4
