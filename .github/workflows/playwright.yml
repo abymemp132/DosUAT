@@ -41,6 +41,10 @@ jobs:
       if: always()
       run: npm run deploy:dashboard
       
+    - name: Send Email Report
+      if: always()
+      run: npm run send-email
+      
     - name: Upload Test Report Artifacts
       if: always()
       uses: actions/upload-artifact@v4
