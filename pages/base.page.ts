@@ -1,10 +1,13 @@
 import { Locator, Page, expect } from "@playwright/test";
+import { LocationModal } from "./components/LocationModal";
 
 export abstract class BasePage {
   protected readonly page: Page;
+  public readonly cityLocationModal: LocationModal;
 
   constructor(page: Page) {
     this.page = page;
+    this.cityLocationModal = new LocationModal(page);
   }
 
   // ==================== Navigation ====================
@@ -145,98 +148,19 @@ export abstract class BasePage {
     }
   }
 
+  /** @deprecated Use this.cityLocationModal.waitForModalsToClose() instead */
   async waitForModalsToClose(): Promise<void> {
-    const overlays = this.page.locator("div.fixed.inset-0.z-50, .loading-overlay, .modal-backdrop");
-    
-    // Give a short moment for animations to start/finish
-    await this.page.waitForTimeout(500);
-
-    const count = await overlays.count();
-    for (let i = 0; i < count; i++) {
-        const overlay = overlays.nth(i);
-        if (await overlay.isVisible().catch(() => false)) {
-            const text = ((await overlay.textContent().catch(() => "")) || "").toLowerCase();
-            const isInteractiveModal =
-              text.includes("select your location") ||
-              text.includes("change city") ||
-              text.includes("login") ||
-              text.includes("otp") ||
-              text.includes("sign in") ||
-              text.includes("send otp") ||
-              text.includes("email");
-
-            if (!isInteractiveModal) {
-                await overlay.waitFor({ state: "hidden", timeout: 5_000 }).catch(async () => {
-                    // Force hide if stuck
-                    await overlay.evaluate((el: HTMLElement) => el.style.display = "none").catch(() => {});
-                });
-            }
-        }
-    }
+    await this.cityLocationModal.waitForModalsToClose();
   }
 
+  /** @deprecated Use this.cityLocationModal.selectCity(city) instead */
   async selectCity(city: string): Promise<void> {
-    const locationModal = this.page
-      .locator("div.fixed.inset-0.z-50")
-      .filter({ hasText: /Select your Location|Change City/i })
-      .first();
-    await expect
-      .poll(async () => locationModal.isVisible().catch(() => false), { timeout: 8_000 })
-      .toBe(true)
-      .catch(() => {});
-    if (!(await locationModal.isVisible().catch(() => false))) {
-      return;
-    }
-
-    const citySelected = await this.trySelectCityFromModal(locationModal, city);
-    expect(citySelected, `City option "${city}" was not available and no fallback city option was found.`).toBe(true);
-    await this.dismissLocationModal(locationModal);
+    await this.cityLocationModal.selectCity(city);
   }
 
+  /** @deprecated Use this.cityLocationModal.closeLocationModal(city) instead */
   async closeLocationModal(city = "Delhi"): Promise<void> {
-    const locationModal = this.page
-      .locator("div.fixed.inset-0.z-50")
-      .filter({ hasText: /Select your Location|Change City/i })
-      .first();
-
-    await expect
-      .poll(async () => locationModal.isVisible().catch(() => false), { timeout: 8_000 })
-      .toBe(true)
-      .catch(() => {});
-
-    if (!(await locationModal.isVisible().catch(() => false))) {
-      return;
-    }
-
-    const loadingCities = locationModal.getByText("Loading cities...", { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
-    }
-
-    const preferredCityOption = locationModal
-      .getByText(new RegExp(`^\\s*${city.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"))
-      .first();
-
-    const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false))) {
-        return false;
-      }
-      await preferredCityOption.click({ force: true });
-      return true;
-    };
-
-    if (await clickPreferredCity()) {
-      await this.dismissLocationModal(locationModal);
-      return;
-    }
-
-    const citySelected = await this.trySelectCityFromModal(locationModal, city);
-    if (citySelected) {
-      await this.dismissLocationModal(locationModal);
-      return;
-    }
-
-    await this.dismissLocationModal(locationModal);
+    await this.cityLocationModal.closeLocationModal(city);
   }
 
   async isElementHidden(selector: string, timeout = 5_000): Promise<boolean> {
@@ -303,82 +227,7 @@ export abstract class BasePage {
 
   // ==================== Private ====================
 
-  private async trySelectCityFromModal(locationModal: Locator, city: string): Promise<boolean> {
-    const escapedCity = city.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const preferredCityOption = locationModal
-      .getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, "i"))
-      .first();
 
-    if (await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await preferredCityOption.click({ force: true });
-      return true;
-    }
-
-    const searchInput = locationModal.getByPlaceholder(/Search your City/i);
-    if (await searchInput.isVisible({ timeout: 2_000 }).catch(() => false)) {
-      await searchInput.fill(city);
-      if (await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
-        await preferredCityOption.click({ force: true });
-        return true;
-      }
-      await searchInput.fill("").catch(() => {});
-    }
-
-    return this.clickFirstAvailableCityOption(locationModal);
-  }
-
-  private async dismissLocationModal(locationModal: Locator): Promise<void> {
-    await expect(locationModal).toBeHidden({ timeout: 10_000 }).catch(async () => {
-      await this.page.keyboard.press("Escape").catch(() => {});
-      const closeBtn = locationModal
-        .locator("button[title='Close'], button[aria-label='Close'], button.bg-red-500")
-        .first();
-      if (await closeBtn.isVisible().catch(() => false)) {
-        await closeBtn.click({ force: true }).catch(() => {});
-      }
-    });
-    await this.waitForModalsToClose();
-  }
-
-  private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
-    return locationModal.evaluate((modal) => {
-      const excludedLabels = [
-        "Select your Location",
-        "Search your City",
-        "Use Current Location",
-        "Please select your location first",
-        "Metro Cities",
-        "Other Cities",
-        "Loading cities..."
-      ];
-
-      const normalizeText = (value: string): string => value.replace(/\s+/g, " ").trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>("*")).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || "");
-        if (!label || label.length > 60) {
-          return false;
-        }
-
-        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
-        }
-
-        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
-        }
-
-        const style = window.getComputedStyle(element);
-        return style.cursor === "pointer";
-      });
-
-      if (!fallbackCity) {
-        return false;
-      }
-
-      fallbackCity.click();
-      return true;
-    });
-  }
 
   private isRetriableNavigationError(error: unknown): boolean {
     const message = error instanceof Error ? error.message : String(error);

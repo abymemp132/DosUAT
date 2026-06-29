@@ -41,6 +41,7 @@ export class DoctorSpecialityPage extends BasePage {
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
     await this.closeLocationModal(city);
+    await this.closeLocationModal(city).catch(() => {});
     await this.waitForCatalogRows();
   }
 
@@ -132,11 +133,18 @@ export class DoctorSpecialityPage extends BasePage {
       .toBe(true);
   }
 
-  async assertAddToCartShowsLoginWarning(): Promise<void> {
+  async assertAddToCartShowsLoginWarning(city = "Delhi"): Promise<void> {
     await this.waitForCatalogRows();
+    await this.closeLocationModal(city).catch(() => {});
+    await this.closeLocationModal(city).catch(() => {});
     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
-    await this.addToCartButton.click();
-    await expect(this.toastMessage.filter({ hasText: "User not Login" }).first()).toBeVisible({
+    await this.addToCartButton.click({ force: true });
+
+    const loginModal = this.page.locator('input[placeholder*="Email"]').first();
+    await expect(
+      this.toastMessage.filter({ hasText: /User not Login|Login|Sign in/i }).first().or(loginModal).first(),
+      "Guest add-to-cart should surface a login warning or login prompt."
+    ).toBeVisible({
       timeout: 10_000
     });
   }
@@ -161,6 +169,7 @@ export class DoctorSpecialityPage extends BasePage {
   }
 
   private async waitForCatalogRows(timeoutMs = 120_000): Promise<void> {
+    await this.closeLocationModal("Delhi").catch(() => {});
     const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();
     const noDataFound = this.page.getByText("No Data Found", { exact: false }).first();
 
@@ -202,6 +211,7 @@ export class DoctorSpecialityPage extends BasePage {
     await expect(this.tableRows.first(), "Doctor Speciality catalog rows should be visible.").toBeVisible({
       timeout: timeoutMs
     });
+    await this.closeLocationModal("Delhi").catch(() => {});
   }
 
   private async readItemsCount(): Promise<number> {

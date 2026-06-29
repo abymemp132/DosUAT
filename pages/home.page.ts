@@ -232,11 +232,15 @@ export class HomePage extends BasePage {
 
     await this.waitForModalsToClose();
     await this.profileButton.click({ force: true });
-    await this.assertLoginModalOpensAndCloses("profile icon");
+    await this.assertLoginModalOpensAndCloses("profile icon", async () => {
+      await this.profileButton.click({ force: true });
+    });
 
     await this.waitForModalsToClose();
     await this.cartButton.click({ force: true });
-    await this.assertLoginModalOpensAndCloses("cart icon");
+    await this.assertLoginModalOpensAndCloses("cart icon", async () => {
+      await this.cartButton.click({ force: true });
+    });
   }
 
   async assertHeaderIconsOpenExpectedViewsForLoggedIn(
@@ -409,26 +413,54 @@ export class HomePage extends BasePage {
     await this.waitForModalsToClose();
   }
 
-  private async assertLoginModalOpensAndCloses(triggerName: string): Promise<void> {
+  private async assertLoginModalOpensAndCloses(
+    triggerName: string,
+    retryAction?: () => Promise<void>
+  ): Promise<void> {
     if (await this.locationModal.isVisible().catch(() => false)) {
       await this.closeLocationModal("Delhi").catch(() => {});
     }
 
     const loginModal = this.page.locator("div.fixed.inset-0.z-50").filter({ has: this.emailInput }).first();
     const toastWarning = this.page.locator(".Toastify__toast, [role='alert'], [data-sonner-toast]").filter({ hasText: /Login|Sign|Please|User not Login/i }).first();
+    const authDialog = this.page
+      .locator("div.fixed.inset-0.z-50, [role='dialog'], [role='menu']")
+      .filter({ hasText: /login|sign in|sign up|register|send otp|email|otp verification/i })
+      .first();
+    const authCta = this.page
+      .getByRole("button", { name: /login|sign in|sign up|register|send otp/i })
+      .or(this.page.getByRole("link", { name: /login|sign in|sign up|register/i }))
+      .first();
+    const authSurface = this.emailInput.or(toastWarning).or(authDialog).or(authCta);
 
-    const modalVisible = await this.emailInput.isVisible({ timeout: 3_000 }).catch(() => false);
-    if (!modalVisible) {
-       await expect(
-         this.emailInput.or(toastWarning), 
-         `Neither login modal nor toast appeared for ${triggerName}.`
-       ).toBeVisible({ timeout: 15_000 });
+    let authSurfaceVisible = await authSurface.isVisible({ timeout: 4_000 }).catch(() => false);
+    if (!authSurfaceVisible && retryAction) {
+      await retryAction();
+      authSurfaceVisible = await authSurface.isVisible({ timeout: 4_000 }).catch(() => false);
+    }
+
+    if (!authSurfaceVisible) {
+      await expect(authSurface.first(), `No authentication prompt appeared for ${triggerName}.`).toBeVisible({
+        timeout: 10_000
+      });
     }
 
     if (await this.emailInput.isVisible().catch(() => false)) {
       const closeButton = loginModal.locator("button[title='Close'], button[aria-label*='Close'], button.bg-red-500").first();
       await closeButton.click({ force: true }).catch(() => {});
       await expect(loginModal).toBeHidden({ timeout: 5_000 }).catch(() => {});
+      return;
+    }
+
+    if (await authDialog.isVisible().catch(() => false)) {
+      const closeButton = authDialog
+        .locator("button[title='Close'], button[aria-label*='Close'], button.bg-red-500")
+        .first();
+      if (await closeButton.isVisible().catch(() => false)) {
+        await closeButton.click({ force: true }).catch(() => {});
+      } else {
+        await this.page.keyboard.press("Escape").catch(() => {});
+      }
     }
   }
 

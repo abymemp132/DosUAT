@@ -6,10 +6,11 @@ import readline from "readline/promises";
 import { stdin as input, stdout as output } from "process";
 import { LoginPage } from "../pages/login.page";
 
-async function waitForEnter(prompt: string): Promise<void> {
+async function askForOtp(prompt: string): Promise<string> {
   const rl = readline.createInterface({ input, output });
   try {
-    await rl.question(`${prompt}\nPress Enter after you finish in the browser...`);
+    const answer = await rl.question(`${prompt}\nEnter OTP: `);
+    return answer.trim();
   } finally {
     rl.close();
   }
@@ -64,7 +65,12 @@ async function main(): Promise<void> {
       await loginPage.verifyOtp(otp);
     } else {
       console.log("OTP requested successfully. If this fails, verify LOGIN_EMAIL belongs to an existing allowed account.");
-      await waitForEnter("Enter OTP in the opened browser and click Verify.");
+      const manualOtp = await askForOtp("Check your email for the OTP.");
+      if (manualOtp) {
+        await loginPage.verifyOtp(manualOtp);
+      } else {
+        throw new Error("No OTP provided.");
+      }
     }
 
     await loginPage.closeLocationModal("Delhi").catch(() => {});

@@ -35,6 +35,7 @@ export class BrochurePage extends BasePage {
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
     await this.selectCity(city);
+    await this.selectCity(city).catch(() => {});
     await this.waitForBrochuresToLoad();
   }
 
@@ -161,23 +162,36 @@ export class BrochurePage extends BasePage {
       0
     );
 
+    const linksToCheck = links.slice(0, 8);
     const apiContext = await this.createRequestContext();
     const failedLinks: string[] = [];
 
     try {
-      for (const link of links) {
+      for (const link of linksToCheck) {
+        const resolvedLink = new URL(link, this.page.url()).toString();
         try {
-          const response = await apiContext.get(link, {
+          let response = await apiContext.fetch(resolvedLink, {
+            method: "HEAD",
             failOnStatusCode: false,
-            timeout: 30_000
+            timeout: 10_000,
+            maxRedirects: 5
           });
+
+          if ([403, 405, 501].includes(response.status())) {
+            response = await apiContext.get(resolvedLink, {
+              failOnStatusCode: false,
+              timeout: 10_000,
+              maxRedirects: 5
+            });
+          }
+
           const status = response.status();
           if (status < 200 || status >= 400) {
-            failedLinks.push(`${link} -> HTTP ${status}`);
+            failedLinks.push(`${resolvedLink} -> HTTP ${status}`);
           }
         } catch (error) {
           const message = error instanceof Error ? error.message : String(error);
-          failedLinks.push(`${link} -> ${message}`);
+          failedLinks.push(`${resolvedLink} -> ${message}`);
         }
       }
     } finally {

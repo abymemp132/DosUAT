@@ -17,8 +17,13 @@ async function assertSavedSession(page: Page): Promise<void> {
 }
 
 async function openAddToCartModule(page: Page): Promise<AddToCartPage> {
+  const loginPage = new LoginPage(page);
+  await loginPage.openHome();
+  await loginPage.closeLocationModal(city);
+
   const addToCartPage = new AddToCartPage(page);
-  await addToCartPage.openAndSelectCity(city);
+  await addToCartPage.open();
+  await addToCartPage.waitForCatalogRows();
   return addToCartPage;
 }
 
@@ -31,10 +36,13 @@ test.describe("add to cart page - with login", () => {
   }
 
   test.beforeEach(async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.openHome();
+    await loginPage.closeLocationModal(city);
+    
     const addToCartPage = new AddToCartPage(page);
-    await addToCartPage.openAndSelectCity(city);
-    // await addToCartPage.clearCart(); // Temporarily disabled until clearCart is implemented
-    await addToCartPage.openAndSelectCity(city); 
+    await addToCartPage.open();
+    await addToCartPage.waitForCatalogRows();
   });
 
   test("[Login] saved session is active", async ({ page }) => {

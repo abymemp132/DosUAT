@@ -59,11 +59,10 @@ async function reuseExistingSession(page: Page, authFile: string): Promise<boole
   }
 
   const sessionData = await page.evaluate(() => ({
-    token: window.localStorage.getItem("authToken"),
-    city: window.localStorage.getItem("CityId")
+    token: window.localStorage.getItem("authToken")
   }));
 
-  if (sessionData.token && sessionData.city) {
+  if (sessionData.token) {
     console.log("Existing session is still valid. Skipping login.");
     return true;
   }

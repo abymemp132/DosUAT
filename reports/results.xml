@@ -1,24 +1,440 @@
-<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="0" time="60.891841">
-<testsuite name="testCatalog.spec.ts" timestamp="2026-04-24T12:40:01.760Z" hostname="guest" tests="10" failures="0" skipped="0" time="163.559" errors="0">
-<testcase name="test catalog module - guest user › [Guest] tests route loads expected catalog state" classname="testCatalog.spec.ts" time="21.445">
+<testsuites id="" name="" tests="72" failures="0" skipped="34" errors="1" time="529.835373">
+<testsuite name="setup\auth.setup.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="setup" tests="1" failures="0" skipped="0" time="26.753" errors="1">
+<testcase name="authenticate with dynamic OTP" classname="setup\auth.setup.ts" time="26.753">
+<system-out>
+<![CDATA[Starting dynamic login for: abymemp132@gmail.com
+LOGIN_OTP not found. Clearing MailSlurp inbox before requesting OTP...
+[MailSlurp] Clearing old messages in inbox: 07c25683-3815-4d79-9196-10bd7995f3eb...
+[Login] Email input attributes: maxlength=null, type=email
+[Login] Filled email: abymemp132@gmail.com
+[Login] OTP request response: 200 https://oncquest-admin-uat.abym.us/api/master/send-email-otp
+Attempting to fetch dynamic OTP from MailSlurp (with retry)...
+[MailSlurp] Waiting for OTP email in inbox: 07c25683-3815-4d79-9196-10bd7995f3eb...
+[MailSlurp] Attempt 1: Waiting up to 90s for email...
+[MailSlurp] Retrying in 5s...
+[MailSlurp] Attempt 2: Waiting up to 60s for email...
+[MailSlurp] Retrying in 10s...
+[MailSlurp] Attempt 3: Waiting up to 60s for email...
+
+[[ATTACHMENT|..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\video.webm]]
+
+[[ATTACHMENT|..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\error-context.md]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[[MailSlurp] Attempt 1/3 failed: waitForLatestEmail failed: HTTP 404  https://javascript.api.mailslurp.com/waitForLatestEmail?inboxId=07c25683-3815-4d79-9196-10bd7995f3eb&timeout=90000&unreadOnly=false
+[MailSlurp] Attempt 2/3 failed: waitForLatestEmail failed: HTTP 404  https://javascript.api.mailslurp.com/waitForLatestEmail?inboxId=07c25683-3815-4d79-9196-10bd7995f3eb&timeout=60000&unreadOnly=false
+[MailSlurp] Attempt 3/3 failed: waitForLatestEmail failed: HTTP 404  https://javascript.api.mailslurp.com/waitForLatestEmail?inboxId=07c25683-3815-4d79-9196-10bd7995f3eb&timeout=60000&unreadOnly=false
+MailSlurp OTP extraction failed after all retries.
+]]>
+</system-err>
+<error message="waitForLatestEmail failed: HTTP 404  https://javascript.api.mailslurp.com/waitForLatestEmail?inboxId=07c25683-3815-4d79-9196-10bd7995f3eb&amp;timeout=60000&amp;unreadOnly=false" type="Error">
+<![CDATA[  [setup] › setup\auth.setup.ts:76:6 › authenticate with dynamic OTP ───────────────────────────────
+
+    Error: waitForLatestEmail failed: HTTP 404  https://javascript.api.mailslurp.com/waitForLatestEmail?inboxId=07c25683-3815-4d79-9196-10bd7995f3eb&timeout=60000&unreadOnly=false
+
+       at ..\utils\mailslurp.util.ts:82
+
+      80 |         // MailSlurp throws the raw Response on 404 (no email found within timeout).
+      81 |         // Wrap it in a proper Error for better diagnostics.
+    > 82 |         throw new Error(
+         |               ^
+      83 |             `waitForLatestEmail failed: ${describeError(waitError)}`
+      84 |         );
+      85 |     }
+        at attemptOtpExtraction (D:\DosUAT\DosUAT\utils\mailslurp.util.ts:82:15)
+        at getOtpFromMailSlurp (D:\DosUAT\DosUAT\utils\mailslurp.util.ts:43:25)
+        at D:\DosUAT\DosUAT\tests\setup\auth.setup.ts:112:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\setup-auth.setup.ts-authenticate-with-dynamic-OTP-setup\error-context.md
+]]>
+</error>
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] packages route loads expected catalog state" classname="testCatalog.spec.ts" time="22.1">
+</testsuite>
+<testsuite name="brochure.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="3" failures="0" skipped="0" time="6.162" errors="0">
+<testcase name="brochure page - without login (guest user) › [Guest] loads page and shows core widgets" classname="brochure.spec.ts" time="1.531">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] new test route loads expected catalog state" classname="testCatalog.spec.ts" time="13.783">
+<testcase name="brochure page - without login (guest user) › [Guest] search by brochure works" classname="brochure.spec.ts" time="1.582">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] new packages route loads expected catalog state" classname="testCatalog.spec.ts" time="17.727">
+<testcase name="brochure page - without login (guest user) › [Guest] sharing links are reachable" classname="brochure.spec.ts" time="3.049">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] wellness packages route loads expected catalog state" classname="testCatalog.spec.ts" time="15.889">
+</testsuite>
+<testsuite name="diseaseCondition.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="4" failures="0" skipped="0" time="14.606" errors="0">
+<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition.spec.ts" time="3.841">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] department filter control is visible on test route" classname="testCatalog.spec.ts" time="15.577">
+<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition.spec.ts" time="2.718">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] method filter control is visible on test route" classname="testCatalog.spec.ts" time="12.359">
+<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition.spec.ts" time="5.304">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] sample type filter control is visible on test route" classname="testCatalog.spec.ts" time="16.901">
+<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition.spec.ts" time="2.743">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] NABL filter control is visible on test route" classname="testCatalog.spec.ts" time="16.885">
+</testsuite>
+<testsuite name="doctorSpeciality.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="4" failures="0" skipped="0" time="189.653" errors="0">
+<testcase name="doctor speciality page - without login (guest user) › [Guest] loads page and shows core widgets" classname="doctorSpeciality.spec.ts" time="26.23">
 </testcase>
-<testcase name="test catalog module - guest user › [Guest] reset control is available on test route" classname="testCatalog.spec.ts" time="10.893">
+<testcase name="doctor speciality page - without login (guest user) › [Guest] speciality filter updates catalog" classname="doctorSpeciality.spec.ts" time="58.462">
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] search by test code works" classname="doctorSpeciality.spec.ts" time="46.252">
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] add to cart shows login warning" classname="doctorSpeciality.spec.ts" time="58.709">
+</testcase>
+</testsuite>
+<testsuite name="faq.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="3" failures="0" skipped="0" time="7.554" errors="0">
+<testcase name="faq page - without login (guest user) › [Guest] loads page and shows core widgets" classname="faq.spec.ts" time="2.273">
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] question accordion toggles answer visibility" classname="faq.spec.ts" time="2.502">
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] show more loads additional FAQ questions" classname="faq.spec.ts" time="2.779">
+</testcase>
+</testsuite>
+<testsuite name="forms.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="3" failures="0" skipped="0" time="12.275" errors="0">
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] loads page and shows core widgets" classname="forms.spec.ts" time="1.895">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] search by consent works" classname="forms.spec.ts" time="1.956">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] sharing links are reachable" classname="forms.spec.ts" time="8.424">
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="10" failures="0" skipped="0" time="232.999" errors="0">
+<testcase name="home page - without login (guest user) › [Guest] loads home page and shows core modules" classname="home.spec.ts" time="10.877">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] top navigation links route to expected pages" classname="home.spec.ts" time="60.526">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all header icons open expected page or modal" classname="home.spec.ts" time="29.395">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] search works with icon click and Enter key" classname="home.spec.ts" time="18.757">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all visible home page buttons are working" classname="home.spec.ts" time="10.305">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] eye icon opens and closes details" classname="home.spec.ts" time="27.196">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] add to cart shows login warning" classname="home.spec.ts" time="19.922">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] download selected shows login warning" classname="home.spec.ts" time="27.12">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] pagination works on home catalog" classname="home.spec.ts" time="18.626">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] footer links are visible and correct" classname="home.spec.ts" time="10.275">
+</testcase>
+</testsuite>
+<testsuite name="testCatalog.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="guest" tests="10" failures="0" skipped="0" time="26.643" errors="0">
+<testcase name="test catalog module - guest user › [Guest] tests route loads expected catalog state" classname="testCatalog.spec.ts" time="2.058">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] packages route loads expected catalog state" classname="testCatalog.spec.ts" time="2.477">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new test route loads expected catalog state" classname="testCatalog.spec.ts" time="2.417">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new packages route loads expected catalog state" classname="testCatalog.spec.ts" time="3.068">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] wellness packages route loads expected catalog state" classname="testCatalog.spec.ts" time="2.932">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] department filter control is visible on test route" classname="testCatalog.spec.ts" time="2.454">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] method filter control is visible on test route" classname="testCatalog.spec.ts" time="2.687">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] sample type filter control is visible on test route" classname="testCatalog.spec.ts" time="2.613">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] NABL filter control is visible on test route" classname="testCatalog.spec.ts" time="3.236">
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] reset control is available on test route" classname="testCatalog.spec.ts" time="2.701">
+</testcase>
+</testsuite>
+<testsuite name="addToCart.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="add to cart page - with login › [Login] saved session is active" classname="addToCart.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="add to cart page - with login › [Login] apply random 1 to 10 percent discount on a specific test and validate pricing" classname="addToCart.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via WhatsApp for a specific test" classname="addToCart.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via Outlook for a specific test" classname="addToCart.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="brochure.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="brochure page - with login (authenticated user) › [Login] saved session is active" classname="brochure.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="brochure.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] search by brochure works" classname="brochure.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] sharing links are reachable" classname="brochure.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="diseaseCondition.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="disease condition page - with login (authenticated user) › [Login] saved session is active" classname="diseaseCondition.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="diseaseCondition.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] condition filter updates catalog" classname="diseaseCondition.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] search by test code works" classname="diseaseCondition.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="doctorSpeciality.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] saved session is active" classname="doctorSpeciality.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="doctorSpeciality.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] speciality filter updates catalog" classname="doctorSpeciality.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] search by test code works" classname="doctorSpeciality.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="faq.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="faq page - with login (authenticated user) › [Login] saved session is active" classname="faq.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="faq.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] question accordion toggles answer visibility" classname="faq.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] show more loads additional FAQ questions" classname="faq.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="forms.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="4" failures="0" skipped="4" time="0" errors="0">
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] saved session is active" classname="forms.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="forms.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] search by consent works" classname="forms.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] sharing links are reachable" classname="forms.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="home page - with login (authenticated user) › [Login] saved session is active" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] loads home page and shows core modules" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] top navigation links route to expected pages" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] all header icons open expected page or modal" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] search works with icon click and Enter key" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] eye icon opens and closes details" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] add to cart updates cart count" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] download selected works without login modal" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] pagination works on home catalog" classname="home.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="login.spec.ts" timestamp="2026-06-29T10:57:34.588Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="auth › saved login session is active" classname="login.spec.ts">
+<properties>
+<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
+</property>
+</properties>
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

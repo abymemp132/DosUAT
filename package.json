@@ -20,7 +20,9 @@
     "pipeline": "npm run test:staging && npm run dashboard:static && npm run report:pdf && npm run send-email",
     "deploy:report": "npx netlify-cli deploy --dir=playwright-report --prod",
     "deploy:dashboard": "npx netlify-cli deploy --dir=reports/dashboard-static --prod",
-    "dashboard:static": "node utils/generateTestDashboard.js"
+    "dashboard:static": "node utils/generateTestDashboard.js",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
@@ -28,12 +30,16 @@
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "mailosaur": "^11.1.0",
+    "mailslurp-client": "^17.2.0",
     "nodemailer": "^8.0.5",
     "puppeteer": "^24.41.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "mailslurp-client": "^17.2.0"
+    "typescript": "^5.9.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-playwright": "^1.6.0"
   }
 }
