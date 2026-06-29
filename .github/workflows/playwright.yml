@@ -11,22 +11,13 @@ jobs:
     timeout-minutes: 60
     runs-on: windows-latest
     
-    env:
-      BASE_URL: ${{ secrets.BASE_URL }}
-      WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME }}
-      WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD }}
-      LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
-      MAILSLURP_API_KEY: ${{ secrets.MAILSLURP_API_KEY }}
-      MAILSLURP_INBOX_ID: ${{ secrets.MAILSLURP_INBOX_ID }}
-      SMTP_HOST: ${{ secrets.SMTP_HOST }}
-      SMTP_PORT: ${{ secrets.SMTP_PORT }}
-      SMTP_USER: ${{ secrets.SMTP_USER }}
-      SMTP_PASS: ${{ secrets.SMTP_PASS }}
-      EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
-      
     steps:
     - uses: actions/checkout@v4
     
+    - name: Create .env file
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > .env
+        
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
