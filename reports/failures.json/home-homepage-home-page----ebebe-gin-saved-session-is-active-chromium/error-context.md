@@ -1,0 +1,343 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - link "Oncquest Laboratories" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Oncquest Laboratories" [ref=e8]
+        - generic [ref=e9]:
+          - link "Test Catalog" [ref=e11] [cursor=pointer]:
+            - /url: /new-test
+          - link "Doctor Speciality" [ref=e13] [cursor=pointer]:
+            - /url: /doctor-speciality
+          - link "Disease Condition" [ref=e15] [cursor=pointer]:
+            - /url: /disease-condition
+          - link "Test Requisition & Consent Forms" [ref=e17] [cursor=pointer]:
+            - /url: /consent-forms
+          - link "Brochures" [ref=e19] [cursor=pointer]:
+            - /url: /brochure
+          - link "FAQ's" [ref=e21] [cursor=pointer]:
+            - /url: /FAQs
+        - generic [ref=e22] [cursor=pointer]:
+          - img "location" [ref=e23]
+          - generic [ref=e24]: Noida
+          - img
+        - button [ref=e28] [cursor=pointer]:
+          - img [ref=e29]
+        - button "10" [active] [ref=e31] [cursor=pointer]:
+          - img [ref=e32]
+          - generic [ref=e34]: "10"
+    - main [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - img "Back" [ref=e39] [cursor=pointer]
+          - paragraph [ref=e40]: Home > Add to Cart
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - textbox "Search by Test Name" [ref=e43]
+            - button [ref=e44] [cursor=pointer]:
+              - img [ref=e45]
+          - generic [ref=e48]:
+            - img "whatsapp" [ref=e49] [cursor=pointer]
+            - img "mail" [ref=e50] [cursor=pointer]
+            - img [ref=e51] [cursor=pointer]
+        - generic [ref=e53]:
+          - table [ref=e56]:
+            - rowgroup [ref=e57]:
+              - row "Test Code Test Name Method Sample Type Billing Category Price Discount Type Price/Percentage Discount Value Final price Action" [ref=e58]:
+                - columnheader "Test Code" [ref=e59]
+                - columnheader "Test Name" [ref=e60]
+                - columnheader "Method" [ref=e61]
+                - columnheader "Sample Type" [ref=e62]
+                - columnheader "Billing Category" [ref=e63]
+                - columnheader "Price" [ref=e64]
+                - columnheader "Discount Type" [ref=e65]
+                - columnheader "Price/Percentage" [ref=e66]
+                - columnheader "Discount Value" [ref=e67]
+                - columnheader "Final price" [ref=e68]
+                - columnheader "Action" [ref=e69]
+            - rowgroup [ref=e70]:
+              - row "RCP10067 5-Aminolevulinic Acid (5-ALA) 2nd Morning Urine Column Chromatography Mornings 2nd Urine O3 5690 Percentage Fixed Remove discount No Discount 5690 Remove" [ref=e71]:
+                - cell "RCP10067" [ref=e72]
+                - cell "5-Aminolevulinic Acid (5-ALA) 2nd Morning Urine" [ref=e73]
+                - cell "Column Chromatography" [ref=e74]
+                - cell "Mornings 2nd Urine" [ref=e75]
+                - cell "O3" [ref=e76]
+                - cell "5690" [ref=e77]
+                - cell "Percentage Fixed" [ref=e78]:
+                  - generic [ref=e79]:
+                    - button "Percentage" [ref=e80] [cursor=pointer]
+                    - button "Fixed" [ref=e81] [cursor=pointer]
+                - cell "Remove discount" [ref=e82]:
+                  - generic [ref=e83]:
+                    - textbox "0" [ref=e84]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e85]
+                - cell "5690" [ref=e86]
+                - cell "Remove" [ref=e87] [cursor=pointer]
+              - row "RSR10059 (1-3)-β-D Glucan Assay Chemiluminescence Immunoassay (CLIA) Serum O4 8000 Percentage Fixed Remove discount No Discount 8000 Remove" [ref=e88]:
+                - cell "RSR10059" [ref=e89]
+                - cell "(1-3)-β-D Glucan Assay" [ref=e90]
+                - cell "Chemiluminescence Immunoassay (CLIA)" [ref=e91]
+                - cell "Serum" [ref=e92]
+                - cell "O4" [ref=e93]
+                - cell "8000" [ref=e94]
+                - cell "Percentage Fixed" [ref=e95]:
+                  - generic [ref=e96]:
+                    - button "Percentage" [ref=e97] [cursor=pointer]
+                    - button "Fixed" [ref=e98] [cursor=pointer]
+                - cell "Remove discount" [ref=e99]:
+                  - generic [ref=e100]:
+                    - textbox "0" [ref=e101]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e102]
+                - cell "8000" [ref=e103]
+                - cell "Remove" [ref=e104] [cursor=pointer]
+              - row "RBC10482 11-Deoxycortisol, Serum Chromatography/Mass Spectrometry Serum O5 19910 Percentage Fixed Remove discount No Discount 19910 Remove" [ref=e105]:
+                - cell "RBC10482" [ref=e106]
+                - cell "11-Deoxycortisol, Serum" [ref=e107]
+                - cell "Chromatography/Mass Spectrometry" [ref=e108]
+                - cell "Serum" [ref=e109]
+                - cell "O5" [ref=e110]
+                - cell "19910" [ref=e111]
+                - cell "Percentage Fixed" [ref=e112]:
+                  - generic [ref=e113]:
+                    - button "Percentage" [ref=e114] [cursor=pointer]
+                    - button "Fixed" [ref=e115] [cursor=pointer]
+                - cell "Remove discount" [ref=e116]:
+                  - generic [ref=e117]:
+                    - textbox "0" [ref=e118]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e119]
+                - cell "19910" [ref=e120]
+                - cell "Remove" [ref=e121] [cursor=pointer]
+              - row "SFI10023 11q22 by FISH FISH Whole Blood/Bone Marrow Heparinized O3 4500 Percentage Fixed Remove discount No Discount 4500 Remove" [ref=e122]:
+                - cell "SFI10023" [ref=e123]
+                - cell "11q22 by FISH" [ref=e124]
+                - cell "FISH" [ref=e125]
+                - cell "Whole Blood/Bone Marrow Heparinized" [ref=e126]
+                - cell "O3" [ref=e127]
+                - cell "4500" [ref=e128]
+                - cell "Percentage Fixed" [ref=e129]:
+                  - generic [ref=e130]:
+                    - button "Percentage" [ref=e131] [cursor=pointer]
+                    - button "Fixed" [ref=e132] [cursor=pointer]
+                - cell "Remove discount" [ref=e133]:
+                  - generic [ref=e134]:
+                    - textbox "0" [ref=e135]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e136]
+                - cell "4500" [ref=e137]
+                - cell "Remove" [ref=e138] [cursor=pointer]
+              - row "RCP10021 17-Ketosteroids 24Hrs, Urine Column Chromatography 24Hr. Urine O3 8470 Percentage Fixed Remove discount No Discount 8470 Remove" [ref=e139]:
+                - cell "RCP10021" [ref=e140]
+                - cell "17-Ketosteroids 24Hrs, Urine" [ref=e141]
+                - cell "Column Chromatography" [ref=e142]
+                - cell "24Hr. Urine" [ref=e143]
+                - cell "O3" [ref=e144]
+                - cell "8470" [ref=e145]
+                - cell "Percentage Fixed" [ref=e146]:
+                  - generic [ref=e147]:
+                    - button "Percentage" [ref=e148] [cursor=pointer]
+                    - button "Fixed" [ref=e149] [cursor=pointer]
+                - cell "Remove discount" [ref=e150]:
+                  - generic [ref=e151]:
+                    - textbox "0" [ref=e152]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e153]
+                - cell "8470" [ref=e154]
+                - cell "Remove" [ref=e155] [cursor=pointer]
+              - row "RCP10020 17-OH Corticosteroids 24Hr, Urine Column Chromatography 24Hr. Urine O3 8470 Percentage Fixed Remove discount No Discount 8470 Remove" [ref=e156]:
+                - cell "RCP10020" [ref=e157]
+                - cell "17-OH Corticosteroids 24Hr, Urine" [ref=e158]
+                - cell "Column Chromatography" [ref=e159]
+                - cell "24Hr. Urine" [ref=e160]
+                - cell "O3" [ref=e161]
+                - cell "8470" [ref=e162]
+                - cell "Percentage Fixed" [ref=e163]:
+                  - generic [ref=e164]:
+                    - button "Percentage" [ref=e165] [cursor=pointer]
+                    - button "Fixed" [ref=e166] [cursor=pointer]
+                - cell "Remove discount" [ref=e167]:
+                  - generic [ref=e168]:
+                    - textbox "0" [ref=e169]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e170]
+                - cell "8470" [ref=e171]
+                - cell "Remove" [ref=e172] [cursor=pointer]
+              - row "RIM10060 17-OH Progesterone ELISA (Enzyme Linked Immuno sorbent Assay) Serum O5 1450 Percentage Fixed Remove discount No Discount 1450 Remove" [ref=e173]:
+                - cell "RIM10060" [ref=e174]
+                - cell "17-OH Progesterone" [ref=e175]
+                - cell "ELISA (Enzyme Linked Immuno sorbent Assay)" [ref=e176]
+                - cell "Serum" [ref=e177]
+                - cell "O5" [ref=e178]
+                - cell "1450" [ref=e179]
+                - cell "Percentage Fixed" [ref=e180]:
+                  - generic [ref=e181]:
+                    - button "Percentage" [ref=e182] [cursor=pointer]
+                    - button "Fixed" [ref=e183] [cursor=pointer]
+                - cell "Remove discount" [ref=e184]:
+                  - generic [ref=e185]:
+                    - textbox "0" [ref=e186]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e187]
+                - cell "1450" [ref=e188]
+                - cell "Remove" [ref=e189] [cursor=pointer]
+              - row "QSR0007 3-Hydroxy-3-Methylglutaryl-Coenzyme A Reductase (HMGCR) Antibody (Igg) Chemiluminescence (CL) Serum-Red Top Plain O5 43990 Percentage Fixed Remove discount No Discount 43990 Remove" [ref=e190]:
+                - cell "QSR0007" [ref=e191]
+                - cell "3-Hydroxy-3-Methylglutaryl-Coenzyme A Reductase (HMGCR) Antibody (Igg)" [ref=e192]
+                - cell "Chemiluminescence (CL)" [ref=e193]
+                - cell "Serum-Red Top Plain" [ref=e194]
+                - cell "O5" [ref=e195]
+                - cell "43990" [ref=e196]
+                - cell "Percentage Fixed" [ref=e197]:
+                  - generic [ref=e198]:
+                    - button "Percentage" [ref=e199] [cursor=pointer]
+                    - button "Fixed" [ref=e200] [cursor=pointer]
+                - cell "Remove discount" [ref=e201]:
+                  - generic [ref=e202]:
+                    - textbox "0" [ref=e203]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e204]
+                - cell "43990" [ref=e205]
+                - cell "Remove" [ref=e206] [cursor=pointer]
+              - row "RIM10068 5-Alpha DHT (Di-Hydro Testosterone) Enzyme Immunoassay (EIA) Serum O3 3870 Percentage Fixed Remove discount No Discount 3870 Remove" [ref=e207]:
+                - cell "RIM10068" [ref=e208]
+                - cell "5-Alpha DHT (Di-Hydro Testosterone)" [ref=e209]
+                - cell "Enzyme Immunoassay (EIA)" [ref=e210]
+                - cell "Serum" [ref=e211]
+                - cell "O3" [ref=e212]
+                - cell "3870" [ref=e213]
+                - cell "Percentage Fixed" [ref=e214]:
+                  - generic [ref=e215]:
+                    - button "Percentage" [ref=e216] [cursor=pointer]
+                    - button "Fixed" [ref=e217] [cursor=pointer]
+                - cell "Remove discount" [ref=e218]:
+                  - generic [ref=e219]:
+                    - textbox "0" [ref=e220]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e221]
+                - cell "3870" [ref=e222]
+                - cell "Remove" [ref=e223] [cursor=pointer]
+              - row "RCP10047 5-HIAA, Random Urine HPLC Random Urine O5 3520 Percentage Fixed Remove discount No Discount 3520 Remove" [ref=e224]:
+                - cell "RCP10047" [ref=e225]
+                - cell "5-HIAA, Random Urine" [ref=e226]
+                - cell "HPLC" [ref=e227]
+                - cell "Random Urine" [ref=e228]
+                - cell "O5" [ref=e229]
+                - cell "3520" [ref=e230]
+                - cell "Percentage Fixed" [ref=e231]:
+                  - generic [ref=e232]:
+                    - button "Percentage" [ref=e233] [cursor=pointer]
+                    - button "Fixed" [ref=e234] [cursor=pointer]
+                - cell "Remove discount" [ref=e235]:
+                  - generic [ref=e236]:
+                    - textbox "0" [ref=e237]
+                    - button "Remove discount"
+                - cell "No Discount" [ref=e238]
+                - cell "3520" [ref=e239]
+                - cell "Remove" [ref=e240] [cursor=pointer]
+          - generic [ref=e241]:
+            - heading "Amount to be Paid" [level=3] [ref=e242]
+            - separator [ref=e243]
+            - generic [ref=e244]:
+              - generic [ref=e245]:
+                - generic [ref=e246]: RCP10067
+                - generic [ref=e247]:
+                  - img [ref=e248]
+                  - generic [ref=e250]: "5690"
+              - generic [ref=e251]:
+                - generic [ref=e252]: RSR10059
+                - generic [ref=e253]:
+                  - img [ref=e254]
+                  - generic [ref=e256]: "8000"
+              - generic [ref=e257]:
+                - generic [ref=e258]: RBC10482
+                - generic [ref=e259]:
+                  - img [ref=e260]
+                  - generic [ref=e262]: "19910"
+              - generic [ref=e263]:
+                - generic [ref=e264]: SFI10023
+                - generic [ref=e265]:
+                  - img [ref=e266]
+                  - generic [ref=e268]: "4500"
+              - generic [ref=e269]:
+                - generic [ref=e270]: RCP10021
+                - generic [ref=e271]:
+                  - img [ref=e272]
+                  - generic [ref=e274]: "8470"
+              - generic [ref=e275]:
+                - generic [ref=e276]: RCP10020
+                - generic [ref=e277]:
+                  - img [ref=e278]
+                  - generic [ref=e280]: "8470"
+              - generic [ref=e281]:
+                - generic [ref=e282]: RIM10060
+                - generic [ref=e283]:
+                  - img [ref=e284]
+                  - generic [ref=e286]: "1450"
+              - generic [ref=e287]:
+                - generic [ref=e288]: QSR0007
+                - generic [ref=e289]:
+                  - img [ref=e290]
+                  - generic [ref=e292]: "43990"
+              - generic [ref=e293]:
+                - generic [ref=e294]: RIM10068
+                - generic [ref=e295]:
+                  - img [ref=e296]
+                  - generic [ref=e298]: "3870"
+              - generic [ref=e299]:
+                - generic [ref=e300]: RCP10047
+                - generic [ref=e301]:
+                  - img [ref=e302]
+                  - generic [ref=e304]: "3520"
+            - separator [ref=e305]
+            - generic [ref=e306]:
+              - generic [ref=e307]: Total Discount
+              - generic [ref=e308]:
+                - img [ref=e309]
+                - generic [ref=e311]: "0"
+            - generic [ref=e312]:
+              - generic [ref=e313]: Total
+              - generic [ref=e314]:
+                - img [ref=e315]
+                - generic [ref=e317]: "107870"
+            - separator [ref=e318]
+            - generic [ref=e319]:
+              - generic [ref=e320]: Net Payable
+              - generic [ref=e321]:
+                - img [ref=e322]
+                - generic [ref=e324]: "107870"
+    - contentinfo [ref=e325]:
+      - generic [ref=e326]:
+        - paragraph [ref=e327]:
+          - text: Copyright © 2026 Oncquest – All rights reserved.
+          - generic [ref=e328]: Designed & Developed by AbyM Technology
+          - text: — v2.18.04.25.1
+        - generic [ref=e329]:
+          - link "facebook" [ref=e330] [cursor=pointer]:
+            - /url: https://www.facebook.com/OncquestLaboratories/?ref=aymt_homepage_panel
+            - img "facebook" [ref=e331]
+          - link "instagram" [ref=e332] [cursor=pointer]:
+            - /url: https://www.instagram.com/oncquestlab/
+            - img "instagram" [ref=e333]
+          - link "twitter" [ref=e334] [cursor=pointer]:
+            - /url: https://twitter.com/Oncquest1?t=U1pQPbKhT53oZSpBuqXDDw&s=09
+            - img "twitter" [ref=e335]
+          - link "linkedin" [ref=e336] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/oncquest-labs-ltd-?trk=tyah
+            - img "linkedin" [ref=e337]
+          - link "youtube" [ref=e338] [cursor=pointer]:
+            - /url: https://www.youtube.com/c/OncquestLaboratoriesLtd
+            - img "youtube" [ref=e339]
+        - generic [ref=e340]:
+          - link "Privacy Policy" [ref=e341] [cursor=pointer]:
+            - /url: /privacy-policy
+          - generic [ref=e342]: "|"
+          - link "Terms & Conditions" [ref=e343] [cursor=pointer]:
+            - /url: /terms-conditions
+  - alert [ref=e344]: /add-to-cart
+```

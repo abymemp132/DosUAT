@@ -1,8 +1,8 @@
 import { Page, test } from "@playwright/test";
-import { BrochurePage } from "../pages/brochure.page";
-import { LoginPage } from "../pages/login.page";
-import { authStatePath, hasAuthState, ensureAuthState } from "./support/auth";
-import { hasBaseUrl } from "./support/env";
+import { BrochurePage } from "../../pages/brochure.page";
+import { LoginPage } from "../../pages/login.page";
+import { authStatePath, hasAuthState } from "../support/auth";
+import { hasBaseUrl } from "../support/env";
 
 const city = "Delhi";
 
@@ -47,7 +47,7 @@ test.describe("brochure page - without login (guest user)", () => {
 
 test.describe("brochure page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in brochure checks.");
-  test.skip(!ensureAuthState(), "Run `npm run auth:manual` to create a reusable login session.");
+  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
   if (hasAuthState) {
     test.use({ storageState: authStatePath });
   }

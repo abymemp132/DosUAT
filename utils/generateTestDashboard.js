@@ -42,36 +42,9 @@ function parseModule(file) {
     idx++;
   }
   
-  let m = parts[idx] || "general";
-  // Remove .spec.ts or .page.ts if present
-  m = m.replace(/\.(spec|page)\.ts$/i, "");
-  
+  const m = parts[idx] || "general";
   // Capitalize and format nicely (e.g. addToCart -> AddToCart)
   return m.charAt(0).toUpperCase() + m.slice(1);
-}
-
-// Canonical order as requested by USER
-const MODULE_ORDER = [
-  "Login",
-  "Home",
-  "TestCatalog",
-  "DoctorSpeciality",
-  "DiseaseCondition",
-  "Forms",
-  "Brochure",
-  "Faq",
-  "AddToCart"
-];
-
-function sortModules(modules) {
-  return [...modules].sort((a, b) => {
-    const idxA = MODULE_ORDER.indexOf(a);
-    const idxB = MODULE_ORDER.indexOf(b);
-    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-    if (idxA !== -1) return -1;
-    if (idxB !== -1) return 1;
-    return a.localeCompare(b);
-  });
 }
 
 function collectEntries(reportJson) {
@@ -114,16 +87,7 @@ function collectEntries(reportJson) {
     }
   }
   for (const suite of reportJson.suites || []) walkSuite(suite, []);
-  
-  // Sort entries by module order
-  return entries.sort((a, b) => {
-    const idxA = MODULE_ORDER.indexOf(a.moduleName);
-    const idxB = MODULE_ORDER.indexOf(b.moduleName);
-    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-    if (idxA !== -1) return -1;
-    if (idxB !== -1) return 1;
-    return a.moduleName.localeCompare(b.moduleName);
-  });
+  return entries;
 }
 
 function main() {
@@ -165,12 +129,10 @@ function main() {
   const thresholdMs = 20000;
   const slowCases = entries.filter(e => e.durationMs > thresholdMs).sort((a,b) => b.durationMs - a.durationMs);
   
-  const rawModules = [...new Set(entries.map(e => e.moduleName))];
-  const modules = sortModules(rawModules);
-  
+  const modules = [...new Set(entries.map(e => e.moduleName))];
   const weeklyTrend = modules.map((m, i) => ({
       key: `W${i+1}`,
-      label: m,
+      label: `Module ${m}`,
       passed: entries.filter(e => e.moduleName === m && e.status === 'passed').length,
       failed: entries.filter(e => e.moduleName === m && e.status === 'failed').length,
       flaky: entries.filter(e => e.moduleName === m && e.status === 'flaky').length,

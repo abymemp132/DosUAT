@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { test } from "../fixtures/testData.fixture";
-import { HomePage } from "../pages/home.page";
-import { LoginPage } from "../pages/login.page";
-import { authStatePath, ensureAuthState, hasAuthState } from "./support/auth";
-import { hasBaseUrl } from "./support/env";
+import { test } from "../../fixtures/testData.fixture";
+import { HomePage } from "../../pages/home.page";
+import { LoginPage } from "../../pages/login.page";
+import { authStatePath, hasAuthState } from "../support/auth";
+import { hasBaseUrl } from "../support/env";
 async function assertSavedSession(page: Page, city: string): Promise<void> {
   const loginPage = new LoginPage(page);
   await loginPage.openHome();
@@ -27,6 +27,27 @@ test.describe("home page - without login (guest user)", () => {
     await homePage.assertCoreHomeWidgets();
   });
 
+  test("[Guest] all visible home page buttons are working", async ({ page, city }) => {
+    test.setTimeout(180_000);
+
+    const homePage = new HomePage(page);
+    await homePage.assertAllVisibleButtonsWork(city.name, { skipSetup: true });
+  });
+
+  test("[Guest] eye icon opens and closes details", async ({ page, city }) => {
+    test.setTimeout(120_000);
+
+    const homePage = new HomePage(page);
+    await homePage.assertEyeIconOpensAndClosesDetails(city.name, { skipSetup: true });
+  });
+
+  test("[Guest] download selected shows login warning", async ({ page, city }) => {
+    test.setTimeout(120_000);
+
+    const homePage = new HomePage(page);
+    await homePage.assertDownloadSelectedShowsLoginWarning(city.name, { skipSetup: true });
+  });
+
   test("[Guest] top navigation links route to expected pages", async ({ page, city }) => {
     test.setTimeout(120_000);
 
@@ -48,30 +69,9 @@ test.describe("home page - without login (guest user)", () => {
     await homePage.assertSearchWorksWithIconAndEnter(city.name, { skipSetup: true });
   });
 
-  test("[Guest] all visible home page buttons are working", async ({ page, city }) => {
-    test.setTimeout(180_000);
-
-    const homePage = new HomePage(page);
-    await homePage.assertAllVisibleButtonsWork(city.name, { skipSetup: true });
-  });
-
-  test("[Guest] eye icon opens and closes details", async ({ page, city }) => {
-    test.setTimeout(120_000);
-
-    const homePage = new HomePage(page);
-    await homePage.assertEyeIconOpensAndClosesDetails(city.name, { skipSetup: true });
-  });
-
   test("[Guest] add to cart shows login warning", async ({ page, city }) => {
     const homePage = new HomePage(page);
     await homePage.assertAddToCartShowsLoginWarning(city.name, { skipSetup: true });
-  });
-
-  test("[Guest] download selected shows login warning", async ({ page, city }) => {
-    test.setTimeout(120_000);
-
-    const homePage = new HomePage(page);
-    await homePage.assertDownloadSelectedShowsLoginWarning(city.name, { skipSetup: true });
   });
 
   test("[Guest] pagination works on home catalog", async ({ page, city }) => {
@@ -87,7 +87,7 @@ test.describe("home page - without login (guest user)", () => {
 
 test.describe("home page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in home checks.");
-  test.skip(!ensureAuthState(), "Run `npm run auth:manual` to create a reusable login session.");
+  test.skip(!hasAuthState, "Run `npm run auth:manual` to create a reusable login session.");
   if (hasAuthState) {
     test.use({ storageState: authStatePath });
   }

@@ -19,13 +19,8 @@ export class FaqPage extends BasePage {
       .first();
     this.breadcrumb = this.page.getByText(/Home\s*>\s*FAQ'?s/i).first();
     this.pageHeading = this.page.getByText(/Frequently Asked Questions/i).first();
-    this.faqCards = this.page.locator(
-      "div.bg-white.rounded-md.shadow-md.overflow-hidden, div.bg-white.rounded-lg.shadow-md.overflow-hidden, [class*='faq']"
-    );
-    this.faqQuestionButtons = this.page
-      .locator("main button")
-      .filter({ hasNotText: /show more|show less/i })
-      .filter({ hasText: /[A-Za-z]/ });
+    this.faqCards = this.page.locator("div.bg-white.rounded-md.shadow-md.overflow-hidden");
+    this.faqQuestionButtons = this.faqCards.locator("button").filter({ hasText: /\?$/ });
     this.showMoreButton = this.page.getByRole("button", { name: /show more/i });
     this.showLessButton = this.page.getByRole("button", { name: /show less/i });
     this.emptyStateMessage = this.page.getByText(/No FAQs? found|No Data Found/i).first();
@@ -37,7 +32,7 @@ export class FaqPage extends BasePage {
 
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
-    await this.closeLocationModal(city);
+    await this.selectCity(city);
     await this.waitForFaqsToLoad();
   }
 
@@ -172,11 +167,7 @@ export class FaqPage extends BasePage {
 
     const deadline = Date.now() + timeoutMs;
     while (Date.now() < deadline) {
-      if (await this.faqQuestionButtons.first().isVisible().catch(() => false)) {
-        return "hasData";
-      }
-
-      if (await this.faqCards.first().isVisible().catch(() => false)) {
+      if ((await this.faqQuestionButtons.count()) > 0) {
         return "hasData";
       }
 

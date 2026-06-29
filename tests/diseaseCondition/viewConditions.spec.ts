@@ -1,8 +1,8 @@
 import { Page, test } from "@playwright/test";
-import { DiseaseConditionPage } from "../pages/diseaseCondition.page";
-import { LoginPage } from "../pages/login.page";
-import { authStatePath, hasAuthState, ensureAuthState } from "./support/auth";
-import { hasBaseUrl } from "./support/env";
+import { DiseaseConditionPage } from "../../pages/diseaseCondition.page";
+import { LoginPage } from "../../pages/login.page";
+import { authStatePath, hasAuthState } from "../support/auth";
+import { hasBaseUrl } from "../support/env";
 
 const city = "Delhi";
 
@@ -54,7 +54,7 @@ test.describe("disease condition page - without login (guest user)", () => {
 
 test.describe("disease condition page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in disease condition checks.");
-  test.skip(!ensureAuthState(), "Run `npm run auth:manual` to create a reusable login session.");
+  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
   if (hasAuthState) {
     test.use({ storageState: authStatePath });
   }
@@ -89,5 +89,12 @@ test.describe("disease condition page - with login (authenticated user)", () => 
 
     const diseaseConditionPage = new DiseaseConditionPage(page);
     await diseaseConditionPage.assertSearchByTestCodeWorks();
+  });
+
+  test("[Login] add to cart updates cart count", async ({ page }) => {
+    test.setTimeout(120_000);
+
+    const diseaseConditionPage = new DiseaseConditionPage(page);
+    await diseaseConditionPage.assertLoggedInAddToCartUpdatesCartCount();
   });
 });

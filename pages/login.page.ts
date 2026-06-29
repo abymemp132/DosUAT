@@ -107,65 +107,14 @@ export class LoginPage extends BasePage {
 
   async openLoginModal(): Promise<void> {
     await this.waitForModalsToClose();
-    await expect(this.profileButton, "Profile button should be visible.").toBeVisible({ timeout: 10_000 });
-    
-    await expect(async () => {
-      await this.profileButton.click({ force: true });
-      await expect(this.emailInput).toBeVisible({ timeout: 3000 });
-    }, "Failed to open login modal after multiple attempts.").toPass({
-      intervals: [1000, 2000, 3000],
-      timeout: 15_000
-    });
+    await this.profileButton.click({ force: true });
+    await expect(this.emailInput).toBeVisible();
   }
 
   async requestOtp(email: string): Promise<void> {
-    await this.emailInput.waitFor({ state: "visible", timeout: 10_000 });
-
-    const attrs = await this.emailInput.evaluate((el) => ({
-      maxlength: el.getAttribute("maxlength"),
-      type: el.getAttribute("type"),
-      value: (el as HTMLInputElement).value
-    }));
-    console.log(`[Login] Email input attributes: maxlength=${attrs.maxlength}, type=${attrs.type}`);
-
-    await this.fillEmailInput(email);
-
-    const filledValue = await this.emailInput.inputValue();
-    console.log(`[Login] Filled email: ${filledValue}`);
-    if (filledValue !== email) {
-      throw new Error(`[Login] Failed to populate login email. Expected: ${email}, Got: ${filledValue}`);
-    }
-
-    await expect(this.sendOtpButton, "Send OTP button should be enabled after entering email.").toBeEnabled({
-      timeout: 10_000
-    });
-
-    const otpResponsePromise = this.page
-      .waitForResponse(
-        (response) =>
-          response.url().includes("/send-email-otp") && response.request().method() === "POST",
-        { timeout: 20_000 }
-      )
-      .catch(() => null);
-
-    await this.sendOtpButton.click({ force: true });
-
-    const otpResponse = await otpResponsePromise;
-    if (otpResponse) {
-      const responsePayload = await this.readResponsePayload(otpResponse);
-      console.log(`[Login] OTP request response: ${otpResponse.status()} ${otpResponse.url()}`);
-
-      if (!otpResponse.ok()) {
-        const backendMessage = this.extractBackendMessage(responsePayload);
-        throw new Error(
-          `OTP request failed with ${otpResponse.status()}${backendMessage ? `: ${backendMessage}` : ""}`
-        );
-      }
-    } else {
-      console.warn("[Login] OTP request response was not observed within 20s. Falling back to UI state checks.");
-    }
-
-    await this.waitForOtpStepToOpen();
+    await this.emailInput.fill(email);
+    await this.sendOtpButton.click();
+    await expect(this.otpTitle).toBeVisible({ timeout: 60_000 });
   }
 
   async verifyOtp(otp: string): Promise<void> {
@@ -231,109 +180,6 @@ export class LoginPage extends BasePage {
 
   private escapeRegExp(value: string): string {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  }
-
-  private async fillEmailInput(email: string): Promise<void> {
-    await this.emailInput.click();
-    await this.emailInput.clear();
-    await this.emailInput.fill(email);
-
-    if ((await this.emailInput.inputValue()) !== email) {
-      await this.emailInput.clear();
-      await this.emailInput.pressSequentially(email, { delay: 25 });
-    }
-
-    await this.emailInput.blur().catch(() => {});
-    await this.page.waitForTimeout(250);
-  }
-
-  private async readResponsePayload(response: { text(): Promise<string> }): Promise<unknown> {
-    try {
-      const raw = await response.text();
-      if (!raw) {
-        return null;
-      }
-
-      try {
-        return JSON.parse(raw) as unknown;
-      } catch {
-        return raw;
-      }
-    } catch {
-      return null;
-    }
-  }
-
-  private extractBackendMessage(payload: unknown): string {
-    if (!payload) {
-      return "";
-    }
-
-    if (typeof payload === "string") {
-      return payload.trim();
-    }
-
-    if (typeof payload !== "object") {
-      return "";
-    }
-
-    const data = payload as {
-      Message?: unknown;
-      message?: unknown;
-      error?: unknown;
-      errors?: unknown;
-      Result?: {
-        error?: unknown;
-      };
-    };
-
-    const directMessage =
-      (typeof data.Message === "string" && data.Message.trim()) ||
-      (typeof data.message === "string" && data.message.trim());
-
-    const errorMessages = [
-      ...this.flattenErrorMessages(data.error),
-      ...this.flattenErrorMessages(data.errors),
-      ...this.flattenErrorMessages(data.Result?.error)
-    ].filter(Boolean);
-
-    return [directMessage, ...errorMessages].filter(Boolean).join(" | ");
-  }
-
-  private async waitForOtpStepToOpen(): Promise<void> {
-    const waitTimeout = 15_000;
-
-    const results = await Promise.allSettled([
-      this.otpTitle.waitFor({ state: "visible", timeout: waitTimeout }),
-      this.verifyButton.waitFor({ state: "visible", timeout: waitTimeout }),
-      this.otpInputs.first().waitFor({ state: "visible", timeout: waitTimeout })
-    ]);
-
-    if (results.some((result) => result.status === "fulfilled")) {
-      return;
-    }
-
-    throw new Error("OTP step did not open after requesting OTP.");
-  }
-
-  private flattenErrorMessages(value: unknown): string[] {
-    if (!value) {
-      return [];
-    }
-
-    if (typeof value === "string") {
-      return [value.trim()];
-    }
-
-    if (Array.isArray(value)) {
-      return value.flatMap((entry) => this.flattenErrorMessages(entry));
-    }
-
-    if (typeof value === "object") {
-      return Object.values(value as Record<string, unknown>).flatMap((entry) => this.flattenErrorMessages(entry));
-    }
-
-    return [];
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {
