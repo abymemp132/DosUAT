@@ -40,6 +40,13 @@ export class DiseaseConditionPage extends BasePage {
 
   async openAndSelectCity(city = "Delhi"): Promise<void> {
     await this.open();
+
+    // Register a global handler: whenever the location modal appears at ANY point
+    // during this test (on load, after API calls, on interaction), auto-dismiss it.
+    await this.page.addLocatorHandler(this.locationModal, async () => {
+      await this.selectCity(city);
+    });
+
     await this.selectCity(city);
     await this.waitForCatalogRows();
   }
@@ -184,11 +191,6 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
-    // If the location modal re-appears after page load, dismiss it
-    if (await this.locationModal.isVisible().catch(() => false)) {
-      await this.selectCity("Delhi").catch(() => {});
-    }
-
     const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();
     const noDataFound = this.page.getByText("No Data Found", { exact: false }).first();
 
