@@ -184,12 +184,9 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
-    // Force-dismiss location modal if it is still blocking the page
-    for (let i = 0; i < 5; i++) {
-      if (!(await this.locationModal.isVisible().catch(() => false))) break;
-      await this.page.keyboard.press("Escape").catch(() => {});
-      await this.page.mouse.click(10, 10).catch(() => {});
-      await this.page.waitForTimeout(500);
+    // If the location modal re-appears after page load, dismiss it
+    if (await this.locationModal.isVisible().catch(() => false)) {
+      await this.selectCity("Delhi").catch(() => {});
     }
 
     const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();

@@ -1,14 +1,17 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="3" time="439.798675">
-<testsuite name="diseaseCondition\viewConditions.spec.ts" timestamp="2026-06-30T10:04:11.611Z" hostname="guest" tests="4" failures="0" skipped="0" time="364.19" errors="3">
-<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition\viewConditions.spec.ts" time="2.945">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="3" time="402.213434">
+<testsuite name="diseaseCondition\viewConditions.spec.ts" timestamp="2026-06-30T10:16:44.859Z" hostname="guest" tests="4" failures="0" skipped="0" time="363.499" errors="3">
+<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition\viewConditions.spec.ts" time="1.916">
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition\viewConditions.spec.ts" time="120.321">
-<system-err>
+<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition\viewConditions.spec.ts" time="120.718">
+<system-out>
 <![CDATA[
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\test-failed-1.png is missing
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\video.webm is missing
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\error-context.md is missing]]>
-</system-err>
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\error-context.md]]
+]]>
+</system-out>
 <error message="Test timeout of 120000ms exceeded." type="Error">
 <![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:33:7 › disease condition page - without login (guest user) › [Guest] condition filter updates catalog 
 
@@ -42,7 +45,7 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter
         - waiting 100ms
         - waiting for element to be visible, enabled and stable
         - element is not stable
-      47 × retrying click action
+      53 × retrying click action
            - waiting 500ms
            - waiting for element to be visible, enabled and stable
            - element is visible, enabled and stable
@@ -86,25 +89,18 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter
         - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
       - retrying click action
         - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      - retrying click action
-        - waiting 500ms
 
 
-       at ..\pages\diseaseCondition.page.ts:124
+       at ..\pages\diseaseCondition.page.ts:121
 
+      119 |       timeout: 15_000
+      120 |     });
+    > 121 |     await conditionCard.click();
+          |                         ^
       122 |
       123 |     await expect
-    > 124 |       .poll(async () => this.readItemsCount(), {
-          |                         ^
-      125 |         timeout: 20_000,
-      126 |         message: `Filtering by "${condition}" should reduce total listed items.`
-      127 |       })
-        at DiseaseConditionPage.assertConditionFilterChangesCatalog (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:124:25)
+      124 |       .poll(async () => this.readItemsCount(), {
+        at DiseaseConditionPage.assertConditionFilterChangesCatalog (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:121:25)
         at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:37:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
@@ -119,13 +115,16 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter
 ]]>
 </error>
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition\viewConditions.spec.ts" time="120.326">
-<system-err>
+<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition\viewConditions.spec.ts" time="120.413">
+<system-out>
 <![CDATA[
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\test-failed-1.png is missing
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\video.webm is missing
-Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\error-context.md is missing]]>
-</system-err>
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\error-context.md]]
+]]>
+</system-out>
 <error message="Test timeout of 120000ms exceeded." type="Error">
 <![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:40:7 › disease condition page - without login (guest user) › [Guest] search by test code works 
 
@@ -150,25 +149,29 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by
           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
         - retrying click action
           - waiting 100ms
-        221 × waiting for element to be visible, enabled and stable
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      213 × retrying click action
+            - waiting 500ms
+            - waiting for element to be visible, enabled and stable
             - element is visible, enabled and stable
             - scrolling into view if needed
             - done scrolling
             - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-          - retrying click action
-            - waiting 500ms
+      - retrying click action
+        - waiting 500ms
 
 
-       at ..\pages\diseaseCondition.page.ts:147
+       at ..\pages\diseaseCondition.page.ts:144
 
+      142 |     await this.testSearchInput.fill(firstTestCode);
+      143 |     if (await this.testSearchButton.isVisible().catch(() => false)) {
+    > 144 |       await this.testSearchButton.click();
+          |                                   ^
       145 |     } else {
       146 |       await this.testSearchInput.press("Enter");
-    > 147 |     }
-          |      ^
-      148 |
-      149 |     await expect(this.tableRows.filter({ hasText: firstTestCode }).first()).toBeVisible({ timeout: 15_000 });
-      150 |     await expect
-        at DiseaseConditionPage.assertSearchByTestCodeWorks (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:147:35)
+      147 |     }
+        at DiseaseConditionPage.assertSearchByTestCodeWorks (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:144:35)
         at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:44:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
@@ -183,7 +186,7 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by
 ]]>
 </error>
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition\viewConditions.spec.ts" time="120.598">
+<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition\viewConditions.spec.ts" time="120.452">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-5022e-to-cart-shows-login-warning-guest\test-failed-1.png]]
@@ -219,7 +222,7 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by
           - waiting 100ms
           - waiting for element to be visible, enabled and stable
           - element is not stable
-      215 × retrying click action
+      211 × retrying click action
             - waiting 500ms
             - waiting for element to be visible, enabled and stable
             - element is visible, enabled and stable
@@ -230,16 +233,16 @@ Warning: attachment ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by
         - waiting 500ms
 
 
-       at ..\pages\diseaseCondition.page.ts:183
+       at ..\pages\diseaseCondition.page.ts:180
 
+      178 |     await this.waitForCatalogRows();
+      179 |     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
+    > 180 |     await this.addToCartButton.click();
+          |                                ^
       181 |     await expect(this.toastMessage.filter({ hasText: "User not Login" }).first()).toBeVisible({
       182 |       timeout: 10_000
-    > 183 |     });
-          |                  ^
-      184 |   }
-      185 |
-      186 |   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
-        at DiseaseConditionPage.assertAddToCartShowsLoginWarning (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:183:32)
+      183 |     });
+        at DiseaseConditionPage.assertAddToCartShowsLoginWarning (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:180:32)
         at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:51:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
