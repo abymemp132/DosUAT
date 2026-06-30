@@ -5,6 +5,7 @@ import fs from "fs";
 import readline from "readline/promises";
 import { stdin as input, stdout as output } from "process";
 import { LoginPage } from "../pages/login.page";
+import { getOtpFromTestmail } from "./testmail";
 
 async function askForOtp(prompt: string): Promise<string> {
   const rl = readline.createInterface({ input, output });
@@ -60,9 +61,27 @@ async function main(): Promise<void> {
     await loginPage.openLoginModal();
     await loginPage.requestOtp(email);
 
+    const isTestmail = email.includes("inbox.testmail.app");
+
     if (otp) {
       console.log("Using LOGIN_OTP from .env.");
       await loginPage.verifyOtp(otp);
+    } else if (isTestmail) {
+      console.log("Fetching OTP from Testmail.app...");
+      const tagMatch = email.match(/\.([^@]+)@/);
+      const tag = tagMatch ? tagMatch[1] : null;
+      
+      if (!tag) {
+        throw new Error(`Could not extract tag from testmail address: ${email}`);
+      }
+      
+      const testmailOtp = await getOtpFromTestmail(tag);
+      if (!testmailOtp) {
+        throw new Error("Failed to fetch OTP from testmail.app within the timeout.");
+      }
+      
+      console.log("OTP fetched successfully. Entering OTP.");
+      await loginPage.verifyOtp(testmailOtp);
     } else {
       console.log("OTP requested successfully. If this fails, verify LOGIN_EMAIL belongs to an existing allowed account.");
       const manualOtp = await askForOtp("Check your email for the OTP.");

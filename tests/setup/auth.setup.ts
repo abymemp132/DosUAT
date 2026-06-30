@@ -2,6 +2,7 @@ import { test as setup, Page } from "@playwright/test";
 import { LoginPage } from "../../pages/login.page";
 import path from "path";
 import fs from "fs";
+import { getOtpFromTestmail } from "../../utils/testmail";
 
 function readTokenExpiry(token: string | null): number | null {
   if (!token) {
@@ -75,7 +76,9 @@ setup("authenticate with interactive OTP", async ({ page }) => {
     return;
   }
 
-  if (!otp && !canRunInteractiveLogin()) {
+  const isTestmail = email.includes("inbox.testmail.app");
+
+  if (!otp && !isTestmail && !canRunInteractiveLogin()) {
     throw new Error(
       [
         "No reusable auth session was found and LOGIN_OTP is empty.",
@@ -95,6 +98,23 @@ setup("authenticate with interactive OTP", async ({ page }) => {
   if (otp) {
     console.log("Auto-entering OTP from LOGIN_OTP.");
     await loginPage.verifyOtp(otp);
+  } else if (isTestmail) {
+    console.log("Fetching OTP from Testmail.app...");
+    // Extract tag from format: namespace.tag@inbox.testmail.app
+    const tagMatch = email.match(/\.([^@]+)@/);
+    const tag = tagMatch ? tagMatch[1] : null;
+    
+    if (!tag) {
+      throw new Error(`Could not extract tag from testmail address: ${email}`);
+    }
+    
+    const testmailOtp = await getOtpFromTestmail(tag);
+    if (!testmailOtp) {
+      throw new Error("Failed to fetch OTP from testmail.app within the timeout.");
+    }
+    
+    console.log("OTP fetched successfully. Entering OTP.");
+    await loginPage.verifyOtp(testmailOtp);
   } else {
     console.log("OTP sent. Enter it in the opened browser, then resume the paused Playwright session.");
     await page.pause();
