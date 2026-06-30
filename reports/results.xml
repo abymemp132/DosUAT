@@ -1,23 +1,2 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="1" errors="0" time="15.917046000000001">
-<testsuite name="setup\auth.setup.ts" timestamp="2026-06-30T06:13:04.122Z" hostname="setup" tests="1" failures="0" skipped="0" time="13.759" errors="0">
-<testcase name="authenticate with interactive OTP" classname="setup\auth.setup.ts" time="13.759">
-<system-out>
-<![CDATA[Starting login for: twkxl.test@inbox.testmail.app
-Fetching OTP from Testmail.app...
-OTP fetched successfully. Entering OTP.
-Session saved to D:\DosUAT\DosUAT\.auth\user.json
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="auth\login.spec.ts" timestamp="2026-06-30T06:13:04.122Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="auth › saved login session is active" classname="auth\login.spec.ts">
-<properties>
-<property name="skip" value="Run `npm run auth:manual` to create a reusable login session.">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
+<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="56.152688999999995">
 </testsuites>

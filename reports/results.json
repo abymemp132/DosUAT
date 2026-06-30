@@ -1,7 +1,20 @@
 {
   "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\DosUAT\\DosUAT\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/diseaseCondition/viewConditions.spec.ts",
+      "-g",
+      "\\",
+      "condition",
+      "filter",
+      "updates",
+      "catalog\\"
+    ],
     "configFile": "D:\\DosUAT\\DosUAT\\playwright.config.ts",
     "rootDir": "D:/DosUAT/DosUAT/tests",
+    "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": "D:\\DosUAT\\DosUAT\\config\\global-setup.ts",
@@ -10,18 +23,14 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 1
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "D:/DosUAT/DosUAT/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "setup",
         "name": "setup",
         "testDir": "D:/DosUAT/DosUAT/tests",
@@ -37,9 +46,7 @@
         "outputDir": "D:/DosUAT/DosUAT/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "guest",
         "name": "guest",
         "testDir": "D:/DosUAT/DosUAT/tests",
@@ -55,9 +62,7 @@
         "outputDir": "D:/DosUAT/DosUAT/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "D:/DosUAT/DosUAT/tests",
@@ -104,144 +109,22 @@
     "tags": [],
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
-    "version": "1.59.1",
+    "version": "1.61.1",
     "workers": 1,
     "webServer": null
   },
-  "suites": [
+  "suites": [],
+  "errors": [
     {
-      "title": "setup\\auth.setup.ts",
-      "file": "setup/auth.setup.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "authenticate with interactive OTP",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 300000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "setup",
-              "projectName": "setup",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 13759,
-                  "errors": [],
-                  "stdout": [
-                    {
-                      "text": "Starting login for: twkxl.test@inbox.testmail.app\n"
-                    },
-                    {
-                      "text": "Fetching OTP from Testmail.app...\n"
-                    },
-                    {
-                      "text": "OTP fetched successfully. Entering OTP.\n"
-                    },
-                    {
-                      "text": "Session saved to D:\\DosUAT\\DosUAT\\.auth\\user.json\n"
-                    }
-                  ],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-06-30T06:13:04.844Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e717b06d8d484d1cd946-793e819a04afe9ad3d6a",
-          "file": "setup/auth.setup.ts",
-          "line": 68,
-          "column": 6
-        }
-      ]
-    },
-    {
-      "title": "auth\\login.spec.ts",
-      "file": "auth/login.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "auth",
-          "file": "auth/login.spec.ts",
-          "line": 7,
-          "column": 6,
-          "specs": [
-            {
-              "title": "saved login session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Run `npm run auth:manual` to create a reusable login session.",
-                      "location": {
-                        "file": "D:\\DosUAT\\DosUAT\\tests\\auth\\login.spec.ts",
-                        "line": 9,
-                        "column": 8
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": -1,
-                      "parallelIndex": -1,
-                      "status": "skipped",
-                      "duration": 0,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T06:13:19.781Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Run `npm run auth:manual` to create a reusable login session.",
-                          "location": {
-                            "file": "D:\\DosUAT\\DosUAT\\tests\\auth\\login.spec.ts",
-                            "line": 9,
-                            "column": 8
-                          }
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "skipped"
-                }
-              ],
-              "id": "231ca1f0f4db3e4958c3-76f59c152dd156330fc0",
-              "file": "auth/login.spec.ts",
-              "line": 14,
-              "column": 7
-            }
-          ]
-        }
-      ]
+      "message": "SyntaxError: Invalid regular expression: /catalog\\/gi: \\ at end of pattern",
+      "stack": "SyntaxError: Invalid regular expression: /catalog\\/gi: \\ at end of pattern"
     }
   ],
-  "errors": [],
   "stats": {
-    "startTime": "2026-06-30T06:13:03.865Z",
-    "duration": 15917.046,
-    "expected": 1,
-    "skipped": 1,
+    "startTime": "2026-06-30T09:52:55.520Z",
+    "duration": 56152.689,
+    "expected": 0,
+    "skipped": 0,
     "unexpected": 0,
     "flaky": 0
   }

@@ -106,6 +106,9 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   async assertConditionFilterChangesCatalog(condition = "Heart"): Promise<void> {
+    // Ensure the location modal is fully dismissed before interacting with the page
+    await expect(this.locationModal).toBeHidden({ timeout: 15_000 }).catch(() => {});
+
     await this.waitForCatalogRows();
 
     const totalBeforeFilter = await this.readItemsCount();
