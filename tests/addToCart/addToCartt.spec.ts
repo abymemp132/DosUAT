@@ -1,8 +1,8 @@
 import { Page, test } from "@playwright/test";
-import { AddToCartPage } from "../pages/addToCart.page";
-import { LoginPage } from "../pages/login.page";
-import { authStatePath, hasAuthState, ensureAuthState } from "./support/auth";
-import { hasBaseUrl } from "./support/env";
+import { AddToCartPage } from "../../pages/addToCart.page";
+import { LoginPage } from "../../pages/login.page";
+import { authStatePath, hasAuthState, ensureAuthState } from "../support/auth";
+import { hasBaseUrl } from "../support/env";
 
 const loginEmail = process.env.LOGIN_EMAIL || "test@example.com";
 const city = "Delhi";
