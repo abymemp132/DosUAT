@@ -1,7 +1,7 @@
 import { Page, test } from "@playwright/test";
 import { AddToCartPage } from "../../pages/addToCart.page";
 import { LoginPage } from "../../pages/login.page";
-import { authStatePath, hasAuthState, ensureAuthState } from "../support/auth";
+import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
 const loginEmail = process.env.LOGIN_EMAIL || "test@example.com";
@@ -30,7 +30,7 @@ async function openAddToCartModule(page: Page): Promise<AddToCartPage> {
 test.describe("add to cart page - with login", () => {
   test.describe.configure({ mode: 'serial' });
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in add-to-cart checks.");
-  test.skip(!ensureAuthState(), "Run `npm run auth:manual` to create a reusable login session.");
+  test.skip(!hasAuthState, "Run `npm run auth:manual` to create a reusable login session.");
   if (hasAuthState) {
     test.use({ storageState: authStatePath });
   }
