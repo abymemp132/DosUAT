@@ -106,9 +106,6 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   async assertConditionFilterChangesCatalog(condition = "Heart"): Promise<void> {
-    // Ensure the location modal is fully dismissed before interacting with the page
-    await expect(this.locationModal).toBeHidden({ timeout: 15_000 }).catch(() => {});
-
     await this.waitForCatalogRows();
 
     const totalBeforeFilter = await this.readItemsCount();
@@ -187,6 +184,9 @@ export class DiseaseConditionPage extends BasePage {
   }
 
   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
+    // Ensure any location modal overlay is fully dismissed before interacting
+    await expect(this.locationModal).toBeHidden({ timeout: 15_000 }).catch(() => {});
+
     const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();
     const noDataFound = this.page.getByText("No Data Found", { exact: false }).first();
 
