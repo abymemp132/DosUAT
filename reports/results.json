@@ -4,7 +4,8 @@
       "C:\\Program Files\\nodejs\\node.exe",
       "D:\\DosUAT\\DosUAT\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "tests/diseaseCondition/viewConditions.spec.ts"
+      "tests/diseaseCondition/viewConditions.spec.ts",
+      "--project=guest"
     ],
     "configFile": "D:\\DosUAT\\DosUAT\\playwright.config.ts",
     "rootDir": "D:/DosUAT/DosUAT/tests",
@@ -117,52 +118,6 @@
   },
   "suites": [
     {
-      "title": "setup\\auth.setup.ts",
-      "file": "setup/auth.setup.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "authenticate with interactive OTP",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 300000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "setup",
-              "projectName": "setup",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 996,
-                  "errors": [],
-                  "stdout": [
-                    {
-                      "text": "Existing session is still valid. Skipping login.\n"
-                    }
-                  ],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-06-30T09:58:03.498Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e717b06d8d484d1cd946-793e819a04afe9ad3d6a",
-          "file": "setup/auth.setup.ts",
-          "line": 68,
-          "column": 6
-        }
-      ]
-    },
-    {
       "title": "diseaseCondition\\viewConditions.spec.ts",
       "file": "diseaseCondition/viewConditions.spec.ts",
       "column": 0,
@@ -188,15 +143,15 @@
                   "projectName": "guest",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1993,
+                      "duration": 2945,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-30T09:58:05.268Z",
+                      "startTime": "2026-06-30T10:04:12.328Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -222,10 +177,10 @@
                   "projectName": "guest",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "timedOut",
-                      "duration": 120508,
+                      "duration": 120321,
                       "error": {
                         "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
@@ -238,15 +193,15 @@
                           "location": {
                             "file": "D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts",
                             "column": 25,
-                            "line": 121
+                            "line": 124
                           },
-                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText(/^\\s*Heart\\s*$/i).first()\u001b[22m\n\u001b[2m    - locator resolved to <p class=\"↵          mt-2 lg:text-[15px] sm:text-sm text-gray-700↵          leading-tight text-center↵          line-clamp-2↵          font-medium↵        \">Heart</p>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  54 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:121\n\n  119 |       timeout: 15_000\n  120 |     });\n> 121 |     await conditionCard.click();\n      |                         ^\n  122 |\n  123 |     await expect\n  124 |       .poll(async () => this.readItemsCount(), {\n    at DiseaseConditionPage.assertConditionFilterChangesCatalog (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:121:25)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:37:5"
+                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText(/^\\s*Heart\\s*$/i).first()\u001b[22m\n\u001b[2m    - locator resolved to <p class=\"↵          mt-2 lg:text-[15px] sm:text-sm text-gray-700↵          leading-tight text-center↵          line-clamp-2↵          font-medium↵        \">Heart</p>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  47 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer\">…</div> from <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:124\n\n  122 |\n  123 |     await expect\n> 124 |       .poll(async () => this.readItemsCount(), {\n      |                         ^\n  125 |         timeout: 20_000,\n  126 |         message: `Filtering by \"${condition}\" should reduce total listed items.`\n  127 |       })\n    at DiseaseConditionPage.assertConditionFilterChangesCatalog (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:124:25)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:37:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-30T09:58:07.415Z",
+                      "startTime": "2026-06-30T10:04:15.584Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -288,10 +243,10 @@
                   "projectName": "guest",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "timedOut",
-                      "duration": 120358,
+                      "duration": 120326,
                       "error": {
                         "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
@@ -304,15 +259,15 @@
                           "location": {
                             "file": "D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts",
                             "column": 35,
-                            "line": 144
+                            "line": 147
                           },
-                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has(input[placeholder=\"Search by Tests\"]) button').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"hidden md:flex justify-center items-center bg-[#FFC933] rounded-[15px] hover:bg-yellow-500 transition shadow-[2px_2px_8px_#ABABAB] h-[50px] w-[70px]\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    217 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is visible, enabled and stable\u001b[22m\n\u001b[2m        - scrolling into view if needed\u001b[22m\n\u001b[2m        - done scrolling\u001b[22m\n\u001b[2m        - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m      - retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:144\n\n  142 |     await this.testSearchInput.fill(firstTestCode);\n  143 |     if (await this.testSearchButton.isVisible().catch(() => false)) {\n> 144 |       await this.testSearchButton.click();\n      |                                   ^\n  145 |     } else {\n  146 |       await this.testSearchInput.press(\"Enter\");\n  147 |     }\n    at DiseaseConditionPage.assertSearchByTestCodeWorks (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:144:35)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:44:5"
+                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has(input[placeholder=\"Search by Tests\"]) button').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"hidden md:flex justify-center items-center bg-[#FFC933] rounded-[15px] hover:bg-yellow-500 transition shadow-[2px_2px_8px_#ABABAB] h-[50px] w-[70px]\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    221 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is visible, enabled and stable\u001b[22m\n\u001b[2m        - scrolling into view if needed\u001b[22m\n\u001b[2m        - done scrolling\u001b[22m\n\u001b[2m        - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m      - retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:147\n\n  145 |     } else {\n  146 |       await this.testSearchInput.press(\"Enter\");\n> 147 |     }\n      |      ^\n  148 |\n  149 |     await expect(this.tableRows.filter({ hasText: firstTestCode }).first()).toBeVisible({ timeout: 15_000 });\n  150 |     await expect\n    at DiseaseConditionPage.assertSearchByTestCodeWorks (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:147:35)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:44:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-30T10:00:08.680Z",
+                      "startTime": "2026-06-30T10:06:16.452Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -354,10 +309,10 @@
                   "projectName": "guest",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "timedOut",
-                      "duration": 120443,
+                      "duration": 120598,
                       "error": {
                         "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
@@ -370,15 +325,15 @@
                           "location": {
                             "file": "D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts",
                             "column": 32,
-                            "line": 180
+                            "line": 183
                           },
-                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to Cart' }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"xs:text-[7px] md:text-[16px] whitespace-nowrap flex items-center gap-2 px-4 py-1 rounded border-2 border-dotted transition-all duration-300 border-blue-600 \">Add to Cart</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m  217 × retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n\u001b[2m        - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is visible, enabled and stable\u001b[22m\n\u001b[2m        - scrolling into view if needed\u001b[22m\n\u001b[2m        - done scrolling\u001b[22m\n\u001b[2m        - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:180\n\n  178 |   }\n  179 |\n> 180 |   async assertAddToCartShowsLoginWarning(): Promise<void> {\n      |                                ^\n  181 |     await this.waitForCatalogRows();\n  182 |     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });\n  183 |     await this.addToCartButton.click();\n    at DiseaseConditionPage.assertAddToCartShowsLoginWarning (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:180:32)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:51:5"
+                          "message": "Error: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to Cart' }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"xs:text-[7px] md:text-[16px] whitespace-nowrap flex items-center gap-2 px-4 py-1 rounded border-2 border-dotted transition-all duration-300 border-blue-600 \">Add to Cart</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m  215 × retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n\u001b[2m        - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is visible, enabled and stable\u001b[22m\n\u001b[2m        - scrolling into view if needed\u001b[22m\n\u001b[2m        - done scrolling\u001b[22m\n\u001b[2m        - <div class=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n\n   at ..\\pages\\diseaseCondition.page.ts:183\n\n  181 |     await expect(this.toastMessage.filter({ hasText: \"User not Login\" }).first()).toBeVisible({\n  182 |       timeout: 10_000\n> 183 |     });\n      |                  ^\n  184 |   }\n  185 |\n  186 |   private async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {\n    at DiseaseConditionPage.assertAddToCartShowsLoginWarning (D:\\DosUAT\\DosUAT\\pages\\diseaseCondition.page.ts:183:32)\n    at D:\\DosUAT\\DosUAT\\tests\\diseaseCondition\\viewConditions.spec.ts:51:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-30T10:02:09.828Z",
+                      "startTime": "2026-06-30T10:08:17.430Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -408,193 +363,15 @@
               "column": 7
             }
           ]
-        },
-        {
-          "title": "disease condition page - with login (authenticated user)",
-          "file": "diseaseCondition/viewConditions.spec.ts",
-          "line": 55,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6623,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T10:04:11.132Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-24949130206e0fef0c55",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 67,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2232,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T10:04:17.882Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-29b5704ddbce2117d4ee",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] condition filter updates catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3360,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T10:04:20.138Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-732ee6f97cd38e102fbf",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 80,
-              "column": 7
-            },
-            {
-              "title": "[Login] search by test code works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2178,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T10:04:23.524Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-b1a9692ff6e071650654",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 87,
-              "column": 7
-            },
-            {
-              "title": "[Login] add to cart updates cart count",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2961,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-30T10:04:25.726Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-56d70435fa963fb3380e",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 94,
-              "column": 7
-            }
-          ]
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-06-30T09:56:07.299Z",
-    "duration": 501522.853,
-    "expected": 7,
+    "startTime": "2026-06-30T10:02:58.584Z",
+    "duration": 439798.675,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 3,
     "flaky": 0
