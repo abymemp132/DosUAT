@@ -11,7 +11,7 @@ on:
 jobs:
   guest-tests:
     timeout-minutes: 60
-    runs-on: windows-latest
+    runs-on: self-hosted
     
     steps:
     - uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
 
   authenticated-tests:
     timeout-minutes: 60
-    runs-on: windows-latest
+    runs-on: self-hosted
     
     steps:
     - uses: actions/checkout@v4

@@ -1,8 +1,225 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="3" time="402.213434">
-<testsuite name="diseaseCondition\viewConditions.spec.ts" timestamp="2026-06-30T10:16:44.859Z" hostname="guest" tests="4" failures="0" skipped="0" time="363.499" errors="3">
-<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition\viewConditions.spec.ts" time="1.916">
+<testsuites id="" name="" tests="75" failures="16" skipped="0" errors="17" time="2643.164131">
+<testsuite name="setup\auth.setup.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="setup" tests="1" failures="0" skipped="0" time="1.032" errors="0">
+<testcase name="authenticate with interactive OTP" classname="setup\auth.setup.ts" time="1.032">
+<system-out>
+<![CDATA[Existing session is still valid. Skipping login.
+]]>
+</system-out>
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition\viewConditions.spec.ts" time="120.718">
+</testsuite>
+<testsuite name="brochure\brochure.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="3" failures="0" skipped="0" time="360.72" errors="3">
+<testcase name="brochure page - without login (guest user) › [Guest] loads page and shows core widgets" classname="brochure\brochure.spec.ts" time="120.265">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › brochure\brochure.spec.ts:26:7 › brochure page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Brochures').first()
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 120000ms
+      - waiting for getByText('Brochures').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\brochure.page.ts:221
+
+      219 |     }
+      220 |
+    > 221 |     await expect(this.page.getByText('Brochures', { exact: false }).first()).toBeVisible({
+          |                                                                              ^
+      222 |       timeout: timeoutMs
+      223 |     });
+      224 |     await expect(this.brochureSearchInput).toBeVisible({ timeout: timeoutMs });
+        at BrochurePage.waitForBrochuresToLoad (D:\DosUAT\DosUAT\pages\brochure.page.ts:221:78)
+        at BrochurePage.assertPageShell (D:\DosUAT\DosUAT\pages\brochure.page.ts:97:26)
+        at D:\DosUAT\DosUAT\tests\brochure\brochure.spec.ts:30:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\brochure-brochure-brochure-336c0-page-and-shows-core-widgets-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] search by brochure works" classname="brochure\brochure.spec.ts" time="120.234">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › brochure\brochure.spec.ts:33:7 › brochure page - without login (guest user) › [Guest] search by brochure works 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Brochures').first()
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 120000ms
+      - waiting for getByText('Brochures').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\brochure.page.ts:221
+
+      219 |     }
+      220 |
+    > 221 |     await expect(this.page.getByText('Brochures', { exact: false }).first()).toBeVisible({
+          |                                                                              ^
+      222 |       timeout: timeoutMs
+      223 |     });
+      224 |     await expect(this.brochureSearchInput).toBeVisible({ timeout: timeoutMs });
+        at BrochurePage.waitForBrochuresToLoad (D:\DosUAT\DosUAT\pages\brochure.page.ts:221:78)
+        at BrochurePage.assertSearchBrochuresWorks (D:\DosUAT\DosUAT\pages\brochure.page.ts:115:26)
+        at D:\DosUAT\DosUAT\tests\brochure\brochure.spec.ts:37:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\brochure-brochure-brochure-7a58d-st-search-by-brochure-works-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="brochure page - without login (guest user) › [Guest] sharing links are reachable" classname="brochure\brochure.spec.ts" time="120.221">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 120000ms exceeded." type="Error">
+<![CDATA[  [guest] › brochure\brochure.spec.ts:40:7 › brochure page - without login (guest user) › [Guest] sharing links are reachable 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Brochures').first()
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 120000ms
+      - waiting for getByText('Brochures').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\brochure.page.ts:221
+
+      219 |     }
+      220 |
+    > 221 |     await expect(this.page.getByText('Brochures', { exact: false }).first()).toBeVisible({
+          |                                                                              ^
+      222 |       timeout: timeoutMs
+      223 |     });
+      224 |     await expect(this.brochureSearchInput).toBeVisible({ timeout: timeoutMs });
+        at BrochurePage.waitForBrochuresToLoad (D:\DosUAT\DosUAT\pages\brochure.page.ts:221:78)
+        at BrochurePage.assertShareLinksAreReachable (D:\DosUAT\DosUAT\pages\brochure.page.ts:157:26)
+        at D:\DosUAT\DosUAT\tests\brochure\brochure.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\brochure-brochure-brochure-c7e1f-sharing-links-are-reachable-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="diseaseCondition\viewConditions.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="4" failures="4" skipped="0" time="203.796" errors="0">
+<testcase name="disease condition page - without login (guest user) › [Guest] loads page and shows core widgets" classname="diseaseCondition\viewConditions.spec.ts" time="50.961">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Disease Condition catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:26:7 › disease condition page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Error: Disease Condition catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 50000ms
+    Error: element(s) not found
+
+    Call log:
+      - Disease Condition catalog rows should be visible. with timeout 50000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\diseaseCondition.page.ts:252
+
+      250 |     }
+      251 |
+    > 252 |     await expect(this.tableRows.first(), 'Disease Condition catalog rows should be visible.').toBeVisible({
+          |                                                                                               ^
+      253 |       timeout: timeoutMs
+      254 |     });
+      255 |   }
+        at DiseaseConditionPage.waitForCatalogRows (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:252:95)
+        at DiseaseConditionPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:55:5)
+        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\diseaseCondition-viewCondi-a1eb3-page-and-shows-core-widgets-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="disease condition page - without login (guest user) › [Guest] condition filter updates catalog" classname="diseaseCondition\viewConditions.spec.ts" time="50.971">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\test-failed-1.png]]
@@ -12,96 +229,36 @@
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 120000ms exceeded." type="Error">
+<failure message="Disease Condition catalog rows should be visible." type="expect.toBeVisible">
 <![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:33:7 › disease condition page - without login (guest user) › [Guest] condition filter updates catalog 
 
-    Test timeout of 120000ms exceeded.
+    Error: Disease Condition catalog rows should be visible.
 
-    Error: locator.click: Test timeout of 120000ms exceeded.
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 50000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByText(/^\s*Heart\s*$/i).first()
-        - locator resolved to <p class="↵          mt-2 lg:text-[15px] sm:text-sm text-gray-700↵          leading-tight text-center↵          line-clamp-2↵          font-medium↵        ">Heart</p>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 100ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      - retrying click action
-        - waiting 100ms
-        - waiting for element to be visible, enabled and stable
-        - element is not stable
-      53 × retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="bg-gradient-to-r from-[#144F84] to-[#45B3AE] p-5">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="flex flex-col items-center border border-gray-300 rounded-sm p-3 w-28 hover:shadow-md cursor-pointer">…</div> from <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
+      - Disease Condition catalog rows should be visible. with timeout 50000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
 
 
-       at ..\pages\diseaseCondition.page.ts:121
+       at ..\pages\diseaseCondition.page.ts:252
 
-      119 |       timeout: 15_000
-      120 |     });
-    > 121 |     await conditionCard.click();
-          |                         ^
-      122 |
-      123 |     await expect
-      124 |       .poll(async () => this.readItemsCount(), {
-        at DiseaseConditionPage.assertConditionFilterChangesCatalog (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:121:25)
-        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:37:5
+      250 |     }
+      251 |
+    > 252 |     await expect(this.tableRows.first(), 'Disease Condition catalog rows should be visible.').toBeVisible({
+          |                                                                                               ^
+      253 |       timeout: timeoutMs
+      254 |     });
+      255 |   }
+        at DiseaseConditionPage.waitForCatalogRows (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:252:95)
+        at DiseaseConditionPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:55:5)
+        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:23:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\test-failed-1.png
@@ -113,9 +270,9 @@
 
     Error Context: ..\test-results\diseaseCondition-viewCondi-f23b2-tion-filter-updates-catalog-guest\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition\viewConditions.spec.ts" time="120.413">
+<testcase name="disease condition page - without login (guest user) › [Guest] search by test code works" classname="diseaseCondition\viewConditions.spec.ts" time="50.916">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\test-failed-1.png]]
@@ -125,54 +282,36 @@
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 120000ms exceeded." type="Error">
+<failure message="Disease Condition catalog rows should be visible." type="expect.toBeVisible">
 <![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:40:7 › disease condition page - without login (guest user) › [Guest] search by test code works 
 
-    Test timeout of 120000ms exceeded.
+    Error: Disease Condition catalog rows should be visible.
 
-    Error: locator.click: Test timeout of 120000ms exceeded.
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 50000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for locator('div:has(input[placeholder="Search by Tests"]) button').first()
-        - locator resolved to <button class="hidden md:flex justify-center items-center bg-[#FFC933] rounded-[15px] hover:bg-yellow-500 transition shadow-[2px_2px_8px_#ABABAB] h-[50px] w-[70px]">…</button>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        - waiting for element to be visible, enabled and stable
-        - element is not stable
-      213 × retrying click action
-            - waiting 500ms
-            - waiting for element to be visible, enabled and stable
-            - element is visible, enabled and stable
-            - scrolling into view if needed
-            - done scrolling
-            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      - retrying click action
-        - waiting 500ms
+      - Disease Condition catalog rows should be visible. with timeout 50000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
 
 
-       at ..\pages\diseaseCondition.page.ts:144
+       at ..\pages\diseaseCondition.page.ts:252
 
-      142 |     await this.testSearchInput.fill(firstTestCode);
-      143 |     if (await this.testSearchButton.isVisible().catch(() => false)) {
-    > 144 |       await this.testSearchButton.click();
-          |                                   ^
-      145 |     } else {
-      146 |       await this.testSearchInput.press("Enter");
-      147 |     }
-        at DiseaseConditionPage.assertSearchByTestCodeWorks (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:144:35)
-        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:44:5
+      250 |     }
+      251 |
+    > 252 |     await expect(this.tableRows.first(), 'Disease Condition catalog rows should be visible.').toBeVisible({
+          |                                                                                               ^
+      253 |       timeout: timeoutMs
+      254 |     });
+      255 |   }
+        at DiseaseConditionPage.waitForCatalogRows (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:252:95)
+        at DiseaseConditionPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:55:5)
+        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:23:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\test-failed-1.png
@@ -184,9 +323,9 @@
 
     Error Context: ..\test-results\diseaseCondition-viewCondi-4bbb9-t-search-by-test-code-works-guest\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition\viewConditions.spec.ts" time="120.452">
+<testcase name="disease condition page - without login (guest user) › [Guest] add to cart shows login warning" classname="diseaseCondition\viewConditions.spec.ts" time="50.948">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-5022e-to-cart-shows-login-warning-guest\test-failed-1.png]]
@@ -196,54 +335,36 @@
 [[ATTACHMENT|..\test-results\diseaseCondition-viewCondi-5022e-to-cart-shows-login-warning-guest\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 120000ms exceeded." type="Error">
+<failure message="Disease Condition catalog rows should be visible." type="expect.toBeVisible">
 <![CDATA[  [guest] › diseaseCondition\viewConditions.spec.ts:47:7 › disease condition page - without login (guest user) › [Guest] add to cart shows login warning 
 
-    Test timeout of 120000ms exceeded.
+    Error: Disease Condition catalog rows should be visible.
 
-    Error: locator.click: Test timeout of 120000ms exceeded.
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 50000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByRole('button', { name: 'Add to Cart' }).first()
-        - locator resolved to <button class="xs:text-[7px] md:text-[16px] whitespace-nowrap flex items-center gap-2 px-4 py-1 rounded border-2 border-dotted transition-all duration-300 border-blue-600 ">Add to Cart</button>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      2 × retrying click action
-          - waiting 100ms
-          - waiting for element to be visible, enabled and stable
-          - element is not stable
-      211 × retrying click action
-            - waiting 500ms
-            - waiting for element to be visible, enabled and stable
-            - element is visible, enabled and stable
-            - scrolling into view if needed
-            - done scrolling
-            - <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">…</div> intercepts pointer events
-      - retrying click action
-        - waiting 500ms
+      - Disease Condition catalog rows should be visible. with timeout 50000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
 
 
-       at ..\pages\diseaseCondition.page.ts:180
+       at ..\pages\diseaseCondition.page.ts:252
 
-      178 |     await this.waitForCatalogRows();
-      179 |     await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
-    > 180 |     await this.addToCartButton.click();
-          |                                ^
-      181 |     await expect(this.toastMessage.filter({ hasText: "User not Login" }).first()).toBeVisible({
-      182 |       timeout: 10_000
-      183 |     });
-        at DiseaseConditionPage.assertAddToCartShowsLoginWarning (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:180:32)
-        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:51:5
+      250 |     }
+      251 |
+    > 252 |     await expect(this.tableRows.first(), 'Disease Condition catalog rows should be visible.').toBeVisible({
+          |                                                                                               ^
+      253 |       timeout: timeoutMs
+      254 |     });
+      255 |   }
+        at DiseaseConditionPage.waitForCatalogRows (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:252:95)
+        at DiseaseConditionPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\diseaseCondition.page.ts:55:5)
+        at D:\DosUAT\DosUAT\tests\diseaseCondition\viewConditions.spec.ts:23:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\diseaseCondition-viewCondi-5022e-to-cart-shows-login-warning-guest\test-failed-1.png
@@ -255,7 +376,1524 @@
 
     Error Context: ..\test-results\diseaseCondition-viewCondi-5022e-to-cart-shows-login-warning-guest\error-context.md
 ]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="doctorSpeciality\searchDoctor.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="4" failures="0" skipped="0" time="240.878" errors="4">
+<testcase name="doctor speciality page - without login (guest user) › [Guest] loads page and shows core widgets" classname="doctorSpeciality\searchDoctor.spec.ts" time="60.25">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › doctorSpeciality\searchDoctor.spec.ts:26:7 › doctor speciality page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest doctor speciality checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const doctorSpecialityPage = new DoctorSpecialityPage(page);
+      23 |     await doctorSpecialityPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:21:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at DoctorSpecialityPage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at DoctorSpecialityPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\doctorSpeciality.page.ts:53:5)
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-searchDoc-e5049-page-and-shows-core-widgets-guest\error-context.md
+]]>
 </error>
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] speciality filter updates catalog" classname="doctorSpeciality\searchDoctor.spec.ts" time="60.21">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › doctorSpeciality\searchDoctor.spec.ts:33:7 › doctor speciality page - without login (guest user) › [Guest] speciality filter updates catalog 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest doctor speciality checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const doctorSpecialityPage = new DoctorSpecialityPage(page);
+      23 |     await doctorSpecialityPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:21:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at DoctorSpecialityPage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at DoctorSpecialityPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\doctorSpeciality.page.ts:53:5)
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-searchDoc-6bff8-lity-filter-updates-catalog-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] search by test code works" classname="doctorSpeciality\searchDoctor.spec.ts" time="60.213">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › doctorSpeciality\searchDoctor.spec.ts:40:7 › doctor speciality page - without login (guest user) › [Guest] search by test code works 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest doctor speciality checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const doctorSpecialityPage = new DoctorSpecialityPage(page);
+      23 |     await doctorSpecialityPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:21:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at DoctorSpecialityPage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at DoctorSpecialityPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\doctorSpeciality.page.ts:53:5)
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-searchDoc-768f4-t-search-by-test-code-works-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="doctor speciality page - without login (guest user) › [Guest] add to cart shows login warning" classname="doctorSpeciality\searchDoctor.spec.ts" time="60.205">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › doctorSpeciality\searchDoctor.spec.ts:47:7 › doctor speciality page - without login (guest user) › [Guest] add to cart shows login warning 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest doctor speciality checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const doctorSpecialityPage = new DoctorSpecialityPage(page);
+      23 |     await doctorSpecialityPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:21:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at DoctorSpecialityPage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at DoctorSpecialityPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\doctorSpeciality.page.ts:53:5)
+        at D:\DosUAT\DosUAT\tests\doctorSpeciality\searchDoctor.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\doctorSpeciality-searchDoc-a8642-to-cart-shows-login-warning-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="faq\faqNavigation.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="3" failures="0" skipped="0" time="187.56" errors="3">
+<testcase name="faq page - without login (guest user) › [Guest] loads page and shows core widgets" classname="faq\faqNavigation.spec.ts" time="62.528">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq\faqNavigation.spec.ts:26:7 › faq page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:192
+
+      190 |       }
+      191 |
+    > 192 |       await this.page.waitForTimeout(500);
+          |                       ^
+      193 |     }
+      194 |
+      195 |     throw new Error('FAQ page did not render questions or an empty-state message within the expected time.');
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:192:23)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] question accordion toggles answer visibility" classname="faq\faqNavigation.spec.ts" time="62.588">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq\faqNavigation.spec.ts:33:7 › faq page - without login (guest user) › [Guest] question accordion toggles answer visibility 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:192
+
+      190 |       }
+      191 |
+    > 192 |       await this.page.waitForTimeout(500);
+          |                       ^
+      193 |     }
+      194 |
+      195 |     throw new Error('FAQ page did not render questions or an empty-state message within the expected time.');
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:192:23)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - without login (guest user) › [Guest] show more loads additional FAQ questions" classname="faq\faqNavigation.spec.ts" time="62.444">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › faq\faqNavigation.spec.ts:40:7 › faq page - without login (guest user) › [Guest] show more loads additional FAQ questions 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      19 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest FAQ checks.");
+      20 |
+    > 21 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      22 |     const faqPage = new FaqPage(page);
+      23 |     await faqPage.openAndSelectCity(city);
+      24 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:21:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:192
+
+      190 |       }
+      191 |
+    > 192 |       await this.page.waitForTimeout(500);
+          |                       ^
+      193 |     }
+      194 |
+      195 |     throw new Error('FAQ page did not render questions or an empty-state message within the expected time.');
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:192:23)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:23:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-e6d69-ds-additional-FAQ-questions-guest\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="forms\consentForm.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="3" failures="3" skipped="0" time="103.772" errors="0">
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] loads page and shows core widgets" classname="forms\consentForm.spec.ts" time="11.251">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › forms\consentForm.spec.ts:26:7 › test requisition & consent forms page - without login (guest user) › [Guest] loads page and shows core widgets 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText(/Home\s*>\s*Test Requisition & Consent Forms/i)
+    Expected: visible
+    Received: undefined
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByText(/Home\s*>\s*Test Requisition & Consent Forms/i)
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\forms.page.ts:93
+
+      91 |
+      92 |   async assertPageShell(): Promise<void> {
+    > 93 |     await expect(this.page.getByText(/Home\s*>\s*Test Requisition & Consent Forms/i)).toBeVisible();
+         |                                                                                       ^
+      94 |     await expect(
+      95 |       this.page
+      96 |         .locator('p')
+        at FormsPage.assertPageShell (D:\DosUAT\DosUAT\pages\forms.page.ts:93:87)
+        at D:\DosUAT\DosUAT\tests\forms\consentForm.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\forms-consentForm-test-req-b540f-page-and-shows-core-widgets-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] search by consent works" classname="forms\consentForm.spec.ts" time="46.253">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › forms\consentForm.spec.ts:33:7 › test requisition & consent forms page - without login (guest user) › [Guest] search by consent works 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('input[placeholder="Search by Consent"]').first()
+    Expected: visible
+    Received: undefined
+    Timeout:  45000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 45000ms
+      - waiting for locator('input[placeholder="Search by Consent"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\forms.page.ts:170
+
+      168 |
+      169 |   private async waitForFormsToLoad(timeoutMs = 45_000): Promise<void> {
+    > 170 |     await expect(this.consentSearchInput).toBeVisible({ timeout: timeoutMs });
+          |                                           ^
+      171 |     const firstCard = this.formCards.first();
+      172 |     const firstLink = this.downloadLinks.first();
+      173 |     await expect
+        at FormsPage.waitForFormsToLoad (D:\DosUAT\DosUAT\pages\forms.page.ts:170:43)
+        at FormsPage.assertSearchByConsentWorks (D:\DosUAT\DosUAT\pages\forms.page.ts:106:16)
+        at D:\DosUAT\DosUAT\tests\forms\consentForm.spec.ts:37:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\forms-consentForm-test-req-8d180-est-search-by-consent-works-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test requisition &amp; consent forms page - without login (guest user) › [Guest] sharing links are reachable" classname="forms\consentForm.spec.ts" time="46.268">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › forms\consentForm.spec.ts:40:7 › test requisition & consent forms page - without login (guest user) › [Guest] sharing links are reachable 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('input[placeholder="Search by Consent"]').first()
+    Expected: visible
+    Received: undefined
+    Timeout:  45000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 45000ms
+      - waiting for locator('input[placeholder="Search by Consent"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\forms.page.ts:170
+
+      168 |
+      169 |   private async waitForFormsToLoad(timeoutMs = 45_000): Promise<void> {
+    > 170 |     await expect(this.consentSearchInput).toBeVisible({ timeout: timeoutMs });
+          |                                           ^
+      171 |     const firstCard = this.formCards.first();
+      172 |     const firstLink = this.downloadLinks.first();
+      173 |     await expect
+        at FormsPage.waitForFormsToLoad (D:\DosUAT\DosUAT\pages\forms.page.ts:170:43)
+        at FormsPage.assertDownloadLinksArePresent (D:\DosUAT\DosUAT\pages\forms.page.ts:124:16)
+        at FormsPage.assertShareLinksAreReachable (D:\DosUAT\DosUAT\pages\forms.page.ts:138:16)
+        at D:\DosUAT\DosUAT\tests\forms\consentForm.spec.ts:44:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\forms-consentForm-test-req-1cb7f-sharing-links-are-reachable-guest\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="home\homepage.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="10" failures="0" skipped="0" time="354.048" errors="3">
+<testcase name="home page - without login (guest user) › [Guest] loads home page and shows core modules" classname="home\homepage.spec.ts" time="60.18">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › home\homepage.spec.ts:24:7 › home page - without login (guest user) › [Guest] loads home page and shows core modules 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      17 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run home page checks.");
+      18 |
+    > 19 |   test.beforeEach(async ({ page, city }) => {
+         |        ^
+      20 |     const homePage = new HomePage(page);
+      21 |     await homePage.ensureHomeReady(city.name);
+      22 |   });
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:19:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at HomePage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at HomePage.ensureHomeReady (D:\DosUAT\DosUAT\pages\home.page.ts:92:5)
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:21:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-homepage-home-page----4c627-page-and-shows-core-modules-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all visible home page buttons are working" classname="home\homepage.spec.ts" time="10.584">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] eye icon opens and closes details" classname="home\homepage.spec.ts" time="27.252">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] download selected shows login warning" classname="home\homepage.spec.ts" time="27.331">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] top navigation links route to expected pages" classname="home\homepage.spec.ts" time="60.19">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] all header icons open expected page or modal" classname="home\homepage.spec.ts" time="60.202">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › home\homepage.spec.ts:58:7 › home page - without login (guest user) › [Guest] all header icons open expected page or modal 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      17 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run home page checks.");
+      18 |
+    > 19 |   test.beforeEach(async ({ page, city }) => {
+         |        ^
+      20 |     const homePage = new HomePage(page);
+      21 |     await homePage.ensureHomeReady(city.name);
+      22 |   });
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:19:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at HomePage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at HomePage.ensureHomeReady (D:\DosUAT\DosUAT\pages\home.page.ts:92:5)
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:21:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-homepage-home-page----b2591-open-expected-page-or-modal-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] search works with icon click and Enter key" classname="home\homepage.spec.ts" time="18.934">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] add to cart shows login warning" classname="home\homepage.spec.ts" time="60.205">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [guest] › home\homepage.spec.ts:72:7 › home page - without login (guest user) › [Guest] add to cart shows login warning 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      17 |   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run home page checks.");
+      18 |
+    > 19 |   test.beforeEach(async ({ page, city }) => {
+         |        ^
+      20 |     const homePage = new HomePage(page);
+      21 |     await homePage.ensureHomeReady(city.name);
+      22 |   });
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:19:8
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('div.fixed.inset-0.z-50').filter({ hasText: /Select your Location|Change City/i }).first()
+
+
+       at ..\pages\components\LocationModal.ts:148
+
+      146 |
+      147 |   private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    > 148 |     return locationModal.evaluate((modal) => {
+          |                          ^
+      149 |       const excludedLabels = [
+      150 |         'Select your Location',
+      151 |         'Search your City',
+        at LocationModal.clickFirstAvailableCityOption (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:148:26)
+        at LocationModal.trySelectCityFromModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:129:17)
+        at LocationModal.closeLocationModal (D:\DosUAT\DosUAT\pages\components\LocationModal.ts:101:26)
+        at HomePage.closeLocationModal (D:\DosUAT\DosUAT\pages\base.page.ts:163:5)
+        at HomePage.ensureHomeReady (D:\DosUAT\DosUAT\pages\home.page.ts:92:5)
+        at D:\DosUAT\DosUAT\tests\home\homepage.spec.ts:21:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-homepage-home-page----d4d08-to-cart-shows-login-warning-guest\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] pagination works on home catalog" classname="home\homepage.spec.ts" time="18.855">
+</testcase>
+<testcase name="home page - without login (guest user) › [Guest] footer links are visible and correct" classname="home\homepage.spec.ts" time="10.315">
+</testcase>
+</testsuite>
+<testsuite name="smoke.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="1" failures="0" skipped="0" time="0.809" errors="0">
+<testcase name="Smoke Test Suite › Verify Homepage Loads" classname="smoke.spec.ts" time="0.809">
+<system-out>
+<![CDATA[Running smoke test on: https://dos-web-uat.abym.us/
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="testCatalog\testcatelog.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="guest" tests="9" failures="9" skipped="0" time="246.013" errors="0">
+<testcase name="test catalog module - guest user › [Guest] test route loads expected catalog state" classname="testCatalog\testcatelog.spec.ts" time="21.443">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:18:9 › test catalog module - guest user › [Guest] test route loads expected catalog state 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[placeholder="Search by Tests and Packages"]').first()
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 20000ms
+      - waiting for locator('input[placeholder="Search by Tests and Packages"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:88
+
+      86 |   async assertCatalogRoute(route: CatalogRoute, city = 'Delhi'): Promise<void> {
+      87 |     await this.openAndSelectCity(route.path, city);
+    > 88 |     await expect(this.searchInput).toBeVisible({ timeout: 20_000 });
+         |                                    ^
+      89 |     await expect(this.resetButton).toBeVisible({ timeout: 10_000 });
+      90 |     await expect(this.downloadButton).toBeVisible({ timeout: 10_000 });
+      91 |     // Use getByRole for table headers to avoid strict mode violations with filter dropdowns
+        at TestCatalogPage.assertCatalogRoute (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:88:36)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:22:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-0fc77-oads-expected-catalog-state-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new test route loads expected catalog state" classname="testCatalog\testcatelog.spec.ts" time="21.477">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:18:9 › test catalog module - guest user › [Guest] new test route loads expected catalog state 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[placeholder="Search by Tests and Packages"]').first()
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 20000ms
+      - waiting for locator('input[placeholder="Search by Tests and Packages"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:88
+
+      86 |   async assertCatalogRoute(route: CatalogRoute, city = 'Delhi'): Promise<void> {
+      87 |     await this.openAndSelectCity(route.path, city);
+    > 88 |     await expect(this.searchInput).toBeVisible({ timeout: 20_000 });
+         |                                    ^
+      89 |     await expect(this.resetButton).toBeVisible({ timeout: 10_000 });
+      90 |     await expect(this.downloadButton).toBeVisible({ timeout: 10_000 });
+      91 |     // Use getByRole for table headers to avoid strict mode violations with filter dropdowns
+        at TestCatalogPage.assertCatalogRoute (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:88:36)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:22:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-ee1ff-oads-expected-catalog-state-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] packages route loads expected catalog state" classname="testCatalog\testcatelog.spec.ts" time="21.529">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:18:9 › test catalog module - guest user › [Guest] packages route loads expected catalog state 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[placeholder="Search by Tests and Packages"]').first()
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 20000ms
+      - waiting for locator('input[placeholder="Search by Tests and Packages"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:88
+
+      86 |   async assertCatalogRoute(route: CatalogRoute, city = 'Delhi'): Promise<void> {
+      87 |     await this.openAndSelectCity(route.path, city);
+    > 88 |     await expect(this.searchInput).toBeVisible({ timeout: 20_000 });
+         |                                    ^
+      89 |     await expect(this.resetButton).toBeVisible({ timeout: 10_000 });
+      90 |     await expect(this.downloadButton).toBeVisible({ timeout: 10_000 });
+      91 |     // Use getByRole for table headers to avoid strict mode violations with filter dropdowns
+        at TestCatalogPage.assertCatalogRoute (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:88:36)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:22:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-e6d12-oads-expected-catalog-state-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] new packages route loads expected catalog state" classname="testCatalog\testcatelog.spec.ts" time="21.576">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:18:9 › test catalog module - guest user › [Guest] new packages route loads expected catalog state 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[placeholder="Search by Tests and Packages"]').first()
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 20000ms
+      - waiting for locator('input[placeholder="Search by Tests and Packages"]').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:88
+
+      86 |   async assertCatalogRoute(route: CatalogRoute, city = 'Delhi'): Promise<void> {
+      87 |     await this.openAndSelectCity(route.path, city);
+    > 88 |     await expect(this.searchInput).toBeVisible({ timeout: 20_000 });
+         |                                    ^
+      89 |     await expect(this.resetButton).toBeVisible({ timeout: 10_000 });
+      90 |     await expect(this.downloadButton).toBeVisible({ timeout: 10_000 });
+      91 |     // Use getByRole for table headers to avoid strict mode violations with filter dropdowns
+        at TestCatalogPage.assertCatalogRoute (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:88:36)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:22:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-864c2-oads-expected-catalog-state-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] department filter works on test route" classname="testCatalog\testcatelog.spec.ts" time="31.938">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:26:7 › test catalog module - guest user › [Guest] department filter works on test route 
+
+    Error: Catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Catalog rows should be visible. with timeout 30000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:217
+
+      215 |     }
+      216 |
+    > 217 |     await expect(this.tableRows.first(), 'Catalog rows should be visible.').toBeVisible({ timeout: timeoutMs });
+          |                                                                             ^
+      218 |   }
+      219 |
+      220 |   private async readItemsCount(): Promise<number> {
+        at TestCatalogPage.waitForRows (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:217:77)
+        at TestCatalogPage.assertDepartmentFilterWorks (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:118:5)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:30:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-cb2ee--filter-works-on-test-route-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] method filter works on test route" classname="testCatalog\testcatelog.spec.ts" time="31.885">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:33:7 › test catalog module - guest user › [Guest] method filter works on test route 
+
+    Error: Catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Catalog rows should be visible. with timeout 30000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:217
+
+      215 |     }
+      216 |
+    > 217 |     await expect(this.tableRows.first(), 'Catalog rows should be visible.').toBeVisible({ timeout: timeoutMs });
+          |                                                                             ^
+      218 |   }
+      219 |
+      220 |   private async readItemsCount(): Promise<number> {
+        at TestCatalogPage.waitForRows (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:217:77)
+        at TestCatalogPage.assertMethodFilterWorks (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:136:5)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:37:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-f6f3b--filter-works-on-test-route-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] sample type filter works on test route" classname="testCatalog\testcatelog.spec.ts" time="31.958">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:40:7 › test catalog module - guest user › [Guest] sample type filter works on test route 
+
+    Error: Catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Catalog rows should be visible. with timeout 30000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:217
+
+      215 |     }
+      216 |
+    > 217 |     await expect(this.tableRows.first(), 'Catalog rows should be visible.').toBeVisible({ timeout: timeoutMs });
+          |                                                                             ^
+      218 |   }
+      219 |
+      220 |   private async readItemsCount(): Promise<number> {
+        at TestCatalogPage.waitForRows (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:217:77)
+        at TestCatalogPage.assertSampleTypeFilterWorks (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:150:5)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:44:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-0306b--filter-works-on-test-route-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] NABL filter works on test route" classname="testCatalog\testcatelog.spec.ts" time="32.164">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:47:7 › test catalog module - guest user › [Guest] NABL filter works on test route 
+
+    Error: Catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Catalog rows should be visible. with timeout 30000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:217
+
+      215 |     }
+      216 |
+    > 217 |     await expect(this.tableRows.first(), 'Catalog rows should be visible.').toBeVisible({ timeout: timeoutMs });
+          |                                                                             ^
+      218 |   }
+      219 |
+      220 |   private async readItemsCount(): Promise<number> {
+        at TestCatalogPage.waitForRows (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:217:77)
+        at TestCatalogPage.assertNablFilterWorks (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:164:5)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:51:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-3b71e--filter-works-on-test-route-guest\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="test catalog module - guest user › [Guest] reset clears applied filters on test route" classname="testCatalog\testcatelog.spec.ts" time="32.043">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\video.webm]]
+
+[[ATTACHMENT|..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\error-context.md]]
+]]>
+</system-out>
+<failure message="Catalog rows should be visible." type="expect.toBeVisible">
+<![CDATA[  [guest] › testCatalog\testcatelog.spec.ts:54:7 › test catalog module - guest user › [Guest] reset clears applied filters on test route 
+
+    Error: Catalog rows should be visible.
+
+    expect(locator).toBeVisible() failed
+
+    Locator: locator('tbody tr').first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Catalog rows should be visible. with timeout 30000ms
+      - waiting for locator('tbody tr').first()
+        - found locator('div.fixed.inset-0.z-50').filter({ hasText: 'Select your Location' }).first(), intercepting action to run the handler
+
+
+       at ..\pages\testCatalog.page.ts:217
+
+      215 |     }
+      216 |
+    > 217 |     await expect(this.tableRows.first(), 'Catalog rows should be visible.').toBeVisible({ timeout: timeoutMs });
+          |                                                                             ^
+      218 |   }
+      219 |
+      220 |   private async readItemsCount(): Promise<number> {
+        at TestCatalogPage.waitForRows (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:217:77)
+        at TestCatalogPage.assertResetClearsAppliedFilters (D:\DosUAT\DosUAT\pages\testCatalog.page.ts:178:5)
+        at D:\DosUAT\DosUAT\tests\testCatalog\testcatelog.spec.ts:58:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\testCatalog-testcatelog-te-e3027-plied-filters-on-test-route-guest\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="addToCart\addToCartt.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="4" failures="0" skipped="0" time="70.164" errors="0">
+<testcase name="add to cart page - with login › [Login] saved session is active" classname="addToCart\addToCartt.spec.ts" time="8.842">
+</testcase>
+<testcase name="add to cart page - with login › [Login] apply random 1 to 10 percent discount on a specific test and validate pricing" classname="addToCart\addToCartt.spec.ts" time="16.628">
+<system-err>
+<![CDATA[[AddToCart] No visible row matched "Thyroid". Falling back to the first addable catalog row.
+]]>
+</system-err>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via WhatsApp for a specific test" classname="addToCart\addToCartt.spec.ts" time="22.422">
+<system-out>
+<![CDATA[[AddToCart] whatsapp shareControl href attribute: [1mnull[22m
+[AddToCart] whatsapp popupUrl: https://api.whatsapp.com/send/?text=Dear+Sir%2FMa%27am%2C%0A%0AKindly+review+your+quotation+by+clicking+on+the+link+below%3A%0A%0Ahttps%3A%2F%2Foncquest-admin-uat.abym.us%2Fapi%2Fquotation%2Ffq2e80d69eb372%0A%0AThank+you+for+choosing+Oncquest+Labs.+We+appreciate+your+trust+in+our+services.%0A%0AFor+any+assistance%2C+please+feel+free+to+contact+us.%0A%0AWarm+regards%2C%0ATeam+Oncquest+Labs%0A%2B0124-6650000%0Ateamcustomercare%40oncquest.net%0A&type=custom_url&app_absent=0
+]]>
+</system-out>
+<system-err>
+<![CDATA[[AddToCart] No visible row matched "Thyroid". Falling back to the first addable catalog row.
+]]>
+</system-err>
+</testcase>
+<testcase name="add to cart page - with login › [Login] share cart via Outlook for a specific test" classname="addToCart\addToCartt.spec.ts" time="22.272">
+<system-out>
+<![CDATA[[AddToCart] outlook shareControl href attribute: [1mnull[22m
+[AddToCart] outlook popupUrl: 
+]]>
+</system-out>
+<system-err>
+<![CDATA[[AddToCart] No visible row matched "Thyroid". Falling back to the first addable catalog row.
+]]>
+</system-err>
+</testcase>
+</testsuite>
+<testsuite name="auth\login.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="1" failures="0" skipped="0" time="4.241" errors="0">
+<testcase name="auth › saved login session is active" classname="auth\login.spec.ts" time="4.241">
+</testcase>
+</testsuite>
+<testsuite name="brochure\brochure.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="4" failures="0" skipped="0" time="10.605" errors="0">
+<testcase name="brochure page - with login (authenticated user) › [Login] saved session is active" classname="brochure\brochure.spec.ts" time="5.159">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="brochure\brochure.spec.ts" time="1.391">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] search by brochure works" classname="brochure\brochure.spec.ts" time="1.358">
+</testcase>
+<testcase name="brochure page - with login (authenticated user) › [Login] sharing links are reachable" classname="brochure\brochure.spec.ts" time="2.697">
+</testcase>
+</testsuite>
+<testsuite name="diseaseCondition\viewConditions.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="5" failures="0" skipped="0" time="16.372" errors="0">
+<testcase name="disease condition page - with login (authenticated user) › [Login] saved session is active" classname="diseaseCondition\viewConditions.spec.ts" time="5.415">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="diseaseCondition\viewConditions.spec.ts" time="3.825">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] condition filter updates catalog" classname="diseaseCondition\viewConditions.spec.ts" time="2.387">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] search by test code works" classname="diseaseCondition\viewConditions.spec.ts" time="2.015">
+</testcase>
+<testcase name="disease condition page - with login (authenticated user) › [Login] add to cart updates cart count" classname="diseaseCondition\viewConditions.spec.ts" time="2.73">
+</testcase>
+</testsuite>
+<testsuite name="doctorSpeciality\searchDoctor.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="5" failures="0" skipped="0" time="235.497" errors="0">
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] saved session is active" classname="doctorSpeciality\searchDoctor.spec.ts" time="36.49">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="doctorSpeciality\searchDoctor.spec.ts" time="32.797">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] speciality filter updates catalog" classname="doctorSpeciality\searchDoctor.spec.ts" time="64.845">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] search by test code works" classname="doctorSpeciality\searchDoctor.spec.ts" time="51.919">
+</testcase>
+<testcase name="doctor speciality page - with login (authenticated user) › [Login] add to cart updates cart count" classname="doctorSpeciality\searchDoctor.spec.ts" time="49.446">
+</testcase>
+</testsuite>
+<testsuite name="faq\faqNavigation.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="4" failures="0" skipped="0" time="250.574" errors="4">
+<testcase name="faq page - with login (authenticated user) › [Login] saved session is active" classname="faq\faqNavigation.spec.ts" time="62.926">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq\faqNavigation.spec.ts:60:7 › faq page - with login (authenticated user) › [Login] saved session is active 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:192
+
+      190 |       }
+      191 |
+    > 192 |       await this.page.waitForTimeout(500);
+          |                       ^
+      193 |     }
+      194 |
+      195 |     throw new Error('FAQ page did not render questions or an empty-state message within the expected time.');
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:192:23)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-a9952-gin-saved-session-is-active-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="faq\faqNavigation.spec.ts" time="62.756">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq\faqNavigation.spec.ts:66:7 › faq page - with login (authenticated user) › [Login] loads page and shows core widgets 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:55:8
+
+    Error: locator.count: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:184
+
+      182 |     const deadline = Date.now() + timeoutMs;
+      183 |     while (Date.now() < deadline) {
+    > 184 |       if ((await this.faqQuestionButtons.count()) > 0) {
+          |                                          ^
+      185 |         return 'hasData';
+      186 |       }
+      187 |
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:184:42)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-9d07f-page-and-shows-core-widgets-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] question accordion toggles answer visibility" classname="faq\faqNavigation.spec.ts" time="62.506">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq\faqNavigation.spec.ts:73:7 › faq page - with login (authenticated user) › [Login] question accordion toggles answer visibility 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:55:8
+
+    Error: page.waitForTimeout: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:192
+
+      190 |       }
+      191 |
+    > 192 |       await this.page.waitForTimeout(500);
+          |                       ^
+      193 |     }
+      194 |
+      195 |     throw new Error('FAQ page did not render questions or an empty-state message within the expected time.');
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:192:23)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-57112-n-toggles-answer-visibility-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="faq page - with login (authenticated user) › [Login] show more loads additional FAQ questions" classname="faq\faqNavigation.spec.ts" time="62.386">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 60000ms exceeded while running &quot;beforeEach&quot; hook." type="Error">
+<![CDATA[  [chromium] › faq\faqNavigation.spec.ts:80:7 › faq page - with login (authenticated user) › [Login] show more loads additional FAQ questions 
+
+    Test timeout of 60000ms exceeded while running "beforeEach" hook.
+
+      53 |   }
+      54 |
+    > 55 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      56 |     const faqPage = new FaqPage(page);
+      57 |     await faqPage.openAndSelectCity(city);
+      58 |   });
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:55:8
+
+    Error: locator.count: Test timeout of 60000ms exceeded.
+
+       at ..\pages\faq.page.ts:184
+
+      182 |     const deadline = Date.now() + timeoutMs;
+      183 |     while (Date.now() < deadline) {
+    > 184 |       if ((await this.faqQuestionButtons.count()) > 0) {
+          |                                          ^
+      185 |         return 'hasData';
+      186 |       }
+      187 |
+        at FaqPage.waitForFaqsToLoad (D:\DosUAT\DosUAT\pages\faq.page.ts:184:42)
+        at FaqPage.openAndSelectCity (D:\DosUAT\DosUAT\pages\faq.page.ts:45:5)
+        at D:\DosUAT\DosUAT\tests\faq\faqNavigation.spec.ts:57:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\faq-faqNavigation-faq-page-74f1a-ds-additional-FAQ-questions-chromium\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="forms\consentForm.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="4" failures="0" skipped="0" time="18.573" errors="0">
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] saved session is active" classname="forms\consentForm.spec.ts" time="7.178">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] loads page and shows core widgets" classname="forms\consentForm.spec.ts" time="1.263">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] search by consent works" classname="forms\consentForm.spec.ts" time="1.882">
+</testcase>
+<testcase name="test requisition &amp; consent forms page - with login (authenticated user) › [Login] sharing links are reachable" classname="forms\consentForm.spec.ts" time="8.25">
+</testcase>
+</testsuite>
+<testsuite name="home\debug_logout.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="1" failures="0" skipped="0" time="19.15" errors="0">
+<testcase name="[Login] debug logout button" classname="home\debug_logout.spec.ts" time="19.15">
+<system-out>
+<![CDATA[Logged in: [33mtrue[39m
+Match: [1mnull[22m
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="home\homepage.spec.ts" timestamp="2026-07-01T06:16:29.610Z" hostname="chromium" tests="9" failures="0" skipped="0" time="265.912" errors="0">
+<testcase name="home page - with login (authenticated user) › [Login] saved session is active" classname="home\homepage.spec.ts" time="20.738">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] loads home page and shows core modules" classname="home\homepage.spec.ts" time="16.988">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] top navigation links route to expected pages" classname="home\homepage.spec.ts" time="66.264">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] all header icons open expected page or modal" classname="home\homepage.spec.ts" time="18.82">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] search works with icon click and Enter key" classname="home\homepage.spec.ts" time="25.27">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] eye icon opens and closes details" classname="home\homepage.spec.ts" time="33.757">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] add to cart updates cart count" classname="home\homepage.spec.ts" time="27.126">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] download selected works without login modal" classname="home\homepage.spec.ts" time="31.733">
+</testcase>
+<testcase name="home page - with login (authenticated user) › [Login] pagination works on home catalog" classname="home\homepage.spec.ts" time="25.216">
 </testcase>
 </testsuite>
 </testsuites>
