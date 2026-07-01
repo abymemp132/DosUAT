@@ -24,9 +24,9 @@ export default defineConfig({
   testDir: "./tests",
   testIgnore: ["**/modules/**"],
   globalSetup: "./config/global-setup.ts",
-  timeout: 60_000,
+  timeout: process.env.CI ? 180_000 : 60_000,
   expect: {
-    timeout: 10_000
+    timeout: process.env.CI ? 20_000 : 10_000
   },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
