@@ -22,11 +22,6 @@ jobs:
       run: |
         [System.IO.File]::WriteAllText(".env", $env:ENV_FILE_CONTENT)
         
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-        cache: npm
-        
     - name: Install dependencies
       run: npm ci
 
@@ -79,11 +74,6 @@ jobs:
         ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
       run: |
         [System.IO.File]::WriteAllText(".env", $env:ENV_FILE_CONTENT)
-        
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-        cache: npm
         
     - name: Install dependencies
       run: npm ci
