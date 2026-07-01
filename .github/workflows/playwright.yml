@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  guest-tests:
     timeout-minutes: 60
     runs-on: windows-latest
     
@@ -40,8 +40,8 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install chromium
       
-    - name: Run Playwright tests
-      run: npm run test:raw
+    - name: Run Guest tests
+      run: npx playwright test --project=guest
       
     - name: Generate Dashboard and PDF Report
       if: always()
@@ -57,11 +57,70 @@ jobs:
       if: always()
       run: npm run send-email
       
-    - name: Upload Test Report Artifacts
+    - name: Upload Guest Test Report Artifacts
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: playwright-reports
+        name: playwright-guest-reports
+        path: |
+          playwright-report/
+          reports/dashboard-static/
+          reports/results.json
+        retention-days: 14
+
+  authenticated-tests:
+    timeout-minutes: 60
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Create .env file
+      shell: bash
+      env:
+        ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
+      run: |
+        echo "$ENV_FILE_CONTENT" > .env
+        
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: npm
+        
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run TypeScript check
+      run: npm run typecheck
+
+    - name: Run lint
+      run: npm run lint
+      
+    - name: Install Playwright Browsers
+      run: npx playwright install chromium
+      
+    - name: Run Authenticated tests
+      run: npx playwright test --project=setup --project=chromium
+      
+    - name: Generate Dashboard and PDF Report
+      if: always()
+      run: |
+        npm run dashboard:static
+        npm run report:pdf
+        
+    - name: Deploy Dashboard to Netlify
+      if: success()
+      run: npm run deploy:dashboard
+      
+    - name: Send Email Report
+      if: always()
+      run: npm run send-email
+      
+    - name: Upload Authenticated Test Report Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-auth-reports
         path: |
           playwright-report/
           reports/dashboard-static/
