@@ -45,7 +45,7 @@ export class DoctorSpecialityPage extends BasePage {
     await this.page.addLocatorHandler(this.locationModal, async () => {
       await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
-        await this.closeLocationModal(city).catch(() => {});
+        await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
       } finally {
         // No re-registration needed here
       }

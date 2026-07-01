@@ -107,6 +107,57 @@ export class LocationModal {
     await this.dismissLocationModal(locationModal);
   }
 
+  async closeLocationModalNoAssertions(city = 'Delhi'): Promise<void> {
+    const locationModal = this.page
+      .locator('div.fixed.inset-0.z-50')
+      .filter({ hasText: /Select your Location|Change City/i })
+      .first();
+
+    if (!(await locationModal.isVisible().catch(() => false))) {
+      return;
+    }
+
+    const loadingCities = locationModal.getByText('Loading cities...', { exact: false });
+    if (await loadingCities.isVisible().catch(() => false)) {
+      for (let i = 0; i < 20; i++) {
+        if (!(await loadingCities.isVisible().catch(() => false))) {
+          break;
+        }
+        await this.page.waitForTimeout(200);
+      }
+    }
+
+    const escapedCity = city.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+    const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
+
+    if (await preferredCityOption.isVisible().catch(() => false)) {
+      await preferredCityOption.click({ force: true }).catch(() => {});
+    } else {
+      const searchInput = locationModal.getByPlaceholder(/Search your City/i);
+      if (await searchInput.isVisible().catch(() => false)) {
+        await searchInput.fill(city).catch(() => {});
+        if (await preferredCityOption.isVisible().catch(() => false)) {
+          await preferredCityOption.click({ force: true }).catch(() => {});
+        }
+      }
+    }
+
+    for (let i = 0; i < 20; i++) {
+      if (!(await locationModal.isVisible().catch(() => false))) {
+        return;
+      }
+      await this.page.waitForTimeout(200);
+    }
+
+    await this.page.keyboard.press('Escape').catch(() => {});
+    const closeBtn = locationModal
+      .locator("button[title='Close'], button[aria-label='Close'], button.bg-red-500")
+      .first();
+    if (await closeBtn.isVisible().catch(() => false)) {
+      await closeBtn.click({ force: true }).catch(() => {});
+    }
+  }
+
   private async trySelectCityFromModal(locationModal: Locator, city: string): Promise<boolean> {
     const escapedCity = city.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
     const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();

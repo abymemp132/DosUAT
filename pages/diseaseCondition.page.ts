@@ -45,7 +45,7 @@ export class DiseaseConditionPage extends BasePage {
     await this.page.addLocatorHandler(this.locationModal, async () => {
       await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
-        await this.selectCity(city).catch(() => {});
+        await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
       } finally {
         // No re-registration needed here
       }
