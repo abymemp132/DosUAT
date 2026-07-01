@@ -1,5 +1,5 @@
-import { expect, Locator, Page } from "@playwright/test";
-import { BasePage } from "./base.page";
+import { expect, Locator, Page } from '@playwright/test';
+import { BasePage } from './base.page';
 
 export class FormsPage extends BasePage {
   private readonly locationModal: Locator;
@@ -11,39 +11,43 @@ export class FormsPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.locationModal = this.page
-      .locator("div.fixed.inset-0.z-50")
-      .filter({ hasText: "Select your Location" })
+      .locator('div.fixed.inset-0.z-50')
+      .filter({ hasText: 'Select your Location' })
       .first();
     this.consentSearchInput = this.page.locator('input[placeholder="Search by Consent"]').first();
-    this.formCards = this.page.locator("div.bg-white.rounded-lg.shadow-md.border.border-gray-200.overflow-hidden");
-    this.formTitleSpans = this.formCards.locator("div.p-4 span").first();
+    this.formCards = this.page.locator('div.bg-white.rounded-lg.shadow-md.border.border-gray-200.overflow-hidden');
+    this.formTitleSpans = this.formCards.locator('div.p-4 span').first();
     this.downloadLinks = this.page.locator(
       'a[href*="oncquest-admin-uat.abym.us/s/"], a[href*="/s/"], a[href$=".pdf"], a[href$=".PDF"]'
     );
   }
 
   async open(): Promise<void> {
-    await this.goto("/consent-forms");
+    await this.goto('/consent-forms');
   }
 
-  async openAndSelectCity(city = "Delhi"): Promise<void> {
+  async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
     await this.selectCity(city);
     await this.waitForFormsToLoad();
   }
 
-  async selectCity(city = "Delhi"): Promise<void> {
+  async selectCity(city = 'Delhi'): Promise<void> {
     if (!(await this.locationModal.isVisible().catch(() => false))) {
       return;
     }
 
-    const loadingCities = this.locationModal.getByText("Loading cities...", { exact: false });
+    const loadingCities = this.locationModal.getByText('Loading cities...', { exact: false });
     if (await loadingCities.isVisible().catch(() => false)) {
-      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
+      try {
+        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
+      } catch {
+        // Optional wait can time out without failing the flow.
+      }
     }
 
     const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, "i"))
+      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, 'i'))
       .first();
     const clickPreferredCity = async (): Promise<boolean> => {
       if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
@@ -59,39 +63,41 @@ export class FormsPage extends BasePage {
       return;
     }
 
-    const searchInput = this.locationModal.getByPlaceholder("Search your City");
+    const searchInput = this.locationModal.getByPlaceholder('Search your City');
     if (await searchInput.isVisible().catch(() => false)) {
       await searchInput.fill(city);
       if (await clickPreferredCity()) {
         await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
         return;
       }
-      await searchInput.fill("");
+      await searchInput.fill('');
     }
 
     const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(
-      fallbackCityClicked,
-      `City option "${city}" was not available and no fallback city option was found.`
-    ).toBe(true);
+    expect(fallbackCityClicked, `City option "${city}" was not available and no fallback city option was found.`).toBe(
+      true
+    );
     await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
   }
 
   async assertPageShell(): Promise<void> {
     await expect(this.page.getByText(/Home\s*>\s*Test Requisition & Consent Forms/i)).toBeVisible();
     await expect(
-      this.page.locator("p").filter({ hasText: /^Test Requisition & Consent Forms$/ }).first()
+      this.page
+        .locator('p')
+        .filter({ hasText: /^Test Requisition & Consent Forms$/ })
+        .first()
     ).toBeVisible();
     await expect(this.consentSearchInput).toBeVisible();
     await expect(this.formCards.first()).toBeVisible();
     await expect(this.formTitleSpans.first()).toBeVisible();
   }
 
-  async assertSearchByConsentWorks(query = "MammaPrint", expectedTitle = "MammaPrint TRF"): Promise<void> {
+  async assertSearchByConsentWorks(query = 'MammaPrint', expectedTitle = 'MammaPrint TRF'): Promise<void> {
     await this.waitForFormsToLoad();
 
     const beforeCount = await this.formCards.count();
-    expect(beforeCount, "Consent forms list should contain at least one card.").toBeGreaterThan(0);
+    expect(beforeCount, 'Consent forms list should contain at least one card.').toBeGreaterThan(0);
 
     await this.consentSearchInput.fill(query);
 
@@ -109,18 +115,14 @@ export class FormsPage extends BasePage {
     await this.waitForFormsToLoad();
 
     const linksCount = await this.downloadLinks.count();
-    expect(linksCount, "At least one download link should be visible on consent forms page.").toBeGreaterThan(
-      0
-    );
+    expect(linksCount, 'At least one download link should be visible on consent forms page.').toBeGreaterThan(0);
 
     const firstLink = this.downloadLinks.first();
     await expect(firstLink).toBeVisible({ timeout: 10_000 });
-    const href = await firstLink.getAttribute("href");
-    expect(href, "First consent form download link should have href.").toBeTruthy();
-    expect(
-      href!,
-      "Consent form download link should point to the admin file share or a PDF."
-    ).toMatch(/admin\.oncquestlabs\.com\/s\/|oncquest-admin-uat\.abym\.us\/s\/|\.pdf/i);
+    await expect(
+      firstLink,
+      'Consent form download link should point to the admin file share or a PDF.'
+    ).toHaveAttribute('href', /admin\.oncquestlabs\.com\/s\/|oncquest-admin-uat\.abym\.us\/s\/|\.pdf/i);
   }
 
   async assertShareLinksAreReachable(): Promise<void> {
@@ -128,12 +130,12 @@ export class FormsPage extends BasePage {
 
     const links = await this.downloadLinks.evaluateAll((elements) => {
       const hrefs = elements
-        .map((element) => element.getAttribute("href"))
+        .map((element) => element.getAttribute('href'))
         .filter((value): value is string => Boolean(value));
       return Array.from(new Set(hrefs));
     });
 
-    expect(links.length, "No consent-form share links were found for reachability checks.").toBeGreaterThan(0);
+    expect(links.length, 'No consent-form share links were found for reachability checks.').toBeGreaterThan(0);
 
     const failedLinks: string[] = [];
     for (const link of links) {
@@ -152,10 +154,7 @@ export class FormsPage extends BasePage {
       }
     }
 
-    expect(
-      failedLinks,
-      `Found unreachable consent-form share links:\n${failedLinks.join("\n")}`
-    ).toEqual([]);
+    expect(failedLinks, `Found unreachable consent-form share links:\n${failedLinks.join('\n')}`).toEqual([]);
   }
 
   private async waitForFormsToLoad(timeoutMs = 45_000): Promise<void> {
@@ -168,31 +167,31 @@ export class FormsPage extends BasePage {
           (await firstCard.isVisible().catch(() => false)) || (await firstLink.isVisible().catch(() => false)),
         {
           timeout: timeoutMs,
-          message: "Consent forms page should render cards or share/download links."
+          message: 'Consent forms page should render cards or share/download links.'
         }
       )
       .toBe(true);
   }
 
   private escapeRegExp(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {
     return this.locationModal.evaluate((modal) => {
       const excludedLabels = [
-        "Select your Location",
-        "Search your City",
-        "Use Current Location",
-        "Please select your location first",
-        "Metro Cities",
-        "Other Cities",
-        "Loading cities..."
+        'Select your Location',
+        'Search your City',
+        'Use Current Location',
+        'Please select your location first',
+        'Metro Cities',
+        'Other Cities',
+        'Loading cities...'
       ];
 
-      const normalizeText = (value: string): string => value.replace(/\s+/g, " ").trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>("*")).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || "");
+      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
+      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
+        const label = normalizeText(element.innerText || element.textContent || '');
         if (!label || label.length > 60) {
           return false;
         }
@@ -206,7 +205,7 @@ export class FormsPage extends BasePage {
         }
 
         const style = window.getComputedStyle(element);
-        return style.cursor === "pointer";
+        return style.cursor === 'pointer';
       });
 
       if (!fallbackCity) {

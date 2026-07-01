@@ -1,5 +1,5 @@
-import { expect, Locator, Page } from "@playwright/test";
-import { BasePage } from "./base.page";
+import { expect, Locator, Page } from '@playwright/test';
+import { BasePage } from './base.page';
 
 type PricingSnapshot = {
   totalMrp: number | null;
@@ -20,48 +20,54 @@ export class AddToCartPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.locationModal = this.page
-      .locator("div.fixed.inset-0.z-50")
+      .locator('div.fixed.inset-0.z-50')
       .filter({ hasText: /Select your Location|Change City/i })
       .first();
-    this.locationIcon = this.page.locator("header").locator("div, button").filter({ has: this.page.locator('img[src*="location"], svg') }).first();
-    this.cartButton = this.page.locator("header button").filter({ hasText: /^\d+$/ }).first();
-    this.tableRows = this.page.locator("tbody tr");
-    this.addToCartButton = this.page.getByRole("button", { name: /add to cart/i }).first();
-    this.testSearchInput = this.page.locator('input[placeholder="Search by Tests and Packages"]');
-    this.searchButton = this.page
-      .locator('div:has(input[placeholder="Search by Tests and Packages"]) button')
+    this.locationIcon = this.page
+      .locator('header')
+      .locator('div, button')
+      .filter({ has: this.page.locator('img[src*="location"], svg') })
       .first();
-    this.toastMessage = this.page.locator(".Toastify__toast, [role=\"alert\"], [data-sonner-toast]");
+    this.cartButton = this.page.locator('header button').filter({ hasText: /^\d+$/ }).first();
+    this.tableRows = this.page.locator('tbody tr');
+    this.addToCartButton = this.page.getByRole('button', { name: /add to cart/i }).first();
+    this.testSearchInput = this.page.locator('input[placeholder="Search by Tests and Packages"]');
+    this.searchButton = this.page.locator('div:has(input[placeholder="Search by Tests and Packages"]) button').first();
+    this.toastMessage = this.page.locator('.Toastify__toast, [role="alert"], [data-sonner-toast]');
   }
 
   async open(): Promise<void> {
-    await this.goto("/");
+    await this.goto('/');
   }
 
-  async openAndSelectCity(city = "Delhi"): Promise<void> {
+  async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
     await this.selectCity(city);
     await this.waitForCatalogRows();
   }
 
-  async selectCity(city = "Delhi"): Promise<void> {
-    await this.locationModal.waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
+  async selectCity(city = 'Delhi'): Promise<void> {
+    await this.locationModal.waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
     if (!(await this.locationModal.isVisible().catch(() => false))) {
       if (await this.locationIcon.isVisible().catch(() => false)) {
         await this.locationIcon.click();
-        await this.locationModal.waitFor({ state: "visible", timeout: 5000 });
+        await this.locationModal.waitFor({ state: 'visible', timeout: 5000 });
       } else {
         return;
       }
     }
 
-    const loadingCities = this.locationModal.getByText("Loading cities...", { exact: false });
+    const loadingCities = this.locationModal.getByText('Loading cities...', { exact: false });
     if (await loadingCities.isVisible().catch(() => false)) {
-      await expect(loadingCities).toBeHidden({ timeout: 30_000 }).catch(() => {});
+      try {
+        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
+      } catch {
+        // Optional wait can time out without failing the flow.
+      }
     }
 
     const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, "i"))
+      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, 'i'))
       .first();
     const clickPreferredCity = async (): Promise<boolean> => {
       if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
@@ -77,27 +83,26 @@ export class AddToCartPage extends BasePage {
       return;
     }
 
-    const searchInput = this.locationModal.getByPlaceholder("Search your City");
+    const searchInput = this.locationModal.getByPlaceholder('Search your City');
     if (await searchInput.isVisible().catch(() => false)) {
       await searchInput.fill(city);
       if (await clickPreferredCity()) {
         await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
         return;
       }
-      await searchInput.fill("");
+      await searchInput.fill('');
     }
 
     const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(
-      fallbackCityClicked,
-      `City option "${city}" was not available and no fallback city option was found.`
-    ).toBe(true);
+    expect(fallbackCityClicked, `City option "${city}" was not available and no fallback city option was found.`).toBe(
+      true
+    );
     await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
   }
 
   async assertAddToCartButtonVisible(): Promise<void> {
     await this.waitForCatalogRows();
-    await expect(this.addToCartButton, "At least one Add to Cart button should be visible.").toBeVisible({
+    await expect(this.addToCartButton, 'At least one Add to Cart button should be visible.').toBeVisible({
       timeout: 15_000
     });
   }
@@ -111,29 +116,35 @@ export class AddToCartPage extends BasePage {
     await expect
       .poll(async () => this.readCartCount(), {
         timeout: 15_000,
-        message: "Cart count should increase after adding an item."
+        message: 'Cart count should increase after adding an item.'
       })
       .toBeGreaterThan(beforeCount);
   }
 
   async openCartFromHeaderAndAssertVisible(): Promise<void> {
-    await expect(this.cartButton, "Header cart button should be visible.").toBeVisible({
+    await expect(this.cartButton, 'Header cart button should be visible.').toBeVisible({
       timeout: 15_000
     });
     await this.cartButton.click();
 
     const cartHeading = this.page.getByText(/my cart|cart summary|order summary|cart/i).first();
-    await expect(cartHeading, "Add-to-cart page should open after clicking cart icon.").toBeVisible({
+    await expect(cartHeading, 'Add-to-cart page should open after clicking cart icon.').toBeVisible({
       timeout: 15_000
     });
   }
 
   async assertDiscountControlsVisible(): Promise<void> {
     const discountRow = await this.getDiscountTargetRow();
-    await expect(this.getPercentageToggle(discountRow), "Percentage discount toggle should be visible in add-to-cart page.").toBeVisible({
+    await expect(
+      this.getPercentageToggle(discountRow),
+      'Percentage discount toggle should be visible in add-to-cart page.'
+    ).toBeVisible({
       timeout: 15_000
     });
-    await expect(this.getDiscountInput(discountRow), "Discount input should be visible in add-to-cart page.").toBeVisible({
+    await expect(
+      this.getDiscountInput(discountRow),
+      'Discount input should be visible in add-to-cart page.'
+    ).toBeVisible({
       timeout: 15_000
     });
   }
@@ -150,9 +161,9 @@ export class AddToCartPage extends BasePage {
     await this.ensureCartHasItemsAfterOpen(testQuery);
   }
 
-  async assertAddToCartPageApplyDiscount(discountCode = "TEST10"): Promise<void> {
+  async assertAddToCartPageApplyDiscount(discountCode = 'TEST10'): Promise<void> {
     await this.addItemAndOpenCart();
-    const percent = Number.parseInt(discountCode.replace(/[^\d]/g, ""), 10) || 10;
+    const percent = Number.parseInt(discountCode.replace(/[^\d]/g, ''), 10) || 10;
     await this.assertDiscountPricingForPercentage(`TEST${percent}`, percent);
   }
 
@@ -161,7 +172,7 @@ export class AddToCartPage extends BasePage {
     const discountRow = await this.getDiscountTargetRow();
     await this.assertDiscountControlsVisible();
     const rowPrice = await this.readCartRowPrice(discountRow);
-    expect(rowPrice, "Cart row price should be visible before applying discount.").not.toBeNull();
+    expect(rowPrice, 'Cart row price should be visible before applying discount.').not.toBeNull();
 
     await this.applyPercentageDiscountToRow(discountRow, expectedPercent);
 
@@ -173,12 +184,14 @@ export class AddToCartPage extends BasePage {
     const finalRowPrice = await this.readCartRowFinalPrice(discountRow);
     const appliedPercent = await this.readDiscountInputValue(discountRow);
 
-    expect(rowPrice, "Cart row price should be greater than zero.").toBeGreaterThan(0);
-    expect(
-      appliedPercent,
-      `Discount input should retain the applied ${discountCode} percentage.`
-    ).toBe(expectedPercent);
-    expect(finalRowPrice, `Final row price should reflect the applied ${discountCode} discount.`).toBeCloseTo(expectedFinalPrice, 1);
+    expect(rowPrice, 'Cart row price should be greater than zero.').toBeGreaterThan(0);
+    expect(appliedPercent, `Discount input should retain the applied ${discountCode} percentage.`).toBe(
+      expectedPercent
+    );
+    expect(finalRowPrice, `Final row price should reflect the applied ${discountCode} discount.`).toBeCloseTo(
+      expectedFinalPrice,
+      1
+    );
   }
 
   async assertRandomDiscountPricingForSpecificTest(testQuery: string): Promise<void> {
@@ -186,7 +199,7 @@ export class AddToCartPage extends BasePage {
     const discountRow = await this.getDiscountTargetRow(testQuery);
     await this.assertDiscountControlsVisible();
     const rowPrice = await this.readCartRowPrice(discountRow);
-    expect(rowPrice, "Target cart row price should be visible before applying discount.").not.toBeNull();
+    expect(rowPrice, 'Target cart row price should be visible before applying discount.').not.toBeNull();
     const currentPercent = await this.readDiscountInputValue(discountRow);
     const randomPercent = this.pickPercentDifferentFromCurrent(currentPercent);
 
@@ -201,10 +214,7 @@ export class AddToCartPage extends BasePage {
     const appliedPercent = await this.readDiscountInputValue(discountRow);
 
     expect(rowPrice, `Target row price for "${testQuery}" should be greater than zero.`).toBeGreaterThan(0);
-    expect(
-      appliedPercent,
-      `Discount input should retain the applied ${randomPercent}% value.`
-    ).toBe(randomPercent);
+    expect(appliedPercent, `Discount input should retain the applied ${randomPercent}% value.`).toBe(randomPercent);
     expect(
       finalRowPrice,
       `Final row price should reflect a ${randomPercent}% discount for "${testQuery}".`
@@ -213,26 +223,26 @@ export class AddToCartPage extends BasePage {
 
   async assertShareCartViaWhatsAppForSpecificTest(testQuery: string): Promise<void> {
     await this.addSpecificItemAndOpenCart(testQuery);
-    await this.assertShareActionWorks("whatsapp");
+    await this.assertShareActionWorks('whatsapp');
   }
 
   async assertShareCartViaOutlookForSpecificTest(testQuery: string): Promise<void> {
     await this.addSpecificItemAndOpenCart(testQuery);
-    await this.assertShareActionWorks("outlook");
+    await this.assertShareActionWorks('outlook');
   }
 
   async assertShareCartViaPdfForSpecificTest(testQuery: string): Promise<void> {
     await this.addSpecificItemAndOpenCart(testQuery);
-    await this.assertShareActionWorks("pdf");
+    await this.assertShareActionWorks('pdf');
   }
 
   async addSpecificItemAndAssertCartCountIncreases(testQuery: string): Promise<void> {
     const targetRow = await this.searchAndGetTargetRow(testQuery);
     let countBeforeAdd = await this.readCartCount();
-    let targetAddToCartButton = targetRow.getByRole("button", { name: /add to cart/i }).first();
+    let targetAddToCartButton = targetRow.getByRole('button', { name: /add to cart/i }).first();
 
     if (!(await targetAddToCartButton.isVisible().catch(() => false))) {
-      const removeButton = targetRow.getByRole("button", { name: /^remove$/i }).first();
+      const removeButton = targetRow.getByRole('button', { name: /^remove$/i }).first();
       await expect(
         removeButton,
         `Expected either Add to Cart or Remove button for searched test "${testQuery}".`
@@ -247,7 +257,7 @@ export class AddToCartPage extends BasePage {
         .toBeLessThan(countBeforeAdd);
 
       countBeforeAdd = await this.readCartCount();
-      targetAddToCartButton = targetRow.getByRole("button", { name: /add to cart/i }).first();
+      targetAddToCartButton = targetRow.getByRole('button', { name: /add to cart/i }).first();
     }
 
     await expect(
@@ -265,15 +275,19 @@ export class AddToCartPage extends BasePage {
   }
 
   async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
-    const loadingTests = this.page.getByText("Loading tests...", { exact: false }).first();
-    const noDataFound = this.page.getByText("No Data Found", { exact: false }).first();
+    const loadingTests = this.page.getByText('Loading tests...', { exact: false }).first();
+    const noDataFound = this.page.getByText('No Data Found', { exact: false }).first();
 
     if (await loadingTests.isVisible().catch(() => false)) {
-      await expect(loadingTests).toBeHidden({ timeout: timeoutMs }).catch(() => {});
+      try {
+        await expect(loadingTests).toBeHidden({ timeout: timeoutMs });
+      } catch {
+        // Optional wait can time out without failing the flow.
+      }
     }
 
     try {
-      await expect(this.tableRows.first(), "Catalog rows should be visible before add to cart action.").toBeVisible({
+      await expect(this.tableRows.first(), 'Catalog rows should be visible before add to cart action.').toBeVisible({
         timeout: timeoutMs
       });
     } catch (error) {
@@ -297,7 +311,7 @@ export class AddToCartPage extends BasePage {
 
       const text = (await locator.innerText()).trim();
       const amount = this.extractAmount(text);
-      if (typeof amount === "number") {
+      if (typeof amount === 'number') {
         return amount;
       }
     }
@@ -315,7 +329,7 @@ export class AddToCartPage extends BasePage {
 
   private async searchAndGetTargetRow(testQuery: string): Promise<Locator> {
     await this.waitForCatalogRows();
-    await expect(this.testSearchInput, "Test search input should be visible on add-to-cart catalog.").toBeVisible({
+    await expect(this.testSearchInput, 'Test search input should be visible on add-to-cart catalog.').toBeVisible({
       timeout: 15_000
     });
 
@@ -323,16 +337,14 @@ export class AddToCartPage extends BasePage {
     if (await this.searchButton.isVisible().catch(() => false)) {
       await this.searchButton.click();
     } else {
-      await this.testSearchInput.press("Enter");
+      await this.testSearchInput.press('Enter');
     }
 
     const targetRow = this.page
-      .locator("tr")
-      .filter({ hasText: new RegExp(this.escapeRegExp(testQuery), "i") })
+      .locator('tr')
+      .filter({ hasText: new RegExp(this.escapeRegExp(testQuery), 'i') })
       .filter({
-        has: this.page
-          .getByRole("button", { name: /add to cart|remove/i })
-          .first()
+        has: this.page.getByRole('button', { name: /add to cart|remove/i }).first()
       })
       .first();
 
@@ -342,20 +354,18 @@ export class AddToCartPage extends BasePage {
     }
 
     console.warn(`[AddToCart] No visible row matched "${testQuery}". Falling back to the first addable catalog row.`);
-    await this.testSearchInput.fill("");
+    await this.testSearchInput.fill('');
     if (await this.searchButton.isVisible().catch(() => false)) {
       await this.searchButton.click().catch(() => {});
     } else {
-      await this.testSearchInput.press("Enter").catch(() => {});
+      await this.testSearchInput.press('Enter').catch(() => {});
     }
     await this.waitForCatalogRows();
 
     const fallbackRow = this.page
-      .locator("tr")
+      .locator('tr')
       .filter({
-        has: this.page
-          .getByRole("button", { name: /add to cart|remove/i })
-          .first()
+        has: this.page.getByRole('button', { name: /add to cart|remove/i }).first()
       })
       .first();
     await expect(
@@ -365,56 +375,55 @@ export class AddToCartPage extends BasePage {
     return fallbackRow;
   }
 
-  private async assertShareActionWorks(channel: "whatsapp" | "outlook" | "pdf"): Promise<void> {
+  private async assertShareActionWorks(channel: 'whatsapp' | 'outlook' | 'pdf'): Promise<void> {
     const shareControl = this.getShareControl(channel);
     await expect(shareControl, `Share control for ${channel} should be visible on cart page.`).toBeVisible({
       timeout: 15_000
     });
 
-    const href = await shareControl.getAttribute("href").catch(() => null);
+    const href = await shareControl.getAttribute('href').catch(() => null);
     console.log(`[AddToCart] ${channel} shareControl href attribute:`, href);
     if (href) {
-      if (channel === "whatsapp") {
+      if (channel === 'whatsapp') {
         expect(
           /whatsapp|wa\.me|api\.whatsapp\.com/i.test(href),
           `WhatsApp share href should point to WhatsApp. Received: ${href}`
         ).toBe(true);
-      } else if (channel === "outlook") {
+      } else if (channel === 'outlook') {
         expect(
           /mailto:|outlook|office\.com|live\.com/i.test(href),
           `Outlook share href should point to mail client or Outlook. Received: ${href}`
         ).toBe(true);
       } else {
-        expect(
-          /\.pdf\b|pdf/i.test(href),
-          `PDF share href should point to a PDF resource. Received: ${href}`
-        ).toBe(true);
+        expect(/\.pdf\b|pdf/i.test(href), `PDF share href should point to a PDF resource. Received: ${href}`).toBe(
+          true
+        );
       }
     }
 
-    const popupPromise = this.page.waitForEvent("popup", { timeout: 7_000 }).catch(() => null);
-    const downloadPromise = this.page.waitForEvent("download", { timeout: 7_000 }).catch(() => null);
+    const popupPromise = this.page.waitForEvent('popup', { timeout: 7_000 }).catch(() => null);
+    const downloadPromise = this.page.waitForEvent('download', { timeout: 7_000 }).catch(() => null);
 
     await shareControl.click();
 
     const [popup, download] = await Promise.all([popupPromise, downloadPromise]);
-    const popupUrl = popup ? popup.url() : "";
+    const popupUrl = popup ? popup.url() : '';
     console.log(`[AddToCart] ${channel} popupUrl:`, popupUrl);
 
     if (popup) {
       await popup.close().catch(() => {});
     }
 
-    if (channel === "whatsapp") {
+    if (channel === 'whatsapp') {
       const resolvedHref = href || popupUrl;
       expect(
         Boolean(resolvedHref) && /whatsapp|wa\.me|api\.whatsapp\.com/i.test(resolvedHref),
-        "WhatsApp share action should resolve to a WhatsApp URL."
+        'WhatsApp share action should resolve to a WhatsApp URL.'
       ).toBe(true);
       return;
     }
 
-    if (channel === "outlook") {
+    if (channel === 'outlook') {
       const resolvedHref = href || popupUrl;
       if (resolvedHref) {
         expect(
@@ -426,12 +435,16 @@ export class AddToCartPage extends BasePage {
     }
 
     expect(
-      Boolean(download) || /\.pdf\b|pdf/i.test(href ?? "") || /\.pdf\b|pdf/i.test(popupUrl),
-      "PDF share action should trigger a download or open a PDF resource."
+      Boolean(download) || /\.pdf\b|pdf/i.test(href ?? '') || /\.pdf\b|pdf/i.test(popupUrl),
+      'PDF share action should trigger a download or open a PDF resource.'
     ).toBe(true);
   }
 
-  private async waitForRowDiscountApplication(row: Locator, expectedPercent: number, expectedFinalPrice: number): Promise<void> {
+  private async waitForRowDiscountApplication(
+    row: Locator,
+    expectedPercent: number,
+    expectedFinalPrice: number
+  ): Promise<void> {
     await expect
       .poll(
         async () => {
@@ -439,45 +452,43 @@ export class AddToCartPage extends BasePage {
           const finalPrice = await this.readCartRowFinalPrice(row);
           return (
             inputPercent === expectedPercent &&
-            typeof finalPrice === "number" &&
+            typeof finalPrice === 'number' &&
             Math.abs(finalPrice - expectedFinalPrice) < 0.2
           );
         },
         {
           timeout: 20_000,
-          message: "Discount application should update the target cart row pricing."
+          message: 'Discount application should update the target cart row pricing.'
         }
       )
       .toBe(true);
   }
 
   private async readAmountByLabel(labelPattern: RegExp): Promise<number | null> {
-    const matchText = await this.page.evaluate(({ patternSource, patternFlags }) => {
-      const regex = new RegExp(patternSource, patternFlags);
-      const isVisible = (element: Element): boolean => {
-        if (!(element instanceof HTMLElement)) {
-          return false;
-        }
+    const matchText = await this.page.evaluate(
+      ({ patternSource, patternFlags }) => {
+        const regex = new RegExp(patternSource, patternFlags);
+        const isVisible = (element: Element): boolean => {
+          if (!(element instanceof HTMLElement)) {
+            return false;
+          }
 
-        const style = window.getComputedStyle(element);
-        const rect = element.getBoundingClientRect();
-        return (
-          style.visibility !== "hidden" &&
-          style.display !== "none" &&
-          rect.width > 0 &&
-          rect.height > 0
-        );
-      };
+          const style = window.getComputedStyle(element);
+          const rect = element.getBoundingClientRect();
+          return style.visibility !== 'hidden' && style.display !== 'none' && rect.width > 0 && rect.height > 0;
+        };
 
-      const candidates = Array.from(document.querySelectorAll("div, li, p, span, td, th, strong, h1, h2, h3"))
-        .filter((element) => isVisible(element))
-        .map((element) => (element.textContent || "").replace(/\s+/g, " ").trim())
-        .filter((text) => text.length > 0 && text.length <= 140)
-        .filter((text) => regex.test(text) && /\d/.test(text));
+        const candidates = Array.from(document.querySelectorAll('div, li, p, span, td, th, strong, h1, h2, h3'))
+          .filter((element) => isVisible(element))
+          .map((element) => (element.textContent || '').replace(/\s+/g, ' ').trim())
+          .filter((text) => text.length > 0 && text.length <= 140)
+          .filter((text) => regex.test(text) && /\d/.test(text));
 
-      candidates.sort((left, right) => left.length - right.length);
-      return candidates[0] || null;
-    }, { patternSource: labelPattern.source, patternFlags: labelPattern.flags });
+        candidates.sort((left, right) => left.length - right.length);
+        return candidates[0] || null;
+      },
+      { patternSource: labelPattern.source, patternFlags: labelPattern.flags }
+    );
 
     return matchText ? this.extractAmount(matchText) : null;
   }
@@ -487,30 +498,38 @@ export class AddToCartPage extends BasePage {
   }
 
   private getPercentageToggle(row: Locator): Locator {
-    return row.getByRole("button", { name: /^Percentage$/i }).first();
+    return row.getByRole('button', { name: /^Percentage$/i }).first();
   }
 
-  private getShareControl(channel: "whatsapp" | "outlook" | "pdf"): Locator {
-    if (channel === "whatsapp") {
+  private getShareControl(channel: 'whatsapp' | 'outlook' | 'pdf'): Locator {
+    if (channel === 'whatsapp') {
       return this.page
         .locator(
           'a[href*="whatsapp"], a[href*="wa.me"], a[href*="api.whatsapp.com"], button[aria-label*="WhatsApp" i], button[title*="WhatsApp" i]'
         )
-        .or(this.page.getByRole("link", { name: /whatsapp/i }))
-        .or(this.page.getByRole("button", { name: /whatsapp/i }))
-        .or(this.page.locator('a:has(img[src*="whatsapp" i]), a:has(img[alt*="whatsapp" i]), a:has(svg[class*="whatsapp" i])'))
+        .or(this.page.getByRole('link', { name: /whatsapp/i }))
+        .or(this.page.getByRole('button', { name: /whatsapp/i }))
+        .or(
+          this.page.locator(
+            'a:has(img[src*="whatsapp" i]), a:has(img[alt*="whatsapp" i]), a:has(svg[class*="whatsapp" i])'
+          )
+        )
         .or(this.page.locator('img[src*="whatsapp" i], img[alt*="whatsapp" i], svg[class*="whatsapp" i]'))
         .first();
     }
 
-    if (channel === "outlook") {
+    if (channel === 'outlook') {
       return this.page
         .locator(
           'a[href^="mailto:"], a[href*="outlook"], a[href*="office.com"], a[href*="live.com"], button[aria-label*="Outlook" i], button[title*="Outlook" i], button[aria-label*="Email" i], button[title*="Email" i]'
         )
-        .or(this.page.getByRole("link", { name: /outlook|email|mail/i }))
-        .or(this.page.getByRole("button", { name: /outlook|email|mail/i }))
-        .or(this.page.locator('a:has(img[src*="outlook" i]), a:has(img[src*="mail" i]), a:has(img[alt*="outlook" i]), a:has(img[alt*="mail" i])'))
+        .or(this.page.getByRole('link', { name: /outlook|email|mail/i }))
+        .or(this.page.getByRole('button', { name: /outlook|email|mail/i }))
+        .or(
+          this.page.locator(
+            'a:has(img[src*="outlook" i]), a:has(img[src*="mail" i]), a:has(img[alt*="outlook" i]), a:has(img[alt*="mail" i])'
+          )
+        )
         .or(this.page.locator('img[src*="outlook" i], img[src*="mail" i], img[alt*="outlook" i], img[alt*="mail" i]'))
         .first();
     }
@@ -519,15 +538,15 @@ export class AddToCartPage extends BasePage {
       .locator(
         'a[href$=".pdf"], a[href*=".pdf?"], a[href*="pdf"], button[aria-label*="PDF" i], button[title*="PDF" i], button[aria-label*="Download" i], button[title*="Download" i]'
       )
-      .or(this.page.getByRole("link", { name: /pdf|download/i }))
-      .or(this.page.getByRole("button", { name: /pdf|download/i }))
+      .or(this.page.getByRole('link', { name: /pdf|download/i }))
+      .or(this.page.getByRole('button', { name: /pdf|download/i }))
       .or(this.page.locator('a:has(img[src*="pdf" i]), a:has(img[alt*="pdf" i]), a:has(img[src*="download" i])'))
       .or(this.page.locator('img[src*="pdf" i], img[alt*="pdf" i], img[src*="download" i]'))
       .first();
   }
 
   private extractAmount(value: string): number | null {
-    const match = value.replace(/,/g, "").match(/(\d+(?:\.\d{1,2})?)/);
+    const match = value.replace(/,/g, '').match(/(\d+(?:\.\d{1,2})?)/);
     if (!match) {
       return null;
     }
@@ -546,33 +565,42 @@ export class AddToCartPage extends BasePage {
 
   private async readCartCount(): Promise<number> {
     const cartText = (await this.cartButton.innerText()).trim();
-    const parsedCount = Number.parseInt(cartText.replace(/[^\d]/g, ""), 10);
+    const parsedCount = Number.parseInt(cartText.replace(/[^\d]/g, ''), 10);
     expect(Number.isNaN(parsedCount), `Could not parse cart count from "${cartText}".`).toBe(false);
     return parsedCount;
   }
 
   private escapeRegExp(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   private async getDiscountTargetRow(testQuery?: string): Promise<Locator> {
-    const normalizedQuery = (testQuery || "").trim();
+    const normalizedQuery = (testQuery || '').trim();
     if (normalizedQuery) {
-      const matchingRow = this.page.locator("tbody tr").filter({ hasText: new RegExp(this.escapeRegExp(normalizedQuery), "i") }).first();
+      const matchingRow = this.page
+        .locator('tbody tr')
+        .filter({ hasText: new RegExp(this.escapeRegExp(normalizedQuery), 'i') })
+        .first();
       if (await matchingRow.isVisible().catch(() => false)) {
         return matchingRow;
       }
     }
 
-    const firstDiscountRow = this.page.locator("tbody tr").filter({ has: this.page.getByRole("button", { name: /^Percentage$/i }) }).first();
-    await expect(firstDiscountRow, "At least one cart row with discount controls should be visible.").toBeVisible({
+    const firstDiscountRow = this.page
+      .locator('tbody tr')
+      .filter({ has: this.page.getByRole('button', { name: /^Percentage$/i }) })
+      .first();
+    await expect(firstDiscountRow, 'At least one cart row with discount controls should be visible.').toBeVisible({
       timeout: 15_000
     });
     return firstDiscountRow;
   }
 
   private async ensureCartHasItemsAfterOpen(testQuery?: string): Promise<void> {
-    const cartDataRow = this.page.locator("tbody tr").filter({ has: this.page.locator("td") }).first();
+    const cartDataRow = this.page
+      .locator('tbody tr')
+      .filter({ has: this.page.locator('td') })
+      .first();
     const emptyCartState = this.page.getByText(/No items found/i).first();
 
     if (await cartDataRow.isVisible({ timeout: 5_000 }).catch(() => false)) {
@@ -586,14 +614,14 @@ export class AddToCartPage extends BasePage {
 
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       console.warn(
-        `[AddToCart] Cart opened empty after adding "${testQuery || "an item"}". Retrying add flow (attempt ${attempt}).`
+        `[AddToCart] Cart opened empty after adding "${testQuery || 'an item'}". Retrying add flow (attempt ${attempt}).`
       );
 
-      await this.goto("/");
-      await this.closeLocationModal("Delhi").catch(() => {});
+      await this.goto('/');
+      await this.closeLocationModal('Delhi').catch(() => {});
       await this.waitForCatalogRows();
 
-      if ((testQuery || "").trim()) {
+      if ((testQuery || '').trim()) {
         await this.addSpecificItemAndAssertCartCountIncreases(testQuery!);
       } else {
         await this.addFirstItemAndAssertCartCountIncreases();
@@ -607,7 +635,7 @@ export class AddToCartPage extends BasePage {
 
     await expect(
       cartDataRow,
-      `Cart should show at least one row after adding "${testQuery || "an item"}".`
+      `Cart should show at least one row after adding "${testQuery || 'an item'}".`
     ).toBeVisible({ timeout: 15_000 });
   }
 
@@ -615,32 +643,44 @@ export class AddToCartPage extends BasePage {
     const percentageToggle = this.getPercentageToggle(row);
     const discountInput = this.getDiscountInput(row);
 
-    await expect(percentageToggle, "Percentage discount toggle should be visible.").toBeVisible({ timeout: 10_000 });
+    await expect(percentageToggle, 'Percentage discount toggle should be visible.').toBeVisible({ timeout: 10_000 });
     await percentageToggle.click({ force: true });
-    await expect(discountInput, "Discount input should be visible for the selected cart row.").toBeVisible({ timeout: 10_000 });
+    await expect(discountInput, 'Discount input should be visible for the selected cart row.').toBeVisible({
+      timeout: 10_000
+    });
     await discountInput.fill(String(percent));
-    await discountInput.press("Enter").catch(() => {});
+    await discountInput.press('Enter').catch(() => {});
     await discountInput.blur().catch(() => {});
     await this.page.waitForTimeout(1000);
   }
 
   private async readCartRowPrice(row: Locator): Promise<number | null> {
-    const priceText = await row.locator("td").nth(5).innerText().catch(() => "");
+    const priceText = await row
+      .locator('td')
+      .nth(5)
+      .innerText()
+      .catch(() => '');
     return this.extractAmount(priceText);
   }
 
   private async readCartRowFinalPrice(row: Locator): Promise<number | null> {
-    const cellCount = await row.locator("td").count();
+    const cellCount = await row.locator('td').count();
     if (cellCount === 0) {
       return null;
     }
 
-    const finalPriceText = await row.locator("td").nth(cellCount - 2).innerText().catch(() => "");
+    const finalPriceText = await row
+      .locator('td')
+      .nth(cellCount - 2)
+      .innerText()
+      .catch(() => '');
     return this.extractAmount(finalPriceText);
   }
 
   private async readDiscountInputValue(row: Locator): Promise<number | null> {
-    const rawValue = await this.getDiscountInput(row).inputValue().catch(() => "");
+    const rawValue = await this.getDiscountInput(row)
+      .inputValue()
+      .catch(() => '');
     const parsedValue = Number.parseInt(rawValue.trim(), 10);
     return Number.isNaN(parsedValue) ? 0 : parsedValue;
   }
@@ -654,18 +694,18 @@ export class AddToCartPage extends BasePage {
   private async clickFirstAvailableCity(): Promise<boolean> {
     return this.locationModal.evaluate((modal) => {
       const excludedLabels = [
-        "Select your Location",
-        "Search your City",
-        "Use Current Location",
-        "Please select your location first",
-        "Metro Cities",
-        "Other Cities",
-        "Loading cities..."
+        'Select your Location',
+        'Search your City',
+        'Use Current Location',
+        'Please select your location first',
+        'Metro Cities',
+        'Other Cities',
+        'Loading cities...'
       ];
 
-      const normalizeText = (value: string): string => value.replace(/\s+/g, " ").trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>("*")).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || "");
+      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
+      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
+        const label = normalizeText(element.innerText || element.textContent || '');
         if (!label || label.length > 60) {
           return false;
         }
@@ -679,7 +719,7 @@ export class AddToCartPage extends BasePage {
         }
 
         const style = window.getComputedStyle(element);
-        return style.cursor === "pointer";
+        return style.cursor === 'pointer';
       });
 
       if (!fallbackCity) {

@@ -26,12 +26,19 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+        cache: npm
         
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Run TypeScript check
+      run: npm run typecheck
+
+    - name: Run lint
+      run: npm run lint
       
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps chromium
+      run: npx playwright install chromium
       
     - name: Run Playwright tests
       run: npm run test:raw
@@ -43,7 +50,7 @@ jobs:
         npm run report:pdf
         
     - name: Deploy Dashboard to Netlify
-      if: always()
+      if: success()
       run: npm run deploy:dashboard
       
     - name: Send Email Report

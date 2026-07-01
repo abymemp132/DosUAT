@@ -10,6 +10,7 @@
     "test:full": "playwright test --config playwright.full.config.ts",
     "test:full:raw": "playwright test --config playwright.full.config.ts",
     "test:headed": "playwright test --headed",
+    "test:open": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
     "test:dev": "cross-env TEST_ENV=dev playwright test",
@@ -21,6 +22,7 @@
     "deploy:report": "npx netlify-cli deploy --dir=playwright-report --prod",
     "deploy:dashboard": "npx netlify-cli deploy --dir=reports/dashboard-static --prod",
     "dashboard:static": "node utils/generateTestDashboard.js",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write ."
   },
