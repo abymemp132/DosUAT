@@ -34,6 +34,15 @@ export class TestCatalogPage extends BasePage {
 
   async openAndSelectCity(path = '/test', city = 'Delhi'): Promise<void> {
     await this.open(path);
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+    await this.page.addLocatorHandler(this.locationModal, async () => {
+      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+      try {
+        await this.selectCity(city).catch(() => {});
+      } finally {
+        // No re-registration needed here
+      }
+    });
     await this.selectCity(city);
   }
 

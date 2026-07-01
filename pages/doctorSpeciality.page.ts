@@ -41,6 +41,15 @@ export class DoctorSpecialityPage extends BasePage {
 
   async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+    await this.page.addLocatorHandler(this.locationModal, async () => {
+      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+      try {
+        await this.closeLocationModal(city).catch(() => {});
+      } finally {
+        // No re-registration needed here
+      }
+    });
     await this.closeLocationModal(city);
     await this.closeLocationModal(city).catch(() => {});
     await this.waitForCatalogRows();

@@ -41,8 +41,14 @@ export class DiseaseConditionPage extends BasePage {
 
     // Register a global handler: whenever the location modal appears at ANY point
     // during this test (on load, after API calls, on interaction), auto-dismiss it.
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.page.addLocatorHandler(this.locationModal, async () => {
-      await this.selectCity(city);
+      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+      try {
+        await this.selectCity(city).catch(() => {});
+      } finally {
+        // No re-registration needed here
+      }
     });
 
     await this.selectCity(city);

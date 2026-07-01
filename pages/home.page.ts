@@ -80,6 +80,15 @@ export class HomePage extends BasePage {
 
   async ensureHomeReady(city = 'Delhi', baseURL?: string): Promise<void> {
     await this.open(baseURL);
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+    await this.page.addLocatorHandler(this.locationModal, async () => {
+      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+      try {
+        await this.cityLocationModal.closeLocationModal(city).catch(() => {});
+      } finally {
+        // No re-registration needed here as the modal is expected to close
+      }
+    });
     await this.closeLocationModal(city);
     await this.closeLocationModal(city).catch(() => {});
     await this.assertCoreHomeWidgets();
