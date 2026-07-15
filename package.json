@@ -18,7 +18,7 @@
     "test:prod": "cross-env TEST_ENV=prod playwright test",
     "report:pdf": "tsx scripts/generate-report.ts",
     "send-email": "tsx scripts/email-sender.ts",
-    "pipeline": "npm run test:staging && npm run dashboard:static && npm run report:pdf && npm run send-email",
+    "pipeline": "tsx utils/runPipeline.ts",
     "deploy:report": "npx netlify-cli deploy --dir=playwright-report --prod",
     "deploy:dashboard": "npx netlify-cli deploy --dir=reports/dashboard-static --prod",
     "dashboard:static": "node utils/generateTestDashboard.js",

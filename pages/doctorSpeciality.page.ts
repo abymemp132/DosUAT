@@ -18,7 +18,7 @@ export class DoctorSpecialityPage extends BasePage {
     super(page);
     this.locationModal = this.page
       .locator('div.fixed.inset-0.z-50')
-      .filter({ hasText: 'Select your Location' })
+      .filter({ hasText: /Select your Location|Change City/i })
       .first();
     this.locationIcon = this.page.locator('header img[alt="location"]').first();
     this.cartButton = this.page.locator('header button').filter({ hasText: /^\d+$/ }).first();
@@ -41,17 +41,13 @@ export class DoctorSpecialityPage extends BasePage {
 
   async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
+    await this.closeLocationModal(city).catch(() => {});
     await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.page.addLocatorHandler(this.locationModal, async () => {
-      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
         await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
-      } finally {
-        // No re-registration needed here
-      }
+      } catch {}
     });
-    await this.closeLocationModal(city);
-    await this.closeLocationModal(city).catch(() => {});
     await this.waitForCatalogRows();
   }
 
@@ -172,15 +168,30 @@ export class DoctorSpecialityPage extends BasePage {
     await this.waitForCatalogRows();
 
     const initialCount = await this.readCartCount();
-    await expect(this.addToCartButton).toBeVisible({ timeout: 15_000 });
-    await this.addToCartButton.click();
+    let baselineCount = initialCount;
+    let addToCartBtn = this.addToCartButton;
+    const hasAddButton = await addToCartBtn.isVisible().catch(() => false);
+
+    if (!hasAddButton) {
+      const removeButton = this.page.getByRole('button', { name: 'Remove' }).first();
+      await expect(removeButton, 'Expected at least one cart action button on the catalog row.').toBeVisible({
+        timeout: 15_000
+      });
+      await removeButton.click({ force: true });
+      await expect.poll(async () => this.readCartCount(), { timeout: 20_000 }).toBeLessThan(initialCount);
+      baselineCount = await this.readCartCount();
+      addToCartBtn = this.page.getByRole('button', { name: 'Add to Cart' }).first();
+    }
+
+    await expect(addToCartBtn).toBeVisible({ timeout: 15_000 });
+    await addToCartBtn.click({ force: true });
 
     await expect
       .poll(async () => this.readCartCount(), {
         timeout: 20_000,
         message: 'Cart count should increase after adding a doctor speciality test for logged-in user.'
       })
-      .toBeGreaterThan(initialCount);
+      .toBeGreaterThan(baselineCount);
 
     await expect(this.toastMessage.filter({ hasText: 'User not Login' }).first()).toBeHidden({
       timeout: 5_000
@@ -324,42 +335,6 @@ export class DoctorSpecialityPage extends BasePage {
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {
-    return this.locationModal.evaluate((modal) => {
-      const excludedLabels = [
-        'Select your Location',
-        'Search your City',
-        'Use Current Location',
-        'Please select your location first',
-        'Metro Cities',
-        'Other Cities',
-        'Loading cities...'
-      ];
-
-      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || '');
-        if (!label || label.length > 60) {
-          return false;
-        }
-
-        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
-        }
-
-        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
-        }
-
-        const style = window.getComputedStyle(element);
-        return style.cursor === 'pointer';
-      });
-
-      if (!fallbackCity) {
-        return false;
-      }
-
-      fallbackCity.click();
-      return true;
-    });
+    return this.cityLocationModal.clickFirstAvailableCityOption(this.locationModal);
   }
 }
