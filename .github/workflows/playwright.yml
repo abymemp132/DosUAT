@@ -6,7 +6,7 @@ on:
     branches: [ main, master ]
   schedule:
     - cron: '30 2 * * *' # Runs every day at 02:30 UTC (08:00 AM IST)
-    - cron: '30 6 16 7 *' # Runs at 06:30 UTC (12:00 PM IST) on July 16th
+    - cron: '36 6 16 7 *' # Runs at 06:36 UTC (12:06 PM IST) on July 16th
   workflow_dispatch:
 
 jobs:
