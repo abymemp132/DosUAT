@@ -47,4 +47,4 @@ jobs:
           playwright-report/
           reports/dashboard-static/
           reports/results.json
-        retention-days: 14
+        retention-days: 5
