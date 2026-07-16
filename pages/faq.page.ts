@@ -37,7 +37,9 @@ export class FaqPage extends BasePage {
     await this.page.addLocatorHandler(this.locationModal, async () => {
       try {
         await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
-      } catch {}
+      } catch {
+        // intentionally empty
+      }
     });
     await this.waitForFaqsToLoad();
   }
