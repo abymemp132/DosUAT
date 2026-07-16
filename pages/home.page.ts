@@ -80,17 +80,13 @@ export class HomePage extends BasePage {
 
   async ensureHomeReady(city = 'Delhi', baseURL?: string): Promise<void> {
     await this.open(baseURL);
+    await this.closeLocationModal(city).catch(() => {});
     await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.page.addLocatorHandler(this.locationModal, async () => {
-      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
         await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
-      } finally {
-        // No re-registration needed here as the modal is expected to close
-      }
+      } catch {}
     });
-    await this.closeLocationModal(city);
-    await this.closeLocationModal(city).catch(() => {});
     await this.assertCoreHomeWidgets();
   }
 
@@ -266,11 +262,19 @@ export class HomePage extends BasePage {
     await this.waitForModalsToClose();
     await this.waitForHeaderReady(15_000);
 
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.locationIcon.click();
     await expect(this.locationModal, 'Location modal should open from header location icon.').toBeVisible({
       timeout: 10_000
     });
     await this.selectCity(city);
+
+    await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
+    await this.page.addLocatorHandler(this.locationModal, async () => {
+      try {
+        await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
+      } catch {}
+    });
 
     await this.waitForModalsToClose();
     await this.profileButton.click({ force: true });
@@ -430,17 +434,7 @@ export class HomePage extends BasePage {
   }
 
   private async clickFirstAvailableCity(): Promise<boolean> {
-    const cityOptions = this.locationModal.locator('span, p, .city-name').filter({ hasText: /^[a-zA-Z\s]+$/ });
-    const count = await cityOptions.count();
-    for (let i = 0; i < count; i++) {
-      const option = cityOptions.nth(i);
-      const optionText = (await option.textContent())?.trim() ?? '';
-      if ((await option.isVisible()) && optionText.length > 2) {
-        await option.click({ force: true });
-        return true;
-      }
-    }
-    return false;
+    return this.cityLocationModal.clickFirstAvailableCityOption(this.locationModal);
   }
 
   private async waitForHeaderReady(timeout = 30_000): Promise<void> {

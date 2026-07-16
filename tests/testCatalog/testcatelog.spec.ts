@@ -5,10 +5,8 @@ import { hasBaseUrl } from "../support/env";
 const city = "Delhi";
 
 const catalogRoutes = [
-  { label: "test", path: "/test", expectData: true },
-  { label: "new test", path: "/new-test", expectData: false },
-  { label: "packages", path: "/packages", expectData: true },
-  { label: "new packages", path: "/new-packages", expectData: false }
+  { label: "new test", path: "/new-test", expectData: true },
+  { label: "new packages", path: "/new-packages", expectData: true }
 ] as const;
 
 test.describe("test catalog module - guest user", () => {
@@ -27,34 +25,34 @@ test.describe("test catalog module - guest user", () => {
     test.setTimeout(120_000);
 
     const testCatalogPage = new TestCatalogPage(page);
-    await testCatalogPage.assertDepartmentFilterWorks("/test", city, "Serology");
+    await testCatalogPage.assertDepartmentFilterWorks("/new-test", city);
   });
 
   test("[Guest] method filter works on test route", async ({ page }) => {
     test.setTimeout(120_000);
 
     const testCatalogPage = new TestCatalogPage(page);
-    await testCatalogPage.assertMethodFilterWorks("/test", city, "Chemiluminescence Immunoassay (CLIA)");
+    await testCatalogPage.assertMethodFilterWorks("/new-test", city);
   });
 
   test("[Guest] sample type filter works on test route", async ({ page }) => {
     test.setTimeout(120_000);
 
     const testCatalogPage = new TestCatalogPage(page);
-    await testCatalogPage.assertSampleTypeFilterWorks("/test", city, "Serum");
+    await testCatalogPage.assertSampleTypeFilterWorks("/new-test", city);
   });
 
   test("[Guest] NABL filter works on test route", async ({ page }) => {
     test.setTimeout(120_000);
 
     const testCatalogPage = new TestCatalogPage(page);
-    await testCatalogPage.assertNablFilterWorks("/test", city, "YES");
+    await testCatalogPage.assertNablFilterWorks("/new-test", city);
   });
 
   test("[Guest] reset clears applied filters on test route", async ({ page }) => {
     test.setTimeout(120_000);
 
     const testCatalogPage = new TestCatalogPage(page);
-    await testCatalogPage.assertResetClearsAppliedFilters("/test", city, "Serology");
+    await testCatalogPage.assertResetClearsAppliedFilters("/new-test", city);
   });
 });

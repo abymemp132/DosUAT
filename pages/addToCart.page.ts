@@ -31,8 +31,8 @@ export class AddToCartPage extends BasePage {
     this.cartButton = this.page.locator('header button').filter({ hasText: /^\d+$/ }).first();
     this.tableRows = this.page.locator('tbody tr');
     this.addToCartButton = this.page.getByRole('button', { name: /add to cart/i }).first();
-    this.testSearchInput = this.page.locator('input[placeholder="Search by Tests and Packages"]');
-    this.searchButton = this.page.locator('div:has(input[placeholder="Search by Tests and Packages"]) button').first();
+    this.testSearchInput = this.page.locator('input[placeholder*="Search by Tests"]').first();
+    this.searchButton = this.page.locator('div:has(input[placeholder*="Search by Tests"]) button').first();
     this.toastMessage = this.page.locator('.Toastify__toast, [role="alert"], [data-sonner-toast]');
   }
 
@@ -42,72 +42,16 @@ export class AddToCartPage extends BasePage {
 
   async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
+    await this.selectCity(city);
     await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.page.addLocatorHandler(this.locationModal, async () => {
-      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
         await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
-      } finally {
-        // No re-registration needed here
-      }
+      } catch {}
     });
-    await this.selectCity(city);
     await this.waitForCatalogRows();
   }
 
-  async selectCity(city = 'Delhi'): Promise<void> {
-    await this.locationModal.waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
-    if (!(await this.locationModal.isVisible().catch(() => false))) {
-      if (await this.locationIcon.isVisible().catch(() => false)) {
-        await this.locationIcon.click();
-        await this.locationModal.waitFor({ state: 'visible', timeout: 5000 });
-      } else {
-        return;
-      }
-    }
-
-    const loadingCities = this.locationModal.getByText('Loading cities...', { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      try {
-        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
-      } catch {
-        // Optional wait can time out without failing the flow.
-      }
-    }
-
-    const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, 'i'))
-      .first();
-    const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
-        return false;
-      }
-
-      await preferredCityOption.click();
-      return true;
-    };
-
-    if (await clickPreferredCity()) {
-      await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-      return;
-    }
-
-    const searchInput = this.locationModal.getByPlaceholder('Search your City');
-    if (await searchInput.isVisible().catch(() => false)) {
-      await searchInput.fill(city);
-      if (await clickPreferredCity()) {
-        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-        return;
-      }
-      await searchInput.fill('');
-    }
-
-    const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(fallbackCityClicked, `City option "${city}" was not available and no fallback city option was found.`).toBe(
-      true
-    );
-    await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-  }
 
   async assertAddToCartButtonVisible(): Promise<void> {
     await this.waitForCatalogRows();
@@ -700,43 +644,5 @@ export class AddToCartPage extends BasePage {
     return candidates[Math.floor(Math.random() * candidates.length)] ?? 1;
   }
 
-  private async clickFirstAvailableCity(): Promise<boolean> {
-    return this.locationModal.evaluate((modal) => {
-      const excludedLabels = [
-        'Select your Location',
-        'Search your City',
-        'Use Current Location',
-        'Please select your location first',
-        'Metro Cities',
-        'Other Cities',
-        'Loading cities...'
-      ];
 
-      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || '');
-        if (!label || label.length > 60) {
-          return false;
-        }
-
-        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
-        }
-
-        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
-        }
-
-        const style = window.getComputedStyle(element);
-        return style.cursor === 'pointer';
-      });
-
-      if (!fallbackCity) {
-        return false;
-      }
-
-      fallbackCity.click();
-      return true;
-    });
-  }
 }

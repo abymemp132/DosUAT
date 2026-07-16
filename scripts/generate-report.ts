@@ -12,6 +12,11 @@ async function generatePDF() {
     process.exit(1);
   }
 
+  const pdfDir = path.dirname(pdfPath);
+  if (!fs.existsSync(pdfDir)) {
+    fs.mkdirSync(pdfDir, { recursive: true });
+  }
+
   console.log('🚀 Starting PDF Generation from HTML report...');
   const browser = await puppeteer.launch({ 
     headless: true,

@@ -52,70 +52,6 @@ export class LoginPage extends BasePage {
     await this.goto('/');
   }
 
-  async closeLocationModal(city = 'Delhi'): Promise<void> {
-    await this.locationModal.waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
-
-    if (!(await this.locationModal.isVisible())) {
-      return;
-    }
-
-    const loadingCities = this.locationModal.getByText('Loading cities...', { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      try {
-        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
-      } catch {
-        // Optional wait can time out without failing the flow.
-      }
-    }
-
-    const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, 'i'))
-      .first();
-    const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
-        return false;
-      }
-
-      await preferredCityOption.click({ force: true });
-      return true;
-    };
-
-    if (await clickPreferredCity()) {
-      try {
-        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-      } catch {
-        await this.page.keyboard.press('Escape').catch(() => {});
-        const closeBtn = this.locationModal
-          .locator("button[title='Close'], button[aria-label='Close'], button.bg-red-500")
-          .first();
-        if (await closeBtn.isVisible().catch(() => false)) {
-          await closeBtn.click().catch(() => {});
-        }
-      }
-      return;
-    }
-
-    const searchInput = this.locationModal.getByPlaceholder(/Search your City/i);
-    if (await searchInput.isVisible().catch(() => false)) {
-      await searchInput.fill(city);
-      if (await clickPreferredCity()) {
-        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-        return;
-      }
-      await searchInput.fill('');
-    }
-
-    const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(fallbackCityClicked, `City option "${city}" was not available and no fallback city option was found.`).toBe(
-      true
-    );
-    try {
-      await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-    } catch {
-      await this.page.keyboard.press('Escape');
-    }
-    await this.waitForModalsToClose();
-  }
 
   async loginWithEmailOtp(email: string, otp: string, city = 'Delhi'): Promise<void> {
     await this.openHome();
@@ -201,47 +137,5 @@ export class LoginPage extends BasePage {
     }
   }
 
-  private escapeRegExp(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
 
-  private async clickFirstAvailableCity(): Promise<boolean> {
-    return this.locationModal.evaluate((modal) => {
-      const excludedLabels = [
-        'Select your Location',
-        'Search your City',
-        'Use Current Location',
-        'Please select your location first',
-        'Metro Cities',
-        'Other Cities',
-        'Loading cities...'
-      ];
-
-      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || '');
-        if (!label || label.length > 60) {
-          return false;
-        }
-
-        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
-        }
-
-        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
-        }
-
-        const style = window.getComputedStyle(element);
-        return style.cursor === 'pointer';
-      });
-
-      if (!fallbackCity) {
-        return false;
-      }
-
-      fallbackCity.click();
-      return true;
-    });
-  }
 }

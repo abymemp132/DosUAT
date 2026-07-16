@@ -72,25 +72,24 @@ export class LocationModal {
       return;
     }
 
-    const loadingCities = locationModal.getByText('Loading cities...', { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      try {
-        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
-      } catch {
-        // Optional wait can time out without failing the flow.
-      }
+    const loadingCities = locationModal.getByText('Loading cities...', { exact: false }).first();
+    try {
+      await expect(loadingCities).toBeHidden({ timeout: 15000 });
+    } catch {
+      // Optional wait can time out without failing the flow.
     }
 
-    const preferredCityOption = locationModal
-      .getByText(new RegExp(`^\\s*${city.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}\\s*$`, 'i'))
-      .first();
+    const escapedCity = city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
 
     const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false))) {
+      try {
+        await preferredCityOption.waitFor({ state: 'visible', timeout: 5000 });
+        await preferredCityOption.click().catch(() => preferredCityOption.click({ force: true }));
+        return true;
+      } catch {
         return false;
       }
-      await preferredCityOption.click({ force: true });
-      return true;
     };
 
     if (await clickPreferredCity()) {
@@ -117,28 +116,26 @@ export class LocationModal {
       return;
     }
 
-    const loadingCities = locationModal.getByText('Loading cities...', { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      for (let i = 0; i < 20; i++) {
-        if (!(await loadingCities.isVisible().catch(() => false))) {
-          break;
-        }
-        await this.page.waitForTimeout(200);
-      }
-    }
+    const loadingCities = locationModal.getByText('Loading cities...', { exact: false }).first();
+    try {
+      await expect(loadingCities).toBeHidden({ timeout: 15000 });
+    } catch {}
 
-    const escapedCity = city.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+    const escapedCity = city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
 
-    if (await preferredCityOption.isVisible().catch(() => false)) {
-      await preferredCityOption.click({ force: true }).catch(() => {});
-    } else {
+    try {
+      await preferredCityOption.waitFor({ state: 'visible', timeout: 3000 });
+      await preferredCityOption.click().catch(() => preferredCityOption.click({ force: true }));
+    } catch {
       const searchInput = locationModal.getByPlaceholder(/Search your City/i);
-      if (await searchInput.isVisible().catch(() => false)) {
+      try {
+        await searchInput.waitFor({ state: 'visible', timeout: 2000 });
         await searchInput.fill(city).catch(() => {});
-        if (await preferredCityOption.isVisible().catch(() => false)) {
-          await preferredCityOption.click({ force: true }).catch(() => {});
-        }
+        await preferredCityOption.waitFor({ state: 'visible', timeout: 3000 });
+        await preferredCityOption.click().catch(() => preferredCityOption.click({ force: true }));
+      } catch {
+        await this.clickFirstAvailableCityOption(locationModal).catch(() => {});
       }
     }
 
@@ -159,21 +156,25 @@ export class LocationModal {
   }
 
   private async trySelectCityFromModal(locationModal: Locator, city: string): Promise<boolean> {
-    const escapedCity = city.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+    const escapedCity = city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
 
-    if (await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await preferredCityOption.click({ force: true });
+    try {
+      await preferredCityOption.waitFor({ state: 'visible', timeout: 5000 });
+      await preferredCityOption.click().catch(() => preferredCityOption.click({ force: true }));
       return true;
+    } catch {
+      // Ignore and proceed to search
     }
 
     const searchInput = locationModal.getByPlaceholder(/Search your City/i);
-    if (await searchInput.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    try {
+      await searchInput.waitFor({ state: 'visible', timeout: 2000 });
       await searchInput.fill(city);
-      if (await preferredCityOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
-        await preferredCityOption.click({ force: true });
-        return true;
-      }
+      await preferredCityOption.waitFor({ state: 'visible', timeout: 5000 });
+      await preferredCityOption.click().catch(() => preferredCityOption.click({ force: true }));
+      return true;
+    } catch {
       await searchInput.fill('').catch(() => {});
     }
 
@@ -195,8 +196,15 @@ export class LocationModal {
     await this.waitForModalsToClose();
   }
 
-  private async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
-    return locationModal.evaluate((modal) => {
+  public async clickFirstAvailableCityOption(locationModal: Locator): Promise<boolean> {
+    const cityNames = await this.page.evaluate(() => {
+      const modal = Array.from(document.querySelectorAll<HTMLElement>('div.fixed.inset-0.z-50')).find((el) =>
+        /Select your Location|Change City/i.test(el.textContent || '')
+      );
+      if (!modal) {
+        return [];
+      }
+
       const excludedLabels = [
         'Select your Location',
         'Search your City',
@@ -207,31 +215,44 @@ export class LocationModal {
         'Loading cities...'
       ];
 
-      const normalizeText = (value: string): string => value.replace(/\\s+/g, ' ').trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
+      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
+      const elements = Array.from(modal.querySelectorAll<HTMLElement>('*'));
+      const cities: string[] = [];
+
+      for (const element of elements) {
         const label = normalizeText(element.innerText || element.textContent || '');
         if (!label || label.length > 60) {
-          return false;
+          continue;
         }
 
         if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
+          continue;
         }
 
         if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
+          continue;
         }
 
         const style = window.getComputedStyle(element);
-        return style.cursor === 'pointer';
-      });
-
-      if (!fallbackCity) {
-        return false;
+        if (style.cursor === 'pointer') {
+          cities.push(label);
+        }
       }
-
-      fallbackCity.click();
-      return true;
+      return cities;
     });
+
+    if (cityNames.length === 0) {
+      return false;
+    }
+
+    const firstCity = cityNames[0];
+    const escapedCity = firstCity.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&');
+    const cityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
+    
+    if (await cityOption.isVisible().catch(() => false)) {
+      await cityOption.click({ force: true }).catch(() => {});
+      return true;
+    }
+    return false;
   }
 }

@@ -12,7 +12,7 @@ export class BrochurePage extends BasePage {
     super(page);
     this.locationModal = this.page
       .locator('div.fixed.inset-0.z-50')
-      .filter({ hasText: 'Select your Location' })
+      .filter({ hasText: /Select your Location|Change City/i })
       .first();
     this.brochureSearchInput = this.page
       .locator(
@@ -32,66 +32,16 @@ export class BrochurePage extends BasePage {
 
   async openAndSelectCity(city = 'Delhi'): Promise<void> {
     await this.open();
+    await this.selectCity(city).catch(() => {});
     await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
     await this.page.addLocatorHandler(this.locationModal, async () => {
-      await this.page.removeLocatorHandler(this.locationModal).catch(() => {});
       try {
         await this.cityLocationModal.closeLocationModalNoAssertions(city).catch(() => {});
-      } finally {
-        // No re-registration needed here
-      }
+      } catch {}
     });
-    await this.selectCity(city).catch(() => {});
     await this.waitForBrochuresToLoad();
   }
 
-  async selectCity(city = 'Delhi'): Promise<void> {
-    if (!(await this.locationModal.isVisible().catch(() => false))) {
-      return;
-    }
-
-    const loadingCities = this.locationModal.getByText('Loading cities...', { exact: false });
-    if (await loadingCities.isVisible().catch(() => false)) {
-      try {
-        await expect(loadingCities).toBeHidden({ timeout: 30_000 });
-      } catch {
-        // Optional wait can time out without failing the flow.
-      }
-    }
-
-    const preferredCityOption = this.locationModal
-      .getByText(new RegExp(`^\\s*${this.escapeRegExp(city)}\\s*$`, 'i'))
-      .first();
-    const clickPreferredCity = async (): Promise<boolean> => {
-      if (!(await preferredCityOption.isVisible({ timeout: 10_000 }).catch(() => false))) {
-        return false;
-      }
-
-      await preferredCityOption.click();
-      return true;
-    };
-
-    if (await clickPreferredCity()) {
-      await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-      return;
-    }
-
-    const searchInput = this.locationModal.getByPlaceholder('Search your City');
-    if (await searchInput.isVisible().catch(() => false)) {
-      await searchInput.fill(city);
-      if (await clickPreferredCity()) {
-        await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-        return;
-      }
-      await searchInput.fill('');
-    }
-
-    const fallbackCityClicked = await this.clickFirstAvailableCity();
-    expect(fallbackCityClicked, `City option "${city}" was not available and no fallback city option was found.`).toBe(
-      true
-    );
-    await expect(this.locationModal).toBeHidden({ timeout: 10_000 });
-  }
 
   async assertPageShell(): Promise<void> {
     const contentState = await this.waitForBrochuresToLoad();
@@ -288,43 +238,5 @@ export class BrochurePage extends BasePage {
     });
   }
 
-  private async clickFirstAvailableCity(): Promise<boolean> {
-    return this.locationModal.evaluate((modal) => {
-      const excludedLabels = [
-        'Select your Location',
-        'Search your City',
-        'Use Current Location',
-        'Please select your location first',
-        'Metro Cities',
-        'Other Cities',
-        'Loading cities...'
-      ];
 
-      const normalizeText = (value: string): string => value.replace(/\s+/g, ' ').trim();
-      const fallbackCity = Array.from(modal.querySelectorAll<HTMLElement>('*')).find((element) => {
-        const label = normalizeText(element.innerText || element.textContent || '');
-        if (!label || label.length > 60) {
-          return false;
-        }
-
-        if (excludedLabels.some((excluded) => label.toLowerCase() === excluded.toLowerCase())) {
-          return false;
-        }
-
-        if (!/^[A-Za-z][A-Za-z .,'()&-]+$/.test(label)) {
-          return false;
-        }
-
-        const style = window.getComputedStyle(element);
-        return style.cursor === 'pointer';
-      });
-
-      if (!fallbackCity) {
-        return false;
-      }
-
-      fallbackCity.click();
-      return true;
-    });
-  }
 }
