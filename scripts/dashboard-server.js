@@ -1821,7 +1821,7 @@ function buildPdfHtml(payload, filteredCases, context) {
     passRate: `${item.passRate.toFixed(1)}%`,
     apiFailures: item.apiFailures
   }));
-  const runRows = buildRunRowsForPdf(payload, filteredCases).slice(0, 24).map((item) => ({
+  const runRows = buildRunRowsForPdf(payload, filteredCases).slice(0, 5).map((item) => ({
     runId: item.runId,
     startTime: formatDateTimeForExport(item.startTime),
     total: item.total,
