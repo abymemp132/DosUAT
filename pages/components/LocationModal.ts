@@ -119,7 +119,9 @@ export class LocationModal {
     const loadingCities = locationModal.getByText('Loading cities...', { exact: false }).first();
     try {
       await expect(loadingCities).toBeHidden({ timeout: 15000 });
-    } catch {}
+    } catch {
+      // intentionally empty
+    }
 
     const escapedCity = city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const preferredCityOption = locationModal.getByText(new RegExp(`^\\s*${escapedCity}\\s*$`, 'i')).first();
