@@ -4842,7 +4842,14 @@
              <option value="${run.runId}">${run.runId} | ${new Date(run.startTime).toLocaleString()}</option>
           `).join('');
 
-            renderData(r); // Render current report (or filter by first run)
+            // Select and switch to the latest run on load
+            if (runs.length > 0) {
+               const latestRun = runs[runs.length - 1];
+               runSelect.value = latestRun.runId;
+               switchRun(latestRun.runId);
+            } else {
+               renderData(r);
+            }
 
             // Runs history table
             document.getElementById('runCountLabel').textContent = runs.length + ' runs';
@@ -4887,16 +4894,25 @@
          }
       }
 
+
+      function targetRunDurationMs(r) {
+         const runs = (window.__DASHBOARD_REPORT__ || {}).runs || [];
+         const target = runs.find(run => run.runId === r.runId);
+         return target ? (target.durationMs || target.summary?.totalDurationMs) : 0;
+      }
+
       function renderData(r) {
          const cases = r.cases || [];
          const s = r.summary || { total: 0, passed: 0, failed: 0, skipped: 0, totalDurationMs: 0, passRate: 0 };
+         
+         const totalDurationMs = s.totalDurationMs || r.durationMs || targetRunDurationMs(r) || cases.reduce((acc, c) => acc + (c.durationMs || 0), 0) || 0;
 
          // KPIs
          document.getElementById('kTotal').textContent = s.total;
          document.getElementById('kPass').textContent = s.passed;
          document.getElementById('kFail').textContent = s.failed;
          document.getElementById('kSkip').textContent = s.skipped;
-         document.getElementById('kTime').textContent = Math.round(s.totalDurationMs / 1000) + 's';
+         document.getElementById('kTime').textContent = Math.round(totalDurationMs / 1000) + 's';
 
          const tCount = Math.max(1, s.total);
 
