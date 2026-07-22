@@ -5128,7 +5128,7 @@
 
          // 4. Slowest Tests (Top 5)
          const sorted = [...cases].filter(c => c.durationMs > 30000).sort((a, b) => a.durationMs - b.durationMs);
-         document.getElementById('slowestList').innerHTML = sorted.slice(0, 5).map(c => `
+         document.getElementById('slowestList').innerHTML = sorted.map(c => `
           <div class="health-item" style="margin-bottom:4px; padding: 10px;">
              <div class="dot ${c.status}" style="width:8px; height:8px; background:${c.status === 'passed' ? 'var(--accent-green)' : 'var(--accent-red)'}"></div>
              <div style="flex:1; min-width:0; font-size:0.7rem; color:var(--text-main); margin-left:8px; white-space:normal; overflow-wrap:anywhere;">${c.testTitle}</div>
