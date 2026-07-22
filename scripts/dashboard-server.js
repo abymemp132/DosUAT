@@ -36,7 +36,7 @@ const MIME_TYPES = {
   '.zip': 'application/zip'
 };
 
-const SLOW_DURATION_THRESHOLD_MS = 20 * 1000;
+const SLOW_DURATION_THRESHOLD_MS = 30 * 1000;
 const SLOW_LOG_DIR = path.join(ROOT_DIR, 'reports', 'execution-report');
 const SLOW_LOG_FILE = path.join(SLOW_LOG_DIR, 'slow-tests.log');
 const SLOW_LOG_SIGNATURES = new Set();

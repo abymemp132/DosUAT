@@ -17,7 +17,7 @@ function runCommand(command: string, args: string[]): number {
 
 async function main() {
   // Ensure TEST_ENV is set to staging if not already set
-  process.env.TEST_ENV = process.env.TEST_ENV || "staging";
+  process.env.TEST_ENV = process.env.TEST_ENV || "UAT";
 
   // 1. Run both guest and login tests via runTestsWithDashboard
   const testExitCode = runCommand("npm", ["run", "test"]);

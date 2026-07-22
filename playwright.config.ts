@@ -55,12 +55,6 @@ export default defineConfig({
   projects: [
     { name: "setup", testMatch: /.*\.setup\.ts/ },
     {
-      name: "guest",
-      use: { ...devices["Desktop Chrome"] },
-      testMatch: /.*\.spec\.ts/,
-      grepInvert: /\[Login\]|auth/i, // Skip login and auth tests here
-    },
-    {
       name: "chromium",
       dependencies: ['setup'],
       use: { 

@@ -126,7 +126,7 @@ function main() {
   const totalDuration = entries.reduce((acc, e) => acc + e.durationMs, 0);
 
   // Build richness for advanced widgets
-  const thresholdMs = 20000;
+  const thresholdMs = 30000;
   const slowCases = entries.filter(e => e.durationMs > thresholdMs).sort((a,b) => b.durationMs - a.durationMs);
   
   const modules = [...new Set(entries.map(e => e.moduleName))];

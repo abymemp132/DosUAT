@@ -47,24 +47,6 @@
         "metadata": {
           "actualWorkers": 1
         },
-        "id": "guest",
-        "name": "guest",
-        "testDir": "D:/DosUAT/DosUAT/tests",
-        "testIgnore": [
-          "**/modules/**"
-        ],
-        "testMatch": [
-          "/.*\\.spec\\.ts/"
-        ],
-        "timeout": 60000
-      },
-      {
-        "outputDir": "D:/DosUAT/DosUAT/test-results",
-        "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
         "id": "chromium",
         "name": "chromium",
         "testDir": "D:/DosUAT/DosUAT/tests",
@@ -127,28 +109,16 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 21398,
+                  "duration": 1271,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "Saved auth session is expired or invalid (exp: 2026-07-15T11:19:28.000Z). Re-authenticating...\n"
-                    },
-                    {
-                      "text": "Starting login for: twkxl.test@inbox.testmail.app\n"
-                    },
-                    {
-                      "text": "Fetching OTP from Testmail.app...\n"
-                    },
-                    {
-                      "text": "OTP fetched successfully. Entering OTP.\n"
-                    },
-                    {
-                      "text": "Session saved to D:\\DosUAT\\DosUAT\\.auth\\user.json\n"
+                      "text": "Existing session is still valid. Skipping login.\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-16T08:22:37.066Z",
+                  "startTime": "2026-07-22T07:38:09.094Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -160,2558 +130,6 @@
           "file": "setup/auth.setup.ts",
           "line": 68,
           "column": 6
-        }
-      ]
-    },
-    {
-      "title": "brochure\\brochure.spec.ts",
-      "file": "brochure/brochure.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "brochure page - without login (guest user)",
-          "file": "brochure/brochure.spec.ts",
-          "line": 18,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2560,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:00.195Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-2989a17b11c1bb08d4c7",
-              "file": "brochure/brochure.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "[Guest] search by brochure works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3187,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:02.893Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-995d3ad4369697194d5f",
-              "file": "brochure/brochure.spec.ts",
-              "line": 33,
-              "column": 7
-            },
-            {
-              "title": "[Guest] sharing links are reachable",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3958,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:06.095Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-5d603d6907fe8861bc16",
-              "file": "brochure/brochure.spec.ts",
-              "line": 40,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "brochure page - with login (authenticated user)",
-          "file": "brochure/brochure.spec.ts",
-          "line": 48,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17646,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:31:33.749Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-e815deedb3ca0a088e97",
-              "file": "brochure/brochure.spec.ts",
-              "line": 60,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8733,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:31:51.417Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-3990dc849e4643fc6f2d",
-              "file": "brochure/brochure.spec.ts",
-              "line": 66,
-              "column": 7
-            },
-            {
-              "title": "[Login] search by brochure works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8911,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:00.168Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-26f3c7ebc90947db5018",
-              "file": "brochure/brochure.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] sharing links are reachable",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 10627,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:09.096Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "b84f1633d6d859fb8341-a3f418fb66af32326d19",
-              "file": "brochure/brochure.spec.ts",
-              "line": 80,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "diseaseCondition\\viewConditions.spec.ts",
-      "file": "diseaseCondition/viewConditions.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "disease condition page - without login (guest user)",
-          "file": "diseaseCondition/viewConditions.spec.ts",
-          "line": 18,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2625,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:10.078Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-017a2e3359b7680f2834",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "[Guest] condition filter updates catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2544,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:12.720Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-89cbf0280746c92ea581",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 33,
-              "column": 7
-            },
-            {
-              "title": "[Guest] search by test code works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2373,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:15.281Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-094190e9d8a83b024418",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 40,
-              "column": 7
-            },
-            {
-              "title": "[Guest] add to cart shows login warning",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1914,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:17.669Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-15ba0d28e18baf76b0bf",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 47,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "disease condition page - with login (authenticated user)",
-          "file": "diseaseCondition/viewConditions.spec.ts",
-          "line": 55,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 16665,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:19.752Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-24949130206e0fef0c55",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 67,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8775,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:36.437Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-29b5704ddbce2117d4ee",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] condition filter updates catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9491,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:45.233Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-732ee6f97cd38e102fbf",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 80,
-              "column": 7
-            },
-            {
-              "title": "[Login] search by test code works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7965,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:32:54.742Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-b1a9692ff6e071650654",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 87,
-              "column": 7
-            },
-            {
-              "title": "[Login] add to cart updates cart count",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 10775,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:33:02.727Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "5de04c61fa14a488adbf-56d70435fa963fb3380e",
-              "file": "diseaseCondition/viewConditions.spec.ts",
-              "line": 94,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "doctorSpeciality\\searchDoctor.spec.ts",
-      "file": "doctorSpeciality/searchDoctor.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "doctor speciality page - without login (guest user)",
-          "file": "doctorSpeciality/searchDoctor.spec.ts",
-          "line": 18,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17982,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:19.602Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-d9b0496e51a8ee8806c5",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "[Guest] speciality filter updates catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 50392,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:23:37.597Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-49c3fed457d9e6434057",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 33,
-              "column": 7
-            },
-            {
-              "title": "[Guest] search by test code works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 37520,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:24:28.003Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-9a560c1e1a3d4677a504",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 40,
-              "column": 7
-            },
-            {
-              "title": "[Guest] add to cart shows login warning",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 51544,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:25:05.536Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-5b62d7d53eb30885d1c1",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 47,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "doctor speciality page - with login (authenticated user)",
-          "file": "doctorSpeciality/searchDoctor.spec.ts",
-          "line": 55,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 32109,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:33:13.539Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-3bd122ebeaa65ba8cb57",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 67,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 25246,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:33:45.667Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-11639caedec56b85e8f8",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] speciality filter updates catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 56009,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:34:10.934Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-8896f458d6b88d01a9b5",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 80,
-              "column": 7
-            },
-            {
-              "title": "[Login] search by test code works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 42204,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:35:06.963Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-5480d8a694fe0e5d5282",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 87,
-              "column": 7
-            },
-            {
-              "title": "[Login] add to cart updates cart count",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 42585,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:35:49.184Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0b80b027ef5f1c58978f-a87f00a0f3e731b29c05",
-              "file": "doctorSpeciality/searchDoctor.spec.ts",
-              "line": 94,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "faq\\faqNavigation.spec.ts",
-      "file": "faq/faqNavigation.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "faq page - without login (guest user)",
-          "file": "faq/faqNavigation.spec.ts",
-          "line": 18,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads page and shows core widgets",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 3470,
-                      "error": {
-                        "message": "Error: At least one FAQ question should be visible.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
-                        "stack": "Error: At least one FAQ question should be visible.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at FaqPage.assertPageShell (D:\\DosUAT\\DosUAT\\pages\\faq.page.ts:63:101)\n    at D:\\DosUAT\\DosUAT\\tests\\faq\\faqNavigation.spec.ts:30:5",
-                        "location": {
-                          "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                          "column": 101,
-                          "line": 63
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\faq.page.ts:63\n\n\u001b[0m \u001b[90m 61 |\u001b[39m       expect(\u001b[36mawait\u001b[39m categoryButtons\u001b[33m.\u001b[39mcount())\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m     } \u001b[36melse\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 63 |\u001b[39m       expect(\u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mfaqQuestionButtons\u001b[33m.\u001b[39mcount()\u001b[33m,\u001b[39m \u001b[32m'At least one FAQ question should be visible.'\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 64 |\u001b[39m     }\n \u001b[90m 65 |\u001b[39m   }\n \u001b[90m 66 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                            "column": 101,
-                            "line": 63
-                          },
-                          "message": "Error: At least one FAQ question should be visible.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n   at ..\\pages\\faq.page.ts:63\n\n  61 |       expect(await categoryButtons.count()).toBeGreaterThan(0);\n  62 |     } else {\n> 63 |       expect(await this.faqQuestionButtons.count(), 'At least one FAQ question should be visible.').toBeGreaterThan(0);\n     |                                                                                                     ^\n  64 |     }\n  65 |   }\n  66 |\n    at FaqPage.assertPageShell (D:\\DosUAT\\DosUAT\\pages\\faq.page.ts:63:101)\n    at D:\\DosUAT\\DosUAT\\tests\\faq\\faqNavigation.spec.ts:30:5"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:25:57.110Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-e7a92-page-and-shows-core-widgets-guest\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                        "column": 101,
-                        "line": 63
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-52e1e5dd2dc0209a30a6",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "[Guest] question accordion toggles answer visibility",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 13397,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\u001b[22m\n\n    at FaqPage.assertQuestionAccordionWorks (D:\\DosUAT\\DosUAT\\pages\\faq.page.ts:92:34)\n    at D:\\DosUAT\\DosUAT\\tests\\faq\\faqNavigation.spec.ts:37:5",
-                        "location": {
-                          "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                          "column": 34,
-                          "line": 92
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\faq.page.ts:92\n\n\u001b[0m \u001b[90m 90 |\u001b[39m     \u001b[36mconst\u001b[39m answerPanel \u001b[33m=\u001b[39m questionCard\u001b[33m.\u001b[39mlocator(\u001b[32m'div.p-4.border-t.border-gray-200.bg-white'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 92 |\u001b[39m     \u001b[36mawait\u001b[39m expect(questionButton)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 93 |\u001b[39m\n \u001b[90m 94 |\u001b[39m     \u001b[36mconst\u001b[39m answerInitiallyVisible \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m answerPanel\u001b[33m.\u001b[39misVisible()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 95 |\u001b[39m     \u001b[36mawait\u001b[39m questionButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                            "column": 34,
-                            "line": 92
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\u001b[22m\n\n\n   at ..\\pages\\faq.page.ts:92\n\n  90 |     const answerPanel = questionCard.locator('div.p-4.border-t.border-gray-200.bg-white').first();\n  91 |\n> 92 |     await expect(questionButton).toBeVisible({ timeout: 10_000 });\n     |                                  ^\n  93 |\n  94 |     const answerInitiallyVisible = await answerPanel.isVisible().catch(() => false);\n  95 |     await questionButton.click();\n    at FaqPage.assertQuestionAccordionWorks (D:\\DosUAT\\DosUAT\\pages\\faq.page.ts:92:34)\n    at D:\\DosUAT\\DosUAT\\tests\\faq\\faqNavigation.spec.ts:37:5"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:02.160Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\faq-faqNavigation-faq-page-f7843-n-toggles-answer-visibility-guest\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\DosUAT\\DosUAT\\pages\\faq.page.ts",
-                        "column": 34,
-                        "line": 92
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-1b4748db39b74429bd91",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 33,
-              "column": 7
-            },
-            {
-              "title": "[Guest] show more loads additional FAQ questions",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2645,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:16.559Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-78aa88170c2cbd95ca5f",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 40,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "faq page - with login (authenticated user)",
-          "file": "faq/faqNavigation.spec.ts",
-          "line": 48,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17498,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:36:31.797Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-919bc57c8b2ff8125019",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 60,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9237,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:36:49.312Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-189b74109129fd27dd77",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 66,
-              "column": 7
-            },
-            {
-              "title": "[Login] question accordion toggles answer visibility",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8297,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:36:58.566Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-47c24a5e5cd2f82a9fcf",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] show more loads additional FAQ questions",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9380,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:37:06.882Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "ff1f20f6e1c899c26f50-183213b73bb29490f3c9",
-              "file": "faq/faqNavigation.spec.ts",
-              "line": 80,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "forms\\consentForm.spec.ts",
-      "file": "forms/consentForm.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "test requisition & consent forms page - without login (guest user)",
-          "file": "forms/consentForm.spec.ts",
-          "line": 18,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2301,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:19.409Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-a7f6aecdc93bd44f0911",
-              "file": "forms/consentForm.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "[Guest] search by consent works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2007,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:21.726Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-ed8536a6a665b301158a",
-              "file": "forms/consentForm.spec.ts",
-              "line": 33,
-              "column": 7
-            },
-            {
-              "title": "[Guest] sharing links are reachable",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9153,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:23.753Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-b0977b156c4d84a91d22",
-              "file": "forms/consentForm.spec.ts",
-              "line": 40,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "test requisition & consent forms page - with login (authenticated user)",
-          "file": "forms/consentForm.spec.ts",
-          "line": 48,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 16683,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:37:16.287Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-b41d488dbfcab1d24ae1",
-              "file": "forms/consentForm.spec.ts",
-              "line": 60,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads page and shows core widgets",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8841,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:37:32.984Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-4a95f1185e3ef2a16d6d",
-              "file": "forms/consentForm.spec.ts",
-              "line": 66,
-              "column": 7
-            },
-            {
-              "title": "[Login] search by consent works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7901,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:37:41.844Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-1478c2e72ceb3e1c7088",
-              "file": "forms/consentForm.spec.ts",
-              "line": 73,
-              "column": 7
-            },
-            {
-              "title": "[Login] sharing links are reachable",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 14710,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:37:49.761Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "628efddc50c9da5ad7b8-d029f20b76a9d0648ea8",
-              "file": "forms/consentForm.spec.ts",
-              "line": 80,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "home\\homepage.spec.ts",
-      "file": "home/homepage.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "home page - without login (guest user)",
-          "file": "home/homepage.spec.ts",
-          "line": 16,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] loads home page and shows core modules",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2807,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:32.969Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-3631342cbc3bcfb6ee8d",
-              "file": "home/homepage.spec.ts",
-              "line": 24,
-              "column": 7
-            },
-            {
-              "title": "[Guest] all visible home page buttons are working",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 180000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2880,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:35.794Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-d2bdba6e34013ac6d9f4",
-              "file": "home/homepage.spec.ts",
-              "line": 30,
-              "column": 7
-            },
-            {
-              "title": "[Guest] eye icon opens and closes details",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 19782,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:38.694Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-3958f6317a151c0abebe",
-              "file": "home/homepage.spec.ts",
-              "line": 37,
-              "column": 7
-            },
-            {
-              "title": "[Guest] download selected shows login warning",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 19831,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:26:58.501Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-5d76aba02918a9557539",
-              "file": "home/homepage.spec.ts",
-              "line": 44,
-              "column": 7
-            },
-            {
-              "title": "[Guest] top navigation links route to expected pages",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 51966,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:27:18.355Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-712cdfad92aa41d98a36",
-              "file": "home/homepage.spec.ts",
-              "line": 51,
-              "column": 7
-            },
-            {
-              "title": "[Guest] all header icons open expected page or modal",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 23202,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:28:10.341Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-e1a5755b0bb995a6a84f",
-              "file": "home/homepage.spec.ts",
-              "line": 58,
-              "column": 7
-            },
-            {
-              "title": "[Guest] search works with icon click and Enter key",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 11229,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:28:33.564Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-5558809bb6180215934c",
-              "file": "home/homepage.spec.ts",
-              "line": 65,
-              "column": 7
-            },
-            {
-              "title": "[Guest] add to cart shows login warning",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 11847,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:28:44.817Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-418e10dbf20f4586dcb5",
-              "file": "home/homepage.spec.ts",
-              "line": 72,
-              "column": 7
-            },
-            {
-              "title": "[Guest] pagination works on home catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 12120,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:28:56.685Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-e4d50099da18853e9de4",
-              "file": "home/homepage.spec.ts",
-              "line": 77,
-              "column": 7
-            },
-            {
-              "title": "[Guest] footer links are visible and correct",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2723,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:08.830Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-3a11a7ae26782a0ce38e",
-              "file": "home/homepage.spec.ts",
-              "line": 82,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "home page - with login (authenticated user)",
-          "file": "home/homepage.spec.ts",
-          "line": 88,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Login] saved session is active",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17509,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:38:15.725Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-8e4852d30e98aedb87b8",
-              "file": "home/homepage.spec.ts",
-              "line": 100,
-              "column": 7
-            },
-            {
-              "title": "[Login] loads home page and shows core modules",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8984,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:38:33.259Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-57334fb53de332667c33",
-              "file": "home/homepage.spec.ts",
-              "line": 106,
-              "column": 7
-            },
-            {
-              "title": "[Login] top navigation links route to expected pages",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 180000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 57646,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:38:42.258Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-97a6afa1540ba241d271",
-              "file": "home/homepage.spec.ts",
-              "line": 114,
-              "column": 7
-            },
-            {
-              "title": "[Login] all header icons open expected page or modal",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 180000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 10971,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:39:39.921Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-18b1cf96ed12955bd092",
-              "file": "home/homepage.spec.ts",
-              "line": 121,
-              "column": 7
-            },
-            {
-              "title": "[Login] search works with icon click and Enter key",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17549,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:39:50.910Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-b8d71fa3130a08c3069f",
-              "file": "home/homepage.spec.ts",
-              "line": 128,
-              "column": 7
-            },
-            {
-              "title": "[Login] eye icon opens and closes details",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 32477,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:40:08.476Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-cc48f491fd47124a1039",
-              "file": "home/homepage.spec.ts",
-              "line": 135,
-              "column": 7
-            },
-            {
-              "title": "[Login] add to cart updates cart count",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 19163,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:40:40.970Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-78c61b27ab0e57b50e23",
-              "file": "home/homepage.spec.ts",
-              "line": 142,
-              "column": 7
-            },
-            {
-              "title": "[Login] download selected works without login modal",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 27462,
-                      "error": {
-                        "message": "Error: Download should be triggered.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: Download should be triggered.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at HomePage.assertLoggedInDownloadSelectedWorks (D:\\DosUAT\\DosUAT\\pages\\home.page.ts:408:73)\n    at D:\\DosUAT\\DosUAT\\tests\\home\\homepage.spec.ts:153:5",
-                        "location": {
-                          "file": "D:\\DosUAT\\DosUAT\\pages\\home.page.ts",
-                          "column": 73,
-                          "line": 408
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\home.page.ts:408\n\n\u001b[0m \u001b[90m 406 |\u001b[39m     \u001b[36mconst\u001b[39m downloadPromise \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForEvent(\u001b[32m'download'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mnull\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 407 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 408 |\u001b[39m     \u001b[36mawait\u001b[39m downloadSelectedButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 409 |\u001b[39m     \u001b[36mconst\u001b[39m [popup\u001b[33m,\u001b[39m download] \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([popupPromise\u001b[33m,\u001b[39m downloadPromise])\u001b[33m;\u001b[39m\n \u001b[90m 410 |\u001b[39m\n \u001b[90m 411 |\u001b[39m     \u001b[36mif\u001b[39m (popup) \u001b[36mawait\u001b[39m popup\u001b[33m.\u001b[39mclose()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\DosUAT\\DosUAT\\pages\\home.page.ts",
-                            "column": 73,
-                            "line": 408
-                          },
-                          "message": "Error: Download should be triggered.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   at ..\\pages\\home.page.ts:408\n\n  406 |     const downloadPromise = this.page.waitForEvent('download', { timeout: 10_000 }).catch(() => null);\n  407 |\n> 408 |     await downloadSelectedButton.click();\n      |                                                                        ^\n  409 |     const [popup, download] = await Promise.all([popupPromise, downloadPromise]);\n  410 |\n  411 |     if (popup) await popup.close().catch(() => {});\n    at HomePage.assertLoggedInDownloadSelectedWorks (D:\\DosUAT\\DosUAT\\pages\\home.page.ts:408:73)\n    at D:\\DosUAT\\DosUAT\\tests\\home\\homepage.spec.ts:153:5"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:41:00.147Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\home-homepage-home-page----2f68a-d-works-without-login-modal-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\home-homepage-home-page----2f68a-d-works-without-login-modal-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\DosUAT\\DosUAT\\test-results\\home-homepage-home-page----2f68a-d-works-without-login-modal-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\DosUAT\\DosUAT\\pages\\home.page.ts",
-                        "column": 73,
-                        "line": 408
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-40cb99ab70335261ec53",
-              "file": "home/homepage.spec.ts",
-              "line": 149,
-              "column": 7
-            },
-            {
-              "title": "[Login] pagination works on home catalog",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17291,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:41:29.050Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1791b6ab6f22df4f3012-b01537e33b57a86e0f2d",
-              "file": "home/homepage.spec.ts",
-              "line": 156,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "smoke.spec.ts",
-      "file": "smoke.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "Smoke Test Suite",
-          "file": "smoke.spec.ts",
-          "line": 3,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Verify Homepage Loads",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1087,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Running smoke test on: https://dos-web-uat.abym.us/\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:11.595Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "4219922fea2e2bd3c691-ba0397fd9a1463c9e8af",
-              "file": "smoke.spec.ts",
-              "line": 4,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "testCatalog\\testcatelog.spec.ts",
-      "file": "testCatalog/testcatelog.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "test catalog module - guest user",
-          "file": "testCatalog/testcatelog.spec.ts",
-          "line": 12,
-          "column": 6,
-          "specs": [
-            {
-              "title": "[Guest] new test route loads expected catalog state",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3418,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:12.717Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-3ab60c7fa44c7a1b1a86",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 16,
-              "column": 9
-            },
-            {
-              "title": "[Guest] new packages route loads expected catalog state",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2860,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:16.151Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-77054c4f1b900b451572",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 16,
-              "column": 9
-            },
-            {
-              "title": "[Guest] department filter works on test route",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3344,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:19.028Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-7ede013816533d78b25d",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 24,
-              "column": 7
-            },
-            {
-              "title": "[Guest] method filter works on test route",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2809,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:22.390Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-c7818524b7ccc64a0b9d",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 31,
-              "column": 7
-            },
-            {
-              "title": "[Guest] sample type filter works on test route",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3086,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:25.213Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-c3d2a2e0d94fc53b95f9",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 38,
-              "column": 7
-            },
-            {
-              "title": "[Guest] NABL filter works on test route",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2540,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:28.314Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-0f7ccfd678e59f9f5be0",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 45,
-              "column": 7
-            },
-            {
-              "title": "[Guest] reset clears applied filters on test route",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "guest",
-                  "projectName": "guest",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3018,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-16T08:29:30.868Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a7b910accbf806e87b2-55d3cc7725b4396f2162",
-              "file": "testCatalog/testcatelog.spec.ts",
-              "line": 52,
-              "column": 7
-            }
-          ]
         }
       ]
     },
@@ -2741,15 +159,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 17761,
+                      "duration": 17828,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-16T08:29:34.661Z",
+                      "startTime": "2026-07-22T07:38:11.186Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2775,10 +193,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 27314,
+                      "duration": 25373,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -2787,7 +205,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-07-16T08:29:52.574Z",
+                      "startTime": "2026-07-22T07:38:29.140Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2813,17 +231,17 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 31543,
+                      "duration": 32528,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "[AddToCart] whatsapp shareControl href attribute: \u001b[1mnull\u001b[22m\n"
                         },
                         {
-                          "text": "[AddToCart] whatsapp popupUrl: https://api.whatsapp.com/send/?text=Dear+Sir%2FMa%27am%2C%0A%0AKindly+review+your+quotation+by+clicking+on+the+link+below%3A%0A%0Ahttps%3A%2F%2Foncquest-admin-uat.abym.us%2Fapi%2Fquotation%2Ffq1e0c57e9b92b%0A%0AThank+you+for+choosing+Oncquest+Labs.+We+appreciate+your+trust+in+our+services.%0A%0AFor+any+assistance%2C+please+feel+free+to+contact+us.%0A%0AWarm+regards%2C%0ATeam+Oncquest+Labs%0A%2B0124-6650000%0Ateamcustomercare%40oncquest.net%0A&type=custom_url&app_absent=0\n"
+                          "text": "[AddToCart] whatsapp popupUrl: https://api.whatsapp.com/send/?text=Dear+Sir%2FMa%27am%2C%0A%0AKindly+review+your+quotation+by+clicking+on+the+link+below%3A%0A%0Ahttps%3A%2F%2Foncquest-admin-uat.abym.us%2Fapi%2Fquotation%2Ffqae2eeb6426a3%0A%0AThank+you+for+choosing+Oncquest+Labs.+We+appreciate+your+trust+in+our+services.%0A%0AFor+any+assistance%2C+please+feel+free+to+contact+us.%0A%0AWarm+regards%2C%0ATeam+Oncquest+Labs%0A%2B0124-6650000%0Ateamcustomercare%40oncquest.net%0A&type=custom_url&app_absent=0\n"
                         }
                       ],
                       "stderr": [
@@ -2832,7 +250,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-07-16T08:30:19.906Z",
+                      "startTime": "2026-07-22T07:38:54.529Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2858,10 +276,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 32973,
+                      "duration": 33228,
                       "errors": [],
                       "stdout": [
                         {
@@ -2871,9 +289,13 @@
                           "text": "[AddToCart] outlook popupUrl: \n"
                         }
                       ],
-                      "stderr": [],
+                      "stderr": [
+                        {
+                          "text": "[AddToCart] No visible row matched \"Thyroid\". Falling back to the first addable catalog row.\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2026-07-16T08:30:51.467Z",
+                      "startTime": "2026-07-22T07:39:27.074Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2916,15 +338,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9235,
+                      "duration": 9505,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-16T08:31:24.478Z",
+                      "startTime": "2026-07-22T07:40:00.330Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2935,6 +357,839 @@
               "id": "231ca1f0f4db3e4958c3-76f59c152dd156330fc0",
               "file": "auth/login.spec.ts",
               "line": 14,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "brochure\\brochure.spec.ts",
+      "file": "brochure/brochure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "brochure page - with login (authenticated user)",
+          "file": "brochure/brochure.spec.ts",
+          "line": 48,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17822,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:40:09.864Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b84f1633d6d859fb8341-e815deedb3ca0a088e97",
+              "file": "brochure/brochure.spec.ts",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads page and shows core widgets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8707,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:40:27.708Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b84f1633d6d859fb8341-3990dc849e4643fc6f2d",
+              "file": "brochure/brochure.spec.ts",
+              "line": 66,
+              "column": 7
+            },
+            {
+              "title": "[Login] search by brochure works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8756,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:40:36.432Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b84f1633d6d859fb8341-26f3c7ebc90947db5018",
+              "file": "brochure/brochure.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "[Login] sharing links are reachable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10167,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:40:45.205Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b84f1633d6d859fb8341-a3f418fb66af32326d19",
+              "file": "brochure/brochure.spec.ts",
+              "line": 80,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "diseaseCondition\\viewConditions.spec.ts",
+      "file": "diseaseCondition/viewConditions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "disease condition page - with login (authenticated user)",
+          "file": "diseaseCondition/viewConditions.spec.ts",
+          "line": 55,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:40:55.398Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5de04c61fa14a488adbf-24949130206e0fef0c55",
+              "file": "diseaseCondition/viewConditions.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads page and shows core widgets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8732,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:41:13.654Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5de04c61fa14a488adbf-29b5704ddbce2117d4ee",
+              "file": "diseaseCondition/viewConditions.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "[Login] condition filter updates catalog",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9141,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:41:22.405Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5de04c61fa14a488adbf-732ee6f97cd38e102fbf",
+              "file": "diseaseCondition/viewConditions.spec.ts",
+              "line": 80,
+              "column": 7
+            },
+            {
+              "title": "[Login] search by test code works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8939,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:41:31.563Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5de04c61fa14a488adbf-b1a9692ff6e071650654",
+              "file": "diseaseCondition/viewConditions.spec.ts",
+              "line": 87,
+              "column": 7
+            },
+            {
+              "title": "[Login] add to cart updates cart count",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10549,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:41:40.522Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5de04c61fa14a488adbf-56d70435fa963fb3380e",
+              "file": "diseaseCondition/viewConditions.spec.ts",
+              "line": 94,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "doctorSpeciality\\searchDoctor.spec.ts",
+      "file": "doctorSpeciality/searchDoctor.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "doctor speciality page - with login (authenticated user)",
+          "file": "doctorSpeciality/searchDoctor.spec.ts",
+          "line": 55,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33634,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:41:51.101Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b80b027ef5f1c58978f-3bd122ebeaa65ba8cb57",
+              "file": "doctorSpeciality/searchDoctor.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads page and shows core widgets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24590,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:42:24.759Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b80b027ef5f1c58978f-11639caedec56b85e8f8",
+              "file": "doctorSpeciality/searchDoctor.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "[Login] speciality filter updates catalog",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 56657,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:42:49.365Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b80b027ef5f1c58978f-8896f458d6b88d01a9b5",
+              "file": "doctorSpeciality/searchDoctor.spec.ts",
+              "line": 80,
+              "column": 7
+            },
+            {
+              "title": "[Login] search by test code works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 41979,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:43:46.040Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b80b027ef5f1c58978f-5480d8a694fe0e5d5282",
+              "file": "doctorSpeciality/searchDoctor.spec.ts",
+              "line": 87,
+              "column": 7
+            },
+            {
+              "title": "[Login] add to cart updates cart count",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 42503,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:44:28.042Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b80b027ef5f1c58978f-a87f00a0f3e731b29c05",
+              "file": "doctorSpeciality/searchDoctor.spec.ts",
+              "line": 94,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "faq\\faqNavigation.spec.ts",
+      "file": "faq/faqNavigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "faq page - with login (authenticated user)",
+          "file": "faq/faqNavigation.spec.ts",
+          "line": 48,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16636,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:45:10.579Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff1f20f6e1c899c26f50-919bc57c8b2ff8125019",
+              "file": "faq/faqNavigation.spec.ts",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads page and shows core widgets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9187,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:45:27.243Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff1f20f6e1c899c26f50-189b74109129fd27dd77",
+              "file": "faq/faqNavigation.spec.ts",
+              "line": 66,
+              "column": 7
+            },
+            {
+              "title": "[Login] question accordion toggles answer visibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9087,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:45:36.446Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff1f20f6e1c899c26f50-47c24a5e5cd2f82a9fcf",
+              "file": "faq/faqNavigation.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "[Login] show more loads additional FAQ questions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8083,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:45:45.547Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff1f20f6e1c899c26f50-183213b73bb29490f3c9",
+              "file": "faq/faqNavigation.spec.ts",
+              "line": 80,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "forms\\consentForm.spec.ts",
+      "file": "forms/consentForm.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "test requisition & consent forms page - with login (authenticated user)",
+          "file": "forms/consentForm.spec.ts",
+          "line": 48,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:45:53.656Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "628efddc50c9da5ad7b8-b41d488dbfcab1d24ae1",
+              "file": "forms/consentForm.spec.ts",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads page and shows core widgets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7951,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:46:11.386Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "628efddc50c9da5ad7b8-4a95f1185e3ef2a16d6d",
+              "file": "forms/consentForm.spec.ts",
+              "line": 66,
+              "column": 7
+            },
+            {
+              "title": "[Login] search by consent works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7950,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:46:19.354Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "628efddc50c9da5ad7b8-1478c2e72ceb3e1c7088",
+              "file": "forms/consentForm.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "[Login] sharing links are reachable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13889,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:46:27.320Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "628efddc50c9da5ad7b8-d029f20b76a9d0648ea8",
+              "file": "forms/consentForm.spec.ts",
+              "line": 80,
               "column": 7
             }
           ]
@@ -2960,10 +1215,10 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 4,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 11197,
+                  "duration": 11078,
                   "errors": [],
                   "stdout": [
                     {
@@ -2975,7 +1230,7 @@
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-16T08:38:04.501Z",
+                  "startTime": "2026-07-22T07:46:41.233Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2989,15 +1244,338 @@
           "column": 5
         }
       ]
+    },
+    {
+      "title": "home\\homepage.spec.ts",
+      "file": "home/homepage.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "home page - with login (authenticated user)",
+          "file": "home/homepage.spec.ts",
+          "line": 88,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[Login] saved session is active",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16600,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:46:52.335Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-8e4852d30e98aedb87b8",
+              "file": "home/homepage.spec.ts",
+              "line": 100,
+              "column": 7
+            },
+            {
+              "title": "[Login] loads home page and shows core modules",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8903,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:47:08.957Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-57334fb53de332667c33",
+              "file": "home/homepage.spec.ts",
+              "line": 106,
+              "column": 7
+            },
+            {
+              "title": "[Login] top navigation links route to expected pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 59170,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:47:17.879Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-97a6afa1540ba241d271",
+              "file": "home/homepage.spec.ts",
+              "line": 114,
+              "column": 7
+            },
+            {
+              "title": "[Login] all header icons open expected page or modal",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10932,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:48:17.064Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-18b1cf96ed12955bd092",
+              "file": "home/homepage.spec.ts",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "[Login] search works with icon click and Enter key",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16400,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:48:28.015Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-b8d71fa3130a08c3069f",
+              "file": "home/homepage.spec.ts",
+              "line": 128,
+              "column": 7
+            },
+            {
+              "title": "[Login] eye icon opens and closes details",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24905,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:48:44.434Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-cc48f491fd47124a1039",
+              "file": "home/homepage.spec.ts",
+              "line": 135,
+              "column": 7
+            },
+            {
+              "title": "[Login] add to cart updates cart count",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19097,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:49:09.358Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-78c61b27ab0e57b50e23",
+              "file": "home/homepage.spec.ts",
+              "line": 142,
+              "column": 7
+            },
+            {
+              "title": "[Login] download selected works without login modal",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25359,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:49:28.473Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-40cb99ab70335261ec53",
+              "file": "home/homepage.spec.ts",
+              "line": 149,
+              "column": 7
+            },
+            {
+              "title": "[Login] pagination works on home catalog",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17190,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-22T07:49:53.848Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1791b6ab6f22df4f3012-b01537e33b57a86e0f2d",
+              "file": "home/homepage.spec.ts",
+              "line": 156,
+              "column": 7
+            }
+          ]
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-16T08:22:36.271Z",
-    "duration": 1150333.535,
-    "expected": 70,
+    "startTime": "2026-07-22T07:38:08.501Z",
+    "duration": 722733.9130000001,
+    "expected": 38,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 0,
     "flaky": 0
   }
 }

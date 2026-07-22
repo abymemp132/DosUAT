@@ -1104,7 +1104,7 @@
                <div
                   style="margin-top:auto; padding:12px; background:rgba(255,107,107,0.05); color:var(--accent-red); font-size:0.8rem; font-weight:700; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px;"
                   id="slowWarn">
-                  Warning: 0 case(s) exceeded 20s threshold.
+                  Warning: 0 case(s) exceeded 30s threshold.
                </div>
             </div>
 
@@ -1358,32 +1358,32 @@
 
    <script>
       window.__DASHBOARD_REPORT__ = {
-  "generatedAt": "2026-07-16T08:41:47.247Z",
+  "generatedAt": "2026-07-22T07:50:11.569Z",
   "project": "Dos",
   "environment": "UAT / Performance",
   "summary": {
-    "total": 73,
-    "passed": 70,
-    "failed": 3,
+    "total": 38,
+    "passed": 38,
+    "failed": 0,
     "flaky": 0,
     "skipped": 0,
     "apiFails": 0,
-    "riskCases": 3,
-    "attempts": 73,
-    "totalDurationMs": 1140882,
-    "averageDurationMs": 15628.520547945205,
-    "passRate": 95.8904109589041
+    "riskCases": 0,
+    "attempts": 38,
+    "totalDurationMs": 720278,
+    "averageDurationMs": 18954.684210526317,
+    "passRate": 100
   },
   "metadata": {
     "os": "win32",
     "node": "v24.18.0",
     "engine": "Playwright",
-    "totalModules": 11
+    "totalModules": 9
   },
-  "thresholdMs": 20000,
+  "thresholdMs": 30000,
   "slowCaseSummary": {
-    "thresholdMs": 20000,
-    "total": 17,
+    "thresholdMs": 30000,
+    "total": 11,
     "cases": [
       {
         "title": "[Login] top navigation links route to expected pages",
@@ -1391,16 +1391,16 @@
         "line": 114,
         "moduleName": "Home",
         "status": "passed",
-        "durationMs": 57646,
-        "startTime": "2026-07-16T08:38:42.258Z",
+        "durationMs": 59170,
+        "startTime": "2026-07-22T07:47:17.879Z",
         "fullPath": "home\\homepage.spec.ts > home page - with login (authenticated user)",
         "errorMessage": "",
         "attempts": [
           {
             "id": "attempt-0",
             "status": "passed",
-            "durationMs": 57646,
-            "startTime": "2026-07-16T08:38:42.258Z",
+            "durationMs": 59170,
+            "startTime": "2026-07-22T07:47:17.879Z",
             "stdout": "",
             "stderr": ""
           }
@@ -1413,16 +1413,16 @@
         "line": 80,
         "moduleName": "DoctorSpeciality",
         "status": "passed",
-        "durationMs": 56009,
-        "startTime": "2026-07-16T08:34:10.934Z",
+        "durationMs": 56657,
+        "startTime": "2026-07-22T07:42:49.365Z",
         "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
         "errorMessage": "",
         "attempts": [
           {
             "id": "attempt-0",
             "status": "passed",
-            "durationMs": 56009,
-            "startTime": "2026-07-16T08:34:10.934Z",
+            "durationMs": 56657,
+            "startTime": "2026-07-22T07:42:49.365Z",
             "stdout": "",
             "stderr": ""
           }
@@ -1430,43 +1430,21 @@
         "flaky": false
       },
       {
-        "title": "[Guest] top navigation links route to expected pages",
-        "file": "home/homepage.spec.ts",
-        "line": 51,
-        "moduleName": "Home",
-        "status": "passed",
-        "durationMs": 51966,
-        "startTime": "2026-07-16T08:27:18.355Z",
-        "fullPath": "home\\homepage.spec.ts > home page - without login (guest user)",
-        "errorMessage": "",
-        "attempts": [
-          {
-            "id": "attempt-0",
-            "status": "passed",
-            "durationMs": 51966,
-            "startTime": "2026-07-16T08:27:18.355Z",
-            "stdout": "",
-            "stderr": ""
-          }
-        ],
-        "flaky": false
-      },
-      {
-        "title": "[Guest] add to cart shows login warning",
+        "title": "[Login] add to cart updates cart count",
         "file": "doctorSpeciality/searchDoctor.spec.ts",
-        "line": 47,
+        "line": 94,
         "moduleName": "DoctorSpeciality",
         "status": "passed",
-        "durationMs": 51544,
-        "startTime": "2026-07-16T08:25:05.536Z",
-        "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
+        "durationMs": 42503,
+        "startTime": "2026-07-22T07:44:28.042Z",
+        "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
         "errorMessage": "",
         "attempts": [
           {
             "id": "attempt-0",
             "status": "passed",
-            "durationMs": 51544,
-            "startTime": "2026-07-16T08:25:05.536Z",
+            "durationMs": 42503,
+            "startTime": "2026-07-22T07:44:28.042Z",
             "stdout": "",
             "stderr": ""
           }
@@ -1474,21 +1452,43 @@
         "flaky": false
       },
       {
-        "title": "[Guest] speciality filter updates catalog",
+        "title": "[Login] search by test code works",
         "file": "doctorSpeciality/searchDoctor.spec.ts",
-        "line": 33,
+        "line": 87,
         "moduleName": "DoctorSpeciality",
         "status": "passed",
-        "durationMs": 50392,
-        "startTime": "2026-07-16T08:23:37.597Z",
-        "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
+        "durationMs": 41979,
+        "startTime": "2026-07-22T07:43:46.040Z",
+        "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
         "errorMessage": "",
         "attempts": [
           {
             "id": "attempt-0",
             "status": "passed",
-            "durationMs": 50392,
-            "startTime": "2026-07-16T08:23:37.597Z",
+            "durationMs": 41979,
+            "startTime": "2026-07-22T07:43:46.040Z",
+            "stdout": "",
+            "stderr": ""
+          }
+        ],
+        "flaky": false
+      },
+      {
+        "title": "[Login] saved session is active",
+        "file": "doctorSpeciality/searchDoctor.spec.ts",
+        "line": 67,
+        "moduleName": "DoctorSpeciality",
+        "status": "passed",
+        "durationMs": 33634,
+        "startTime": "2026-07-22T07:41:51.101Z",
+        "fullPath": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+        "errorMessage": "",
+        "attempts": [
+          {
+            "id": "attempt-0",
+            "status": "passed",
+            "durationMs": 33634,
+            "startTime": "2026-07-22T07:41:51.101Z",
             "stdout": "",
             "stderr": ""
           }
@@ -1508,70 +1508,6 @@
     },
     {
       "key": "W2",
-      "label": "Module Brochure",
-      "passed": 7,
-      "failed": 0,
-      "flaky": 0,
-      "total": 7
-    },
-    {
-      "key": "W3",
-      "label": "Module DiseaseCondition",
-      "passed": 9,
-      "failed": 0,
-      "flaky": 0,
-      "total": 9
-    },
-    {
-      "key": "W4",
-      "label": "Module DoctorSpeciality",
-      "passed": 9,
-      "failed": 0,
-      "flaky": 0,
-      "total": 9
-    },
-    {
-      "key": "W5",
-      "label": "Module Faq",
-      "passed": 5,
-      "failed": 2,
-      "flaky": 0,
-      "total": 7
-    },
-    {
-      "key": "W6",
-      "label": "Module Forms",
-      "passed": 7,
-      "failed": 0,
-      "flaky": 0,
-      "total": 7
-    },
-    {
-      "key": "W7",
-      "label": "Module Home",
-      "passed": 19,
-      "failed": 1,
-      "flaky": 0,
-      "total": 20
-    },
-    {
-      "key": "W8",
-      "label": "Module Smoke.spec.ts",
-      "passed": 1,
-      "failed": 0,
-      "flaky": 0,
-      "total": 1
-    },
-    {
-      "key": "W9",
-      "label": "Module TestCatalog",
-      "passed": 7,
-      "failed": 0,
-      "flaky": 0,
-      "total": 7
-    },
-    {
-      "key": "W10",
       "label": "Module AddToCart",
       "passed": 4,
       "failed": 0,
@@ -1579,12 +1515,60 @@
       "total": 4
     },
     {
-      "key": "W11",
+      "key": "W3",
       "label": "Module Auth",
       "passed": 1,
       "failed": 0,
       "flaky": 0,
       "total": 1
+    },
+    {
+      "key": "W4",
+      "label": "Module Brochure",
+      "passed": 4,
+      "failed": 0,
+      "flaky": 0,
+      "total": 4
+    },
+    {
+      "key": "W5",
+      "label": "Module DiseaseCondition",
+      "passed": 5,
+      "failed": 0,
+      "flaky": 0,
+      "total": 5
+    },
+    {
+      "key": "W6",
+      "label": "Module DoctorSpeciality",
+      "passed": 5,
+      "failed": 0,
+      "flaky": 0,
+      "total": 5
+    },
+    {
+      "key": "W7",
+      "label": "Module Faq",
+      "passed": 4,
+      "failed": 0,
+      "flaky": 0,
+      "total": 4
+    },
+    {
+      "key": "W8",
+      "label": "Module Forms",
+      "passed": 4,
+      "failed": 0,
+      "flaky": 0,
+      "total": 4
+    },
+    {
+      "key": "W9",
+      "label": "Module Home",
+      "passed": 10,
+      "failed": 0,
+      "flaky": 0,
+      "total": 10
     }
   ],
   "periodOptions": {
@@ -1595,36 +1579,6 @@
   },
   "runCount": 20,
   "runs": [
-    {
-      "runId": "RUN-8686",
-      "startTime": "2026-04-16T11:34:42.258Z",
-      "durationMs": 6734,
-      "summary": {
-        "total": 1,
-        "passed": 1,
-        "failed": 0,
-        "flaky": 0,
-        "skipped": 0,
-        "apiFails": 0,
-        "riskCases": 0,
-        "passRate": 100
-      }
-    },
-    {
-      "runId": "RUN-8630",
-      "startTime": "2026-04-16T11:18:06.369Z",
-      "durationMs": 133478,
-      "summary": {
-        "total": 10,
-        "passed": 10,
-        "failed": 0,
-        "flaky": 0,
-        "skipped": 0,
-        "apiFails": 0,
-        "riskCases": 0,
-        "passRate": 100
-      }
-    },
     {
       "runId": "RUN-7262",
       "startTime": "2026-04-16T11:00:05.237Z",
@@ -1820,729 +1774,7 @@
         "apiFails": 0,
         "riskCases": 0,
         "passRate": 100
-      },
-      "cases": [
-        {
-          "id": "case-0",
-          "suiteTitle": "setup\\auth.setup.ts",
-          "testTitle": "authenticate with dynamic OTP",
-          "moduleName": "Setup",
-          "status": "passed",
-          "durationMs": 13592,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-1",
-          "suiteTitle": "brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 13687,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-2",
-          "suiteTitle": "brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] search by brochure works",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 12588,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-3",
-          "suiteTitle": "brochure.spec.ts > brochure page - without login (guest user)",
-          "testTitle": "[Guest] sharing links are reachable",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 10993,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-4",
-          "suiteTitle": "brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 19671,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-5",
-          "suiteTitle": "brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 9382,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-6",
-          "suiteTitle": "brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] search by brochure works",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 11598,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-7",
-          "suiteTitle": "brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Brochure.spec.ts",
-          "status": "passed",
-          "durationMs": 14277,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-8",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 19692,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-9",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - without login (guest user)",
-          "testTitle": "[Guest] condition filter updates catalog",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 17498,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-10",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - without login (guest user)",
-          "testTitle": "[Guest] search by test code works",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 18756,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-11",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - without login (guest user)",
-          "testTitle": "[Guest] add to cart shows login warning",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 24590,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-12",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 106196,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-13",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 77349,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-14",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] condition filter updates catalog",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 72246,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-15",
-          "suiteTitle": "diseaseCondition.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] search by test code works",
-          "moduleName": "DiseaseCondition.spec.ts",
-          "status": "passed",
-          "durationMs": 72530,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-16",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 36625,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-17",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - without login (guest user)",
-          "testTitle": "[Guest] speciality filter updates catalog",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 77724,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-18",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - without login (guest user)",
-          "testTitle": "[Guest] search by test code works",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 68477,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-19",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - without login (guest user)",
-          "testTitle": "[Guest] add to cart shows login warning",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 71111,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-20",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 65555,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-21",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 63439,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-22",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] speciality filter updates catalog",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 64767,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-23",
-          "suiteTitle": "doctorSpeciality.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] search by test code works",
-          "moduleName": "DoctorSpeciality.spec.ts",
-          "status": "passed",
-          "durationMs": 64296,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-24",
-          "suiteTitle": "faq.spec.ts > faq page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 21052,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-25",
-          "suiteTitle": "faq.spec.ts > faq page - without login (guest user)",
-          "testTitle": "[Guest] question accordion toggles answer visibility",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 19289,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-26",
-          "suiteTitle": "faq.spec.ts > faq page - without login (guest user)",
-          "testTitle": "[Guest] show more loads additional FAQ questions",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 22514,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-27",
-          "suiteTitle": "faq.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 10618,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-28",
-          "suiteTitle": "faq.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 9493,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-29",
-          "suiteTitle": "faq.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] question accordion toggles answer visibility",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 9531,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-30",
-          "suiteTitle": "faq.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] show more loads additional FAQ questions",
-          "moduleName": "Faq.spec.ts",
-          "status": "passed",
-          "durationMs": 9387,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-31",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - without login (guest user)",
-          "testTitle": "[Guest] loads page and shows core widgets",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 10938,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-32",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - without login (guest user)",
-          "testTitle": "[Guest] search by consent works",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 16176,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-33",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - without login (guest user)",
-          "testTitle": "[Guest] sharing links are reachable",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 15447,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-34",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 51344,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-35",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 50616,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-36",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] search by consent works",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 50248,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-37",
-          "suiteTitle": "forms.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Forms.spec.ts",
-          "status": "passed",
-          "durationMs": 54149,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-38",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] loads home page and shows core modules",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 20860,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-39",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] top navigation links route to expected pages",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 118162,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-40",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] all header icons open expected page or modal",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 62162,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-41",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] search works with icon click and Enter key",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 36118,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-42",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] all visible home page buttons are working",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 24663,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-43",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] eye icon opens and closes details",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 46284,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-44",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] add to cart shows login warning",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 37985,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-45",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] download selected shows login warning",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 43067,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-46",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] pagination works on home catalog",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 40223,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-47",
-          "suiteTitle": "home.spec.ts > home page - without login (guest user)",
-          "testTitle": "[Guest] footer links are visible and correct",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 23415,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-48",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 28153,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-49",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] loads home page and shows core modules",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 27285,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-50",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] top navigation links route to expected pages",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 28322,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-51",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] all header icons open expected page or modal",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 30441,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-52",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] search works with icon click and Enter key",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 27432,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-53",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] eye icon opens and closes details",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 28780,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-54",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] add to cart updates cart count",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 29148,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-55",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] download selected works without login modal",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 28804,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-56",
-          "suiteTitle": "home.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] pagination works on home catalog",
-          "moduleName": "Home.spec.ts",
-          "status": "passed",
-          "durationMs": 27837,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-57",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] tests route loads expected catalog state",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 19076,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-58",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] packages route loads expected catalog state",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 17250,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-59",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] new test route loads expected catalog state",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 29967,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-60",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] new packages route loads expected catalog state",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 29090,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-61",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] wellness packages route loads expected catalog state",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 29833,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-62",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] department filter control is visible on test route",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 22741,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-63",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] method filter control is visible on test route",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 22631,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-64",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] sample type filter control is visible on test route",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 17938,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-65",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] NABL filter control is visible on test route",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 25966,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-66",
-          "suiteTitle": "testCatalog.spec.ts > test catalog module - guest user",
-          "testTitle": "[Guest] reset control is available on test route",
-          "moduleName": "TestCatalog.spec.ts",
-          "status": "passed",
-          "durationMs": 26372,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-67",
-          "suiteTitle": "addToCart.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "AddToCart.spec.ts",
-          "status": "passed",
-          "durationMs": 29744,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-68",
-          "suiteTitle": "addToCart.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
-          "moduleName": "AddToCart.spec.ts",
-          "status": "passed",
-          "durationMs": 70321,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-69",
-          "suiteTitle": "addToCart.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] share cart via WhatsApp for a specific test",
-          "moduleName": "AddToCart.spec.ts",
-          "status": "passed",
-          "durationMs": 15000,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-70",
-          "suiteTitle": "addToCart.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] share cart via Outlook for a specific test",
-          "moduleName": "AddToCart.spec.ts",
-          "status": "passed",
-          "durationMs": 15000,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-71",
-          "suiteTitle": "login.spec.ts > auth",
-          "testTitle": "saved login session is active",
-          "moduleName": "Login.spec.ts",
-          "status": "passed",
-          "durationMs": 64647,
-          "lastErrorMessage": "",
-          "flaky": false
-        }
-      ]
+      }
     },
     {
       "runId": "RUN-3651",
@@ -2557,389 +1789,7 @@
         "apiFails": 0,
         "riskCases": 0,
         "passRate": 100
-      },
-      "cases": [
-        {
-          "id": "case-0",
-          "suiteTitle": "setup\\auth.setup.ts",
-          "testTitle": "authenticate with interactive OTP",
-          "moduleName": "Setup",
-          "status": "passed",
-          "durationMs": 1168,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-1",
-          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "AddToCart",
-          "status": "passed",
-          "durationMs": 17838,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-2",
-          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
-          "moduleName": "AddToCart",
-          "status": "passed",
-          "durationMs": 26588,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-3",
-          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] share cart via WhatsApp for a specific test",
-          "moduleName": "AddToCart",
-          "status": "passed",
-          "durationMs": 31123,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-4",
-          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-          "testTitle": "[Login] share cart via Outlook for a specific test",
-          "moduleName": "AddToCart",
-          "status": "passed",
-          "durationMs": 31152,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-5",
-          "suiteTitle": "auth\\login.spec.ts > auth",
-          "testTitle": "saved login session is active",
-          "moduleName": "Auth",
-          "status": "passed",
-          "durationMs": 8219,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-6",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 17446,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-7",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 8846,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-8",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] search by brochure works",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 8856,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-9",
-          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Brochure",
-          "status": "passed",
-          "durationMs": 10002,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-10",
-          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "DiseaseCondition",
-          "status": "passed",
-          "durationMs": 16497,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-11",
-          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "DiseaseCondition",
-          "status": "passed",
-          "durationMs": 8831,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-12",
-          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] condition filter updates catalog",
-          "moduleName": "DiseaseCondition",
-          "status": "passed",
-          "durationMs": 8419,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-13",
-          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] search by test code works",
-          "moduleName": "DiseaseCondition",
-          "status": "passed",
-          "durationMs": 8953,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-14",
-          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-          "testTitle": "[Login] add to cart updates cart count",
-          "moduleName": "DiseaseCondition",
-          "status": "passed",
-          "durationMs": 10701,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-15",
-          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "DoctorSpeciality",
-          "status": "passed",
-          "durationMs": 32477,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-16",
-          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "DoctorSpeciality",
-          "status": "passed",
-          "durationMs": 23791,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-17",
-          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] speciality filter updates catalog",
-          "moduleName": "DoctorSpeciality",
-          "status": "passed",
-          "durationMs": 56762,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-18",
-          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] search by test code works",
-          "moduleName": "DoctorSpeciality",
-          "status": "passed",
-          "durationMs": 44144,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-19",
-          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-          "testTitle": "[Login] add to cart updates cart count",
-          "moduleName": "DoctorSpeciality",
-          "status": "passed",
-          "durationMs": 42545,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-20",
-          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Faq",
-          "status": "passed",
-          "durationMs": 16727,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-21",
-          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Faq",
-          "status": "passed",
-          "durationMs": 8126,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-22",
-          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] question accordion toggles answer visibility",
-          "moduleName": "Faq",
-          "status": "passed",
-          "durationMs": 9189,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-23",
-          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-          "testTitle": "[Login] show more loads additional FAQ questions",
-          "moduleName": "Faq",
-          "status": "passed",
-          "durationMs": 9177,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-24",
-          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Forms",
-          "status": "passed",
-          "durationMs": 17567,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-25",
-          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] loads page and shows core widgets",
-          "moduleName": "Forms",
-          "status": "passed",
-          "durationMs": 8854,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-26",
-          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] search by consent works",
-          "moduleName": "Forms",
-          "status": "passed",
-          "durationMs": 8827,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-27",
-          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-          "testTitle": "[Login] sharing links are reachable",
-          "moduleName": "Forms",
-          "status": "passed",
-          "durationMs": 13704,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-28",
-          "suiteTitle": "home\\debug_logout.spec.ts",
-          "testTitle": "[Login] debug logout button",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 11144,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-29",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] saved session is active",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 17702,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-30",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] loads home page and shows core modules",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 8906,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-31",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] top navigation links route to expected pages",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 56630,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-32",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] all header icons open expected page or modal",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 10798,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-33",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] search works with icon click and Enter key",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 17525,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-34",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] eye icon opens and closes details",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 25936,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-35",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] add to cart updates cart count",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 19311,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-36",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] download selected works without login modal",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 23298,
-          "lastErrorMessage": "",
-          "flaky": false
-        },
-        {
-          "id": "case-37",
-          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-          "testTitle": "[Login] pagination works on home catalog",
-          "moduleName": "Home",
-          "status": "passed",
-          "durationMs": 16347,
-          "lastErrorMessage": "",
-          "flaky": false
-        }
-      ]
+      }
     },
     {
       "runId": "RUN-2966",
@@ -3750,7 +2600,7 @@
           "moduleName": "Home",
           "status": "timedOut",
           "durationMs": 2721286,
-          "lastErrorMessage": "Test timeout of 120000ms exceeded.\n---\nTearing down \"context\" exceeded the test timeout of 120000ms.",
+          "lastErrorMessage": "Test timeout of 130000ms exceeded.\n---\nTearing down \"context\" exceeded the test timeout of 130000ms.",
           "flaky": false
         },
         {
@@ -4801,6 +3651,800 @@
           "flaky": false
         }
       ]
+    },
+    {
+      "runId": "RUN-1512",
+      "startTime": "2026-07-22T06:50:47.435Z",
+      "durationMs": 764845,
+      "summary": {
+        "total": 38,
+        "passed": 37,
+        "failed": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 1,
+        "riskCases": 1,
+        "passRate": 97.36842105263158
+      },
+      "cases": [
+        {
+          "id": "case-0",
+          "suiteTitle": "setup\\auth.setup.ts",
+          "testTitle": "authenticate with interactive OTP",
+          "moduleName": "Setup",
+          "status": "passed",
+          "durationMs": 22898,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-1",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 17803,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-2",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 26071,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-3",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] share cart via WhatsApp for a specific test",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 32183,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-4",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] share cart via Outlook for a specific test",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 31490,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-5",
+          "suiteTitle": "auth\\login.spec.ts > auth",
+          "testTitle": "saved login session is active",
+          "moduleName": "Auth",
+          "status": "passed",
+          "durationMs": 8598,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-6",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 16991,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-7",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 8348,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-8",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] search by brochure works",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 8715,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-9",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] sharing links are reachable",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 11363,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-10",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 17249,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-11",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 8649,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-12",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] condition filter updates catalog",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 9285,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-13",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] search by test code works",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 7963,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-14",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 10968,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-15",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 33248,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-16",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 24566,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-17",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] speciality filter updates catalog",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 55807,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-18",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] search by test code works",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 43014,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-19",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 42091,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-20",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 16921,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-21",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 8970,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-22",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] question accordion toggles answer visibility",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 9430,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-23",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] show more loads additional FAQ questions",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 8696,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-24",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 18090,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-25",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 8317,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-26",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] search by consent works",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 8444,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-27",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] sharing links are reachable",
+          "moduleName": "Forms",
+          "status": "failed",
+          "durationMs": 45080,
+          "lastErrorMessage": "Error: Found unreachable consent-form share links:\nhttps://oncquest-admin-uat.abym.us/s/JEpVvO -> apiRequestContext.get: Timeout 30000ms exceeded.\nCall log:\n  - → GET https://oncquest-admin-uat.abym.us/s/JEpVvO\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: XSRF-TOKEN=eyJpdiI6InQ0TnVLTDBvYUppc1JvOGZvbnhEc2c9PSIsInZhbHVlIjoic0c3bU1ybVh0NmpBNTE4dDBHNmthVk4vTkZieDVzRW9Hb3FkdGIzUUNhcENDc0s2TllzZWZCUVpQbUhmLy8wTWhzT2dqQzFYQ3JKZm9sQUJBK3lUQmVSYXdvQ1RZMjltSkJEaWZRUmhtaTJTZkdHMk1laWVMYWNIN2hTdERKelQiLCJtYWMiOiJiOTM4YmE2MTcyMWJhY2ZhY2I2NWY1ZGUyMmE0ODU3ZDYxMDUwM2I3NTI1ZWM4MmY0NzVlMDM0ZDJlNWQ1ODRlIiwidGFnIjoiIn0%3D; oncquest_laboratories_admin_session=eyJpdiI6Ik5XNGMvRWh3aXRVZ3dCamY3T3JFMHc9PSIsInZhbHVlIjoiYU5IR2lSQlZVekErYjBNUGhLN1pPVlZmcVBrSm92UTBmQ2F3amJ0RXZFZkp1eC9HTS9rY0trYXdERFhUOCtlODM2R1M0MUI2MXFlLzR4L2NhYnlnSktRNVJQSkpIdWRtbWZDbFBCNWd2OVpoQVhnZVNFbTdsSnR3NlVpRWdxYkEiLCJtYWMiOiI2OTg4ZmNmM2RjZWM1MTliZTRhNjk3Mjc1N2YzMjE0MDYxMzI5YmVkMmM1NTc5NjE0ZjVjMDZiOWM3MjZkOGI1IiwidGFnIjoiIn0%3D\n\n",
+          "flaky": false
+        },
+        {
+          "id": "case-28",
+          "suiteTitle": "home\\debug_logout.spec.ts",
+          "testTitle": "[Login] debug logout button",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 10530,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-29",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 17228,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-30",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] loads home page and shows core modules",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 9608,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-31",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] top navigation links route to expected pages",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 55176,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-32",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] all header icons open expected page or modal",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 10145,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-33",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] search works with icon click and Enter key",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 16714,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-34",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] eye icon opens and closes details",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 24584,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-35",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 18821,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-36",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] download selected works without login modal",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 24242,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-37",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] pagination works on home catalog",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 16549,
+          "lastErrorMessage": "",
+          "flaky": false
+        }
+      ]
+    },
+    {
+      "runId": "RUN-1839",
+      "startTime": "2026-07-22T07:38:08.501Z",
+      "durationMs": 720278,
+      "summary": {
+        "total": 38,
+        "passed": 38,
+        "failed": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "apiFails": 0,
+        "riskCases": 0,
+        "passRate": 100
+      },
+      "cases": [
+        {
+          "id": "case-0",
+          "suiteTitle": "setup\\auth.setup.ts",
+          "testTitle": "authenticate with interactive OTP",
+          "moduleName": "Setup",
+          "status": "passed",
+          "durationMs": 1271,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-1",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 17828,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-2",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 25373,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-3",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] share cart via WhatsApp for a specific test",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 32528,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-4",
+          "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+          "testTitle": "[Login] share cart via Outlook for a specific test",
+          "moduleName": "AddToCart",
+          "status": "passed",
+          "durationMs": 33228,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-5",
+          "suiteTitle": "auth\\login.spec.ts > auth",
+          "testTitle": "saved login session is active",
+          "moduleName": "Auth",
+          "status": "passed",
+          "durationMs": 9505,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-6",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 17822,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-7",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 8707,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-8",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] search by brochure works",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 8756,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-9",
+          "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+          "testTitle": "[Login] sharing links are reachable",
+          "moduleName": "Brochure",
+          "status": "passed",
+          "durationMs": 10167,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-10",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 18239,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-11",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 8732,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-12",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] condition filter updates catalog",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 9141,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-13",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] search by test code works",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 8939,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-14",
+          "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "DiseaseCondition",
+          "status": "passed",
+          "durationMs": 10549,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-15",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 33634,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-16",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 24590,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-17",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] speciality filter updates catalog",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 56657,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-18",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] search by test code works",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 41979,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-19",
+          "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "DoctorSpeciality",
+          "status": "passed",
+          "durationMs": 42503,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-20",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 16636,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-21",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 9187,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-22",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] question accordion toggles answer visibility",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 9087,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-23",
+          "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+          "testTitle": "[Login] show more loads additional FAQ questions",
+          "moduleName": "Faq",
+          "status": "passed",
+          "durationMs": 8083,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-24",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 17713,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-25",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] loads page and shows core widgets",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 7951,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-26",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] search by consent works",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 7950,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-27",
+          "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+          "testTitle": "[Login] sharing links are reachable",
+          "moduleName": "Forms",
+          "status": "passed",
+          "durationMs": 13889,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-28",
+          "suiteTitle": "home\\debug_logout.spec.ts",
+          "testTitle": "[Login] debug logout button",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 11078,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-29",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] saved session is active",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 16600,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-30",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] loads home page and shows core modules",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 8903,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-31",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] top navigation links route to expected pages",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 59170,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-32",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] all header icons open expected page or modal",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 10932,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-33",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] search works with icon click and Enter key",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 16400,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-34",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] eye icon opens and closes details",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 24905,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-35",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] add to cart updates cart count",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 19097,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-36",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] download selected works without login modal",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 25359,
+          "lastErrorMessage": "",
+          "flaky": false
+        },
+        {
+          "id": "case-37",
+          "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+          "testTitle": "[Login] pagination works on home catalog",
+          "moduleName": "Home",
+          "status": "passed",
+          "durationMs": 17190,
+          "lastErrorMessage": "",
+          "flaky": false
+        }
+      ]
     }
   ],
   "cases": [
@@ -4810,727 +4454,377 @@
       "testTitle": "authenticate with interactive OTP",
       "moduleName": "Setup",
       "status": "passed",
-      "durationMs": 21398,
+      "durationMs": 1271,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-1",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
-      "moduleName": "Brochure",
+      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+      "testTitle": "[Login] saved session is active",
+      "moduleName": "AddToCart",
       "status": "passed",
-      "durationMs": 2560,
+      "durationMs": 17828,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-2",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] search by brochure works",
-      "moduleName": "Brochure",
+      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+      "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
+      "moduleName": "AddToCart",
       "status": "passed",
-      "durationMs": 3187,
+      "durationMs": 25373,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-3",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - without login (guest user)",
-      "testTitle": "[Guest] sharing links are reachable",
-      "moduleName": "Brochure",
+      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+      "testTitle": "[Login] share cart via WhatsApp for a specific test",
+      "moduleName": "AddToCart",
       "status": "passed",
-      "durationMs": 3958,
+      "durationMs": 32528,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-4",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "Brochure",
+      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
+      "testTitle": "[Login] share cart via Outlook for a specific test",
+      "moduleName": "AddToCart",
       "status": "passed",
-      "durationMs": 17646,
+      "durationMs": 33228,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-5",
-      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
-      "moduleName": "Brochure",
+      "suiteTitle": "auth\\login.spec.ts > auth",
+      "testTitle": "saved login session is active",
+      "moduleName": "Auth",
       "status": "passed",
-      "durationMs": 8733,
+      "durationMs": 9505,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-6",
       "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] search by brochure works",
+      "testTitle": "[Login] saved session is active",
       "moduleName": "Brochure",
       "status": "passed",
-      "durationMs": 8911,
+      "durationMs": 17822,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-7",
       "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
-      "testTitle": "[Login] sharing links are reachable",
+      "testTitle": "[Login] loads page and shows core widgets",
       "moduleName": "Brochure",
       "status": "passed",
-      "durationMs": 10627,
+      "durationMs": 8707,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-8",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
-      "moduleName": "DiseaseCondition",
+      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+      "testTitle": "[Login] search by brochure works",
+      "moduleName": "Brochure",
       "status": "passed",
-      "durationMs": 2625,
+      "durationMs": 8756,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-9",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - without login (guest user)",
-      "testTitle": "[Guest] condition filter updates catalog",
-      "moduleName": "DiseaseCondition",
+      "suiteTitle": "brochure\\brochure.spec.ts > brochure page - with login (authenticated user)",
+      "testTitle": "[Login] sharing links are reachable",
+      "moduleName": "Brochure",
       "status": "passed",
-      "durationMs": 2544,
+      "durationMs": 10167,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-10",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - without login (guest user)",
-      "testTitle": "[Guest] search by test code works",
+      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+      "testTitle": "[Login] saved session is active",
       "moduleName": "DiseaseCondition",
       "status": "passed",
-      "durationMs": 2373,
+      "durationMs": 18239,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-11",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - without login (guest user)",
-      "testTitle": "[Guest] add to cart shows login warning",
+      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
+      "testTitle": "[Login] loads page and shows core widgets",
       "moduleName": "DiseaseCondition",
       "status": "passed",
-      "durationMs": 1914,
+      "durationMs": 8732,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-12",
       "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
+      "testTitle": "[Login] condition filter updates catalog",
       "moduleName": "DiseaseCondition",
       "status": "passed",
-      "durationMs": 16665,
+      "durationMs": 9141,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-13",
       "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
+      "testTitle": "[Login] search by test code works",
       "moduleName": "DiseaseCondition",
       "status": "passed",
-      "durationMs": 8775,
+      "durationMs": 8939,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-14",
       "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-      "testTitle": "[Login] condition filter updates catalog",
+      "testTitle": "[Login] add to cart updates cart count",
       "moduleName": "DiseaseCondition",
       "status": "passed",
-      "durationMs": 9491,
+      "durationMs": 10549,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-15",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-      "testTitle": "[Login] search by test code works",
-      "moduleName": "DiseaseCondition",
+      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+      "testTitle": "[Login] saved session is active",
+      "moduleName": "DoctorSpeciality",
       "status": "passed",
-      "durationMs": 7965,
+      "durationMs": 33634,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-16",
-      "suiteTitle": "diseaseCondition\\viewConditions.spec.ts > disease condition page - with login (authenticated user)",
-      "testTitle": "[Login] add to cart updates cart count",
-      "moduleName": "DiseaseCondition",
+      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+      "testTitle": "[Login] loads page and shows core widgets",
+      "moduleName": "DoctorSpeciality",
       "status": "passed",
-      "durationMs": 10775,
+      "durationMs": 24590,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-17",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
+      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+      "testTitle": "[Login] speciality filter updates catalog",
       "moduleName": "DoctorSpeciality",
       "status": "passed",
-      "durationMs": 17982,
+      "durationMs": 56657,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-18",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
-      "testTitle": "[Guest] speciality filter updates catalog",
+      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+      "testTitle": "[Login] search by test code works",
       "moduleName": "DoctorSpeciality",
       "status": "passed",
-      "durationMs": 50392,
+      "durationMs": 41979,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-19",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
-      "testTitle": "[Guest] search by test code works",
+      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
+      "testTitle": "[Login] add to cart updates cart count",
       "moduleName": "DoctorSpeciality",
       "status": "passed",
-      "durationMs": 37520,
+      "durationMs": 42503,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-20",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - without login (guest user)",
-      "testTitle": "[Guest] add to cart shows login warning",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+      "testTitle": "[Login] saved session is active",
+      "moduleName": "Faq",
       "status": "passed",
-      "durationMs": 51544,
+      "durationMs": 16636,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-21",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+      "testTitle": "[Login] loads page and shows core widgets",
+      "moduleName": "Faq",
       "status": "passed",
-      "durationMs": 32109,
+      "durationMs": 9187,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-22",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+      "testTitle": "[Login] question accordion toggles answer visibility",
+      "moduleName": "Faq",
       "status": "passed",
-      "durationMs": 25246,
+      "durationMs": 9087,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-23",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-      "testTitle": "[Login] speciality filter updates catalog",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+      "testTitle": "[Login] show more loads additional FAQ questions",
+      "moduleName": "Faq",
       "status": "passed",
-      "durationMs": 56009,
+      "durationMs": 8083,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-24",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-      "testTitle": "[Login] search by test code works",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+      "testTitle": "[Login] saved session is active",
+      "moduleName": "Forms",
       "status": "passed",
-      "durationMs": 42204,
+      "durationMs": 17713,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-25",
-      "suiteTitle": "doctorSpeciality\\searchDoctor.spec.ts > doctor speciality page - with login (authenticated user)",
-      "testTitle": "[Login] add to cart updates cart count",
-      "moduleName": "DoctorSpeciality",
+      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+      "testTitle": "[Login] loads page and shows core widgets",
+      "moduleName": "Forms",
       "status": "passed",
-      "durationMs": 42585,
+      "durationMs": 7951,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-26",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
-      "moduleName": "Faq",
-      "status": "failed",
-      "durationMs": 3470,
-      "lastErrorMessage": "Error: At least one FAQ question should be visible.\n\nexpect(received).toBeGreaterThan(expected)\n\nExpected: > 0\nReceived:   0\n---\nError: At least one FAQ question should be visible.\n\nexpect(received).toBeGreaterThan(expected)",
+      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+      "testTitle": "[Login] search by consent works",
+      "moduleName": "Forms",
+      "status": "passed",
+      "durationMs": 7950,
+      "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-27",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - without login (guest user)",
-      "testTitle": "[Guest] question accordion toggles answer visibility",
-      "moduleName": "Faq",
-      "status": "failed",
-      "durationMs": 13397,
-      "lastErrorMessage": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for locator('div.bg-white.rounded-md.shadow-md.overflow-hidden').locator('button').filter({ hasText: /\\?$/ }).first()",
+      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
+      "testTitle": "[Login] sharing links are reachable",
+      "moduleName": "Forms",
+      "status": "passed",
+      "durationMs": 13889,
+      "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-28",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - without login (guest user)",
-      "testTitle": "[Guest] show more loads additional FAQ questions",
-      "moduleName": "Faq",
+      "suiteTitle": "home\\debug_logout.spec.ts",
+      "testTitle": "[Login] debug logout button",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 2645,
+      "durationMs": 11078,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-29",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
       "testTitle": "[Login] saved session is active",
-      "moduleName": "Faq",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 17498,
+      "durationMs": 16600,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-30",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
-      "moduleName": "Faq",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] loads home page and shows core modules",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 9237,
+      "durationMs": 8903,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-31",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-      "testTitle": "[Login] question accordion toggles answer visibility",
-      "moduleName": "Faq",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] top navigation links route to expected pages",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 8297,
+      "durationMs": 59170,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-32",
-      "suiteTitle": "faq\\faqNavigation.spec.ts > faq page - with login (authenticated user)",
-      "testTitle": "[Login] show more loads additional FAQ questions",
-      "moduleName": "Faq",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] all header icons open expected page or modal",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 9380,
+      "durationMs": 10932,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-33",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - without login (guest user)",
-      "testTitle": "[Guest] loads page and shows core widgets",
-      "moduleName": "Forms",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] search works with icon click and Enter key",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 2301,
+      "durationMs": 16400,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-34",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - without login (guest user)",
-      "testTitle": "[Guest] search by consent works",
-      "moduleName": "Forms",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] eye icon opens and closes details",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 2007,
+      "durationMs": 24905,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-35",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - without login (guest user)",
-      "testTitle": "[Guest] sharing links are reachable",
-      "moduleName": "Forms",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] add to cart updates cart count",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 9153,
+      "durationMs": 19097,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-36",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "Forms",
+      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
+      "testTitle": "[Login] download selected works without login modal",
+      "moduleName": "Home",
       "status": "passed",
-      "durationMs": 16683,
+      "durationMs": 25359,
       "lastErrorMessage": "",
       "flaky": false
     },
     {
       "id": "case-37",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-      "testTitle": "[Login] loads page and shows core widgets",
-      "moduleName": "Forms",
-      "status": "passed",
-      "durationMs": 8841,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-38",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-      "testTitle": "[Login] search by consent works",
-      "moduleName": "Forms",
-      "status": "passed",
-      "durationMs": 7901,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-39",
-      "suiteTitle": "forms\\consentForm.spec.ts > test requisition & consent forms page - with login (authenticated user)",
-      "testTitle": "[Login] sharing links are reachable",
-      "moduleName": "Forms",
-      "status": "passed",
-      "durationMs": 14710,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-40",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] loads home page and shows core modules",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 2807,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-41",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] all visible home page buttons are working",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 2880,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-42",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] eye icon opens and closes details",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 19782,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-43",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] download selected shows login warning",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 19831,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-44",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] top navigation links route to expected pages",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 51966,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-45",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] all header icons open expected page or modal",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 23202,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-46",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] search works with icon click and Enter key",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 11229,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-47",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] add to cart shows login warning",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 11847,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-48",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] pagination works on home catalog",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 12120,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-49",
-      "suiteTitle": "home\\homepage.spec.ts > home page - without login (guest user)",
-      "testTitle": "[Guest] footer links are visible and correct",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 2723,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-50",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 17509,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-51",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] loads home page and shows core modules",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 8984,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-52",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] top navigation links route to expected pages",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 57646,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-53",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] all header icons open expected page or modal",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 10971,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-54",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] search works with icon click and Enter key",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 17549,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-55",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] eye icon opens and closes details",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 32477,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-56",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] add to cart updates cart count",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 19163,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-57",
-      "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
-      "testTitle": "[Login] download selected works without login modal",
-      "moduleName": "Home",
-      "status": "failed",
-      "durationMs": 27462,
-      "lastErrorMessage": "Error: Download should be triggered.\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n---\nError: Download should be triggered.\n\nexpect(received).toBe(expected) // Object.is equality",
-      "flaky": false
-    },
-    {
-      "id": "case-58",
       "suiteTitle": "home\\homepage.spec.ts > home page - with login (authenticated user)",
       "testTitle": "[Login] pagination works on home catalog",
       "moduleName": "Home",
       "status": "passed",
-      "durationMs": 17291,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-59",
-      "suiteTitle": "smoke.spec.ts > Smoke Test Suite",
-      "testTitle": "Verify Homepage Loads",
-      "moduleName": "Smoke.spec.ts",
-      "status": "passed",
-      "durationMs": 1087,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-60",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] new test route loads expected catalog state",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 3418,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-61",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] new packages route loads expected catalog state",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 2860,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-62",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] department filter works on test route",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 3344,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-63",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] method filter works on test route",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 2809,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-64",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] sample type filter works on test route",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 3086,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-65",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] NABL filter works on test route",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 2540,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-66",
-      "suiteTitle": "testCatalog\\testcatelog.spec.ts > test catalog module - guest user",
-      "testTitle": "[Guest] reset clears applied filters on test route",
-      "moduleName": "TestCatalog",
-      "status": "passed",
-      "durationMs": 3018,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-67",
-      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-      "testTitle": "[Login] saved session is active",
-      "moduleName": "AddToCart",
-      "status": "passed",
-      "durationMs": 17761,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-68",
-      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-      "testTitle": "[Login] apply random 1 to 10 percent discount on a specific test and validate pricing",
-      "moduleName": "AddToCart",
-      "status": "passed",
-      "durationMs": 27314,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-69",
-      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-      "testTitle": "[Login] share cart via WhatsApp for a specific test",
-      "moduleName": "AddToCart",
-      "status": "passed",
-      "durationMs": 31543,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-70",
-      "suiteTitle": "addToCart\\addToCartt.spec.ts > add to cart page - with login",
-      "testTitle": "[Login] share cart via Outlook for a specific test",
-      "moduleName": "AddToCart",
-      "status": "passed",
-      "durationMs": 32973,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-71",
-      "suiteTitle": "auth\\login.spec.ts > auth",
-      "testTitle": "saved login session is active",
-      "moduleName": "Auth",
-      "status": "passed",
-      "durationMs": 9235,
-      "lastErrorMessage": "",
-      "flaky": false
-    },
-    {
-      "id": "case-72",
-      "suiteTitle": "home\\debug_logout.spec.ts",
-      "testTitle": "[Login] debug logout button",
-      "moduleName": "Home",
-      "status": "passed",
-      "durationMs": 11197,
+      "durationMs": 17190,
       "lastErrorMessage": "",
       "flaky": false
     }
@@ -5632,11 +4926,11 @@
          if (document.getElementById('lSkip')) document.getElementById('lSkip').textContent = s.skipped;
 
          const slowWarnEl = document.getElementById('slowWarn');
-         const slowTestCount = cases.filter(c => c.durationMs > 20000).length;
+         const slowTestCount = cases.filter(c => c.durationMs > 30000).length;
          if (slowWarnEl) {
             if (slowTestCount > 0) {
                slowWarnEl.style.display = 'flex';
-               slowWarnEl.textContent = `Warning: ${slowTestCount} case(s) exceeded 20s threshold.`;
+               slowWarnEl.textContent = `Warning: ${slowTestCount} case(s) exceeded 30s threshold.`;
             } else {
                slowWarnEl.style.display = 'none';
             }
@@ -5648,6 +4942,7 @@
             document.getElementById('trendContainer').innerHTML = history.slice(-5).map((run, index) => {
                const pRate = run.summary?.passRate || 0;
                const fRate = (((run.summary?.failed || 0) + (run.summary?.flaky || 0)) / Math.max(1, run.summary?.total || 1)) * 100;
+               const dateLabel = new Date(run.startTime).toLocaleDateString([], { month: 'short', day: 'numeric' });
                const timeLabel = new Date(run.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                const runLabel = run.runId ? run.runId.replace(/^RUN-/, 'R-') : `R-${index + 1}`;
 
@@ -5660,8 +4955,9 @@
 
                   <div style="position:absolute; bottom:${pRate}%; left:50%; transform:translate(-50%, 50%); width:10px; height:10px; background:var(--accent-green); border-radius:50%; border:2px solid var(--bg-card); z-index:2; box-shadow:0 0 10px rgba(16, 185, 129, 0.5);"></div>
 
-                  <div style="position:absolute; bottom:-34px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:2px; font-size:0.58rem; color:var(--text-dim); font-weight:600; line-height:1.1; white-space:nowrap;">
+                  <div style="position:absolute; bottom:-44px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:2px; font-size:0.58rem; color:var(--text-dim); font-weight:600; line-height:1.1; white-space:nowrap;">
                      <span style="color:var(--text-main); font-weight:700;">${runLabel}</span>
+                     <span>${dateLabel}</span>
                      <span>${timeLabel}</span>
                   </div>
                </div>`;
@@ -5800,8 +5096,8 @@
             document.getElementById('flakyBox').innerHTML = '<div class="empty-state">No flaky patterns.</div>';
          }
 
-         // 3. Slow Alerts (> 20s)
-         const slowAlerts = cases.filter(c => c.durationMs > 20000);
+         // 3. Slow Alerts (> 30s)
+         const slowAlerts = cases.filter(c => c.durationMs > 30000);
          document.getElementById('slowCount').textContent = slowAlerts.length;
          if (slowAlerts.length > 0) {
             document.getElementById('slowAlerts').innerHTML = slowAlerts.map(c => `
@@ -6046,7 +5342,7 @@
             return acc;
          }, {});
 
-         const slowTests = cases.filter(c => c.durationMs > 20000).sort((a, b) => b.durationMs - a.durationMs);
+         const slowTests = cases.filter(c => c.durationMs > 30000).sort((a, b) => b.durationMs - a.durationMs);
 
          const tCount = Math.max(1, summary.total);
          const passDeg = (summary.passed / tCount) * 360;
@@ -6118,7 +5414,7 @@
                        </div>
                        ${slowTests.length > 0 ? `
                        <div style="background:#fef2f2; border:1px solid #fee2e2; padding:8px 12px; border-radius:8px; font-size:0.7rem; color:#991b1b; font-weight:800; margin-top:10px;">
-                          Warning: ${slowTests.length} case(s) exceeded 20s threshold.
+                          Warning: ${slowTests.length} case(s) exceeded 30s threshold.
                        </div>` : ''}
                     </div>
 
@@ -6140,6 +5436,7 @@
                             ${(history.length > 0 ? history.slice(-5) : [{ summary: summary, startTime: now }]).map((run, index) => {
             const pRate = run.summary.passRate;
             const fRate = ((run.summary.failed + (run.summary.flaky || 0)) / Math.max(1, run.summary.total)) * 100;
+            const pdfDateLabel = new Date(run.startTime).toLocaleDateString([], { month: 'short', day: 'numeric' });
             const pdfTimeLabel = new Date(run.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase();
             const pdfRunLabel = run.runId ? run.runId.replace(/^RUN-/, 'R-') : `R-${index + 1}`;
             return `
@@ -6151,15 +5448,16 @@
 
                                   <div style="position:absolute; bottom:${pRate}%; left:50%; transform:translate(-50%, 50%); width:8px; height:8px; background:#10b981; border-radius:50%; border:2px solid #fff; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.2);"></div>
 
-                                   <div style="position:absolute; bottom:-30px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:2px; font-size:0.46rem; color:#000; font-weight:900; line-height:1.1; white-space:nowrap;">
+                                   <div style="position:absolute; bottom:-38px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:2px; font-size:0.46rem; color:#000; font-weight:900; line-height:1.1; white-space:nowrap;">
                                       <span>${pdfRunLabel}</span>
+                                      <span>${pdfDateLabel}</span>
                                       <span>${pdfTimeLabel}</span>
                                    </div>
                                 </div>
                             `}).join('')}
                           </div>
                        </div>
-                       <div style="display:flex; gap:12px; margin-top:28px; font-size:0.6rem; font-weight:900;">
+                       <div style="display:flex; gap:12px; margin-top:36px; font-size:0.6rem; font-weight:900;">
                           <span><span style="display:inline-block; width:6px; height:6px; background:#3b82f6; border-radius:50%; margin-right:4px;"></span>Pass count</span>
                           <span><span style="display:inline-block; width:6px; height:6px; background:#ef4444; border-radius:50%; margin-right:4px;"></span>Fail count</span>
                           <span><span style="display:inline-block; width:6px; height:6px; background:#10b981; border-radius:50%; margin-right:4px;"></span>Pass rate</span>
@@ -6169,7 +5467,7 @@
 
                  ${slowTests.length > 0 ? `
                  <h3 style="font-size:0.95rem; color:#1e40af; font-weight:900; margin-bottom:5px; page-break-after: avoid;">Slow Case Highlights</h3>
-                 <p style="font-size:0.7rem; color:#000; margin-bottom:12px; font-weight:600;">Longest cases exceeding 20 seconds.</p>
+                 <p style="font-size:0.7rem; color:#000; margin-bottom:12px; font-weight:600;">Longest cases exceeding 30 seconds.</p>
                  <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:25px;">
                     ${slowTests.slice(0, 10).map(c => `
                        <div style="padding:8px; border:1px solid #000; border-radius:6px; page-break-inside: avoid;">
@@ -6220,7 +5518,7 @@
                        </tr>
                     </thead>
                     <tbody>
-                       ${history.map(run => `
+                       ${history.slice(-5).map(run => `
                           <tr style="border-bottom:1px solid #000; page-break-inside: avoid; color:#000;">
                              <td style="padding:10px; border-right:1px solid #000; font-weight:800; color:#000;">${run.runId}</td>
                              <td style="padding:10px; border-right:1px solid #000; color:#000;">${new Date(run.startTime).toLocaleString()}</td>
