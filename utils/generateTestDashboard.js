@@ -127,7 +127,7 @@ function main() {
 
   // Build richness for advanced widgets
   const thresholdMs = 30000;
-  const slowCases = entries.filter(e => e.durationMs > thresholdMs).sort((a,b) => b.durationMs - a.durationMs);
+  const slowCases = entries.filter(e => e.durationMs > thresholdMs).sort((a,b) => a.durationMs - b.durationMs);
   
   const modules = [...new Set(entries.map(e => e.moduleName))];
   const weeklyTrend = modules.map((m, i) => ({

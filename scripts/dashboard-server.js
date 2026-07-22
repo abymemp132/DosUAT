@@ -618,7 +618,7 @@ function buildSummary(cases) {
 function buildSlowCaseSummary(cases) {
   const slowCases = (Array.isArray(cases) ? cases : [])
     .filter((testCase) => Number(testCase.durationMs || 0) > SLOW_DURATION_THRESHOLD_MS)
-    .sort((left, right) => (right.durationMs || 0) - (left.durationMs || 0));
+    .sort((left, right) => (left.durationMs || 0) - (right.durationMs || 0));
 
   return {
     thresholdMs: SLOW_DURATION_THRESHOLD_MS,

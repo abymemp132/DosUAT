@@ -5127,7 +5127,7 @@
          }
 
          // 4. Slowest Tests (Top 5)
-         const sorted = [...cases].sort((a, b) => b.durationMs - a.durationMs);
+         const sorted = [...cases].sort((a, b) => a.durationMs - b.durationMs);
          document.getElementById('slowestList').innerHTML = sorted.slice(0, 5).map(c => `
           <div class="health-item" style="margin-bottom:4px; padding: 10px;">
              <div class="dot ${c.status}" style="width:8px; height:8px; background:${c.status === 'passed' ? 'var(--accent-green)' : 'var(--accent-red)'}"></div>
@@ -5358,7 +5358,7 @@
             return acc;
          }, {});
 
-         const slowTests = cases.filter(c => c.durationMs > 30000).sort((a, b) => b.durationMs - a.durationMs);
+         const slowTests = cases.filter(c => c.durationMs > 30000).sort((a, b) => a.durationMs - b.durationMs);
 
          const tCount = Math.max(1, summary.total);
          const passDeg = (summary.passed / tCount) * 360;
