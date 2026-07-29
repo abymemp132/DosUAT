@@ -18,7 +18,7 @@ interface EnvConfig {
 }
 
 export const envConfig: EnvConfig = {
-  baseURL: process.env.BASE_URL || "http://127.0.0.1:3000",
+  baseURL: process.env.BASE_URL || "https://dos-web-uat.abym.us/",
   websiteUsername: process.env.WEBSITE_USERNAME || "",
   websitePassword: process.env.WEBSITE_PASSWORD || "",
   loginEmail: process.env.LOGIN_EMAIL || "",

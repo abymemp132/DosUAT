@@ -1,6 +1,9 @@
 import { FullConfig } from "@playwright/test";
 import fs from "fs";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 async function globalSetup(config: FullConfig): Promise<void> {
   const authDir = path.join(process.cwd(), ".auth");
@@ -9,12 +12,11 @@ async function globalSetup(config: FullConfig): Promise<void> {
   // Automated setup handles login now.
 
   // Check if BASE_URL is set
-  const baseURL = process.env.BASE_URL;
-  if (!baseURL) {
-    console.log("⚠️  BASE_URL not set. Tests may fail.");
-  } else {
-    console.log(`✅ BASE_URL: ${baseURL}`);
+  if (!process.env.BASE_URL) {
+    process.env.BASE_URL = "https://dos-web-uat.abym.us/";
   }
+  const baseURL = process.env.BASE_URL;
+  console.log(`✅ BASE_URL: ${baseURL}`);
 
   const websiteUsername = process.env.WEBSITE_USERNAME || "";
   const websitePassword = process.env.WEBSITE_PASSWORD || "";
