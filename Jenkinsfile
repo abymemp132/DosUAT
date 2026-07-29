@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        // Triggers the pipeline daily at 8:00 AM
+        cron('0 8 * * *')
+    }
+
     // Optional: If you use the Jenkins NodeJS plugin, you can automatically setup Node.js version here.
     // Uncomment the lines below and replace 'node' with your configured NodeJS tool name in Jenkins.
     /*
