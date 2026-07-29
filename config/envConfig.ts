@@ -21,7 +21,7 @@ export const envConfig: EnvConfig = {
   baseURL: process.env.BASE_URL || "https://dos-web-uat.abym.us/",
   websiteUsername: process.env.WEBSITE_USERNAME || "",
   websitePassword: process.env.WEBSITE_PASSWORD || "",
-  loginEmail: process.env.LOGIN_EMAIL || "",
+  loginEmail: process.env.LOGIN_EMAIL || "twkxl.test@inbox.testmail.app",
   loginOTP: process.env.LOGIN_OTP || "123456",
   addToCartTestQuery: process.env.ADD_TO_CART_TEST_QUERY || "",
   isCI: !!process.env.CI,

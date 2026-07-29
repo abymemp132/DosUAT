@@ -27,7 +27,7 @@ interface TestData {
 export const testData: TestData = {
   users: [
     {
-      email: process.env.LOGIN_EMAIL || "test@example.com",
+      email: process.env.LOGIN_EMAIL || "twkxl.test@inbox.testmail.app",
       name: "Test User"
     }
   ],
@@ -53,7 +53,7 @@ export const testData: TestData = {
   ],
   defaultCity: "Delhi",
   defaultUser: {
-    email: process.env.LOGIN_EMAIL || "test@example.com",
+    email: process.env.LOGIN_EMAIL || "twkxl.test@inbox.testmail.app",
     name: "Test User"
   }
 };

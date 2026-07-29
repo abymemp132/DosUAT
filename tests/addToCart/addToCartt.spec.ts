@@ -4,7 +4,7 @@ import { LoginPage } from "../../pages/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
-const loginEmail = process.env.LOGIN_EMAIL || "test@example.com";
+const loginEmail = process.env.LOGIN_EMAIL || "twkxl.test@inbox.testmail.app";
 const city = "Delhi";
 
 async function assertSavedSession(page: Page): Promise<void> {
