@@ -6,7 +6,6 @@ on:
     branches: [ main, master ]
   schedule:
     - cron: '30 2 * * *' # Runs every day at 02:30 UTC (08:00 AM IST)
-    - cron: '10 8 16 7 *' # Runs at 08:10 UTC (01:40 PM IST) on July 16th
   workflow_dispatch:
 
 jobs:
@@ -17,11 +16,41 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
     - name: Create .env file
       env:
         ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
       run: |
-        [System.IO.File]::WriteAllText(".env", $env:ENV_FILE_CONTENT)
+        if [ -n "$ENV_FILE_CONTENT" ]; then
+          echo "$ENV_FILE_CONTENT" > .env
+        else
+          cat << 'EOF' > .env
+BASE_URL=https://dos-web-uat.abym.us/
+WEBSITE_USERNAME=Abym
+WEBSITE_PASSWORD=Abym@1234
+LOGIN_EMAIL=twkxl.test@inbox.testmail.app
+
+# Netlify Configuration
+NETLIFY_AUTH_TOKEN=nfp_E9Vo9GUKHnXdsPjTvbm6nW26AqqfooS4b228
+NETLIFY_SITE_ID=fccaf16e-f4ad-4640-8f24-b49a3c78adc7
+
+# Email Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=abymemp132@gmail.com
+SMTP_PASS=hwzz dbvd oipu noxe
+EMAIL_RECIPIENTS=abymemp132@gmail.com
+
+# Testmail.app Configuration
+TESTMAIL_API_KEY=3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6
+TESTMAIL_NAMESPACE=twkxl
+EOF
+        fi
         
     - name: Install dependencies
       run: npm ci
