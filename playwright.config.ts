@@ -7,11 +7,11 @@ dotenv.config();
 const ENV = process.env.TEST_ENV || 'staging';
 const BASE_URLS: Record<string, string> = {
   dev: 'http://dev.localhost:3000',
-  staging: 'http://127.0.0.1:3000',
-  prod: 'https://production-url.com',
+  staging: 'https://dos-web-uat.abym.us/',
+  prod: 'https://dos-web-uat.abym.us/',
 };
 
-const baseURL = process.env.BASE_URL || BASE_URLS[ENV];
+const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || 'https://dos-web-uat.abym.us/';
 const websiteUsername = process.env.WEBSITE_USERNAME || "";
 const websitePassword = process.env.WEBSITE_PASSWORD || "";
 const hasWebsiteCredentials = Boolean(websiteUsername && websitePassword);

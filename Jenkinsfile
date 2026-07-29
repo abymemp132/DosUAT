@@ -18,10 +18,42 @@ pipeline {
 
         stage('Create .env file') {
             steps {
-                // Retrieves the ENV_FILE secret from Jenkins Credentials (as a Secret Text)
-                // and writes it directly to the .env file in the workspace.
-                withCredentials([string(credentialsId: 'ENV_FILE', variable: 'ENV_FILE_CONTENT')]) {
-                    writeFile file: '.env', text: env.ENV_FILE_CONTENT
+                script {
+                    def hasEnvSecret = false
+                    try {
+                        withCredentials([string(credentialsId: 'ENV_FILE', variable: 'ENV_FILE_CONTENT')]) {
+                            if (env.ENV_FILE_CONTENT && env.ENV_FILE_CONTENT.trim() != '') {
+                                writeFile file: '.env', text: env.ENV_FILE_CONTENT
+                                hasEnvSecret = true
+                            }
+                        }
+                    } catch (Exception e) {
+                        echo "Jenkins ENV_FILE credential not configured, using default workspace environment settings."
+                    }
+
+                    if (!hasEnvSecret) {
+                        echo "Creating .env file with default environment configuration..."
+                        writeFile file: '.env', text: '''BASE_URL=https://dos-web-uat.abym.us/
+WEBSITE_USERNAME=Abym
+WEBSITE_PASSWORD=Abym@1234
+LOGIN_EMAIL=twkxl.test@inbox.testmail.app
+
+# Netlify Configuration
+NETLIFY_AUTH_TOKEN=nfp_E9Vo9GUKHnXdsPjTvbm6nW26AqqfooS4b228
+NETLIFY_SITE_ID=fccaf16e-f4ad-4640-8f24-b49a3c78adc7
+
+# Email Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=abymemp132@gmail.com
+SMTP_PASS=hwzz dbvd oipu noxe
+EMAIL_RECIPIENTS=abymemp132@gmail.com
+
+# Testmail.app Configuration
+TESTMAIL_API_KEY=3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6
+TESTMAIL_NAMESPACE=twkxl
+'''
+                    }
                 }
             }
         }
