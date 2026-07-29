@@ -12,8 +12,8 @@ const BASE_URLS: Record<string, string> = {
 };
 
 const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || 'https://dos-web-uat.abym.us/';
-const websiteUsername = process.env.WEBSITE_USERNAME || "";
-const websitePassword = process.env.WEBSITE_PASSWORD || "";
+const websiteUsername = process.env.WEBSITE_USERNAME || "Abym";
+const websitePassword = process.env.WEBSITE_PASSWORD || "Abym@1234";
 const hasWebsiteCredentials = Boolean(websiteUsername && websitePassword);
 
 function globalSetup() {
