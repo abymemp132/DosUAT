@@ -42,13 +42,17 @@ async function sendEmail() {
     console.log("Could not parse results.json metrics, using fallbacks.");
   }
 
+  const smtpUser = process.env.SMTP_USER || 'abymemp132@gmail.com';
+  const smtpPass = process.env.SMTP_PASS || 'hwzz dbvd oipu noxe';
+  const emailRecipients = process.env.EMAIL_RECIPIENTS || 'abymemp132@gmail.com';
+
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     port: parseInt(process.env.SMTP_PORT || '587'),
     secure: false, 
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS, 
+      user: smtpUser,
+      pass: smtpPass, 
     },
   });
 
@@ -133,7 +137,7 @@ async function sendEmail() {
           </p>
         </div>
         <div class="footer">
-          Generated automatically by GitHub Actions CI/CD Pipeline &bull; Playwright Automation Framework
+          Generated automatically by Jenkins CI/CD Pipeline &bull; Playwright Automation Framework
         </div>
       </div>
     </body>
@@ -141,8 +145,8 @@ async function sendEmail() {
   `;
 
   const mailOptions = {
-    from: `"DosUAT QA Automation" <${process.env.SMTP_USER}>`,
-    to: process.env.EMAIL_RECIPIENTS,
+    from: `"DosUAT QA Automation" <${smtpUser}>`,
+    to: emailRecipients,
     subject: `QA Test Execution Report - ${environment}`,
     html: htmlContent,
     attachments: [
@@ -158,11 +162,7 @@ async function sendEmail() {
   console.log('✅ Email sent successfully! Message ID:', info.messageId);
 }
 
-if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-  console.warn('⚠️ SMTP credentials not found in environment variables. Skipping email.');
-} else {
-  sendEmail().catch(err => {
-      console.error('❌ Error sending email:', err);
-      process.exit(1);
-  });
-}
+sendEmail().catch(err => {
+  console.error('❌ Error sending email:', err);
+  process.exit(1);
+});
