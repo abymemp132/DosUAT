@@ -1,8 +1,8 @@
 import "dotenv/config";
 
 export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promise<string | null> {
-  const apikey = process.env.TESTMAIL_API_KEY;
-  const namespace = process.env.TESTMAIL_NAMESPACE;
+  const apikey = process.env.TESTMAIL_API_KEY || "3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6";
+  const namespace = process.env.TESTMAIL_NAMESPACE || "twkxl";
 
   if (!apikey || !namespace) {
     throw new Error("TESTMAIL_API_KEY and TESTMAIL_NAMESPACE must be set in .env");

@@ -2,7 +2,10 @@ import { test as setup, Page } from "@playwright/test";
 import { LoginPage } from "../../pages/login.page";
 import path from "path";
 import fs from "fs";
+import dotenv from "dotenv";
 import { getOtpFromTestmail } from "../../utils/testmail";
+
+dotenv.config();
 
 function readTokenExpiry(token: string | null): number | null {
   if (!token) {
@@ -68,7 +71,7 @@ async function reuseExistingSession(page: Page, authFile: string): Promise<boole
 setup("authenticate with interactive OTP", async ({ page }) => {
   setup.setTimeout(300_000);
 
-  const email = process.env.LOGIN_EMAIL || "test@example.com";
+  const email = process.env.LOGIN_EMAIL || "twkxl.test@inbox.testmail.app";
   const otp = process.env.LOGIN_OTP?.trim() || "";
   const authFile = path.join(process.cwd(), ".auth", "user.json");
 
