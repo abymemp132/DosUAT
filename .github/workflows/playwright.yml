@@ -12,69 +12,69 @@ jobs:
   run-pipeline:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
+      - uses: actions/checkout@v4
 
-    - name: Create .env file
-      env:
-        ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
-      run: |
-        if [ -n "$ENV_FILE_CONTENT" ]; then
-          echo "$ENV_FILE_CONTENT" > .env
-        else
-          cat << 'EOF' > .env
-BASE_URL=https://dos-web-uat.abym.us/
-WEBSITE_USERNAME=Abym
-WEBSITE_PASSWORD=Abym@1234
-LOGIN_EMAIL=twkxl.test@inbox.testmail.app
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-# Netlify Configuration
-NETLIFY_AUTH_TOKEN=nfp_E9Vo9GUKHnXdsPjTvbm6nW26AqqfooS4b228
-NETLIFY_SITE_ID=fccaf16e-f4ad-4640-8f24-b49a3c78adc7
+      - name: Create .env file
+        env:
+          ENV_FILE_CONTENT: ${{ secrets.ENV_FILE }}
+        run: |
+          if [ -n "$ENV_FILE_CONTENT" ]; then
+            echo "$ENV_FILE_CONTENT" > .env
+          else
+            cat << 'EOF' > .env
+          BASE_URL=https://dos-web-uat.abym.us/
+          WEBSITE_USERNAME=Abym
+          WEBSITE_PASSWORD=Abym@1234
+          LOGIN_EMAIL=twkxl.test@inbox.testmail.app
 
-# Email Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=abymemp132@gmail.com
-SMTP_PASS=hwzz dbvd oipu noxe
-EMAIL_RECIPIENTS=abymemp132@gmail.com
+          # Netlify Configuration
+          NETLIFY_AUTH_TOKEN=nfp_E9Vo9GUKHnXdsPjTvbm6nW26AqqfooS4b228
+          NETLIFY_SITE_ID=fccaf16e-f4ad-4640-8f24-b49a3c78adc7
 
-# Testmail.app Configuration
-TESTMAIL_API_KEY=3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6
-TESTMAIL_NAMESPACE=twkxl
-EOF
-        fi
-        
-    - name: Install dependencies
-      run: npm ci
+          # Email Configuration
+          SMTP_HOST=smtp.gmail.com
+          SMTP_PORT=587
+          SMTP_USER=abymemp132@gmail.com
+          SMTP_PASS=hwzz dbvd oipu noxe
+          EMAIL_RECIPIENTS=abymemp132@gmail.com
 
-    - name: Run TypeScript check
-      run: npm run typecheck
+          # Testmail.app Configuration
+          TESTMAIL_API_KEY=3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6
+          TESTMAIL_NAMESPACE=twkxl
+          EOF
+          fi
 
-    - name: Run lint
-      run: npm run lint
-      
-    - name: Install Playwright Browsers
-      run: npx playwright install chromium
-      
-    - name: Run Combined Pipeline (Tests, Dashboard, PDF, Email)
-      run: npm run pipeline
-      
-    - name: Upload Test Report Artifacts
-      if: always()
-      continue-on-error: true
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-pipeline-reports
-        path: |
-          playwright-report/
-          reports/dashboard-static/
-          reports/results.json
-        retention-days: 5
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript check
+        run: npm run typecheck
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+
+      - name: Run Combined Pipeline (Tests, Dashboard, PDF, Email)
+        run: npm run pipeline
+
+      - name: Upload Test Report Artifacts
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-pipeline-reports
+          path: |
+            playwright-report/
+            reports/dashboard-static/
+            reports/results.json
+          retention-days: 5
