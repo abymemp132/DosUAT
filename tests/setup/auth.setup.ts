@@ -24,7 +24,7 @@ function canRunInteractiveLogin(): boolean {
   return process.env.PWDEBUG === "1" || process.env.PWDEBUG === "console" || process.env.PLAYWRIGHT_INTERACTIVE_LOGIN === "1";
 }
 
-async function reuseExistingSession(page: Page, authFile: string): Promise<boolean> {
+async function reuseExistingSession(page: Page, authFile: string, email: string): Promise<boolean> {
   if (!fs.existsSync(authFile)) {
     return false;
   }
@@ -58,8 +58,19 @@ async function reuseExistingSession(page: Page, authFile: string): Promise<boole
   }));
 
   if (sessionData.token) {
-    console.log("Existing session is still valid. Skipping login.");
-    return true;
+    try {
+      const loginPage = new LoginPage(page);
+      await loginPage.openProfileMenu();
+      await loginPage.assertSessionIsActive(email);
+      console.log("Existing session is valid and verified. Skipping login.");
+      return true;
+    } catch (error) {
+      console.log(`Saved session token exists but failed active session verification: ${error instanceof Error ? error.message : error}. Re-authenticating...`);
+      fs.rmSync(authFile, { force: true });
+      await page.context().clearCookies();
+      await page.evaluate(() => window.localStorage.clear()).catch(() => {});
+      return false;
+    }
   }
 
   console.log("Saved auth markers are missing. Re-authenticating...");
@@ -75,7 +86,7 @@ setup("authenticate with interactive OTP", async ({ page }) => {
   const otp = process.env.LOGIN_OTP?.trim() || "";
   const authFile = path.join(process.cwd(), ".auth", "user.json");
 
-  if (await reuseExistingSession(page, authFile)) {
+  if (await reuseExistingSession(page, authFile, email)) {
     return;
   }
 

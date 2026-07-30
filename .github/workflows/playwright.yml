@@ -61,6 +61,9 @@ jobs:
       - name: Run lint
         run: npm run lint
 
+      - name: Clean stale auth state
+        run: rm -f .auth/user.json
+
       - name: Install Playwright Browsers
         run: npx playwright install chromium
 

@@ -100,6 +100,18 @@ TESTMAIL_NAMESPACE=twkxl
             }
         }
 
+        stage('Clean auth state') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'rm -f .auth/user.json || true'
+                    } else {
+                        bat 'if exist .auth\\user.json del /f /q .auth\\user.json'
+                    }
+                }
+            }
+        }
+
         stage('Install Playwright Browsers') {
             steps {
                 script {
