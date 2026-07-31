@@ -124,7 +124,10 @@ setup("authenticate with interactive OTP", async ({ page }) => {
     
     const testmailOtp = await getOtpFromTestmail(tag);
     if (!testmailOtp) {
-      throw new Error("Failed to fetch OTP from testmail.app within the timeout.");
+      throw new Error(
+        "Failed to fetch OTP from testmail.app within 30 seconds. " +
+        "Ensure UAT backend sends emails to testmail.app, or set LOGIN_OTP / provide valid .auth/user.json."
+      );
     }
     
     console.log("OTP fetched successfully. Entering OTP.");

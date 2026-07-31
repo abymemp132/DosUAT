@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promise<string | null> {
+export async function getOtpFromTestmail(tag: string, timeoutMs = 30000): Promise<string | null> {
   const apikey = process.env.TESTMAIL_API_KEY || "3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6";
   const namespace = process.env.TESTMAIL_NAMESPACE || "twkxl";
 
@@ -10,13 +10,20 @@ export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promis
 
   // Only consider emails received from 10 seconds ago onwards to avoid old OTPs
   const timestampFrom = Date.now() - 10000;
-  const url = `https://api.testmail.app/api/json?apikey=${apikey}&namespace=${namespace}&tag=${tag}&livequery=true&timestamp_from=${timestampFrom}`;
+  // Use standard json query without hanging livequery connection
+  const url = `https://api.testmail.app/api/json?apikey=${apikey}&namespace=${namespace}&tag=${tag}&timestamp_from=${timestampFrom}`;
 
   const startTime = Date.now();
+  let attempt = 0;
   
   while (Date.now() - startTime < timeoutMs) {
+    attempt++;
+    const elapsedSecs = Math.round((Date.now() - startTime) / 1000);
+    console.log(`[Testmail] Polling for OTP email (attempt ${attempt}, ${elapsedSecs}s elapsed)...`);
+
     try {
-      const response = await fetch(url);
+      // Set a 5-second per-request timeout so fetch never hangs indefinitely
+      const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
       if (!response.ok) {
          throw new Error(`Testmail.app API error: ${response.status} ${response.statusText}`);
       }
@@ -30,16 +37,23 @@ export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promis
         // Match a 6-digit OTP
         const otpMatch = text.match(/\b\d{6}\b/);
         if (otpMatch) {
+          console.log(`[Testmail] OTP found in email: ${otpMatch[0]}`);
           return otpMatch[0];
         }
       }
-    } catch (e) {
-      console.error("Error fetching from Testmail.app:", e);
+    } catch (e: any) {
+      if (e.name === "TimeoutError" || e.name === "AbortError") {
+        console.log(`[Testmail] Request timed out on attempt ${attempt}. Retrying...`);
+      } else {
+        console.error(`[Testmail] Error on attempt ${attempt}:`, e instanceof Error ? e.message : e);
+      }
     }
 
-    // Wait a bit before polling again in case of failure or empty result
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Wait 3 seconds before polling again
+    await new Promise((resolve) => setTimeout(resolve, 3000));
   }
 
+  console.warn(`[Testmail] Timed out after ${Math.round((Date.now() - startTime) / 1000)}s without receiving OTP email.`);
   return null;
 }
+
