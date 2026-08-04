@@ -1,24 +1,22 @@
 import { defineConfig, devices } from "@playwright/test";
 import dotenv from "dotenv";
-import path from "path";
 
 dotenv.config();
 
-const ENV = process.env.TEST_ENV || 'staging';
+const ENV = (process.env.TEST_ENV || "staging").toLowerCase();
 const BASE_URLS: Record<string, string> = {
-  dev: 'http://dev.localhost:3000',
-  staging: 'https://dos-web-uat.abym.us/',
-  prod: 'https://dos-web-uat.abym.us/',
+  dev: "http://dev.localhost:3000",
+  staging: "https://dos-web-uat.abym.us/"
 };
 
-const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || 'https://dos-web-uat.abym.us/';
-const websiteUsername = process.env.WEBSITE_USERNAME || "Abym";
-const websitePassword = process.env.WEBSITE_PASSWORD || "Abym@1234";
-const hasWebsiteCredentials = Boolean(websiteUsername && websitePassword);
-
-function globalSetup() {
-  // Global checks
+if (ENV === "prod" && !process.env.BASE_URL) {
+  throw new Error("Set BASE_URL explicitly when TEST_ENV=prod.");
 }
+
+const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || BASE_URLS.staging;
+const websiteUsername = process.env.WEBSITE_USERNAME || "";
+const websitePassword = process.env.WEBSITE_PASSWORD || "";
+const hasWebsiteCredentials = Boolean(websiteUsername && websitePassword);
 
 export default defineConfig({
   testDir: "./tests",
@@ -28,7 +26,8 @@ export default defineConfig({
   expect: {
     timeout: process.env.CI ? 20_000 : 10_000
   },
-  fullyParallel: true,
+  // Authenticated tests share one account and mutable cart state.
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: 1,
@@ -55,14 +54,20 @@ export default defineConfig({
   projects: [
     { name: "setup", testMatch: /.*\.setup\.ts/ },
     {
-      name: "chromium",
-      dependencies: ['setup'],
+      name: "guest-chromium",
+      use: { ...devices["Desktop Chrome"] },
+      testMatch: /.*\.spec\.ts/,
+      grepInvert: /\[Login\]/
+    },
+    {
+      name: "authenticated-chromium",
+      dependencies: ["setup"],
       use: { 
         ...devices["Desktop Chrome"],
         storageState: '.auth/user.json',
       },
       testMatch: /.*\.spec\.ts/,
-      grep: /\[Login\]|auth/i, // Run auth and login-required tests here
+      grep: /\[Login\]/
     }
   ]
 });

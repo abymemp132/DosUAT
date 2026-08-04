@@ -28,7 +28,7 @@ async function sendEmail() {
         flaky = data.stats.flaky || 0;
         total = passed + failed + skipped + flaky;
         
-        if (total > 0) {
+        if (total > skipped) {
             passRate = ((passed / (total - skipped)) * 100).toFixed(1) + '%';
         }
         
@@ -42,9 +42,13 @@ async function sendEmail() {
     console.log("Could not parse results.json metrics, using fallbacks.");
   }
 
-  const smtpUser = process.env.SMTP_USER || 'abymemp132@gmail.com';
-  const smtpPass = process.env.SMTP_PASS || 'hwzz dbvd oipu noxe';
-  const emailRecipients = process.env.EMAIL_RECIPIENTS || 'abymemp132@gmail.com';
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const emailRecipients = process.env.EMAIL_RECIPIENTS;
+
+  if (!smtpUser || !smtpPass || !emailRecipients) {
+    throw new Error("SMTP_USER, SMTP_PASS, and EMAIL_RECIPIENTS must be configured.");
+  }
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',

@@ -1,8 +1,8 @@
 import "dotenv/config";
 
 export async function getOtpFromTestmail(tag: string, timeoutMs = 30000): Promise<string | null> {
-  const apikey = process.env.TESTMAIL_API_KEY || "3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6";
-  const namespace = process.env.TESTMAIL_NAMESPACE || "twkxl";
+  const apikey = process.env.TESTMAIL_API_KEY;
+  const namespace = process.env.TESTMAIL_NAMESPACE;
 
   if (!apikey || !namespace) {
     throw new Error("TESTMAIL_API_KEY and TESTMAIL_NAMESPACE must be set in .env");
@@ -37,7 +37,7 @@ export async function getOtpFromTestmail(tag: string, timeoutMs = 30000): Promis
         // Match a 6-digit OTP
         const otpMatch = text.match(/\b\d{6}\b/);
         if (otpMatch) {
-          console.log(`[Testmail] OTP found in email: ${otpMatch[0]}`);
+          console.log("[Testmail] OTP found in email.");
           return otpMatch[0];
         }
       }
@@ -56,4 +56,3 @@ export async function getOtpFromTestmail(tag: string, timeoutMs = 30000): Promis
   console.warn(`[Testmail] Timed out after ${Math.round((Date.now() - startTime) / 1000)}s without receiving OTP email.`);
   return null;
 }
-

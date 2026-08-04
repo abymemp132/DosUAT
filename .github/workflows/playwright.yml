@@ -6,6 +6,13 @@ on:
     - cron: '30 2 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-playwright-pipeline
+  cancel-in-progress: false
+
 jobs:
   test:
     name: Run Automation Suite & Send Report
@@ -28,28 +35,39 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Create .env file
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME }}
+          WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD }}
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+          TESTMAIL_API_KEY: ${{ secrets.TESTMAIL_API_KEY }}
+          TESTMAIL_NAMESPACE: ${{ secrets.TESTMAIL_NAMESPACE }}
         run: |
-          cat << 'EOF' > .env
-          BASE_URL=${{ secrets.BASE_URL || 'https://dos-web-uat.abym.us/' }}
-          WEBSITE_USERNAME=${{ secrets.WEBSITE_USERNAME || 'Abym' }}
-          WEBSITE_PASSWORD=${{ secrets.WEBSITE_PASSWORD || 'Abym@1234' }}
-          LOGIN_EMAIL=${{ secrets.LOGIN_EMAIL || 'twkxl.test@inbox.testmail.app' }}
-          
-          # Netlify Configuration
-          NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN || 'nfp_E9Vo9GUKHnXdsPjTvbm6nW26AqqfooS4b228' }}
-          NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID || 'fccaf16e-f4ad-4640-8f24-b49a3c78adc7' }}
-          
-          # Email Configuration
-          SMTP_HOST=${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
-          SMTP_PORT=${{ secrets.SMTP_PORT || '587' }}
-          SMTP_USER=${{ secrets.SMTP_USER || 'abymemp132@gmail.com' }}
-          SMTP_PASS=${{ secrets.SMTP_PASS || 'hwzz dbvd oipu noxe' }}
-          EMAIL_RECIPIENTS=${{ secrets.EMAIL_RECIPIENTS || 'abymemp132@gmail.com' }}
-          
-          # Testmail.app Configuration
-          TESTMAIL_API_KEY=${{ secrets.TESTMAIL_API_KEY || '3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6' }}
-          TESTMAIL_NAMESPACE=${{ secrets.TESTMAIL_NAMESPACE || 'twkxl' }}
-          EOF
+          required=(BASE_URL WEBSITE_USERNAME WEBSITE_PASSWORD LOGIN_EMAIL SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS EMAIL_RECIPIENTS TESTMAIL_API_KEY TESTMAIL_NAMESPACE)
+          for name in "${required[@]}"; do
+            if [ -z "${!name}" ]; then
+              echo "Required GitHub Actions secret is missing: $name" >&2
+              exit 1
+            fi
+          done
+          {
+            printf 'BASE_URL=%s\n' "$BASE_URL"
+            printf 'WEBSITE_USERNAME=%s\n' "$WEBSITE_USERNAME"
+            printf 'WEBSITE_PASSWORD=%s\n' "$WEBSITE_PASSWORD"
+            printf 'LOGIN_EMAIL=%s\n' "$LOGIN_EMAIL"
+            printf 'SMTP_HOST=%s\n' "$SMTP_HOST"
+            printf 'SMTP_PORT=%s\n' "$SMTP_PORT"
+            printf 'SMTP_USER=%s\n' "$SMTP_USER"
+            printf 'SMTP_PASS=%s\n' "$SMTP_PASS"
+            printf 'EMAIL_RECIPIENTS=%s\n' "$EMAIL_RECIPIENTS"
+            printf 'TESTMAIL_API_KEY=%s\n' "$TESTMAIL_API_KEY"
+            printf 'TESTMAIL_NAMESPACE=%s\n' "$TESTMAIL_NAMESPACE"
+          } > .env
 
       - name: Run TypeScript Check
         run: npm run typecheck
@@ -61,6 +79,7 @@ jobs:
         run: npm run pipeline
         env:
           CI: 'true'
+          TEST_ENV: staging
 
       - name: Upload Test Artifacts
         if: always()

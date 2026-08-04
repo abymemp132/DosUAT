@@ -11,7 +11,7 @@ test.describe("auth", () => {
     test.use({ storageState: authStatePath });
   }
 
-  test("saved login session is active", async ({ page, user, city }) => {
+  test("[Login] saved login session is active", async ({ page, user, city }) => {
     test.setTimeout(60_000);
 
     const loginPage = new LoginPage(page);

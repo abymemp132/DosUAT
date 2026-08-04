@@ -96,7 +96,9 @@ function main(): void {
   };
 
   const extraArgs = process.argv.slice(2);
-  const testRun = runCommand(npxCmd, ["playwright", "test", ...extraArgs, "--reporter=line,html,json,junit"], env);
+  // Keep the reporter configuration in playwright.config.ts so its output paths
+  // match the files consumed by the dashboard and pipeline steps below.
+  const testRun = runCommand(npxCmd, ["playwright", "test", ...extraArgs], env);
   const testExitCode = typeof testRun.status === "number" ? testRun.status : 1;
 
   const jsonPath = path.join(repoRoot, outputJson);

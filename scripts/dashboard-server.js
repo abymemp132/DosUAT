@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 
-const ROOT_DIR = __dirname;
+const ROOT_DIR = path.resolve(__dirname, "..");
 const PORT = Number(process.env.DASHBOARD_PORT || 4173);
 const CURRENT_REPORT_PATH = path.join(ROOT_DIR, 'reports', 'execution-report', 'results.json');
 const HISTORY_DIR = path.join(ROOT_DIR, 'reports', 'execution-report', 'history');

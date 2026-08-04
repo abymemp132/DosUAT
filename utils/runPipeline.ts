@@ -16,8 +16,7 @@ function runCommand(command: string, args: string[]): number {
 }
 
 async function main() {
-  // Ensure TEST_ENV is set to staging if not already set
-  process.env.TEST_ENV = process.env.TEST_ENV || "UAT";
+  process.env.TEST_ENV = process.env.TEST_ENV || "staging";
 
   // 1. Run both guest and login tests via runTestsWithDashboard
   const testExitCode = runCommand("npm", ["run", "test"]);
@@ -45,14 +44,14 @@ async function main() {
     console.error("Failed to copy latest report JSON:", err);
   }
 
-  // 3. Generate PDF report from the static dashboard
-  runCommand("npm", ["run", "report:pdf"]);
+  // 3. Generate PDF report from the static dashboard.
+  const reportExitCode = runCommand("npm", ["run", "report:pdf"]);
 
-  // 4. Send email with the generated PDF report
-  runCommand("npm", ["run", "send-email"]);
+  // 4. Send email only when the attachment was generated successfully.
+  const emailExitCode = reportExitCode === 0 ? runCommand("npm", ["run", "send-email"]) : 1;
 
-  // 5. Exit with original test exit code
-  process.exit(testExitCode);
+  // 5. Propagate failures from every required pipeline stage.
+  process.exit(testExitCode || reportExitCode || emailExitCode);
 }
 
 main().catch((err) => {
