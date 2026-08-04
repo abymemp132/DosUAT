@@ -4,9 +4,6 @@ on:
   schedule:
     # 8:00 AM IST is 2:30 AM UTC
     - cron: '30 2 * * *'
-    # Temporary catch-up run: 4 Aug 2026, 12:10 PM IST (06:40 UTC).
-    # Remove after today's run; POSIX cron has no year field.
-    - cron: '40 6 4 8 *'
   workflow_dispatch:
 
 permissions:
