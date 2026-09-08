@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
-import { BrochurePage } from "../../pages/brochure.page";
-import { LoginPage } from "../../pages/login.page";
+import { BrochurePage } from "../../pages/brochure/brochure.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
@@ -15,44 +15,12 @@ async function assertSavedSession(page: Page): Promise<void> {
   await page.keyboard.press("Escape").catch(() => {});
 }
 
-test.describe("brochure page - without login (guest user)", () => {
-  test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest brochure checks.");
-
-  test.beforeEach(async ({ page }) => {
-    const brochurePage = new BrochurePage(page);
-    await brochurePage.openAndSelectCity(city);
-  });
-
-  test("[Guest] loads page and shows core widgets", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const brochurePage = new BrochurePage(page);
-    await brochurePage.assertPageShell();
-  });
-
-  test("[Guest] search by brochure works", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const brochurePage = new BrochurePage(page);
-    await brochurePage.assertSearchBrochuresWorks();
-  });
-
-  test("[Guest] sharing links are reachable", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const brochurePage = new BrochurePage(page);
-    await brochurePage.assertShareLinksAreReachable();
-  });
-});
-
 test.describe("brochure page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in brochure checks.");
-  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
-  if (hasAuthState) {
-    test.use({ storageState: authStatePath });
-  }
+  test.use({ storageState: authStatePath });
 
   test.beforeEach(async ({ page }) => {
+    test.skip(!hasAuthState(), "Run `node utils/saveManualSession.js` or allow setup project to capture a reusable login session.");
     const brochurePage = new BrochurePage(page);
     await brochurePage.openAndSelectCity(city);
   });

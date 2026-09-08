@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 import readline from "readline/promises";
 import { stdin as input, stdout as output } from "process";
-import { LoginPage } from "../pages/login.page";
+import { LoginPage } from "../pages/auth/login.page";
 import { getOtpFromTestmail } from "./testmail";
 
 async function askForOtp(prompt: string): Promise<string> {

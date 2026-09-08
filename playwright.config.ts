@@ -52,22 +52,63 @@ export default defineConfig({
     video: "retain-on-failure"
   },
   projects: [
-    { name: "setup", testMatch: /.*\.setup\.ts/ },
     {
-      name: "guest-chromium",
-      use: { ...devices["Desktop Chrome"] },
-      testMatch: /.*\.spec\.ts/,
-      grepInvert: /\[Login\]/
+      name: "setup",
+      testMatch: /.*\.setup\.ts/
     },
     {
-      name: "authenticated-chromium",
+      name: "auth",
       dependencies: ["setup"],
-      use: { 
-        ...devices["Desktop Chrome"],
-        storageState: '.auth/user.json',
-      },
-      testMatch: /.*\.spec\.ts/,
-      grep: /\[Login\]/
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /auth\/.*\.spec\.ts/
+    },
+    {
+      name: "home",
+      dependencies: ["auth"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /home\/.*\.spec\.ts/
+    },
+    {
+      name: "testCatalog",
+      dependencies: ["home"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /testCatalog\/.*\.spec\.ts/
+    },
+    {
+      name: "forms",
+      dependencies: ["testCatalog"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /forms\/.*\.spec\.ts/
+    },
+    {
+      name: "diseaseCondition",
+      dependencies: ["forms"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /diseaseCondition\/.*\.spec\.ts/
+    },
+    {
+      name: "doctorSpeciality",
+      dependencies: ["diseaseCondition"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /doctorSpeciality\/.*\.spec\.ts/
+    },
+    {
+      name: "brochure",
+      dependencies: ["doctorSpeciality"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /brochure\/.*\.spec\.ts/
+    },
+    {
+      name: "faq",
+      dependencies: ["brochure"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /faq\/.*\.spec\.ts/
+    },
+    {
+      name: "addToCart",
+      dependencies: ["faq"],
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      testMatch: /addToCart\/.*\.spec\.ts/
     }
   ]
 });

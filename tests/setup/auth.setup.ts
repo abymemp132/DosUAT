@@ -1,5 +1,5 @@
 import { test as setup, Page } from "@playwright/test";
-import { LoginPage } from "../../pages/login.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import path from "path";
 import fs from "fs";
 import dotenv from "dotenv";
@@ -122,10 +122,10 @@ setup("authenticate with interactive OTP", async ({ page }) => {
       throw new Error(`Could not extract tag from testmail address: ${email}`);
     }
     
-    const testmailOtp = await getOtpFromTestmail(tag);
+    const testmailOtp = await getOtpFromTestmail(tag, 60000);
     if (!testmailOtp) {
       throw new Error(
-        "Failed to fetch OTP from testmail.app within 30 seconds. " +
+        "Failed to fetch OTP from testmail.app within 60 seconds. " +
         "Ensure UAT backend sends emails to testmail.app, or set LOGIN_OTP / provide valid .auth/user.json."
       );
     }

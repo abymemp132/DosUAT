@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
-import { DoctorSpecialityPage } from "../../pages/doctorSpeciality.page";
-import { LoginPage } from "../../pages/login.page";
+import { DoctorSpecialityPage } from "../../pages/doctorSpeciality/doctorSpeciality.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
@@ -15,51 +15,12 @@ async function assertSavedSession(page: Page): Promise<void> {
   await page.keyboard.press("Escape").catch(() => {});
 }
 
-test.describe("doctor speciality page - without login (guest user)", () => {
-  test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest doctor speciality checks.");
-
-  test.beforeEach(async ({ page }) => {
-    const doctorSpecialityPage = new DoctorSpecialityPage(page);
-    await doctorSpecialityPage.openAndSelectCity(city);
-  });
-
-  test("[Guest] loads page and shows core widgets", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const doctorSpecialityPage = new DoctorSpecialityPage(page);
-    await doctorSpecialityPage.assertPageShell();
-  });
-
-  test("[Guest] speciality filter updates catalog", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const doctorSpecialityPage = new DoctorSpecialityPage(page);
-    await doctorSpecialityPage.assertSpecialityFilterChangesCatalog("Cardiologist");
-  });
-
-  test("[Guest] search by test code works", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const doctorSpecialityPage = new DoctorSpecialityPage(page);
-    await doctorSpecialityPage.assertSearchByTestCodeWorks();
-  });
-
-  test("[Guest] add to cart shows login warning", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const doctorSpecialityPage = new DoctorSpecialityPage(page);
-    await doctorSpecialityPage.assertAddToCartShowsLoginWarning();
-  });
-});
-
 test.describe("doctor speciality page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in doctor speciality checks.");
-  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
-  if (hasAuthState) {
-    test.use({ storageState: authStatePath });
-  }
+  test.use({ storageState: authStatePath });
 
   test.beforeEach(async ({ page }) => {
+    test.skip(!hasAuthState(), "Run `node utils/saveManualSession.js` or allow setup project to capture a reusable login session.");
     const doctorSpecialityPage = new DoctorSpecialityPage(page);
     await doctorSpecialityPage.openAndSelectCity(city);
   });

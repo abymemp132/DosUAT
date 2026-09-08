@@ -1,5 +1,5 @@
 import { APIRequestContext, expect, Locator, Page, request } from '@playwright/test';
-import { BasePage } from './base.page';
+import { BasePage } from '../base.page';
 
 export class BrochurePage extends BasePage {
   private readonly locationModal: Locator;

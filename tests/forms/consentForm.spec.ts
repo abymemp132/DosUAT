@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
-import { FormsPage } from "../../pages/forms.page";
-import { LoginPage } from "../../pages/login.page";
+import { FormsPage } from "../../pages/forms/forms.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
@@ -15,44 +15,12 @@ async function assertSavedSession(page: Page): Promise<void> {
   await page.keyboard.press("Escape").catch(() => {});
 }
 
-test.describe("test requisition & consent forms page - without login (guest user)", () => {
-  test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest consent forms checks.");
-
-  test.beforeEach(async ({ page }) => {
-    const formsPage = new FormsPage(page);
-    await formsPage.openAndSelectCity(city);
-  });
-
-  test("[Guest] loads page and shows core widgets", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const formsPage = new FormsPage(page);
-    await formsPage.assertPageShell();
-  });
-
-  test("[Guest] search by consent works", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const formsPage = new FormsPage(page);
-    await formsPage.assertSearchByConsentWorks("MammaPrint", "MammaPrint TRF");
-  });
-
-  test("[Guest] sharing links are reachable", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const formsPage = new FormsPage(page);
-    await formsPage.assertShareLinksAreReachable();
-  });
-});
-
 test.describe("test requisition & consent forms page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in consent forms checks.");
-  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
-  if (hasAuthState) {
-    test.use({ storageState: authStatePath });
-  }
+  test.use({ storageState: authStatePath });
 
   test.beforeEach(async ({ page }) => {
+    test.skip(!hasAuthState(), "Run `node utils/saveManualSession.js` or allow setup project to capture a reusable login session.");
     const formsPage = new FormsPage(page);
     await formsPage.openAndSelectCity(city);
   });

@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from './base.page';
-import { LoginPage } from './login.page';
+import { BasePage } from '../base.page';
+import { LoginPage } from '../auth/login.page';
 
 export class HomePage extends BasePage {
   private readonly locationModal: Locator;

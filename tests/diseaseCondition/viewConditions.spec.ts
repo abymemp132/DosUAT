@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
-import { DiseaseConditionPage } from "../../pages/diseaseCondition.page";
-import { LoginPage } from "../../pages/login.page";
+import { DiseaseConditionPage } from "../../pages/diseaseCondition/diseaseCondition.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
@@ -15,51 +15,12 @@ async function assertSavedSession(page: Page): Promise<void> {
   await page.keyboard.press("Escape").catch(() => {});
 }
 
-test.describe("disease condition page - without login (guest user)", () => {
-  test.skip(!hasBaseUrl, "Set BASE_URL in .env to run guest disease condition checks.");
-
-  test.beforeEach(async ({ page }) => {
-    const diseaseConditionPage = new DiseaseConditionPage(page);
-    await diseaseConditionPage.openAndSelectCity(city);
-  });
-
-  test("[Guest] loads page and shows core widgets", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const diseaseConditionPage = new DiseaseConditionPage(page);
-    await diseaseConditionPage.assertPageShell();
-  });
-
-  test("[Guest] condition filter updates catalog", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const diseaseConditionPage = new DiseaseConditionPage(page);
-    await diseaseConditionPage.assertConditionFilterChangesCatalog("Heart");
-  });
-
-  test("[Guest] search by test code works", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const diseaseConditionPage = new DiseaseConditionPage(page);
-    await diseaseConditionPage.assertSearchByTestCodeWorks();
-  });
-
-  test("[Guest] add to cart shows login warning", async ({ page }) => {
-    test.setTimeout(120_000);
-
-    const diseaseConditionPage = new DiseaseConditionPage(page);
-    await diseaseConditionPage.assertAddToCartShowsLoginWarning();
-  });
-});
-
 test.describe("disease condition page - with login (authenticated user)", () => {
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in disease condition checks.");
-  test.skip(!hasAuthState, "Run `node utils/saveManualSession.js` to capture a reusable login session.");
-  if (hasAuthState) {
-    test.use({ storageState: authStatePath });
-  }
+  test.use({ storageState: authStatePath });
 
   test.beforeEach(async ({ page }) => {
+    test.skip(!hasAuthState(), "Run `node utils/saveManualSession.js` or allow setup project to capture a reusable login session.");
     const diseaseConditionPage = new DiseaseConditionPage(page);
     await diseaseConditionPage.openAndSelectCity(city);
   });

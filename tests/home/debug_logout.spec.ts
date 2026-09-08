@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { HomePage } from "../../pages/home.page";
+import { HomePage } from "../../pages/home/home.page";
 
 test("[Login] debug logout button", async ({ page }) => {
   test.setTimeout(60000);

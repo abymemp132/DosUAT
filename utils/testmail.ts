@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-export async function getOtpFromTestmail(tag: string, timeoutMs = 30000): Promise<string | null> {
+export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promise<string | null> {
   const apikey = process.env.TESTMAIL_API_KEY;
   const namespace = process.env.TESTMAIL_NAMESPACE;
 

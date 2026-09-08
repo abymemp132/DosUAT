@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
-import { AddToCartPage } from "../../pages/addToCart.page";
-import { LoginPage } from "../../pages/login.page";
+import { AddToCartPage } from "../../pages/addToCart/addToCart.page";
+import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";
 import { hasBaseUrl } from "../support/env";
 
@@ -30,12 +30,10 @@ async function openAddToCartModule(page: Page): Promise<AddToCartPage> {
 test.describe("add to cart page - with login", () => {
   test.describe.configure({ mode: 'serial' });
   test.skip(!hasBaseUrl, "Set BASE_URL in .env to run logged-in add-to-cart checks.");
-  test.skip(!hasAuthState, "Run `npm run auth:manual` to create a reusable login session.");
-  if (hasAuthState) {
-    test.use({ storageState: authStatePath });
-  }
+  test.use({ storageState: authStatePath });
 
   test.beforeEach(async ({ page }) => {
+    test.skip(!hasAuthState(), "Run `npm run auth:manual` or allow setup project to create a reusable login session.");
     const loginPage = new LoginPage(page);
     await loginPage.openHome();
     await loginPage.closeLocationModal(city);
