@@ -79,7 +79,7 @@ jobs:
         run: npm run pipeline
         env:
           CI: 'true'
-          TEST_ENV: staging
+          TEST_ENV: UAT
 
       - name: Upload Test Artifacts
         if: always()

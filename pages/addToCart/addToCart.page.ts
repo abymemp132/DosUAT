@@ -229,27 +229,41 @@ export class AddToCartPage extends BasePage {
       .toBeGreaterThan(countBeforeAdd);
   }
 
-  async waitForCatalogRows(timeoutMs = 50_000): Promise<void> {
+  async waitForCatalogRows(timeoutMs = 30_000): Promise<void> {
     const loadingTests = this.page.getByText('Loading tests...', { exact: false }).first();
     const noDataFound = this.page.getByText('No Data Found', { exact: false }).first();
+    const locationModal = this.page
+      .locator('div.fixed.inset-0.z-50')
+      .filter({ hasText: /Select your Location|Change City/i })
+      .first();
 
     if (await loadingTests.isVisible().catch(() => false)) {
-      try {
-        await expect(loadingTests).toBeHidden({ timeout: timeoutMs });
-      } catch {
-        // Optional wait can time out without failing the flow.
-      }
+      await expect(loadingTests).toBeHidden({ timeout: timeoutMs }).catch(() => {});
     }
 
+    if (await locationModal.isVisible().catch(() => false)) {
+      await this.page.keyboard.press('Escape').catch(() => {});
+    }
+
+    const rowLocator = this.page
+      .locator('tbody tr, tr')
+      .filter({
+        has: this.page.getByRole('button', { name: /add to cart|remove/i }).first()
+      })
+      .first();
+
     try {
-      await expect(this.tableRows.first(), 'Catalog rows should be visible before add to cart action.').toBeVisible({
+      await expect(rowLocator, 'Catalog rows should be visible before add to cart action.').toBeVisible({
         timeout: timeoutMs
       });
     } catch (error) {
       if (await noDataFound.isVisible().catch(() => false)) {
         throw new Error("Catalog returned 'No Data Found'. This is likely an environment/data issue.");
       }
-      throw error;
+      await this.page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {});
+      await expect(rowLocator, 'Catalog rows should be visible after reload.').toBeVisible({
+        timeout: 15_000
+      });
     }
   }
 
