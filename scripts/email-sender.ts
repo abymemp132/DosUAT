@@ -60,7 +60,7 @@ async function sendEmail() {
     },
   });
 
-  const environment = process.env.TEST_ENV || 'UAT';
+  const environment = (process.env.TEST_ENV || 'UAT').toUpperCase();
   
   const htmlContent = `
     <!DOCTYPE html>

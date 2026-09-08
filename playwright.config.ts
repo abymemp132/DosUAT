@@ -3,9 +3,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const ENV = (process.env.TEST_ENV || "staging").toLowerCase();
+const ENV = (process.env.TEST_ENV || "uat").toLowerCase();
 const BASE_URLS: Record<string, string> = {
   dev: "http://dev.localhost:3000",
+  uat: "https://dos-web-uat.abym.us/",
   staging: "https://dos-web-uat.abym.us/"
 };
 
@@ -13,7 +14,7 @@ if (ENV === "prod" && !process.env.BASE_URL) {
   throw new Error("Set BASE_URL explicitly when TEST_ENV=prod.");
 }
 
-const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || BASE_URLS.staging;
+const baseURL = process.env.BASE_URL || BASE_URLS[ENV] || BASE_URLS.uat;
 const websiteUsername = process.env.WEBSITE_USERNAME || "";
 const websitePassword = process.env.WEBSITE_PASSWORD || "";
 const hasWebsiteCredentials = Boolean(websiteUsername && websitePassword);

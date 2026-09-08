@@ -201,7 +201,7 @@ function main() {
   const dashboardReport = {
     generatedAt: new Date().toISOString(),
     project: "Dos",
-    environment: "UAT / Performance",
+    environment: (process.env.TEST_ENV || "UAT").toUpperCase(),
     summary: {
       total: entries.length,
       passed,
