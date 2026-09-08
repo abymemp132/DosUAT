@@ -1,7 +1,9 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import { spawnSync } from "child_process";
 
-async function main() {
+dotenv.config();
+
+function main() {
   const target = process.argv[2] || "dashboard";
   const dir = target === "report" ? "playwright-report" : "reports/dashboard-static";
   const authToken = process.env.NETLIFY_AUTH_TOKEN;

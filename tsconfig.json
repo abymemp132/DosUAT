@@ -13,6 +13,7 @@
     "fixtures/**/*.ts",
     "utils/**/*.ts",
     "config/**/*.ts",
+    "scripts/**/*.ts",
     "tests/**/*.ts"
   ]
 }
