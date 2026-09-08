@@ -23,7 +23,7 @@ test.describe("home page - with login (authenticated user)", () => {
     await homePage.ensureHomeReady(city.name);
   });
 
-  test("[Login] saved session is active", async ({ page, city, user }) => {
+  test("[Login] saved session is active", async ({ page, city }) => {
     test.setTimeout(120_000);
 
     await assertSavedSession(page, city.name);

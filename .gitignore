@@ -6,4 +6,5 @@ blob-report/
 .auth/
 reports/
 scratch/
+.netlify/
 DosUAT/ 

@@ -35,11 +35,11 @@ async function generatePDF() {
   console.log('🏗️ Triggering Audit Report Generation...');
   // Trigger the dashboard's internal PDF HTML generation
   const pdfHtml = await page.evaluate(() => {
-    // Call the function that generates the PDF HTML
-    if (typeof (window as any).exportToPdf === 'function') {
-        (window as any).exportToPdf();
+    const win = window as unknown as { exportToPdf?: () => void };
+    if (typeof win.exportToPdf === "function") {
+        win.exportToPdf();
         // Return the HTML generated for the PDF preview
-        return document.getElementById('pdfPreviewContainer')?.innerHTML;
+        return document.getElementById("pdfPreviewContainer")?.innerHTML;
     }
     return null;
   });

@@ -1,4 +1,3 @@
-import { expect } from "@playwright/test";
 import { test } from "../../fixtures/testData.fixture";
 import { LoginPage } from "../../pages/auth/login.page";
 import { authStatePath, hasAuthState } from "../support/auth";

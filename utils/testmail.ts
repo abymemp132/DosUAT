@@ -41,11 +41,12 @@ export async function getOtpFromTestmail(tag: string, timeoutMs = 60000): Promis
           return otpMatch[0];
         }
       }
-    } catch (e: any) {
-      if (e.name === "TimeoutError" || e.name === "AbortError") {
+    } catch (e: unknown) {
+      const err = e as { name?: string; message?: string };
+      if (err.name === "TimeoutError" || err.name === "AbortError") {
         console.log(`[Testmail] Request timed out on attempt ${attempt}. Retrying...`);
       } else {
-        console.error(`[Testmail] Error on attempt ${attempt}:`, e instanceof Error ? e.message : e);
+        console.error(`[Testmail] Error on attempt ${attempt}:`, err.message || e);
       }
     }
 
