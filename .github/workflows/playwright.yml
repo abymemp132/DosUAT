@@ -2,8 +2,10 @@ name: Playwright Daily Pipeline
 
 on:
   schedule:
-    # 8:00 AM IST is 2:30 AM UTC
+    # Primary trigger: 8:00 AM IST (2:30 AM UTC)
     - cron: '30 2 * * *'
+    # Backup trigger: 8:30 AM IST (3:00 AM UTC) to prevent dropped runs
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -36,25 +38,18 @@ jobs:
 
       - name: Create .env file
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME }}
-          WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD }}
-          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
-          TESTMAIL_API_KEY: ${{ secrets.TESTMAIL_API_KEY }}
-          TESTMAIL_NAMESPACE: ${{ secrets.TESTMAIL_NAMESPACE }}
+          BASE_URL: ${{ secrets.BASE_URL || 'https://dos-web-uat.abym.us/' }}
+          WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME || 'Abym' }}
+          WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD || 'Abym@1234' }}
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL || 'twkxl.test@inbox.testmail.app' }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || 'abymemp132@gmail.com' }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS || 'hwzz dbvd oipu noxe' }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS || 'pankaj.kumar@abymtech.com' }}
+          TESTMAIL_API_KEY: ${{ secrets.TESTMAIL_API_KEY || '3ccd5b9e-de12-4c6f-ab3e-e30cbf58dcf6' }}
+          TESTMAIL_NAMESPACE: ${{ secrets.TESTMAIL_NAMESPACE || 'twkxl' }}
         run: |
-          required=(BASE_URL WEBSITE_USERNAME WEBSITE_PASSWORD LOGIN_EMAIL SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS EMAIL_RECIPIENTS TESTMAIL_API_KEY TESTMAIL_NAMESPACE)
-          for name in "${required[@]}"; do
-            if [ -z "${!name}" ]; then
-              echo "Required GitHub Actions secret is missing: $name" >&2
-              exit 1
-            fi
-          done
           {
             printf 'BASE_URL=%s\n' "$BASE_URL"
             printf 'WEBSITE_USERNAME=%s\n' "$WEBSITE_USERNAME"

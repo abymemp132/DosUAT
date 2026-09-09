@@ -238,7 +238,11 @@ export class AddToCartPage extends BasePage {
       .first();
 
     if (await loadingTests.isVisible().catch(() => false)) {
-      await expect(loadingTests).toBeHidden({ timeout: timeoutMs }).catch(() => {});
+      try {
+        await expect(loadingTests).toBeHidden({ timeout: timeoutMs });
+      } catch {
+        // Ignored
+      }
     }
 
     if (await locationModal.isVisible().catch(() => false)) {
