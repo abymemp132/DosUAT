@@ -2,10 +2,10 @@ name: Playwright Daily Pipeline
 
 on:
   schedule:
-    # Primary trigger: 8:00 AM IST (2:30 AM UTC)
-    - cron: '30 2 * * *'
-    # Backup trigger: 8:30 AM IST (3:00 AM UTC) to prevent dropped runs
-    - cron: '0 3 * * *'
+    # Primary trigger: 7:21 AM IST (1:51 AM UTC)
+    - cron: '51 1 * * *'
+    # Backup trigger: 7:36 AM IST (2:06 AM UTC) to prevent dropped runs
+    - cron: '6 2 * * *'
   workflow_dispatch:
 
 permissions:
