@@ -19,6 +19,8 @@
     "report:pdf": "tsx scripts/generate-report.ts",
     "send-email": "tsx scripts/email-sender.ts",
     "pipeline": "tsx utils/runPipeline.ts",
+    "server": "tsx server/index.ts",
+    "start": "tsx server/index.ts",
     "deploy:report": "tsx scripts/deploy-netlify.ts report",
     "deploy:dashboard": "tsx scripts/deploy-netlify.ts dashboard",
     "dashboard:static": "node utils/generateTestDashboard.js",
@@ -28,7 +30,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
+    "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^8.0.1",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
@@ -42,5 +47,10 @@
     "puppeteer": "^24.41.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "node-cron": "^4.6.0"
   }
 }

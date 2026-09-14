@@ -14,6 +14,7 @@
     "utils/**/*.ts",
     "config/**/*.ts",
     "scripts/**/*.ts",
+    "server/**/*.ts",
     "tests/**/*.ts"
   ]
 }
