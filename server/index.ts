@@ -13,8 +13,22 @@ const PORT = process.env.PORT || 3001;
 const repoRoot = path.resolve(__dirname, "..");
 const reportsDir = path.join(repoRoot, "reports");
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
+
+// Root health & welcome check
+app.get("/", (_req, res) => {
+  res.json({
+    name: "DosUAT Automation Control API",
+    status: "online",
+    health: "/api/health",
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Serve static test reports & assets
 app.use("/reports", express.static(reportsDir));
