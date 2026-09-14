@@ -21,6 +21,7 @@
     "pipeline": "tsx utils/runPipeline.ts",
     "server": "tsx server/index.ts",
     "start": "tsx server/index.ts",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "deploy:report": "tsx scripts/deploy-netlify.ts report",
     "deploy:dashboard": "tsx scripts/deploy-netlify.ts dashboard",
     "dashboard:static": "node utils/generateTestDashboard.js",
