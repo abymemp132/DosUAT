@@ -268,8 +268,8 @@ app.get("/api/reports", (_req, res) => {
   }
 });
 
-// Setup Cron Schedule (Daily run at 07:21 AM IST -> 01:51 AM UTC, or custom env CRON_SCHEDULE)
-const cronSchedule = process.env.CRON_SCHEDULE || "51 1 * * *";
+// Setup Cron Schedule (Daily run at 03:03 AM IST -> 09:33 PM UTC previous day, or custom env CRON_SCHEDULE)
+const cronSchedule = process.env.CRON_SCHEDULE || "33 21 * * *";
 if (cron.validate(cronSchedule)) {
   cron.schedule(cronSchedule, () => {
     appendLog(`⏰ Scheduled Cron triggered at (${cronSchedule})`);

@@ -2,10 +2,8 @@ name: Playwright Daily Pipeline
 
 on:
   schedule:
-    # Primary trigger: 7:21 AM IST (1:51 AM UTC)
-    - cron: '51 1 * * *'
-    # Backup trigger: 7:36 AM IST (2:06 AM UTC) to prevent dropped runs
-    - cron: '6 2 * * *'
+    # Daily trigger: 3:03 AM IST (9:33 PM UTC previous day)
+    - cron: '33 21 * * *'
   workflow_dispatch:
 
 permissions:
@@ -40,7 +38,7 @@ jobs:
         env:
           BASE_URL: ${{ secrets.BASE_URL || 'https://dos-web-uat.abym.us/' }}
           WEBSITE_USERNAME: ${{ secrets.WEBSITE_USERNAME || 'Abym' }}
-          WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD || 'Abym@1234' }}
+          WEBSITE_PASSWORD: ${{ secrets.WEBSITE_PASSWORD || 'Noida@123456' }}
           LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL || 'twkxl.test@inbox.testmail.app' }}
           SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
           SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
